@@ -7,8 +7,8 @@ Define the exact file and folder structure, naming convention, generation rules,
 ## Verified Facts
 
 - The repository already contains a workflow-skill layer in `03_agent-skills/` built around reusable cross-project workflows such as intake analysis, documentation reconstruction, pricing safety review, workspace bootstrap, strategy brief creation, release-gate review, and handoff preparation.
-- The approved source registry baseline contains `45` official AI agents, and the current approved working architecture has been expanded to `55` official agents.
-- The current skill-pack layer contains `45` live role-skill folders, which means the skill layer does not yet fully cover the expanded `55`-agent working architecture.
+- The approved source registry baseline contains `55` official AI agents.
+- The current skill-pack layer contains `45` live role-skill folders, which means the skill layer does not yet fully cover the `55`-agent working architecture.
 - The approved repository registry organizes those roles across the following operational groups:
   - Supervisor Layer
   - Revenue & Sales
@@ -462,6 +462,12 @@ The production pack must contain these AI role skill folders.
 - `daa-design-assistance-agent`
 - `aaa-accessibility-audit-agent`
 - `dra-deployment-readiness-agent`
+- `saa-solution-architecture-assistant`
+- `rca-repository-context-assistant`
+- `fis-frontend-implementation-specialist`
+- `bls-backend-logic-specialist`
+- `ids-integration-debugging-specialist`
+- `tva-test-verification-assistant`
 
 ### `quality-compliance`
 
@@ -506,6 +512,10 @@ The production pack must contain these AI role skill folders.
 - `tca-transcreation-agent`
 - `pdb-presentation-deck-builder`
 - `desa-data-extraction-structuring-agent`
+- `dss-database-schema-specialist`
+- `pis-platform-infrastructure-specialist`
+- `pos-performance-optimization-specialist`
+- `asis-agent-systems-integration-specialist`
 
 ## Quality Gates
 

@@ -1,0 +1,3 @@
+display_name: FIS - Frontend Implementation Specialist
+short_description: Builds user interfaces, responsive layouts, accessibility features, and frontend state management from design specs and API contracts.
+default_prompt: Use FIS to implement frontend code within NoDrftSystems design, accessibility, and responsive standards, escalating when designs are unfeasible or accessibility gaps are blockers.

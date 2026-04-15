@@ -1,7 +1,7 @@
 # Role Charter — FRA Financial Reporting Agent
 
 **Agent Code:** FRA
-**Caribbean Name:** Francine
+**Caribbean Name:** Winston
 **Canonical Name:** Financial Reporting Agent
 **Department:** Finance & Bookkeeping
 **Tier:** Tier 2

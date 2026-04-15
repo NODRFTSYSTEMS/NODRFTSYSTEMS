@@ -1,0 +1,3 @@
+display_name: IDS - Integration & Debugging Specialist
+short_description: Builds third-party integrations, isolates bugs across service boundaries, and designs error handling and retry logic.
+default_prompt: Use IDS to implement integrations and debug cross-service issues within NoDrftSystems security and testing standards, escalating when defects block release or vendor issues require business negotiation.

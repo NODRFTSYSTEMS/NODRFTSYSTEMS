@@ -1,7 +1,7 @@
 # Role Charter — ECFA Expense Cash Flow Agent
 
 **Agent Code:** ECFA
-**Caribbean Name:** Evelyn
+**Caribbean Name:** Janelle
 **Canonical Name:** Expense Cash Flow Agent
 **Department:** Finance & Bookkeeping
 **Tier:** Tier 2

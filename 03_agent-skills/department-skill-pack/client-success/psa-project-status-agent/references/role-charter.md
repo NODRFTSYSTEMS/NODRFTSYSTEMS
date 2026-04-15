@@ -1,7 +1,7 @@
 # Role Charter — PSA Project Status Agent
 
 **Agent Code:** PSA
-**Caribbean Name:** Petra
+**Caribbean Name:** Donovan
 **Canonical Name:** Project Status Agent
 **Department:** Client Success
 **Tier:** Tier 2

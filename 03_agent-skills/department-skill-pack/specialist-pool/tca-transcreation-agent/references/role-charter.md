@@ -1,7 +1,7 @@
 # Role Charter — TCA Transcreation Agent
 
 **Agent Code:** TCA
-**Caribbean Name:** Tamara
+**Caribbean Name:** Xiomara
 **Canonical Name:** Transcreation Agent
 **Department:** Specialist Pool
 **Tier:** Tier 3

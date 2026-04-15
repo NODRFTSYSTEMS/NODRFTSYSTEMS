@@ -1,0 +1,3 @@
+display_name: TVA - Test & Verification Assistant
+short_description: Writes test plans, automated tests, and verification evidence to improve repeatability and regression coverage before release.
+default_prompt: Use TVA to design and implement tests within NoDrftSystems quality standards, escalating when critical defects are found or coverage is insufficient for release.

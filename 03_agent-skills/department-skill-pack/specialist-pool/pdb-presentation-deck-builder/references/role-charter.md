@@ -1,7 +1,7 @@
 # Role Charter — PDB Presentation Deck Builder
 
 **Agent Code:** PDB
-**Caribbean Name:** Petra B
+**Caribbean Name:** Stefan
 **Canonical Name:** Presentation Deck Builder
 **Department:** Specialist Pool
 **Tier:** Tier 3

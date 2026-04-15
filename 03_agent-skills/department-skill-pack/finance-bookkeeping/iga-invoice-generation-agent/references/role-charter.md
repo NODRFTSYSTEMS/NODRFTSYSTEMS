@@ -1,7 +1,7 @@
 # Role Charter — IGA Invoice Generation Agent
 
 **Agent Code:** IGA
-**Caribbean Name:** Ingrid
+**Caribbean Name:** Shanice
 **Canonical Name:** Invoice Generation Agent
 **Department:** Finance & Bookkeeping
 **Tier:** Tier 2

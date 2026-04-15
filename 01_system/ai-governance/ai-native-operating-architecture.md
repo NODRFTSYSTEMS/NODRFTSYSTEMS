@@ -6,7 +6,7 @@ Define the realistic AI operating model for NoDrftSystems so the approved agent 
 
 ## Verified Facts
 
-- The approved working registry currently contains `45` official agents.
+- The approved working registry currently contains `55` official agents.
 - The approved registry explicitly states the architecture is not capped at `40`.
 - The approved structure includes `4` supervisor-layer agents, `37` departmental operational and governance agents across `8` departments, and `4` specialist-pool agents.
 - The repository now contains a dedicated skill layer in `03_agent-skills/`.
@@ -280,7 +280,7 @@ For high-risk artifacts, at least one critical review should come from a differe
 
 The architecture is not capped at any fixed number.
 
-- The current official bench is `45` agents.
+- The current official bench is `55` agents.
 - Additional agents may be added when precision, governance coverage, or operational control requires it.
 - Each new agent requires: a workflow justification that cannot be covered by an existing agent, a proposed bounded scope that does not conflict with an existing agent's scope, an assigned human owner, and Founder or ARE approval before activation.
 - The approval record must be added to `01_system/registry/final-approved-department-and-agent-registry.md` before the agent operates.
@@ -391,7 +391,7 @@ Drift is when outputs, prompts, or workflows deviate from approved standards wit
 
 The AI operating architecture is working when:
 
-- the `45`-agent approved registry remains the staffing truth
+- the `55`-agent approved registry remains the staffing truth
 - workflow cells activate only the roles actually required
 - skills are used to standardize recurring workflows
 - no artifact self-certifies its own readiness

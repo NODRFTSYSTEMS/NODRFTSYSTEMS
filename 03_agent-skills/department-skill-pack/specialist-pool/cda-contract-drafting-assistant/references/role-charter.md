@@ -1,7 +1,7 @@
 # Role Charter — CDA Contract Drafting Assistant
 
 **Agent Code:** CDA
-**Caribbean Name:** Clara
+**Caribbean Name:** Rochelle-Ann
 **Canonical Name:** Contract Drafting Assistant
 **Department:** Specialist Pool
 **Tier:** Tier 3

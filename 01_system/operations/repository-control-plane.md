@@ -11,7 +11,7 @@ Define the current operating rules for this repository so it can function as a r
 - `02_client-system` contains the intake surface, intake operating rules, and the reusable client workspace template.
 - `03_agent-skills` contains reusable workflow skills for repository triage, intake analysis, documentation reconstruction, pricing review, profitability review, and handoff preparation.
 - `90_source-documents` preserves raw `docx`, `pdf`, and related exports by domain.
-- The approved working agent registry currently normalizes `45` official agents and explicitly states the architecture is not capped at `40`.
+- The approved working agent registry currently normalizes `55` official agents and explicitly states the architecture is not capped at `40`.
 - The existing repository audit dated `2026-04-13` documents the initial restructuring pass, but it predates the current control-plane layer and should now be treated as baseline history rather than the live operating map.
 - The client workspace template contains stage folders and now includes a bootstrap kit with starter artifact definitions for repeatable use.
 

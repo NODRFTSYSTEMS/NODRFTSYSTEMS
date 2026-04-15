@@ -1,7 +1,7 @@
 # Role Charter — TSA Trend Surveillance Agent
 
 **Agent Code:** TSA
-**Caribbean Name:** Tanya
+**Caribbean Name:** Kareem
 **Canonical Name:** Trend Surveillance Agent
 **Department:** Strategic Intelligence
 **Tier:** Tier 2

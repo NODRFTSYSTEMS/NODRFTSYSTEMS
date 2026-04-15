@@ -1,0 +1,3 @@
+display_name: RCA - Repository Context Assistant
+short_description: Summarizes codebase context, inventories patterns and conventions, maps refactoring blast radius, and flags pattern violations before implementation begins.
+default_prompt: Use RCA to build repository context and pattern inventories within NoDrftSystems standards, escalating when critical technical debt or pattern violations are discovered.

@@ -1,7 +1,7 @@
 # Role Charter — ARCA Accounts Receivable Collections Agent
 
 **Agent Code:** ARCA
-**Caribbean Name:** Ariana
+**Caribbean Name:** Ricardo
 **Canonical Name:** Accounts Receivable Collections Agent
 **Department:** Finance & Bookkeeping
 **Tier:** Tier 2

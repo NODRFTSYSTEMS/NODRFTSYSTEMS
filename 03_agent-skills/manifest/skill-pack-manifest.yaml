@@ -1,18 +1,7 @@
 version: 1
 generated_at: 2026-04-14
 approved_working_architecture_agents: 55
-live_skill_pack_count: 45
-missing_skill_pack_codes:
-  - SAA
-  - RCA
-  - FIS
-  - BLS
-  - IDS
-  - TVA
-  - DSS
-  - PIS
-  - POS
-  - ASIS
+live_skill_pack_count: 55
 source_priority:
   approved_registry: 01_system/registry/final-approved-department-and-agent-registry.md
   skill_library: 90_source-documents/ai-architecture/NoDrftSystems_Skills_Library_v1.md
@@ -62,6 +51,380 @@ skills:
       - HHC
     escalates_to_human:
       - HR-ARE
+      - HR-FOUNDER
+    source_status: approved
+
+  - skill_id: saa-solution-architecture-assistant
+    agent_code: SAA
+    canonical_name: Solution Architecture Assistant
+    caribbean_name: Samara
+    department: delivery-build
+    path: 03_agent-skills/department-skill-pack/delivery-build/saa-solution-architecture-assistant
+    activation_status: active-triggered-workflow
+    load_priority: standard
+    trigger_terms:
+      - architecture review
+      - system boundaries
+      - tech stack validation
+      - integration patterns
+      - architecture drift
+    workflow_tags:
+      - architecture
+      - design
+      - boundary-definition
+    required_inputs:
+      - requirements brief
+      - existing system docs
+      - constraints
+      - stakeholder priorities
+    outputs:
+      - architecture recommendation
+      - integration map
+      - tech stack justification
+      - risk notes
+    confidence_floor: 80
+    escalates_to_ai:
+      - SEA
+      - PMA
+      - MOA
+    escalates_to_human:
+      - HR-FOUNDER
+      - HR-ARE
+    source_status: approved
+
+  - skill_id: rca-repository-context-assistant
+    agent_code: RCA
+    canonical_name: Repository Context Assistant
+    caribbean_name: Deven
+    department: delivery-build
+    path: 03_agent-skills/department-skill-pack/delivery-build/rca-repository-context-assistant
+    activation_status: active-triggered-workflow
+    load_priority: standard
+    trigger_terms:
+      - codebase context
+      - pattern inventory
+      - refactoring blast radius
+      - repository onboarding
+      - pattern violation
+    workflow_tags:
+      - repository-analysis
+      - context-mapping
+      - pattern-inventory
+    required_inputs:
+      - repository access
+      - engineering standards
+      - change request
+      - test suite info
+    outputs:
+      - context summary
+      - pattern inventory
+      - blast-radius map
+      - technical-debt flags
+    confidence_floor: 80
+    escalates_to_ai:
+      - SEA
+      - MOA
+    escalates_to_human:
+      - HR-FOUNDER
+      - HR-ARE
+    source_status: approved
+
+  - skill_id: fis-frontend-implementation-specialist
+    agent_code: FIS
+    canonical_name: Frontend Implementation Specialist
+    caribbean_name: Kiara
+    department: delivery-build
+    path: 03_agent-skills/department-skill-pack/delivery-build/fis-frontend-implementation-specialist
+    activation_status: active-triggered-workflow
+    load_priority: standard
+    trigger_terms:
+      - UI implementation
+      - responsive layout
+      - accessibility implementation
+      - frontend state management
+      - component building
+    workflow_tags:
+      - frontend
+      - implementation
+      - accessibility
+    required_inputs:
+      - design specs
+      - component requirements
+      - API contracts
+      - accessibility targets
+    outputs:
+      - frontend code
+      - component usage notes
+      - accessibility evidence
+      - UI test notes
+    confidence_floor: 80
+    escalates_to_ai:
+      - SEA
+      - AAA
+      - MOA
+    escalates_to_human:
+      - HR-FOUNDER
+      - HR-ARE
+    source_status: approved
+
+  - skill_id: bls-backend-logic-specialist
+    agent_code: BLS
+    canonical_name: Backend & Logic Specialist
+    caribbean_name: Khari
+    department: delivery-build
+    path: 03_agent-skills/department-skill-pack/delivery-build/bls-backend-logic-specialist
+    activation_status: active-triggered-workflow
+    load_priority: standard
+    trigger_terms:
+      - API endpoint
+      - database logic
+      - business rules
+      - backend service
+      - authentication logic
+    workflow_tags:
+      - backend
+      - api
+      - business-logic
+    required_inputs:
+      - API specification
+      - data models
+      - business rules
+      - security requirements
+    outputs:
+      - backend code
+      - API documentation
+      - logic test notes
+      - security checklist evidence
+    confidence_floor: 80
+    escalates_to_ai:
+      - SEA
+      - SCA
+      - MOA
+    escalates_to_human:
+      - HR-FOUNDER
+      - HR-ARE
+    source_status: approved
+
+  - skill_id: ids-integration-debugging-specialist
+    agent_code: IDS
+    canonical_name: Integration & Debugging Specialist
+    caribbean_name: Nia
+    department: delivery-build
+    path: 03_agent-skills/department-skill-pack/delivery-build/ids-integration-debugging-specialist
+    activation_status: active-triggered-workflow
+    load_priority: standard
+    trigger_terms:
+      - third-party integration
+      - bug isolation
+      - error handling
+      - webhook plumbing
+      - API integration
+    workflow_tags:
+      - integration
+      - debugging
+      - error-handling
+    required_inputs:
+      - API documentation
+      - codebase
+      - error logs
+      - integration test requirements
+    outputs:
+      - integration code
+      - debug findings
+      - error-handling map
+      - regression test recommendations
+    confidence_floor: 80
+    escalates_to_ai:
+      - SEA
+      - MOA
+    escalates_to_human:
+      - HR-FOUNDER
+      - HR-ARE
+    source_status: approved
+
+  - skill_id: tva-test-verification-assistant
+    agent_code: TVA
+    canonical_name: Test & Verification Assistant
+    caribbean_name: Leandra
+    department: delivery-build
+    path: 03_agent-skills/department-skill-pack/delivery-build/tva-test-verification-assistant
+    activation_status: active-triggered-workflow
+    load_priority: standard
+    trigger_terms:
+      - test plan
+      - automated test
+      - regression coverage
+      - pre-release verification
+      - test evidence
+    workflow_tags:
+      - testing
+      - verification
+      - quality-evidence
+    required_inputs:
+      - feature specification
+      - existing test suite
+      - acceptance criteria
+      - risk areas
+    outputs:
+      - test plan
+      - automated test scripts
+      - coverage report
+      - verification evidence
+    confidence_floor: 80
+    escalates_to_ai:
+      - QAS
+      - SEA
+      - MOA
+    escalates_to_human:
+      - HR-FOUNDER
+      - HR-ARE
+    source_status: approved
+
+  - skill_id: dss-database-schema-specialist
+    agent_code: DSS
+    canonical_name: Database & Schema Specialist
+    caribbean_name: Marise
+    department: specialist-pool
+    path: 03_agent-skills/department-skill-pack/specialist-pool/dss-database-schema-specialist
+    activation_status: on-demand-specialist
+    load_priority: specialist
+    trigger_terms:
+      - database schema
+      - migration script
+      - query optimization
+      - data integrity
+      - schema design
+    workflow_tags:
+      - database
+      - schema
+      - migration
+    required_inputs:
+      - data requirements
+      - existing schema
+      - performance targets
+      - integration constraints
+    outputs:
+      - schema design
+      - migration scripts
+      - query optimization recommendations
+      - integrity rules
+    confidence_floor: 85
+    escalates_to_ai:
+      - SEA
+      - MOA
+    escalates_to_human:
+      - HR-FOUNDER
+      - HR-ARE
+    source_status: approved
+
+  - skill_id: pis-platform-infrastructure-specialist
+    agent_code: PIS
+    canonical_name: Platform & Infrastructure Specialist
+    caribbean_name: Keston
+    department: specialist-pool
+    path: 03_agent-skills/department-skill-pack/specialist-pool/pis-platform-infrastructure-specialist
+    activation_status: on-demand-specialist
+    load_priority: specialist
+    trigger_terms:
+      - deployment pipeline
+      - hosting architecture
+      - infrastructure scaling
+      - CI/CD optimization
+      - cloud configuration
+    workflow_tags:
+      - infrastructure
+      - deployment
+      - scaling
+    required_inputs:
+      - application requirements
+      - traffic estimates
+      - compliance needs
+      - budget constraints
+    outputs:
+      - infrastructure recommendations
+      - deployment configurations
+      - scaling plan
+      - cost estimate
+    confidence_floor: 85
+    escalates_to_ai:
+      - DRA
+      - SEA
+      - MOA
+    escalates_to_human:
+      - HR-FOUNDER
+      - HR-ARE
+    source_status: approved
+
+  - skill_id: pos-performance-optimization-specialist
+    agent_code: POS
+    canonical_name: Performance Optimization Specialist
+    caribbean_name: Jovan
+    department: specialist-pool
+    path: 03_agent-skills/department-skill-pack/specialist-pool/pos-performance-optimization-specialist
+    activation_status: on-demand-specialist
+    load_priority: specialist
+    trigger_terms:
+      - performance bottleneck
+      - load time
+      - resource usage
+      - benchmarking
+      - optimization
+    workflow_tags:
+      - performance
+      - optimization
+      - benchmarking
+    required_inputs:
+      - performance metrics
+      - codebase access
+      - user behavior data
+      - infrastructure constraints
+    outputs:
+      - optimization recommendations
+      - implemented improvements
+      - benchmark results
+      - monitoring suggestions
+    confidence_floor: 85
+    escalates_to_ai:
+      - SEA
+      - MOA
+    escalates_to_human:
+      - HR-FOUNDER
+      - HR-ARE
+    source_status: approved
+
+  - skill_id: asis-agent-systems-integration-specialist
+    agent_code: ASIS
+    canonical_name: Agent Systems Integration Specialist
+    caribbean_name: Tameka
+    department: specialist-pool
+    path: 03_agent-skills/department-skill-pack/specialist-pool/asis-agent-systems-integration-specialist
+    activation_status: on-demand-specialist
+    load_priority: specialist
+    trigger_terms:
+      - agent workflow integration
+      - multi-agent orchestration
+      - agent-tool interface
+      - agent-layer architecture
+      - AI coordination
+    workflow_tags:
+      - agent-integration
+      - orchestration
+      - ai-systems
+    required_inputs:
+      - agent workflow specs
+      - tool interface definitions
+      - orchestration requirements
+      - governance rules
+    outputs:
+      - integration architecture
+      - orchestration scripts
+      - governance validation evidence
+      - deployment notes
+    confidence_floor: 85
+    escalates_to_ai:
+      - MOA
+      - QAS
+    escalates_to_human:
       - HR-FOUNDER
     source_status: approved
 

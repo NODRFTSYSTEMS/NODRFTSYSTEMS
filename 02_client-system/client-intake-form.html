@@ -483,6 +483,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       <p id="packageLabel"></p>
       <p id="scoreLabel"></p>
       <p id="riskLabel"></p>
+      <p id="missingLabel"></p>
     </div>
     <textarea id="summaryOutput" class="summary-output" readonly aria-label="Structured intake packet output"></textarea>
     <div class="confirm-actions">
@@ -603,6 +604,7 @@ function normalizeDeliverableHint(text){
 function buildSubmission(){
   const data={
     submitted_at:new Date().toISOString(),
+    form_version:'internal-v1',
     company:{
       name:safe('companyName'),
       industry:safe('industry'),
@@ -661,61 +663,100 @@ function buildSubmission(){
     }
   };
 
+  // --- Additive qualification scoring (aligned with intake OS spec) ---
   const riskFlags=[];
-  let score=100;
+  const missingData=[];
   let requiresDiscovery=false;
   let requiresFounder=false;
 
-  if(data.project.deliverables.length<25){
-    score-=10;
-    requiresDiscovery=true;
-    riskFlags.push('Deliverables are still too vague for reliable scoping.');
-  }
-  if(data.project.business_problem.length<30){
-    score-=10;
-    requiresDiscovery=true;
-    riskFlags.push('Business problem is underdefined.');
+  // Dimension 1: Budget clarity (20 max)
+  let budgetClarity=0;
+  if(data.budget.range && data.budget.range!=='Not disclosed'){
+    budgetClarity=(data.budget.range==='Under $5K')?10:20;
+  }else{
+    missingData.push('Budget range');
   }
   if(data.budget.range==='Under $5K'){
-    score-=30;
     riskFlags.push('Budget is below the current service ladder.');
   }
-  if(data.budget.range==='Not disclosed'){
-    score-=20;
-    requiresDiscovery=true;
-    requiresFounder=true;
-    riskFlags.push('Budget has not been disclosed.');
-  }
-  if(data.budget.approved==='Pending'){
-    score-=10;
-    riskFlags.push('Budget is not fully approved.');
-  }
-  if(data.budget.approved==='No'){
-    score-=20;
-    riskFlags.push('Budget authority is not in place.');
-  }
-  if(data.stakeholders.approval_count.startsWith('2')){
-    score-=5;
-    riskFlags.push('Multiple approvers may slow milestone decisions.');
-  }
-  if(data.stakeholders.approval_count==='4+'){
-    score-=15;
-    requiresFounder=true;
-    riskFlags.push('Approval chain is high-friction.');
-  }
-  if(data.timeline.flexibility==='Somewhat'){
-    score-=5;
+
+  // Dimension 2: Timeline realism (15 max)
+  let timelineRealism=0;
+  if(data.timeline.start_date && data.timeline.target_completion){
+    if(data.timeline.flexibility==='Yes, flexible') timelineRealism=15;
+    else if(data.timeline.flexibility==='Somewhat') timelineRealism=8;
+    else timelineRealism=5;
+  }else{
+    missingData.push('Timeline start and target completion dates');
   }
   if(data.timeline.flexibility==='No'){
-    score-=10;
     riskFlags.push('Timeline is fixed with limited scope flexibility.');
   }
   if(data.timeline.hard_deadlines){
-    score-=5;
     riskFlags.push('External hard deadline present.');
   }
+
+  // Dimension 3: Decision-maker access (15 max)
+  let decisionMakerAccess=0;
+  if(data.stakeholders.decision_maker){
+    if(data.stakeholders.decision_maker.toLowerCase()===data.contact.name.toLowerCase()){
+      decisionMakerAccess=15;
+    }else{
+      decisionMakerAccess=8;
+    }
+  }else{
+    missingData.push('Decision-maker identification');
+  }
+  if(data.stakeholders.approval_count==='4+'){
+    requiresFounder=true;
+    riskFlags.push('Approval chain is high-friction.');
+  }else if(data.stakeholders.approval_count.startsWith('2')){
+    riskFlags.push('Multiple approvers may slow milestone decisions.');
+  }
+
+  // Dimension 4: ICP alignment (20 max) — estimated from fit signals
+  let icpAlignment=10;
+  if(data.budget.range!=='Under $5K' && data.budget.range!=='Not disclosed' && data.project.engagement_type!=='Diagnostic'){
+    icpAlignment=20;
+  }else if(data.budget.range==='Under $5K' && data.project.engagement_type==='Diagnostic'){
+    icpAlignment=0;
+  }
+
+  // Dimension 5: Scope clarity (15 max)
+  let scopeClarity=0;
+  const deliverablesClear=data.project.deliverables.length>=25;
+  const problemClear=data.project.business_problem.length>=30;
+  if(deliverablesClear && problemClear){
+    scopeClarity=15;
+  }else if(deliverablesClear || problemClear){
+    scopeClarity=8;
+    if(!deliverablesClear) missingData.push('Clear deliverables description');
+    if(!problemClear) missingData.push('Clear business problem statement');
+  }else{
+    missingData.push('Clear deliverables description');
+    missingData.push('Clear business problem statement');
+  }
+  if(!deliverablesClear){
+    requiresDiscovery=true;
+    riskFlags.push('Deliverables are still too vague for reliable scoping.');
+  }
+  if(!problemClear){
+    requiresDiscovery=true;
+    riskFlags.push('Business problem is underdefined.');
+  }
+
+  // Dimension 6: Red flag reduction (15 max)
+  if(data.budget.approved==='Pending'){
+    riskFlags.push('Budget is not fully approved.');
+  }
+  if(data.budget.approved==='No'){
+    riskFlags.push('Budget authority is not in place.');
+  }
+  if(data.budget.range==='Not disclosed'){
+    requiresDiscovery=true;
+    riskFlags.push('Budget has not been disclosed.');
+  }
   if(data.project.compliance.some(item=>item==='HIPAA'||item==='SOC 2'||item==='PCI-DSS')){
-    score-=10;
     requiresFounder=true;
     riskFlags.push('Compliance-sensitive work requires elevated review.');
   }
@@ -727,17 +768,32 @@ function buildSubmission(){
     riskFlags.push('Scale engagement implies higher delivery complexity.');
   }
 
-  score=Math.max(score,0);
+  // $15K founder-approval gate
+  const highValueBudget=['$15K–$30K','$30K–$50K','$50K–$100K','$100K+'].includes(data.budget.range);
+
+  let redFlagScore=15;
+  if(riskFlags.length>=3) redFlagScore=0;
+  else if(riskFlags.length>=1) redFlagScore=8;
+
+  const score=budgetClarity+timelineRealism+decisionMakerAccess+icpAlignment+scopeClarity+redFlagScore;
 
   let recommendation='Proceed to scoped proposal';
-  if(score<60){
+  if(score<50){
     recommendation='Do not quote yet; resolve fit or route to decline';
   }else if(requiresFounder&&requiresDiscovery){
     recommendation='Founder review plus Discovery Sprint required';
   }else if(requiresFounder){
     recommendation='Founder review required before proposal';
-  }else if(requiresDiscovery||score<80){
-    recommendation='Discovery Sprint required before proposal';
+  }else if(requiresDiscovery||score<85){
+    if(score<70){
+      recommendation='Gaps must close first — return to lead with missing-data request';
+    }else{
+      recommendation='Discovery Sprint required before proposal';
+    }
+  }
+
+  if(missingData.length===0 && (requiresDiscovery || score<85)){
+    missingData.push('Additional detail needed to reach proposal-ready score');
   }
 
   const packageHint=data.project.engagement_type==='Retainer'
@@ -753,8 +809,9 @@ function buildSubmission(){
     recommendation:recommendation,
     package_hint:packageHint,
     risk_flags:riskFlags,
-    founder_review_required:requiresFounder,
-    discovery_required:requiresDiscovery||score<80
+    missing_data:missingData,
+    founder_review_required:requiresFounder||highValueBudget,
+    discovery_required:requiresDiscovery||score<85
   };
 
   return data;
@@ -762,6 +819,7 @@ function buildSubmission(){
 
 function buildSummary(data){
   const risks=data.analysis.risk_flags.length?data.analysis.risk_flags.map(item=>'- '+item).join('\n'):'- No major risk flags were detected from form responses alone.';
+  const missing=data.analysis.missing_data.length?data.analysis.missing_data.map(item=>'- '+item).join('\n'):'- No critical missing data detected.';
   return [
     'NODRFTSYSTEMS INTAKE PACKET',
     '',
@@ -826,6 +884,9 @@ function buildSummary(data){
     '- Referral source: '+(data.additional.referral_source||'Not stated'),
     '- Referral name: '+(data.additional.referral_name||'Not stated'),
     '',
+    'MISSING DATA',
+    missing,
+    '',
     'RISK FLAGS',
     risks
   ].join('\n');
@@ -836,6 +897,7 @@ function populateConfirmation(data,summary){
   document.getElementById('packageLabel').textContent='Suggested path: '+data.analysis.package_hint;
   document.getElementById('scoreLabel').textContent='Qualification score: '+data.analysis.qualification_score+'/100';
   document.getElementById('riskLabel').textContent='Risk flags: '+(data.analysis.risk_flags.length?data.analysis.risk_flags.length:'none');
+  document.getElementById('missingLabel').textContent='Missing data items: '+(data.analysis.missing_data.length?data.analysis.missing_data.length:'none');
   document.getElementById('summaryOutput').value=summary;
 }
 

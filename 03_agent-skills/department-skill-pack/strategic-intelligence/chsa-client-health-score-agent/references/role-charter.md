@@ -1,7 +1,7 @@
 # Role Charter — CHSA Client Health Score Agent
 
 **Agent Code:** CHSA
-**Caribbean Name:** Chandra
+**Caribbean Name:** Lennox
 **Canonical Name:** Client Health Score Agent
 **Department:** Strategic Intelligence
 **Tier:** Tier 2

@@ -1,7 +1,7 @@
 # Role Charter — DESA Data Extraction Structuring Agent
 
 **Agent Code:** DESA
-**Caribbean Name:** Delia
+**Caribbean Name:** Niko
 **Canonical Name:** Data Extraction Structuring Agent
 **Department:** Specialist Pool
 **Tier:** Tier 3
