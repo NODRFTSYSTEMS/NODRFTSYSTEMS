@@ -1,5 +1,18 @@
 version: 1
 generated_at: 2026-04-14
+approved_working_architecture_agents: 55
+live_skill_pack_count: 45
+missing_skill_pack_codes:
+  - SAA
+  - RCA
+  - FIS
+  - BLS
+  - IDS
+  - TVA
+  - DSS
+  - PIS
+  - POS
+  - ASIS
 source_priority:
   approved_registry: 01_system/registry/final-approved-department-and-agent-registry.md
   skill_library: 90_source-documents/ai-architecture/NoDrftSystems_Skills_Library_v1.md

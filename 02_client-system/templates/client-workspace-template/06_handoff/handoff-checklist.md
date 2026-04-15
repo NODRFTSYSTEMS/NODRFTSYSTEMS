@@ -2,8 +2,12 @@
 
 ## Pre-Handoff Gates
 
+- [ ] Workspace root `AGENTS.md` is present and current
+- [ ] MOA routing record is present and current
+- [ ] PMA acceptance criteria reference is recorded
 - [ ] All deliverables listed in delivery register are approved
 - [ ] All QA holds resolved or documented as accepted exceptions
+- [ ] QAS release gate is recorded
 - [ ] Known issues list prepared and disclosed
 - [ ] Acceptance evidence recorded (client sign-off or equivalent)
 - [ ] Access transfer plan documented

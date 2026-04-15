@@ -25,7 +25,7 @@ Status definitions:
   Action: preserve as the transition audit; do not treat it as the current operating map by itself
 
 - `01_system/registry/final-approved-department-and-agent-registry.md`
-  Role: normalized working registry for the approved agent architecture
+  Role: normalized working registry for the approved agent architecture, including later founder-directed engineering expansion
   Status: active reference
   Action: use as the staffing truth for approved departments, codes, and ownership
 
@@ -58,6 +58,11 @@ Status definitions:
   Role: client workspace instantiation kit and required starter artifact pack
   Status: canonical governance
   Action: use when creating any new client or project workspace from the template
+
+- `02_client-system/templates/client-workspace-template/AGENTS.md`
+  Role: workspace-root activation contract for governed build, review, and deployment work
+  Status: active reference
+  Action: copy into instantiated workspaces and keep aligned with the canonical control plane and approved agent registry
 
 - `03_agent-skills/skill-loading-matrix.md`
   Role: skill routing map for repeatable AI-assisted execution
@@ -341,6 +346,126 @@ Status definitions:
   Role: AI and tool subscription planning
   Status: governed by canonical layer
   Action: use alongside the tool stack recommendation file, not by itself
+
+- `01_system/ai-governance/people-roles-governance-engineering-cell-report-2026-04-15.md`
+  Role: PRG diagnostic and redesign recommendation for engineering-cell quality failure
+  Status: active reference
+  Action: use for role-redesign, prompt-audit, tooling-audit, and replacement-decision work pending Founder and ARE approval
+
+- `01_system/ai-governance/current-high-value-coding-techniques-research-2026-04-15.md`
+  Role: current-source research memo on coding, prompt, tool, audit, and standards techniques that fit the precision engineering model
+  Status: active reference
+  Action: use to guide technical standards, prompt governance, tool approvals, engineering-role redesign, and merge-gate policy decisions
+
+- `01_system/ai-governance/engineering-standards-policy-2026-04-15.md`
+  Role: formal engineering standards policy for governed delivery, prompt control, tool control, evidence requirements, and reviewer separation
+  Status: canonical governance
+  Action: use as the primary engineering-quality control document once Founder and ARE approve activation
+
+- `01_system/ai-governance/codeowners-merge-gate-enforcement-spec-2026-04-15.md`
+  Role: repository enforcement specification for `CODEOWNERS`, review routing, required checks, and merge controls
+  Status: canonical governance
+  Action: use when configuring governed repositories and branch-control rules after Founder and ARE approval
+
+- `01_system/ai-governance/engineering-expansion-approval-and-hire-list-2026-04-15.md`
+  Role: approved internal directive recording the non-publishing rule, assistant and specialist expansion, and the new technical hire list
+  Status: canonical governance
+  Action: use as the expansion authority for engineering-bench growth, skill-pack creation, and registry updates
+
+- `01_system/ai-governance/mandatory-build-activation-protocol-2026-04-15.md`
+  Role: mandatory build-start control protocol covering classification, minimum role activation, reviewer separation, evidence gates, and stop conditions
+  Status: canonical governance
+  Action: use before any governed technical build is allowed to begin once Founder and ARE approve activation
+
+- `01_system/ai-governance/exceptional-build-escalation-protocol-2026-04-15.md`
+  Role: exceptional technical-incident escalation protocol covering multi-domain activation, maximum technical escalation, reassessment, and stand-down
+  Status: canonical governance
+  Action: use when a build failure or release incident exceeds the normal classified build model and requires temporary multi-domain escalation
+
+- `01_system/ai-governance/build-context-engineering-standard-2026-04-15.md`
+  Role: context-engineering standard defining the governed build prompt system, prompt-library requirements, evidence-ledger discipline, Plan Mode, verification loop, structured completion reporting, and fail-closed release behavior
+  Status: canonical governance
+  Action: use to design and govern all build prompt assets, execution skills, and completion controls for technical delivery
+
+- `01_system/ai-governance/build-prompt-library/00-root-contract-template.md`
+  Role: canonical template for the persistent root contract used across governed technical builds
+  Status: canonical governance
+  Action: instantiate per repository or governed build domain before active use
+
+- `01_system/ai-governance/build-prompt-library/01-master-build-prompt-template.md`
+  Role: reusable master build prompt template for governed execution under the root contract and scoped rules
+  Status: canonical governance
+  Action: use as the default controlled entry prompt for governed technical build work
+
+- `01_system/ai-governance/build-prompt-library/02-page-level-build-prompt-templates.md`
+  Role: page and route specific build prompt set for implementation, repair, and trust-sensitive surfaces
+  Status: canonical governance
+  Action: use when surface-level differences materially affect implementation, disclosure, or verification requirements
+
+- `01_system/ai-governance/build-prompt-library/03-role-specific-review-prompt-templates.md`
+  Role: bounded review prompt set for engineering, architecture, accessibility, security, deployment, and QA evidence review
+  Status: canonical governance
+  Action: use to preserve reviewer specificity and prevent generic review theater
+
+- `01_system/ai-governance/build-prompt-library/04-bilingual-qa-prompt-templates.md`
+  Role: multilingual parity QA prompt set for semantic, structural, disclosure, and UI-fit verification
+  Status: canonical governance
+  Action: use on parity-sensitive multilingual surfaces before advancement
+
+- `01_system/ai-governance/build-prompt-library/05-privacy-disclosure-qa-prompt-templates.md`
+  Role: privacy and disclosure QA prompt set for trust-sensitive surfaces with omission risk
+  Status: canonical governance
+  Action: use when data collection, consent, disclosure timing, or trust language is material
+
+- `01_system/ai-governance/build-prompt-library/06-evidence-ledger-template.md`
+  Role: mandatory control-record template for governed build evidence and reviewer-relevant history
+  Status: canonical governance
+  Action: use as the build evidence ledger on governed technical work
+
+- `01_system/ai-governance/build-prompt-library/07-structured-completion-report-template.md`
+  Role: mandatory structured close-out template for governed technical builds
+  Status: canonical governance
+  Action: use before release advancement or formal reviewer handoff
+
+- `01_system/ai-governance/build-control-assets/01-client-governance-profile-template.md`
+  Role: canonical client governance record template used to save, categorize, and link each client to its technical control set
+  Status: canonical governance
+  Action: instantiate one active profile per governed client and link it to the correct root contract, scoped rules, prompts, tools, and reviewer path
+
+- `01_system/ai-governance/build-control-assets/02-scoped-rules-template.md`
+  Role: canonical narrowing-rule template linking root contracts to specific clients, repositories, modules, routes, and sensitivity surfaces
+  Status: canonical governance
+  Action: instantiate per client, repository, module, route, or incident where narrower execution boundaries are required
+
+- `01_system/ai-governance/build-control-assets/03-activation-and-handoff-checklist-template.md`
+  Role: operational checklist template for Gate 0 through Gate 3A activation and handoff control
+  Status: canonical governance
+  Action: instantiate on governed builds to verify relevant and capable agent assignment and explicit cross-role handoff discipline
+
+- `01_system/ai-governance/build-control-assets/04-canonical-prompt-inventory-template.md`
+  Role: source-of-truth template for the governed prompt inventory
+  Status: canonical governance
+  Action: populate with every approved live prompt instance used in governed delivery
+
+- `01_system/ai-governance/build-control-assets/05-canonical-tool-inventory-template.md`
+  Role: source-of-truth template for the governed tool and service inventory
+  Status: canonical governance
+  Action: populate with every approved live tool or service used in governed delivery
+
+- `01_system/ai-governance/build-control-assets/06-incident-record-template.md`
+  Role: declaration and containment record template for E1, E2, and E3 escalation events
+  Status: canonical governance
+  Action: instantiate whenever exceptional build escalation is declared
+
+- `01_system/ai-governance/build-control-assets/07-repository-agent-capability-map-template.md`
+  Role: routing map template linking repositories and surfaces to relevant and capable agents, specialist triggers, and reviewer paths
+  Status: canonical governance
+  Action: populate per governed repository to support activation and handoff discipline
+
+- `01_system/ai-governance/explicit-protocol-control-sweep-2026-04-15.md`
+  Role: audit record of explicit versus implied operating controls across agents, roles, skills, prompts, and governance artifacts
+  Status: active reference
+  Action: use to track fixed versus unresolved control gaps until live client and repository instantiation is complete
 
 ## Brand and Web
 

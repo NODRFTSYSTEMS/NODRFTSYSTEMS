@@ -1,3 +1,3 @@
 display_name: MOA-G - Market Opportunity Agent
-short_description: Evaluate niches, offers, and expansion possibilities with disciplined commercial framing.
-default_prompt: Use MOA-G to market opportunity analysis within NoDrftSystems rules and escalate when authority or confidence limits are reached.
+short_description: Scores market opportunity hypotheses against ICP adjacency, service fit, and signal quality, producing structured opportunity briefs for Founder decision before any resource commitment.
+default_prompt: Use MOA-G to assess and score a specific market opportunity hypothesis within NoDrftSystems ICP and service inventory constraints and route the scored brief through the approved human approval path for Founder decision.

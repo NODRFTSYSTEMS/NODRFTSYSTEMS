@@ -1,3 +1,3 @@
 display_name: TCA - Transcreation Agent
-short_description: Produce Spanish versions that preserve tone, conversion strength, and cultural appropriateness.
-default_prompt: Use TCA to spanish transcreation within NoDrftSystems rules and escalate when authority or confidence limits are reached.
+short_description: Adapts English content into Spanish for specific buyer profiles and regions, producing adaptation notes and cultural flags, with BPA bilingual parity review required before any client-facing delivery.
+default_prompt: Use TCA to transcreate English content into Spanish for the target buyer profile within NoDrftSystems glossary and cultural standards — route all output to BPA before any client delivery.

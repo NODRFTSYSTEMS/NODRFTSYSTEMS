@@ -154,7 +154,8 @@ These are not loadable skills. They are escalation targets referenced by AI agen
 
 ## Rules
 
-- HHC is the sole AI routing point for human escalations. Individual agents do not route directly to humans except through the HHC escalation channel.
+- HHC is the sole AI routing point for human escalations and exceptional decision routing.
+- Routine approval-gated handoffs may follow the approved workflow-specific human approval path, but once a trigger is classified as an escalation it must route through HHC.
 - Every escalation must have a decision brief prepared by HHC before human review begins.
 - Human authority decisions must be logged with timestamp, decision, and any conditions.
 - No AI agent may suppress or delay an escalation once a trigger condition is met.

@@ -30,6 +30,14 @@
 
 -
 
+## Governance Activation
+
+- Governance files loaded:
+- Active named agents:
+- Workspace exception recorded:
+- MOA routing reference:
+- PMA acceptance criteria reference:
+
 ## Agent Routing Notes
 
 | Phase | Primary Agent | Verification Agent | Human Owner |

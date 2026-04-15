@@ -7,7 +7,9 @@ Define the exact file and folder structure, naming convention, generation rules,
 ## Verified Facts
 
 - The repository already contains a workflow-skill layer in `03_agent-skills/` built around reusable cross-project workflows such as intake analysis, documentation reconstruction, pricing safety review, workspace bootstrap, strategy brief creation, release-gate review, and handoff preparation.
-- The approved repository registry contains `45` official AI agents across the following operational groups:
+- The approved source registry baseline contains `45` official AI agents, and the current approved working architecture has been expanded to `55` official agents.
+- The current skill-pack layer contains `45` live role-skill folders, which means the skill layer does not yet fully cover the expanded `55`-agent working architecture.
+- The approved repository registry organizes those roles across the following operational groups:
   - Supervisor Layer
   - Revenue & Sales
   - Marketing & Content
@@ -22,7 +24,8 @@ Define the exact file and folder structure, naming convention, generation rules,
   - `HR-FOUNDER`
   - `HR-ARE`
   - `HR-GROWTH`
-- The role library therefore functions as a content source for `48` total entries, but only `45` of those entries are loadable AI skill candidates.
+- The role library therefore functions as a content source for `48` total entries, but only `45` of those entries are loadable AI skill candidates from the legacy approved set.
+- The post-expansion engineering roles approved on `2026-04-15` are not present in `NoDrftSystems_Skills_Library_v1.md` and require supplemental source documents for charter and skill-pack generation.
 - The `skill-creator` instructions require each skill folder to contain a `SKILL.md` file with YAML frontmatter limited to `name` and `description`, and recommend an `agents/openai.yaml` file plus optional `references/`, `scripts/`, and `assets/` folders.
 - Skill names must use lowercase letters, digits, and hyphens only.
 
@@ -30,7 +33,8 @@ Define the exact file and folder structure, naming convention, generation rules,
 
 - The correct next step is not another abstract architecture document. It is a build specification that makes pack generation deterministic.
 - The existing workflow-skill system should remain in place. The department and role skill pack should be added alongside it, not mixed into the current root skill folders.
-- The approved registry must control which AI skills are generated. The downloaded skills library should supply role behavior, duties, triggers, inputs, outputs, confidence floors, and escalation content.
+- The approved registry must control which AI skills are generated. The downloaded skills library should supply role behavior, duties, triggers, inputs, outputs, confidence floors, and escalation content for the legacy approved roles.
+- Post-expansion roles must not be inferred from naming alone. They require supplemental approved source documents before live skill-pack generation.
 - Human leadership roles should not be emitted as loadable Codex skills. They should remain escalation authorities referenced by the manifest and by role-skill escalation rules.
 
 ## Scope
@@ -46,7 +50,7 @@ This specification defines:
 
 ## Exclusions
 
-- writing all `45` role skills in this document
+- writing all `55` role skills in this document
 - replacing the existing workflow-skill folders
 - creating a live `/create-skill` command implementation inside this repository
 - generating human-authority skills for Founder, ARE, or Growth Lead
@@ -64,7 +68,7 @@ Use this file for:
 - approved agent code and canonical name
 - official activation status and reporting relationship
 
-### Source of truth for role behavior
+### Source of truth for legacy role behavior
 
 2. `90_source-documents/ai-architecture/NoDrftSystems_Skills_Library_v1.md`
 
@@ -80,9 +84,23 @@ Use this file for:
 - confidence floor
 - evidence required before completion
 
+### Source of truth for post-expansion technical roles
+
+3. `01_system/ai-governance/engineering-expansion-approval-and-hire-list-2026-04-15.md`
+4. `01_system/ai-governance/people-roles-governance-engineering-cell-report-2026-04-15.md`
+5. `01_system/ai-governance/mandatory-build-activation-protocol-2026-04-15.md`
+
+Use these files for:
+
+- approved existence of the added technical roles
+- approved department placement and activation status
+- primary purpose and activation triggers
+- bounded engineering-cell placement and handoff expectations
+- governance constraints that apply before those roles can become live skill packs
+
 ### Source of truth for skill anatomy
 
-3. `C:\Users\nkwtr\.codex\skills\.system\skill-creator\SKILL.md`
+6. `C:\Users\nkwtr\.codex\skills\.system\skill-creator\SKILL.md`
 
 Use this file for:
 

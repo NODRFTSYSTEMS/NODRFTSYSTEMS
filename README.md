@@ -28,3 +28,39 @@ Recommended reading order:
 7. `02_client-system/templates/client-workspace-template/WORKSPACE-BOOTSTRAP.md`
 8. `03_agent-skills/skill-loading-matrix.md`
 9. `03_agent-skills/skill-pack-build-specification.md`
+
+## Mandatory Activation Protocol
+
+For any substantial build, review, or deployment task, do not begin execution until the active workspace has loaded and is following:
+
+1. `01_system/operations/repository-control-plane.md`
+2. `02_client-system/templates/client-workspace-template/WORKSPACE-BOOTSTRAP.md`
+3. `03_agent-skills/skill-loading-matrix.md`
+4. `01_system/registry/final-approved-department-and-agent-registry.md`
+
+Required startup declaration for substantial work:
+
+- governance files loaded
+- active named agents
+- current project phase
+- required artifact trail for the phase
+- missing inputs or blocking exceptions
+
+Required named build chain unless the founder explicitly overrides it:
+
+- `Zayne / MOA`
+- `Josette / CSM`
+- `Keon / PMA`
+- `Anika / DAA`
+- `Malik / SEA`
+- `Imani / QAS`
+- `Rochelle / AAA`
+- `Terrence / DRA`
+
+Escalation only:
+
+- `Desmond / HHC`
+
+Hard gate:
+
+- No build, review, or deployment may proceed unless MOA routing and QAS release status are explicitly recorded in the workspace artifacts.

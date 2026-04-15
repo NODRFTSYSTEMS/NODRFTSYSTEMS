@@ -1,3 +1,3 @@
 display_name: CDA - Contract Drafting Assistant
-short_description: Populate approved legal templates accurately and isolate deviations for counsel review.
-default_prompt: Use CDA to legal template population and deviation flagging within NoDrftSystems rules and escalate when authority or confidence limits are reached.
+short_description: Populates MSA, SOW, NDA, and change order templates from Founder-approved engagement records, flags every deviation and unpopulated field, and routes all drafts through Founder and legal review before any client-facing use.
+default_prompt: Use CDA to populate an approved contract template from confirmed engagement records within NoDrftSystems legal governance rules — flag all deviations and route every draft to Founder and legal review before any client share.

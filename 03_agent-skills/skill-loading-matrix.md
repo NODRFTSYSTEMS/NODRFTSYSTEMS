@@ -52,6 +52,29 @@ Define which repository skills should load for which workflow so AI participatio
 - `release-gate-review`
 - `handoff-preparation`
 
+### Governed technical build activation
+
+- `release-gate-review` when the work is approaching reviewer or release gates
+- use the build prompt library and build control asset library as mandatory companions to the active role skills
+
+Required control assets:
+
+- client governance profile
+- root contract
+- scoped rules
+- activation and handoff checklist
+- canonical prompt inventory
+- canonical tool inventory
+- repository-agent capability map
+- evidence ledger
+- structured completion report
+
+### Prompt, tool, and governance control
+
+- `documentation-reconstruction` when a governed prompt, protocol, or control artifact is weak or fragmented
+- `repository-triage` when the skill, prompt, or control layer is inconsistent with the approved registry
+- `release-gate-review` when a governed technical output is being assessed for advancement
+
 ## Build Order For Future Skills
 
 Only add more skills when one of these recurring gaps becomes operationally active:
@@ -60,6 +83,7 @@ Only add more skills when one of these recurring gaps becomes operationally acti
 2. legal template preparation after counsel-approved forms exist
 3. recurring QA pass documentation
 4. post-project review and archive analysis
+5. approved technical-role skill packs for the post-expansion engineering bench once role charters are complete
 
 ## Acceptance Criteria
 

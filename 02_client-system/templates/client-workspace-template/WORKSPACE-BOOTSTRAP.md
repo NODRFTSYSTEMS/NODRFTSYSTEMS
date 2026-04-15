@@ -32,6 +32,19 @@ Use a stable client name and a project slug that is short enough to scan but spe
 
 ## Required Starter Artifact Pack
 
+### Workspace root
+
+Create `AGENTS.md` as the workspace activation contract. It must require:
+
+- loading `repository-control-plane.md`
+- loading `WORKSPACE-BOOTSTRAP.md`
+- loading `skill-loading-matrix.md`
+- loading `final-approved-department-and-agent-registry.md`
+- named activation for `Zayne / MOA`, `Josette / CSM`, `Keon / PMA`, `Anika / DAA`, `Malik / SEA`, `Imani / QAS`, `Rochelle / AAA`, and `Terrence / DRA`
+- escalation-only use of `Desmond / HHC`
+- explicit startup declaration before substantial work
+- a hard stop when MOA routing, PMA acceptance criteria, or QAS release status are missing
+
 ### `00_admin`
 
 Create `client-control-sheet.md` with at least:
@@ -224,6 +237,9 @@ Create `archive-note.md` when the workstream closes:
 - Do not create strategy artifacts before discovery is complete when the scope is still unclear.
 - Do not treat `05_deliverables` as a working-draft folder.
 - Do not close a project without `06_handoff` and `07_archive` records.
+- Do not begin substantial build work without a truthful startup declaration in the workspace.
+- Do not allow substantial build, review, or deployment work to proceed without MOA routing and QAS release status being recorded in the active artifact trail.
+- Do not instantiate a new workspace without the root `AGENTS.md` activation contract.
 
 ## Acceptance Criteria
 

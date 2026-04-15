@@ -1,8 +1,8 @@
 # Delivery Register
 
-| Artifact | Type | Status | Location | Client Ready | QA Pass | Human Approved | Notes |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |  |  |
+| Artifact | Type | Status | Location | Client Ready | MOA Routing Recorded | QA Pass | QAS Gate Reference | Human Approved | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |  |  |  |
 
 ## Status Definitions
 

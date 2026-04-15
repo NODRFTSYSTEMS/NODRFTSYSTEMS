@@ -150,6 +150,18 @@ If a workflow recurs across clients, the repository should contain a starter art
 
 For AI-assisted work, prefer workflow-bound skills with clear inputs and outputs over generic agent personas or one-off mega-prompts.
 
+### Mandatory startup declaration
+
+Any substantial build, review, or deployment task must begin with an explicit startup declaration that records:
+
+- governance files loaded
+- active named agents
+- current project phase
+- required artifact trail for that phase
+- blocking gaps, workspace exceptions, or missing inputs
+
+If that declaration cannot be made truthfully, execution must stop and escalate.
+
 ## Client Lifecycle Integration
 
 The repository should support a single default lifecycle:
@@ -206,6 +218,36 @@ Source of truth:
 Rule:
 
 The registry defines who can be activated. The skill-loading matrix defines when workflow skills should load. The skill-pack build specification defines how department and role skills must be generated.
+
+### Named build activation
+
+For substantial product, website, app, or delivery-build work, activate the approved named sequence unless a human owner explicitly overrides it:
+
+1. `Zayne / MOA`
+2. `Josette / CSM`
+3. `Keon / PMA`
+4. `Anika / DAA`
+5. `Malik / SEA`
+6. `Imani / QAS`
+7. `Rochelle / AAA`
+8. `Terrence / DRA`
+
+Escalation only:
+
+- `Desmond / HHC`
+
+No substantial build workflow should begin under generic roles alone when approved named agents and local skills exist.
+
+### Hard gates
+
+No build, review, or deployment may proceed when any of the following is true:
+
+- MOA routing has not been recorded
+- PMA acceptance criteria do not exist
+- QAS release status has not been recorded
+- the required artifact trail for the current phase is missing
+- required governance files are unread, unavailable, or being bypassed
+- the workspace is outside the controlled skeleton and the exception has not been explicitly recorded
 
 ## Current Structural Priorities
 
