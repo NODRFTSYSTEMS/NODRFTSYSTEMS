@@ -34,10 +34,8 @@ Status definitions:
   Status: active reference
   Action: use as the staffing truth for approved departments, codes, and ownership; updated 2026-04-17 to 59 agents with SRA, VDA, LCA, SMA additions
 
-- `NoDrftSystems_Final_Approved_Agent_Registry.pdf`
-  Role: approved source export backing the normalized registry; regenerated 2026-04-15 to reflect the 55-agent approved architecture at that date
-  Status: derived export
-  Action: preserve as approval evidence for the working registry; the current live registry contains 59 agents as of 2026-04-17; regenerate this PDF before using it as external evidence
+- ~~`NoDrftSystems_Final_Approved_Agent_Registry.pdf`~~ — DELETED 2026-04-17 (converted to markdown; the registry `.md` is the canonical source)
+  Note: the working registry `01_system/registry/final-approved-department-and-agent-registry.md` is the current 59-agent source of truth; no PDF export is required
 
 - `01_system/ai-governance/ai-native-operating-architecture.md`
   Role: workflow activation, review-gate, and AI operating model guidance
@@ -212,15 +210,15 @@ Status definitions:
   Status: governed by canonical layer
   Action: use only with pricing governance; do not treat as standalone quote sheet
 
-- `90_source-documents/commercial/NoDrftSystems_Pricing_Colombia_2026.pdf`
-  Role: regional confidential pricing edition
+- `90_source-documents/commercial/NoDrftSystems_Pricing_Colombia_2026.md`
+  Role: regional confidential pricing edition — Colombia market (converted from PDF 2026-04-17)
   Status: reference only
-  Action: confirm active use before quoting from it
+  Action: confirm active use before quoting from it; source PDF deleted
 
-- `90_source-documents/commercial/NoDrftSystems_Pricing_Jamaica_2026.pdf`
-  Role: regional confidential pricing edition
+- `90_source-documents/commercial/NoDrftSystems_Pricing_Jamaica_2026.md`
+  Role: regional confidential pricing edition — Jamaica market (converted from PDF 2026-04-17)
   Status: reference only
-  Action: confirm active use before quoting from it
+  Action: confirm active use before quoting from it; source PDF deleted
 
 - `90_source-documents/commercial/NoDrftSystems_Addendum_7_Project_Proposal_Template.docx`
   Role: proposal template
@@ -540,15 +538,15 @@ Status definitions:
   Status: derived export
   Action: keep as historical audit output; do not let it replace canonical governance
 
-- `90_source-documents/reports/NoDrftSystems — Full System Audit Report.pdf`
-  Role: PDF export of audit material
+- `90_source-documents/reports/full-system-audit-report.md`
+  Role: full system audit report — complete 12-section markdown conversion of the PDF export (converted 2026-04-17)
   Status: derived export
-  Action: preserve only for sharing or archival reference
+  Action: use for historical reference; do not let it replace canonical governance; source PDF deleted
 
-- `90_source-documents/reports/NoDrftSystems — Critical Deficiencies Register.pdf`
-  Role: PDF export of deficiency register
+- `90_source-documents/reports/critical-deficiencies-register.md`
+  Role: critical deficiencies register — STOP-001 through STOP-005 and MONITORING-001/002 (converted 2026-04-17)
   Status: derived export
-  Action: preserve only for sharing or archival reference
+  Action: review to confirm which deficiencies remain open vs. resolved; source PDF deleted
 
 ## Repository Controls
 
@@ -679,3 +677,65 @@ Status definitions:
   Role: pointer to primary source documents at C:\Users\nkwtr\Downloads\PEOSYS with full file inventory
   Status: active reference
   Action: use to locate canonical source files; recommend migrating PEOSYS files into repo before Phase 2 execution
+
+### CasaClaro
+
+- `04_products/CASACLARO/casaclaro-app-summary.md`
+  Role: repo-based app summary for CasaClaro — how it works, how to run, and identified repo gaps (converted from PDF 2026-04-17)
+  Status: active reference
+  Action: use as the entry-level orientation document for the CasaClaro codebase; source PDF deleted
+
+## Proprietary Product Workspaces
+
+### The Walcott & Co. Press
+
+- `02_client-system/WALCOTT_homepage-website/00_admin/client-control-sheet.md`
+  Role: product control sheet for The Walcott & Co. Press — product identity, engagement context, authority chain, and phase log
+  Status: canonical governance
+  Action: update as the product advances through phases; controls launch authorization
+
+- `02_client-system/WALCOTT_homepage-website/01_intake/proprietary-build-declaration.md`
+  Role: proprietary build declaration for WCP — Founder authorization, product scope, 5 open decisions, and authority chain
+  Status: canonical governance
+  Action: update when Founder resolves open decisions; blocks advancement until resolved
+
+- `02_client-system/WALCOTT_homepage-website/02_discovery/discovery-brief.md`
+  Role: product scoping brief for WCP — 14-section homepage blueprint and open questions (repurposed from template test 2026-04-17)
+  Status: active reference
+  Action: use as the product scope reference; advance to strategy brief once Founder resolves scoping questions
+
+### CasaClaro
+
+- `02_client-system/CASACLARO_marketplace-v1/00_admin/client-control-sheet.md`
+  Role: product control sheet for CasaClaro — identity, build status (active, receiving changes), and authority chain
+  Status: canonical governance
+  Action: update when Phase 6 build date and scope are authorized
+
+- `02_client-system/CASACLARO_marketplace-v1/01_intake/proprietary-build-declaration.md`
+  Role: proprietary build declaration for CasaClaro — Founder authorization and current active build status
+  Status: canonical governance
+  Action: update as scope and build authorization are formalized
+
+### Peak Equity Optimizer
+
+- `02_client-system/PEAKEQUITYOPTIMIZER_web-app/00_admin/client-control-sheet.md`
+  Role: product control sheet for PEO — identity, Phase 6 pending build authorization status, and authority chain
+  Status: canonical governance
+  Action: update when Founder authorizes Phase 6 build date and scope
+
+- `02_client-system/PEAKEQUITYOPTIMIZER_web-app/01_intake/proprietary-build-declaration.md`
+  Role: proprietary build declaration for PEO — Founder authorization and Phase 6 pending status
+  Status: canonical governance
+  Action: update when Phase 6 is formally authorized; complete Gate 0 before Phase 6 begins
+
+### Forgotten by Design
+
+- `02_client-system/FORGOTTENBYDESIGN_web/00_admin/client-control-sheet.md`
+  Role: product control sheet for Forgotten by Design — identity, pre-launch status (5 decisions pending), and authority chain
+  Status: canonical governance
+  Action: update when Founder resolves all 5 pre-launch blocking decisions
+
+- `02_client-system/FORGOTTENBYDESIGN_web/01_intake/proprietary-build-declaration.md`
+  Role: proprietary build declaration for FBD — Founder authorization, product scope, and 5 unresolved pre-launch decisions
+  Status: canonical governance
+  Action: Founder must document and resolve all 5 decisions before launch proceeds
