@@ -1,0 +1,43 @@
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Editor / IDE
+*.swp
+*.swo
+.idea/
+
+# 04_products — binary and generated artifact exclusions
+# ML model files
+04_products/**/*.tflite
+04_products/**/*.tflite.bak
+
+# Browser / Chromium runtime artifacts
+04_products/**/CrashpadMetrics*
+04_products/**/ChromeProfile/
+04_products/**/*.crx
+04_products/**/Crashpad/
+
+# Node dependencies
+04_products/**/node_modules/
+
+# QA screenshot / capture artifacts
+04_products/**/qa-profile*/
+04_products/**/qa-shots/
+04_products/**/qa-sweep*/
+04_products/**/qa-refresh/
+04_products/**/qa-nav-check/
+
+# Generated / compiled output (not source)
+04_products/**/*.min.js
+04_products/**/*.min.css
+04_products/**/dist/
+04_products/**/.next/
+04_products/**/.nuxt/
+04_products/**/.cache/
+04_products/**/.output/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo

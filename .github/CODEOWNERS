@@ -1,0 +1,34 @@
+# CODEOWNERS — NoDrftSystems Master Repository
+#
+# Implements path ownership per codeowners-merge-gate-enforcement-spec-2026-04-15.md
+# Team mapping uses GitHub team handles. Assign real team members via GitHub > Settings > Teams.
+#
+# Ownership model: use human review groups that map to implementation domains.
+# Do not place internal AI agent codes directly in CODEOWNERS.
+#
+# Teams defined in this file:
+#   @nodrftsys/founder   — Founder authority (all policy and final approval)
+#   @nodrftsys/are       — Architecture Review Executive (governance and technical standards)
+#   @nodrftsys/reviewers — Independent reviewers (separate from implementation cell)
+
+# Default: all governed changes require independent reviewer approval
+* @nodrftsys/reviewers
+
+# Repository root — activation contracts and repo-level governance
+/AGENTS.md @nodrftsys/are @nodrftsys/founder
+/README.md @nodrftsys/are @nodrftsys/founder
+
+# Governance and AI operating architecture layer
+/01_system/ @nodrftsys/are @nodrftsys/founder
+
+# Client system — intake, operating rules, workspace template
+/02_client-system/ @nodrftsys/reviewers @nodrftsys/are
+
+# Agent skills — skill packs, loading matrix, build specification, manifests
+/03_agent-skills/ @nodrftsys/are @nodrftsys/reviewers
+
+# Source document archive — binary-locked source files
+/90_source-documents/ @nodrftsys/are
+
+# Repository controls — this file and branch protection configuration
+/.github/ @nodrftsys/founder
