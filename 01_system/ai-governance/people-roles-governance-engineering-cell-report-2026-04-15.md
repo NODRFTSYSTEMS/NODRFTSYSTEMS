@@ -6,6 +6,8 @@ Owners for review: Founder, ARE
 Prepared for: People, Roles & Governance department
 Approval status note: expansion approvals now live in `engineering-expansion-approval-and-hire-list-2026-04-15.md`
 
+> **Amendment — 2026-04-15:** This report's Verified Facts reflect the pre-expansion baseline. The registry was subsequently expanded to 55 agents per `engineering-expansion-approval-and-hire-list-2026-04-15.md`. The Delivery & Build department now includes additional specialist roles beyond the five listed below. Treat section 1 as a historical snapshot, not current state.
+
 ## 1. Verified Facts
 
 - The approved working registry currently contains `45` official agents and is not capped at `40`.

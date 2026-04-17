@@ -1,11 +1,16 @@
 # NoDrftSystems Operating Repository
 
-This repository is organized into four working layers:
+This repository is organized into five working layers:
 
 - `01_system/`: canonical governance, control, pricing, registry, and operating rules
 - `02_client-system/`: intake, qualification, workspace bootstrapping, and reusable client-lifecycle assets
 - `03_agent-skills/`: workflow-bound skills for repeatable AI execution
+- `04_products/`: internal NoDrftSystems product builds (governed via Mandatory Build Activation Protocol)
 - `90_source-documents/`: preserved raw source exports and historical references
+
+## Internal Products
+
+- `04_products/PEO/` — Peak Equity Optimizer: trust-based real-estate intelligence platform (6-phase build, Class 3, activation record at `04_products/PEO/00_governance/`)
 
 Working rules:
 
@@ -46,16 +51,7 @@ Required startup declaration for substantial work:
 - required artifact trail for the phase
 - missing inputs or blocking exceptions
 
-Required named build chain unless the founder explicitly overrides it:
-
-- `Zayne / MOA`
-- `Josette / CSM`
-- `Keon / PMA`
-- `Anika / DAA`
-- `Malik / SEA`
-- `Imani / QAS`
-- `Rochelle / AAA`
-- `Terrence / DRA`
+Build cell composition is governed dynamically by `01_system/ai-governance/mandatory-build-activation-protocol-2026-04-15.md`. Classify the build, assess the active agent capability set, and assemble the minimum viable cell per the protocol. RCA and TVA are mandatory on every governed build. Additional specialists (SAA, FIS, BLS, IDS, DSS, PIS, POS, ASIS) activate conditionally by build class.
 
 Escalation only:
 
@@ -63,4 +59,4 @@ Escalation only:
 
 Hard gate:
 
-- No build, review, or deployment may proceed unless MOA routing and QAS release status are explicitly recorded in the workspace artifacts.
+- No build, review, or deployment may proceed unless the build is classified, the minimum cell is assigned, a Gate 0A agent routing note is recorded in the workspace artifacts, and QAS release status is explicitly recorded.

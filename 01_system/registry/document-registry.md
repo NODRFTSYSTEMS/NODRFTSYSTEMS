@@ -19,25 +19,30 @@ Status definitions:
   Status: canonical governance
   Action: use as the current control document for repository behavior and future restructuring
 
+- `01_system/operations/scripts/validate-registry-consistency.py`
+  Role: automated validator that checks registry counts, manifest entries, and disk skill folder coverage remain synchronized
+  Status: active reference
+  Action: run before committing registry or manifest changes; exit code 0 means synchronized, exit code 1 means mismatch detected
+
 - `01_system/repository-audit-2026-04-13.md`
   Role: first restructuring audit after root cleanup
   Status: historical baseline
   Action: preserve as the transition audit; do not treat it as the current operating map by itself
 
 - `01_system/registry/final-approved-department-and-agent-registry.md`
-  Role: normalized working registry for the approved agent architecture, including later founder-directed engineering expansion
+  Role: normalized working registry for the approved agent architecture, including later founder-directed engineering expansion and skills optimization enhancement
   Status: active reference
-  Action: use as the staffing truth for approved departments, codes, and ownership
+  Action: use as the staffing truth for approved departments, codes, and ownership; updated 2026-04-17 to 59 agents with SRA, VDA, LCA, SMA additions
 
 - `NoDrftSystems_Final_Approved_Agent_Registry.pdf`
-  Role: approved source export backing the normalized registry
+  Role: approved source export backing the normalized registry; regenerated 2026-04-15 to reflect the 55-agent approved architecture at that date
   Status: derived export
-  Action: preserve as approval evidence for the working registry
+  Action: preserve as approval evidence for the working registry; the current live registry contains 59 agents as of 2026-04-17; regenerate this PDF before using it as external evidence
 
 - `01_system/ai-governance/ai-native-operating-architecture.md`
   Role: workflow activation, review-gate, and AI operating model guidance
   Status: canonical governance
-  Action: use for activation logic and control rules; do not let it override the approved registry on staffing counts or department structure
+  Action: use for activation logic and control rules; updated 2026-04-17 to reflect 59-agent architecture, QAS stage-gate discipline, and new workflow cell members; do not let it override the approved registry on staffing counts or department structure
 
 - `01_system/commercial/pricing-governance.md`
   Role: pricing hierarchy, control chain, and quoting discipline
@@ -67,7 +72,7 @@ Status definitions:
 - `03_agent-skills/skill-loading-matrix.md`
   Role: skill routing map for repeatable AI-assisted execution
   Status: canonical governance
-  Action: use before loading skills or assembling workflow-specific agent bundles
+  Action: use before loading skills or assembling workflow-specific agent bundles; updated 2026-04-17 to include strategic-review, visual-direction, legal-compliance, and system-maintenance skills
 
 - `03_agent-skills/skill-pack-build-specification.md`
   Role: production build specification for department and agent role skills
@@ -75,9 +80,31 @@ Status definitions:
   Action: use before generating per-department or per-agent skills from the approved registry and role library
 
 - `90_source-documents/ai-architecture/NoDrftSystems_Skills_Library_v1.md`
-  Role: normalized skill-source document containing role behavior, duties, triggers, inputs, outputs, and escalation rules for all approved agents
+  Role: normalized skill-source document containing role behavior, duties, triggers, inputs, outputs, and escalation rules for the pre-expansion 45-agent baseline
   Status: active reference
-  Action: use as the source of truth for role behavior when building or regenerating department skill packs
+  Action: use as the source of truth for role behavior when building or regenerating skill packs for the original 45 agents; the 10 engineering expansion roles are not in this file — see engineering-expansion-approval-and-hire-list-2026-04-15.md and 03_agent-skills/department-skill-pack/
+
+## Activation Contracts and Skill Manifests
+
+- `AGENTS.md`
+  Role: repository-root activation contract governing mandatory preloads, scope boundaries, hard rules, change-control discipline, and naming standards for all work in this repository
+  Status: canonical governance
+  Action: load before any substantial work begins in this repository; do not override without Founder or ARE authorization
+
+- `02_client-system/AGENTS.md`
+  Role: client-system activation contract covering intake, operating system, workspace template, and the rules for operating within the client-facing layer
+  Status: canonical governance
+  Action: load when working within the client-system layer; governs editing conventions and scope boundaries for all 02_client-system files
+
+- `03_agent-skills/AGENTS.md`
+  Role: skill-layer activation contract defining the workflow-skill and department role-skill directories, SKILL.md section conventions, mandatory preloads, and hard rules for creating or modifying skills
+  Status: canonical governance
+  Action: load before generating, editing, or routing any skill pack; defines the required section order and escalation behavior standard
+
+- `03_agent-skills/manifest/skill-pack-manifest.yaml`
+  Role: machine-readable index of all 59 live skill packs, their source priorities, skill metadata, and authority-routing definitions
+  Status: active reference
+  Action: use when routing agent activation to specific skill packs; keep synchronized with the approved department-and-agent registry and any new skill additions
 
 ## Skill System
 
@@ -125,6 +152,11 @@ Status definitions:
   Role: transfer and close-out preparation skill
   Status: active reference
   Action: load when assembling final delivery packages, access transfer notes, and archive records
+
+- `03_agent-skills/department-skill-pack/` (59 role skill folders — full approved working architecture)
+  Role: individual role skill packs for all 59 approved agents across the Supervisor Layer, Revenue & Sales, Marketing & Content, Delivery & Build, Quality & Compliance, Client Success, Finance & Bookkeeping, Strategic Intelligence, People Roles & Governance, and Specialist Pool departments
+  Status: active reference
+  Action: load the relevant role-skill folder when activating a named agent for bounded task execution; the 10 engineering expansion roles (SAA, RCA, FIS, BLS, IDS, TVA, DSS, PIS, POS, ASIS) were added 2026-04-15 per engineering-expansion-approval-and-hire-list-2026-04-15.md; the 4 skills optimization roles (SRA, VDA, LCA, SMA) were added 2026-04-17 per the skills optimization and enhancement directive
 
 ## Strategy
 
@@ -302,9 +334,9 @@ Status definitions:
 ## AI Architecture
 
 - `90_source-documents/ai-architecture/NoDrftSystems_Skills_Library_v1.md`
-  Role: normalized role-behavior source for all 45 AI agents — primary objective, bounded scope, core duties, inputs, outputs, escalation triggers, confidence floors, and evidence requirements
+  Role: normalized role-behavior source for the pre-expansion 45-agent baseline — primary objective, bounded scope, core duties, inputs, outputs, escalation triggers, confidence floors, and evidence requirements
   Status: active reference
-  Action: use as the role-behavior source when generating department skill pack files; treat as authoritative for role content; note that the internal count summary (43 AI agents, 32 Tier 2) is incorrect — actual content contains 45 AI agents (37 Tier 2), which matches the approved registry
+  Action: use as the role-behavior source when regenerating department skill packs for the original 45 agents; note that the 10 engineering expansion roles approved 2026-04-15 are not in this file — their role behavior is defined in engineering-expansion-approval-and-hire-list-2026-04-15.md and their skill packs in 03_agent-skills/department-skill-pack/; note also that the internal count summary (43 AI agents, 32 Tier 2) is incorrect — actual content contains 45 AI agents (37 Tier 2)
   Path: archived to repository from uncontrolled Downloads location on 2026-04-14
 
 - `90_source-documents/ai-architecture/NoDrftSystems_AI_Agent_Architecture.docx`
@@ -387,6 +419,11 @@ Status definitions:
   Status: canonical governance
   Action: use to design and govern all build prompt assets, execution skills, and completion controls for technical delivery
 
+- `01_system/ai-governance/new-agent-activation-readiness-record-2026-04-17.md`
+  Role: activation readiness record for the 4 new agents (SRA, VDA, LCA, SMA) added under the skills optimization directive
+  Status: active reference
+  Action: use before first activation of any new role in a governed build; requires Founder and ARE sign-off before active use
+
 - `01_system/ai-governance/build-prompt-library/00-root-contract-template.md`
   Role: canonical template for the persistent root contract used across governed technical builds
   Status: canonical governance
@@ -463,9 +500,9 @@ Status definitions:
   Action: populate per governed repository to support activation and handoff discipline
 
 - `01_system/ai-governance/explicit-protocol-control-sweep-2026-04-15.md`
-  Role: audit record of explicit versus implied operating controls across agents, roles, skills, prompts, and governance artifacts
+  Role: audit record of explicit versus implied operating controls across agents, roles, skills, prompts, and governance artifacts; last updated 2026-04-16 to reflect all 55 skill packs verified complete and secondary gaps (workspace AGENTS.md cell definition, CHSA routing matrix, DESA confidence floor, manifest date) resolved
   Status: active reference
-  Action: use to track fixed versus unresolved control gaps until live client and repository instantiation is complete
+  Action: use to track fixed versus unresolved control gaps; primary remaining gaps are live instantiation of client governance profiles, prompt/tool inventories, and repository-agent capability maps
 
 ## Brand and Web
 
@@ -513,9 +550,132 @@ Status definitions:
   Status: derived export
   Action: preserve only for sharing or archival reference
 
+## Repository Controls
+
+- `.github/CODEOWNERS`
+  Role: path-ownership enforcement file routing pull requests to the correct review teams by repository layer
+  Status: canonical governance
+  Action: update when repository structure changes or new team domains are added; GitHub teams must exist in the org before this file is enforceable
+
+- `.github/BRANCH-PROTECTION-NOTES.md`
+  Role: human-readable record of required branch protection settings for the main branch; documents controls that must be configured via GitHub UI or API
+  Status: canonical governance
+  Action: apply the documented settings via GitHub > Settings > Branches or Rulesets before enforcing the merge-gate model
+
+- `.github/PULL_REQUEST_TEMPLATE.md`
+  Role: structured pull request intake template enforcing objective, scope, evidence, and risk fields on all governed PRs
+  Status: canonical governance
+  Action: keep aligned with the evidence requirements in mandatory-build-activation-protocol-2026-04-15.md and codeowners-merge-gate-enforcement-spec-2026-04-15.md
+
+- `02_client-system/templates/client-workspace-template/04_execution/agent-routing-note.md`
+  Role: Gate 0A fill-in-the-blank template for the agent routing note required before build packet approval; defines surface map, role-to-surface assignments, capability check, handoff routing plan, and MOA/PMA/RCA sign-off fields
+  Status: canonical governance
+  Action: copy into each governed workspace's 04_execution/ folder at project open; complete before the build packet is approved
+
+## Source Archive Index
+
+- `90_source-documents/README.md`
+  Role: master index and authority-rule document for the 90_source-documents archive; documents binary-lock status, conversion priorities, directory inventory, and cross-reference table to live governance equivalents
+  Status: active reference
+  Action: read before adding or modifying files in 90_source-documents; it defines which binary files are pending conversion and maps each source document to its live governance counterpart
+
 ## Assets
 
 - `90_source-documents/assets/social-og.png`
   Role: social preview asset
   Status: active reference
   Action: use when the public web layer is rebuilt or published
+
+## Internal Products
+
+### Peak Equity Optimizer (PEO)
+
+- `04_products/PEO/00_governance/build-activation-record.md`
+  Role: canonical build activation record for PEO covering Gates 0, 0A, 1, 1A, and 2 — build classification, agent cell, surface mapping, build packet, plan mode output, and Gate 2 governance checklist
+  Status: canonical governance
+  Action: load before any PEO build phase begins; this is the primary activation control document for the PEO build
+
+- `04_products/PEO/00_governance/agent-routing-note.md`
+  Role: Gate 0A deliverable — signed agent cell with justification per role, phase-by-phase handoff sequence, evidence requirements between handoffs, and capability gap closure plan
+  Status: canonical governance
+  Action: load alongside build-activation-record.md; requires Founder and ARE sign-off before Gate 3 (execution) is unlocked
+
+- `04_products/PEO/00_governance/root-contract.md`
+  Role: persistent non-negotiable build rules for PEO covering formula governance, route boundaries, data quality, security/privacy, bilingual parity, accessibility, reviewer separation, confidentiality, evidence requirements, and binding spec corrections
+  Status: canonical governance
+  Action: persist across all PEO build phases; no build prompt may override or weaken these rules
+
+- `04_products/PEO/00_governance/scoped-rules.md`
+  Role: PEO-specific scoped rules covering roles and access model, formula defaults, formula scoping per route, comp logic rules, confidence scoring rules, kill-switch library, event instrumentation schema, design tokens, data model entities, and open items register
+  Status: canonical governance
+  Action: load for every PEO build phase; subordinate to root-contract.md — may not weaken it
+
+- `04_products/PEO/00_governance/pricing-declaration.md`
+  Role: canonical pricing declaration for PEO covering tier amounts, billing model, commercial control rules, and open item O-006 closure
+  Status: canonical governance
+  Action: use before implementing any pricing-linked UI, paywall, upgrade prompt, or public pricing page for PEO
+
+- `04_products/PEO/00_governance/open-items-tracker.md`
+  Role: standing register of unresolved vendor and process selections for PEO (O-002, O-003, O-005)
+  Status: canonical governance
+  Action: review before proceeding past any phase blocked by an open item; escalate to PMA + Founder if an open item is encountered during implementation
+
+- `04_products/PEO/00_governance/evidence-ledger.md`
+  Role: governed build evidence and reviewer-relevant history for PEO
+  Status: canonical governance
+  Action: review at each gate to confirm evidence requirements are met before advancement
+
+- `04_products/PEO/00_governance/phase-6-activation-and-handoff-checklist.md`
+  Role: instantiated Gate 0 through Gate 3A activation checklist for PEO Phase 6 Class 4 work
+  Status: canonical governance
+  Action: load with the Phase 6 build packet to confirm no-start conditions, handoff targets, and pending sign-offs before Gate 3 execution
+
+- `04_products/PEO/00_governance/canonical-prompt-inventory.md`
+  Role: PEO-local inventory of the approved Phase 6 governed prompt stack
+  Status: canonical governance
+  Action: use to confirm which governed prompt instance is active for Phase 6 and whether Founder/ARE approval is recorded
+
+- `04_products/PEO/00_governance/canonical-tool-inventory.md`
+  Role: PEO-local inventory of approved tools and services used in governed delivery
+  Status: canonical governance
+  Action: load before Phase 6 execution to confirm access scope, deploy power, and credential rules for the active tool surface
+
+- `04_products/PEO/00_governance/repository-agent-capability-map.md`
+  Role: repository-specific routing map for relevant and capable agent assignment across PEO technical surfaces
+  Status: canonical governance
+  Action: use during Gate 0A and Gate 2 to confirm the active Class 4 cell and adjacent specialist triggers
+
+- `04_products/PEO/01_specs/architecture-boundaries.md`
+  Role: Phase 1 deliverable — service decomposition, API boundaries, authorization model, data model skeleton, and architecture decision log for PEO
+  Status: active reference
+  Action: use as the implementation reference for service boundaries and API contracts in Phases 2–6
+
+- `04_products/PEO/01_specs/phase-1-completion-report.md`
+  Role: Gate 4A structured completion report for Phase 1
+  Status: active reference
+  Action: review as part of the gated handoff from Phase 1 to Phase 2
+
+- `04_products/PEO/01_specs/phase-2-completion-report.md`
+  Role: Gate 4A structured completion report for Phase 2
+  Status: active reference
+  Action: review as part of the gated handoff from Phase 2 to Phase 3
+
+- `04_products/PEO/01_specs/phase-3-completion-report.md`
+  Role: Gate 4A structured completion report for Phase 3
+  Status: active reference
+  Action: review as part of the gated handoff from Phase 3 to Phase 4
+
+- `04_products/PEO/01_specs/phase-6-build-packet.md`
+  Role: prepared Gate 1 build packet for Phase 6 covering marketplace, admin, deployment, inherited Phase 6-adjacent APIs, Class 4 active cell, evidence requirements, and open gates
+  Status: active reference
+  Action: load before any Phase 6 execution begins; this packet is prepared but still requires Founder and ARE approval before Gate 3
+
+- `04_products/PEO/01_specs/spec-index.md`
+  Role: index of all 24 primary source documents from C:\Users\nkwtr\Downloads\PEOSYS with binding corrections where the spec pack PDF conflicts with DOCX sources, resolved open items, and true remaining open items register
+  Status: active reference
+  Action: load at each build phase to confirm which source documents apply and to enforce binding corrections; do not implement from the spec pack PDF alone
+
+- `04_products/PEO/02_source-ref/README.md`
+  Role: pointer to primary source documents at C:\Users\nkwtr\Downloads\PEOSYS with full file inventory
+  Status: active reference
+  Action: use to locate canonical source files; recommend migrating PEOSYS files into repo before Phase 2 execution

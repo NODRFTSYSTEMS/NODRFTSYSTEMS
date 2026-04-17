@@ -114,10 +114,10 @@ The newly approved hires are also approved for corresponding skill-pack creation
 
 ### Recommended Next Build Order
 
-1. Update the official working registry with the approved hires.
-2. Draft the ten new role charters.
-3. Build the corresponding skill packs.
-4. Map the new roles into `CODEOWNERS` and merge-gate path ownership where relevant.
+1. Update the official working registry with the approved hires. [COMPLETED — 2026-04-15]
+2. Draft the ten new role charters. [COMPLETED — 2026-04-15]
+3. Build the corresponding skill packs. [COMPLETED — 2026-04-15]
+4. Map the new roles into `CODEOWNERS` and merge-gate path ownership where relevant. [IN PROGRESS — see C5 gap resolution]
 5. Activate only the smallest sophisticated cell needed per task.
 
 ## 3. Unknowns / Data Gaps

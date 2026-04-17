@@ -11,7 +11,7 @@ Define the current operating rules for this repository so it can function as a r
 - `02_client-system` contains the intake surface, intake operating rules, and the reusable client workspace template.
 - `03_agent-skills` contains reusable workflow skills for repository triage, intake analysis, documentation reconstruction, pricing review, profitability review, and handoff preparation.
 - `90_source-documents` preserves raw `docx`, `pdf`, and related exports by domain.
-- The approved working agent registry currently normalizes `55` official agents and explicitly states the architecture is not capped at `40`.
+- The approved working agent registry currently normalizes `59` official agents and explicitly states the architecture is not capped at `40`.
 - The existing repository audit dated `2026-04-13` documents the initial restructuring pass, but it predates the current control-plane layer and should now be treated as baseline history rather than the live operating map.
 - The client workspace template contains stage folders and now includes a bootstrap kit with starter artifact definitions for repeatable use.
 
@@ -28,6 +28,7 @@ Define the current operating rules for this repository so it can function as a r
 - `01_system` is the control layer.
 - `02_client-system` is the intake-to-delivery entry layer.
 - `03_agent-skills` is the reusable workflow-execution layer.
+- `04_products` is the internal product build layer.
 - `90_source-documents` is the preserved source layer.
 
 No file in `90_source-documents` outranks a canonical governance file in `01_system` unless a human decision explicitly promotes it.
@@ -276,6 +277,48 @@ Make AI participation bounded:
 - skill-pack build specification
 - workflow-specific skills
 - review and release gates
+
+## Internal Product Build Layer — `04_products/`
+
+`04_products/` is the internal product build layer for all NoDrft Systems proprietary products. It holds source code, build specifications, prototypes, and product-level governance documents for products owned and operated by NoDrft Systems.
+
+### What belongs in `04_products/`
+
+- product source code and build output
+- product-level AGENTS.md, CLAUDE.md, and root contracts
+- product-specific specs, blueprints, and design references
+- prototypes and proof-of-concept artifacts
+- product governance documents (agent routing notes, evidence ledgers, build control assets)
+
+### What does NOT belong in `04_products/`
+
+- binary artifacts: ML model files (*.tflite), browser profiles, crash dumps
+- node_modules and other dependency trees
+- generated or compiled output: dist/, .next/, minified bundles
+- QA screenshot capture directories (qa-profile*, qa-shots/, qa-sweep*)
+- client intake records, strategy briefs, qualification decisions — these belong in `02_client-system/`
+
+### Governance rule for proprietary products
+
+Every NoDrft Systems proprietary product in active build or maintenance must have:
+
+1. A product build folder in `04_products/` containing source and build artifacts.
+2. A corresponding product workspace in `02_client-system/` containing the business governance record (Proprietary Build Declaration, strategy brief, status log, handoff records).
+
+The `04_products/` folder and the `02_client-system/` workspace are complementary, not competing. `04_products/` tracks what is being built; `02_client-system/` tracks how and why it is being built.
+
+### Active proprietary products
+
+| Product | `04_products/` folder | `02_client-system/` workspace |
+|---|---|---|
+| CasaClaro | `04_products/CASACLARO/` | `02_client-system/CASACLARO_marketplace-v1/` |
+| Peak Equity Optimizer | `04_products/PEO/` | `02_client-system/PEAKEQUITYOPTIMIZER_web-app/` |
+| The Walcott & Co. Press | `04_products/WCP/` | `02_client-system/WALCOTT_homepage-website/` |
+| Forgotten by Design | `04_products/forgotten-by-design-web/` | `02_client-system/FORGOTTENBYDESIGN_web/` |
+
+### Binary artifact exclusion
+
+Binary and generated artifacts in `04_products/` are excluded from version control via root `.gitignore`. Patterns include: `*.tflite`, `CrashpadMetrics*/`, `ChromeProfile/`, `node_modules/`, QA screenshot directories, compiled output directories. See root `.gitignore` for the full exclusion list.
 
 ## Acceptance Criteria
 

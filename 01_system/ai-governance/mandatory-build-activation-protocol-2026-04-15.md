@@ -10,7 +10,7 @@ Purpose: define the mandatory activation logic, preconditions, role minimums, re
 
 - The active operating model uses the smallest viable sophisticated cell, not full-bench activation.
 - Reviewer authority remains separate from the implementation cell.
-- The technical bench has been expanded and the current working registry now reflects `55` official agents, including additional assistants and specialists in `Delivery & Build` and the `Specialist Pool`.
+- The technical bench has been expanded and the current working registry now reflects `59` official agents, including additional assistants and specialists in `Delivery & Build` and the `Specialist Pool`.
 - The framework is proprietary internal operating infrastructure and is not approved for external publishing.
 
 ## 2. Analysis
@@ -175,7 +175,7 @@ Before the build packet is approved, `MOA`, `PMA`, and `RCA` must complete an ex
 **Assessment steps:**
 
 1. **Surface mapping** — List every technical surface affected by the build (frontend, backend, API, database, infrastructure, third-party integration, agent-system wiring, performance path, security boundary).
-2. **Role-to-surface matching** — Map each affected surface to the smallest set of relevant and capable agents from the 55-agent approved registry:
+2. **Role-to-surface matching** — Map each affected surface to the smallest set of relevant and capable agents from the 59-agent approved registry:
    - Architecture / boundary-setting → `SAA`
    - Repository context / pattern inventory → `RCA`
    - Frontend UI / component implementation → `FIS`
@@ -400,13 +400,51 @@ This protocol is working only when:
 6. Apply the activation checklist to the next real governed build.
 7. Audit the first three activations for over-activation, under-activation, handoff failures, and review failures.
 
-## 3. Unknowns / Data Gaps
+## 3. Proprietary Build Application
+
+This protocol applies to all NoDrft Systems proprietary products — CasaClaro, Peak Equity Optimizer, The Walcott & Co. Press, and Forgotten by Design — without modification to the gate structure. The following clarifications apply specifically to proprietary builds.
+
+### Founder as Product Owner and Human Authority
+
+For NoDrft Systems proprietary products, the Founder holds all product ownership and human approval authority. There is no external client. When this protocol references:
+
+- "named human owner" → the Founder is the named human owner for all proprietary products
+- "client access" → this means public user access to the deployed product, not access by an external client
+- "human ARE approval" → this is Founder review for proprietary product builds
+- "client data" → this means end-user data within the product
+
+### Proprietary Build Declaration Replaces Client Intake
+
+External client intake scoring does not apply to NoDrft Systems proprietary products. The `client-intake-analysis` skill must not be loaded for proprietary product builds.
+
+For proprietary builds, the **Proprietary Build Declaration** replaces the external client intake packet. The Proprietary Build Declaration records:
+
+- product name and NoDrft Systems as the owning entity
+- Founder as the product owner and sole human authority
+- current build phase and status
+- build authorization decision
+- open blockers or decisions pending before the next phase begins
+
+The Proprietary Build Declaration is the founding governance artifact for the product workspace in `02_client-system/`. It is equivalent to the qualification decision and client intake packet combined — but grounded in internal product authority, not external qualification scoring.
+
+### Build Authorization for Proprietary Products
+
+For governed proprietary builds, the build authorization decision is made by the Founder and recorded in the product's Proprietary Build Declaration. This is the equivalent of the "named human owner" approval required at Gate 0 and Gate 1. No external approval path is required.
+
+### Workspace Structure for Proprietary Products
+
+Each proprietary product requires two complementary records in this repository:
+
+1. A build folder in `04_products/` containing source code, build artifacts, and product-level governance.
+2. A product workspace in `02_client-system/` containing the Proprietary Build Declaration, strategy brief, delivery status log, and handoff records.
+
+## 5. Unknowns / Data Gaps
 
 - The live reviewer roster by repository is not yet fully defined in repository-native form.
 - The exact first repository to adopt this protocol is not yet specified.
 - The active prompt and tool inventory still needs a fully canonical populated registry artifact.
 - The repository-agent capability map template now exists, but the live populated map does not yet exist for any specific repository in this repository.
 
-## 4. Conclusion
+## 6. Conclusion
 
 The mandatory rule is simple: no governed build begins without the right small cell, the right packet, the right controls, the right relevant and capable agents, and a separate reviewer path. Speed is not a valid reason to bypass activation discipline.

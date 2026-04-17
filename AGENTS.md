@@ -10,7 +10,7 @@ Before proposing any structural change, reconstruction, or multi-file edit, load
 
 1. `01_system/operations/repository-control-plane.md` — layer definitions and change-control rules
 2. `01_system/registry/document-registry.md` — canonical status of every significant file
-3. `01_system/registry/final-approved-department-and-agent-registry.md` — the 55-agent approved working architecture
+3. `01_system/registry/final-approved-department-and-agent-registry.md` — the 59-agent approved working architecture
 4. `03_agent-skills/skill-loading-matrix.md` — which workflow skills to load for which phase
 
 ## Scope boundaries

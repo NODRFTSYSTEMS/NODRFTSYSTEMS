@@ -6,9 +6,9 @@ Define the realistic AI operating model for NoDrftSystems so the approved agent 
 
 ## Verified Facts
 
-- The approved working registry currently contains `55` official agents.
+- The approved working registry currently contains `59` official agents.
 - The approved registry explicitly states the architecture is not capped at `40`.
-- The approved structure includes `4` supervisor-layer agents, `37` departmental operational and governance agents across `8` departments, and `4` specialist-pool agents.
+- The approved structure includes `4` supervisor-layer agents, `41` departmental operational and governance agents across `8` departments, and `8` specialist-pool agents.
 - The repository now contains a dedicated skill layer in `03_agent-skills/`.
 - Pricing, legal, release, and other trust-critical artifacts already require stronger review discipline than ordinary internal drafts.
 - The current business model is a lean operator model, not a large human team with constant synchronous coordination.
@@ -114,7 +114,9 @@ Recommended members:
 - `PMA`
 - `PEA`
 - `TSA` or `MOA-G` when market or positioning context matters
+- `SRA` when QAS or multi-agent outputs require synthesis before strategic commitment
 - `BCA` or `PLA` when messaging direction shapes the scope
+- `LCA` when discovery surfaces data practices, terms, or regulatory scope
 
 Use for:
 
@@ -135,9 +137,11 @@ Recommended members:
 - `PMA`
 - `SEA`
 - `DAA`
+- `VDA` when visual assets or UI surfaces are in scope
 - `AAA`
 - `SCA`
 - `DRA`
+- `SMA` for pre-build system health and component currency verification
 
 Use for:
 
@@ -150,7 +154,8 @@ Use for:
 Mandatory controls:
 
 - `QDA` before any client-ready release candidate
-- `QAS` before release advancement
+- `QAS` at every project stage and phase — formal sign-off required before advancement
+- `SMA` before build or deployment start to verify system health and component currency
 - human ARE review before production release when the work affects real systems or client access
 
 ### Release and Handoff Cell
@@ -163,6 +168,7 @@ Recommended members:
 - `CCA`
 - `PSA`
 - `COA` when onboarding or support terms are in scope
+- `LCA` when release includes updated terms, privacy disclosures, or regulatory-facing materials
 
 Use for:
 
@@ -280,7 +286,7 @@ For high-risk artifacts, at least one critical review should come from a differe
 
 The architecture is not capped at any fixed number.
 
-- The current official bench is `55` agents.
+- The current official bench is `59` agents.
 - Additional agents may be added when precision, governance coverage, or operational control requires it.
 - Each new agent requires: a workflow justification that cannot be covered by an existing agent, a proposed bounded scope that does not conflict with an existing agent's scope, an assigned human owner, and Founder or ARE approval before activation.
 - The approval record must be added to `01_system/registry/final-approved-department-and-agent-registry.md` before the agent operates.
@@ -391,7 +397,7 @@ Drift is when outputs, prompts, or workflows deviate from approved standards wit
 
 The AI operating architecture is working when:
 
-- the `55`-agent approved registry remains the staffing truth
+- the `59`-agent approved registry remains the staffing truth
 - workflow cells activate only the roles actually required
 - skills are used to standardize recurring workflows
 - no artifact self-certifies its own readiness

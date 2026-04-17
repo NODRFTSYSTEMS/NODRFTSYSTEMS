@@ -9,14 +9,14 @@ Normalized: 2026-04-14
 
 - The approved source registry baseline states `45` total official agents.
 - The approved source baseline tier distribution is `4` Tier 1 supervisor agents, `37` Tier 2 operational/governance agents across `8` departments, and `4` Tier 3 specialist agents.
-- The current official assigned working architecture has been expanded to `55` agents under the approved engineering expansion directive dated `2026-04-15`.
+- The current official assigned working architecture has been expanded to `59` agents under the approved engineering expansion directive dated `2026-04-15` and the skills optimization directive dated `2026-04-17`.
 - `People, Roles & Governance` is explicitly formalized as a full department in the approved source.
 - Every agent below is explicitly assigned to a tier and department. No assignment in this file is implied.
 
 ## Current Approval Rule
 
 - The architecture is not capped at `40` agents.
-- The current official assigned architecture contains `55` agents.
+- The current official assigned architecture contains `59` agents.
 - Additional agents may be added when precision, governance coverage, or operational control requires it.
 - Existing agent codes and Caribbean names remain unchanged.
 
@@ -25,12 +25,12 @@ Normalized: 2026-04-14
 - Tier 1: Supervisor Layer (`4`)
 - Tier 2: Revenue & Sales (`5`)
 - Tier 2: Marketing & Content (`5`)
-- Tier 2: Delivery & Build (`11`)
-- Tier 2: Quality & Compliance (`6`)
+- Tier 2: Delivery & Build (`12`)
+- Tier 2: Quality & Compliance (`7`)
 - Tier 2: Client Success (`4`)
 - Tier 2: Finance & Bookkeeping (`4`)
-- Tier 2: Strategic Intelligence (`3`)
-- Tier 2: People, Roles & Governance (`5`)
+- Tier 2: Strategic Intelligence (`4`)
+- Tier 2: People, Roles & Governance (`6`)
 - Tier 3: Specialist Pool (`8`)
 
 ## Department Registry
@@ -79,6 +79,7 @@ Normalized: 2026-04-14
 | TVA | Leandra | Test & Verification Assistant | MOA | ARE | Active - Triggered Workflow |
 | AAA | Rochelle | Accessibility Audit Agent | QAS | ARE | Always-On |
 | DRA | Terrence | Deployment Readiness Agent | QAS | ARE | Always-On |
+| VDA | Jeanine | Visual Direction Agent | MOA | ARE / Human Designer | Always-On |
 
 ### Quality & Compliance
 
@@ -90,6 +91,7 @@ Normalized: 2026-04-14
 | SCA | Omari | Security Compliance Agent | QAS | ARE | Always-On |
 | BPA | Maritza | Bilingual Parity Agent | QAS | Bilingual Reviewer / Founder | Active - Triggered Workflow |
 | PLA | Simone | Plain Language Agent | QAS | Founder / UX-Content Lead | Always-On |
+| LCA | Dorothy | Legal Compliance Agent | QAS | Founder + Qualified Legal Counsel | Always-On |
 
 ### Client Success
 
@@ -116,6 +118,7 @@ Normalized: 2026-04-14
 | TSA | Kareem | Trend Surveillance Agent | MOA | Founder | Active - Triggered Workflow |
 | MOA-G | Aaliyah | Market Opportunity Agent | MOA | Founder | Active - Triggered Workflow |
 | CHSA | Lennox | Client Health Score Agent | MOA | Growth Lead + Founder | Active - Triggered Workflow |
+| SRA | Janice | Strategic Review Agent | MOA | Founder | Active - Triggered Workflow |
 
 ### People, Roles & Governance
 
@@ -126,6 +129,7 @@ Normalized: 2026-04-14
 | TACA | Khadija | Tooling & Access Control Agent | MOA | ARE | Always-On |
 | KDGA | Mikael | Knowledge & Documentation Governance Agent | MOA | Founder + ARE | Always-On |
 | VPCA | Sabine | Vendor & Procurement Control Agent | MOA | Founder | Always-On |
+| SMA | Yvonne | System Maintenance Agent | MOA | ARE | Always-On |
 
 ### Specialist Pool
 
@@ -147,11 +151,11 @@ Normalized: 2026-04-14
 | Supervisor Layer | 4 |
 | Revenue & Sales | 5 |
 | Marketing & Content | 5 |
-| Delivery & Build | 11 |
-| Quality & Compliance | 6 |
+| Delivery & Build | 12 |
+| Quality & Compliance | 7 |
 | Client Success | 4 |
 | Finance & Bookkeeping | 4 |
-| Strategic Intelligence | 3 |
-| People, Roles & Governance | 5 |
+| Strategic Intelligence | 4 |
+| People, Roles & Governance | 6 |
 | Specialist Pool | 8 |
-| Total Official Agents | 55 |
+| Total Official Agents | 59 |
