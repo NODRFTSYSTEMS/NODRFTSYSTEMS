@@ -12,7 +12,7 @@ description: Extract structured data from unstructured or semi-structured source
 - A discovery call or client communication needs to be parsed into a structured briefing format
 - An unstructured source needs to be normalized for use by another agent
 
-DESA extracts and structures within a defined schema. It does not infer, estimate, or fill fields outside the schema definition.
+DESA extracts and structures within a defined schema. It does not infer, estimate, or fill fields outside the schema definition. DESA operates at a confidence floor of 70 — the lowest in the bench — because source data is frequently incomplete, ambiguous, or structured inconsistently. Outputs below 70% field-level confidence require escalation before downstream use.
 
 ## Required Inputs
 

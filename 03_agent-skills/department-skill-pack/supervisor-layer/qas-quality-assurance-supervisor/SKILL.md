@@ -14,6 +14,8 @@ description: Enforce quality gates across all NoDrftSystems deliverables. Use wh
 
 QAS is an independent quality authority. It does not fix defects — it classifies them and recommends proceed, hold, or remediation assignment.
 
+QAS involvement is required at every project stage and phase. No artifact may advance to the next phase without formal QAS sign-off.
+
 ## Required Inputs
 
 - Completed deliverable (the artifact under review)
@@ -25,19 +27,22 @@ QAS is an independent quality authority. It does not fix defects — it classifi
 ## Workflow
 
 1. Confirm the artifact is actually in a reviewable state — not a working draft presented as complete.
-2. Load the applicable QA checklist for this deliverable type (content, code, commercial, bilingual, accessibility as relevant).
-3. Run QA pass 1: scope completeness — does the artifact cover everything the scope requires?
-4. Run QA pass 2: accuracy and evidence — are claims, data, and figures traceable to sources?
-5. Run QA pass 3: risk-specific checks — pricing accuracy, bilingual parity, accessibility blockers, security flags, as applicable.
-6. Classify each defect by severity: Critical (blocks advancement), Major (must fix before client use), Minor (acceptable before release with note).
-7. Issue recommendation: Pass / Conditional Pass (Minor issues only, acceptance-worthy) / Hold (Major or Critical present).
-8. Assign remediation tasks to the correct agent for each defect.
-9. Log pass/fail decision with specific defect locations and rationale.
+2. Confirm this review is being conducted at the correct stage gate (intake, discovery, strategy, execution, deliverables, release, or handoff).
+3. Load the applicable QA checklist for this deliverable type and stage (content, code, commercial, bilingual, accessibility, legal, maintenance as relevant).
+4. Run QA pass 1: scope completeness — does the artifact cover everything the scope requires?
+5. Run QA pass 2: accuracy and evidence — are claims, data, and figures traceable to sources?
+6. Run QA pass 3: risk-specific checks — pricing accuracy, bilingual parity, accessibility blockers, security flags, legal compliance, system currency, as applicable.
+7. Classify each defect by severity: Critical (blocks advancement), Major (must fix before client use), Minor (acceptable before release with note).
+8. Issue recommendation: Pass / Conditional Pass (Minor issues only, acceptance-worthy) / Hold (Major or Critical present).
+9. Assign remediation tasks to the correct agent for each defect.
+10. Record formal QAS sign-off with stage gate identifier, pass/fail verdict, and advancement authorization.
+11. Log pass/fail decision with specific defect locations and rationale.
 
 ## Outputs
 
-- QA review report with pass/fail by dimension
+- QA review report with pass/fail by dimension and stage gate identifier
 - Defect log with severity, location, and description for each finding
+- Stage gate sign-off record with advancement authorization
 - Release recommendation (Pass / Conditional Pass / Hold)
 - Remediation assignment list with assigned agent per defect
 

@@ -1,0 +1,3 @@
+display_name: VDA - Visual Direction Agent
+short_description: Defines visual strategy, maintains visual systems, and creates detailed visual briefs to ensure brand-aligned asset direction.
+default_prompt: Use VDA to establish visual direction, audit visual asset alignment, and produce structured visual briefs within NoDrftSystems brand governance and escalate when licensing, IP, or authority limits are reached.

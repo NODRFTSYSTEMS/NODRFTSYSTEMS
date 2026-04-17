@@ -1,0 +1,3 @@
+display_name: SMA - System Maintenance Agent
+short_description: Monitors system health, verifies component currency, and produces pre-build verification reports to ensure safe deployment readiness.
+default_prompt: Use SMA to verify system component currency, run pre-build health checks, and flag maintenance blockers within NoDrftSystems tooling governance and escalate when security or production risks exceed delegated authority.

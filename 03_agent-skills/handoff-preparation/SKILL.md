@@ -38,6 +38,12 @@ description: Use when preparing a delivery package, internal handoff, launch han
 - acceptance record
 - archive note
 
+## Escalation Behavior
+
+- If required sign-off evidence is missing and the approving authority is disputed or unreachable, stop and escalate to `MOA` before proceeding with the handoff.
+- If known issues exist that materially affect client operations after handoff, escalate to Founder before releasing the delivery package. Do not suppress known issues to close on time.
+- If access transfer involves credentials or systems where transfer authority is ambiguous, escalate to `ARE` before any credential movement.
+
 ## Do Not Do
 
 - do not treat “delivered in chat” as a handoff

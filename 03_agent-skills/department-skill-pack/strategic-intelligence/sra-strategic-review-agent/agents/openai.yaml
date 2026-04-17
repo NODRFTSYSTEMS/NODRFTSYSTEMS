@@ -1,0 +1,3 @@
+display_name: SRA - Strategic Review Agent
+short_description: Analyzes QAS and supervisor reports to produce data-driven recommendations and decision briefs before strategic advancement.
+default_prompt: Use SRA to critically synthesize multi-agent outputs, QAS findings, and cross-functional data into actionable recommendations within NoDrftSystems rules and escalate when authority or confidence limits are reached.

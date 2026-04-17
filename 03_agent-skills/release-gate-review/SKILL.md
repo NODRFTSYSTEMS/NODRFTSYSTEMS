@@ -34,6 +34,14 @@ description: Use when a release candidate, launch package, or final delivery set
 - required fixes
 - handoff-readiness note
 
+## Escalation Behavior
+
+- If the release is failed and the blocking issue requires human authority to resolve (approval dispute, sign-off authority absent, unresolved known issue with client impact or end-user impact for proprietary products), escalate to `ARE` and Founder before issuing a final gate decision.
+- If a release gate is ambiguous because acceptance criteria in the build packet are unclear or missing, escalate to `MOA` and `PMA` to resolve the packet before reviewing the release candidate.
+- If QA evidence is absent or fabricated, issue a hard fail and escalate to `ARE`. Do not conditionally pass work without verifiable evidence.
+
+Note: for NoDrft Systems proprietary products, "client impact" means end-user or customer impact on the deployed product. There is no external client. Escalate to Founder when end-user impact is significant or the release affects market-facing product behavior.
+
 ## Do Not Do
 
 - do not approve work because it is "close enough"

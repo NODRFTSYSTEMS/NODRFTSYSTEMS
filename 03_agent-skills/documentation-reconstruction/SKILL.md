@@ -38,6 +38,12 @@ description: Use when a document, template, workflow spec, or operating asset is
 - remaining unknowns
 - recommended follow-up decisions
 
+## Escalation Behavior
+
+- If the document being reconstructed is a canonical governance artifact that requires policy authority to modify (e.g., an `01_system/` file, a registry entry, or a governed protocol), escalate to `ARE` before publishing the reconstruction.
+- If the reconstruction requires decisions that only a human owner can resolve (scope boundaries, commercial commitments, legal language), flag those decisions explicitly and escalate to Founder or the named human owner before finalizing.
+- If conflicting sources cannot be resolved without a canonical ruling, stop and escalate to `MOA` rather than arbitrating the conflict independently.
+
 ## Do Not Do
 
 - do not patch weak documents with superficial edits

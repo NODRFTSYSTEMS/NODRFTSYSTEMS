@@ -10,6 +10,8 @@ description: Use when reviewing package pages, proposals, statements of work, in
 - reviewing any commercial artifact before it is sent or published
 - comparing proposal, SOW, invoice, and package-page consistency
 - checking whether a package is the right fit for the scoped work
+- reviewing NoDrft Systems proprietary product pricing pages, SaaS subscription tiers, or app pricing before publication
+- checking consistency between a product's public-facing pricing and internal pricing governance
 
 ## Required Inputs
 
@@ -44,6 +46,12 @@ description: Use when reviewing package pages, proposals, statements of work, in
 - non-blocking weaknesses
 - required corrections
 - pass / fail recommendation
+
+## Escalation Behavior
+
+- If a pricing exception is required that falls outside the approved package architecture or pricing governance controls, stop and escalate to Founder before issuing any commercial artifact. Do not approve exceptions unilaterally.
+- If a contradiction exists between the artifact under review and a canonical pricing governance document, escalate to `ARE` before resolving the conflict.
+- If the scope of work does not map cleanly to any approved package and no Discovery Sprint or change order path is defined, escalate to `MOA` for routing before advancing the commercial document.
 
 ## Do Not Do
 

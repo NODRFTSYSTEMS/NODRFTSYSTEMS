@@ -18,12 +18,16 @@ Define which repository skills should load for which workflow so AI participatio
 | `repository-triage` | repository is cluttered, ambiguous, or export-heavy | repository tree, representative files, business objective | structural observations, deficiencies, folder recommendations | repository audit and restructuring |
 | `documentation-reconstruction` | a document or template is weak or fragmented | source file, adjacent references, operating objective | rebuilt document, remaining gaps, follow-up decisions | canonical doc rebuilding |
 | `profitability-review` | workflow, pricing, or tooling may be leaking margin | service model, workflow map, tool stack, team model | margin risks, simplifications, tool rationalization | efficiency and leverage review |
-| `client-intake-analysis` | intake packet or discovery request needs routing | intake data, budget, timeline, stakeholders | verified facts, risk flags, route recommendation | lead qualification |
-| `pricing-safety-review` | commercial artifact is being drafted or reviewed | operative pricing, artifact, scope summary, payment rules | blockers, corrections, pass/fail | commercial control |
-| `client-workspace-bootstrap` | accepted work must be instantiated into the standard workspace | intake packet, client name, project slug, owner | initialized workspace plan, starter records, missing-info list | workspace setup |
+| `client-intake-analysis` | intake packet or discovery request needs routing — **EXTERNAL CLIENTS ONLY. Do not load for NoDrft proprietary products.** | intake data, budget, timeline, stakeholders | verified facts, risk flags, route recommendation | lead qualification |
+| `pricing-safety-review` | commercial artifact is being drafted or reviewed; also applies to SaaS pricing pages, product subscription tiers, and proprietary product commercial surfaces | operative pricing, artifact, scope summary, payment rules | blockers, corrections, pass/fail | commercial control |
+| `client-workspace-bootstrap` | accepted work must be instantiated into the standard workspace — **dual mode: external client OR proprietary product** | external: intake packet, client name, project slug, owner; proprietary: product name, Proprietary Build Declaration, Founder authorization | initialized workspace plan, starter records, missing-info list | workspace setup |
 | `strategy-brief-builder` | discovery outputs must become an execution-ready brief | discovery notes, intake, constraints, package path | strategy brief, scope boundaries, acceptance criteria | discovery-to-strategy transition |
 | `release-gate-review` | work is approaching release or handoff | release candidate, QA status, approvals, known issues | release recommendation, blockers, readiness note | pre-release control |
 | `handoff-preparation` | final delivery package or close-out is being assembled | final files, access list, QA status, support terms | handoff package, checklist, archive note | transfer and closure |
+| `strategic-review` | QAS or supervisor outputs need critical synthesis into recommended next steps | QAS reports, supervisor summaries, scope, constraints, supporting data | recommendation brief, evidence map, gap flags | decision support and cross-functional analysis |
+| `visual-direction` | a project requires visual strategy, asset direction, or a visual brief | project brief, brand framework, asset library, platform constraints | visual direction brief, asset requirements, changelog | visual system governance |
+| `legal-compliance` | a deliverable touches privacy, contracts, terms, disclaimers, or regulatory requirements | legal document, jurisdiction, regulatory framework, baseline | compliance review report, gap analysis, risk flags | legal and regulatory oversight |
+| `system-maintenance` | system health, component currency, or pre-build verification is required | tool inventory, build plan, version records, security advisories | health report, pre-build checklist, update recommendations | system monitoring and readiness |
 
 ## Recommended Skill Bundles By Workflow
 
@@ -33,14 +37,19 @@ Define which repository skills should load for which workflow so AI participatio
 - `documentation-reconstruction`
 - `profitability-review` when tool or workflow drag matters
 
-### Lead intake and qualification
+### Lead intake and qualification (external clients only)
 
-- `client-intake-analysis`
+- `client-intake-analysis` — external client leads only; do not load for NoDrft proprietary products
 - `pricing-safety-review` only if the output is already moving toward proposal or package fit
 
-### Accepted client setup
+### Proprietary product build setup
 
-- `client-workspace-bootstrap`
+- `client-workspace-bootstrap` — load in proprietary product mode: inputs are product name, Proprietary Build Declaration, and Founder authorization; skip intake scoring entirely
+- `strategy-brief-builder` — for proprietary builds, "intake packet" = product brief; "commercial context" = internal business case
+
+### Accepted external client setup
+
+- `client-workspace-bootstrap` — load in external client mode
 
 ### Discovery to executable plan
 
@@ -55,6 +64,9 @@ Define which repository skills should load for which workflow so AI participatio
 ### Governed technical build activation
 
 - `release-gate-review` when the work is approaching reviewer or release gates
+- `system-maintenance` before any build or deployment to verify component currency and system health
+- `legal-compliance` when the build includes trust-sensitive surfaces, data collection, or legal-adjacent copy
+- `visual-direction` when the build includes new visual assets, branding, or UI surface changes
 - use the build prompt library and build control asset library as mandatory companions to the active role skills
 
 Required control assets:
@@ -74,6 +86,8 @@ Required control assets:
 - `documentation-reconstruction` when a governed prompt, protocol, or control artifact is weak or fragmented
 - `repository-triage` when the skill, prompt, or control layer is inconsistent with the approved registry
 - `release-gate-review` when a governed technical output is being assessed for advancement
+- `strategic-review` when cross-functional agent outputs conflict or require reconciliation before advancement
+- `system-maintenance` when tooling or dependency drift threatens governance artifact integrity
 
 ## Build Order For Future Skills
 
@@ -83,7 +97,8 @@ Only add more skills when one of these recurring gaps becomes operationally acti
 2. legal template preparation after counsel-approved forms exist
 3. recurring QA pass documentation
 4. post-project review and archive analysis
-5. approved technical-role skill packs for the post-expansion engineering bench once role charters are complete
+5. approved technical-role skill packs for the post-expansion engineering bench once role charters are complete [COMPLETED — 2026-04-15]
+6. strategic-review, visual-direction, legal-compliance, and system-maintenance skills to fill critical system gaps [COMPLETED — 2026-04-17]
 
 ## Acceptance Criteria
 

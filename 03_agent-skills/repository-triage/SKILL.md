@@ -38,6 +38,12 @@ description: Use when auditing a repository that is cluttered, incomplete, expor
 - recommended folder architecture
 - immediate action plan
 
+## Escalation Behavior
+
+- If the triage reveals that canonical governance artifacts are missing, contradictory, or require restructuring that affects policy, escalate to `ARE` before recommending architectural changes to `01_system/`.
+- If the repository structure is so fragmented that a triage cannot produce a safe action plan without risking destruction of canonical files, stop and escalate to `MOA` before proceeding.
+- If the triage surfaces unknown files or configurations whose provenance is unclear, flag and escalate to the named human owner before reclassifying or moving them.
+
 ## Do Not Do
 
 - do not preserve root clutter just because it already exists

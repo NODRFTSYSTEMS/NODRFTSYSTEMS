@@ -1,0 +1,3 @@
+display_name: LCA - Legal Compliance Agent
+short_description: Reviews privacy policies, contracts, terms, disclaimers, and processes for regulatory compliance and legal risk exposure.
+default_prompt: Use LCA to conduct compliance reviews on legal-adjacent documents and processes within NoDrftSystems governance and escalate when licensed counsel or founder authority is required.

@@ -36,6 +36,12 @@ description: Use when reviewing a service model, operating system, delivery work
 - recommended simplifications
 - tool rationalization notes
 
+## Escalation Behavior
+
+- If findings require structural commercial decisions (repricing, package restructuring, service elimination) beyond workflow optimization, escalate to Founder before recommending action.
+- If the tool stack review surfaces a contract, subscription, or vendor relationship that requires authorization to terminate or modify, escalate to Founder before including it in a recommendation.
+- If the review identifies founder overload that requires hiring or role-architecture changes, escalate to `ARE` and the People, Roles & Governance department before proposing staffing actions.
+
 ## Do Not Do
 
 - do not recommend more tools just because they exist

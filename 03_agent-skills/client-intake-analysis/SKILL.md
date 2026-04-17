@@ -43,8 +43,23 @@ description: Use when reviewing a client intake, discovery packet, or lead quali
 - recommended next step
 - suggested package or engagement model
 
+## Escalation Behavior
+
+- If the intake produces no clear routing decision (decline / discovery / proposal / founder escalation), stop and escalate to `MOA` before routing. Do not improvise a route.
+- If the lead involves non-standard commercial terms, founder-level risk, or an engagement type outside the approved package architecture, escalate to Founder before advancing.
+- If critical inputs (budget authority, decision-maker identity, project scope) are absent and cannot be resolved without direct client contact, flag the gap and escalate to `CSM` to manage the information loop.
+
+## Do Not Load
+
+This skill applies to **external client leads only**. Do not load `client-intake-analysis` for NoDrft Systems proprietary product builds (CasaClaro, Peak Equity Optimizer, The Walcott & Co. Press, Forgotten by Design, or any future NoDrft-owned product).
+
+For proprietary builds, the intake scoring model does not apply. Budget authority = Founder. Decision-maker = Founder. Scope authorization = Founder. Loading this skill against a proprietary build produces invalid qualification scores and false risk flags.
+
+For proprietary builds, use a **Proprietary Build Declaration** instead. See `01_system/ai-governance/mandatory-build-activation-protocol-2026-04-15.md` Section 3 for the proprietary build application rules.
+
 ## Do Not Do
 
 - do not write a proposal from incomplete intake
 - do not hide missing decision-maker or budget clarity issues
 - do not route complex ambiguous work straight into build
+- do not load this skill for a NoDrft Systems proprietary product

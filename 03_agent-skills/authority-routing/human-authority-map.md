@@ -151,6 +151,7 @@ These are not loadable skills. They are escalation targets referenced by AI agen
 | Content send | HHC | HR-GROWTH | HR-FOUNDER (sensitive) |
 | Agent creation request | HHC | HR-FOUNDER | HR-ARE |
 | Kill-switch trigger | HHC | HR-FOUNDER | — |
+| High churn risk or expansion signal | HHC | HR-GROWTH | HR-FOUNDER (strategic accounts) |
 
 ## Rules
 

@@ -1,7 +1,7 @@
 version: 1
-generated_at: 2026-04-14
-approved_working_architecture_agents: 55
-live_skill_pack_count: 55
+generated_at: 2026-04-15
+approved_working_architecture_agents: 59
+live_skill_pack_count: 59
 source_priority:
   approved_registry: 01_system/registry/final-approved-department-and-agent-registry.md
   skill_library: 90_source-documents/ai-architecture/NoDrftSystems_Skills_Library_v1.md
@@ -1089,6 +1089,43 @@ skills:
       - HR-ARE
     source_status: approved
 
+  - skill_id: vda-visual-direction-agent
+    agent_code: VDA
+    canonical_name: Visual Direction Agent
+    caribbean_name: Jeanine
+    department: delivery-build
+    path: 03_agent-skills/department-skill-pack/delivery-build/vda-visual-direction-agent
+    activation_status: always-on
+    load_priority: standard
+    trigger_terms:
+      - visual direction
+      - visual brief
+      - asset management
+      - brand alignment
+      - visual system
+    workflow_tags:
+      - visual-direction
+      - asset-strategy
+      - design-brief
+    required_inputs:
+      - project brief
+      - brand identity framework
+      - asset library
+      - platform constraints
+      - accessibility requirements
+    outputs:
+      - visual direction briefs
+      - asset requirement lists
+      - visual system changelogs
+      - brand alignment notes
+    confidence_floor: 85
+    escalates_to_ai:
+      - MOA
+      - HHC
+    escalates_to_human:
+      - HR-ARE
+    source_status: approved
+
   # --- QUALITY & COMPLIANCE ---
 
   - skill_id: qda-qa-documentation-agent
@@ -1299,6 +1336,43 @@ skills:
       - acronym logs
       - jargon flags
       - replacement suggestions
+    confidence_floor: 90
+    escalates_to_ai:
+      - QAS
+      - HHC
+    escalates_to_human:
+      - HR-FOUNDER
+    source_status: approved
+
+  - skill_id: lca-legal-compliance-agent
+    agent_code: LCA
+    canonical_name: Legal Compliance Agent
+    caribbean_name: Dorothy
+    department: quality-compliance
+    path: 03_agent-skills/department-skill-pack/quality-compliance/lca-legal-compliance-agent
+    activation_status: always-on
+    load_priority: standard
+    trigger_terms:
+      - legal review
+      - compliance check
+      - privacy policy
+      - terms of service
+      - regulatory review
+    workflow_tags:
+      - legal-compliance
+      - privacy
+      - regulatory
+    required_inputs:
+      - legal document or process
+      - jurisdiction
+      - regulatory framework
+      - prior baseline
+      - data handling specs
+    outputs:
+      - compliance review reports
+      - gap analyses
+      - regulatory watch list updates
+      - risk flags
     confidence_floor: 90
     escalates_to_ai:
       - QAS
@@ -1716,6 +1790,44 @@ skills:
       - HR-FOUNDER
     source_status: approved
 
+  - skill_id: sra-strategic-review-agent
+    agent_code: SRA
+    canonical_name: Strategic Review Agent
+    caribbean_name: Janice
+    department: strategic-intelligence
+    path: 03_agent-skills/department-skill-pack/strategic-intelligence/sra-strategic-review-agent
+    activation_status: active-triggered-workflow
+    load_priority: standard
+    trigger_terms:
+      - strategic review
+      - recommendation brief
+      - QAS analysis
+      - decision support
+      - cross-functional synthesis
+    workflow_tags:
+      - strategic-review
+      - decision-support
+      - analysis
+    required_inputs:
+      - QAS or supervisor reports
+      - scope or objective
+      - supporting data
+      - decision constraints
+      - prior history
+    outputs:
+      - recommendation briefs
+      - evidence maps
+      - conflict notes
+      - gap flags
+    confidence_floor: 85
+    escalates_to_ai:
+      - MOA
+      - HHC
+    escalates_to_human:
+      - HR-FOUNDER
+      - HR-ARE
+    source_status: approved
+
   # --- PEOPLE, ROLES & GOVERNANCE ---
 
   - skill_id: prga-people-roles-governance-agent
@@ -1900,6 +2012,43 @@ skills:
       - HHC
     escalates_to_human:
       - HR-FOUNDER
+    source_status: approved
+
+  - skill_id: sma-system-maintenance-agent
+    agent_code: SMA
+    canonical_name: System Maintenance Agent
+    caribbean_name: Yvonne
+    department: people-roles-governance
+    path: 03_agent-skills/department-skill-pack/people-roles-governance/sma-system-maintenance-agent
+    activation_status: always-on
+    load_priority: standard
+    trigger_terms:
+      - system health
+      - pre-build verification
+      - dependency audit
+      - component currency
+      - maintenance cycle
+    workflow_tags:
+      - system-maintenance
+      - health-monitoring
+      - pre-build-check
+    required_inputs:
+      - tool inventory
+      - build or deployment plan
+      - version records
+      - security advisories
+      - environment config
+    outputs:
+      - system health reports
+      - pre-build checklists
+      - update recommendations
+      - dependency audits
+    confidence_floor: 90
+    escalates_to_ai:
+      - MOA
+      - HHC
+    escalates_to_human:
+      - HR-ARE
     source_status: approved
 
   # --- SPECIALIST POOL ---
