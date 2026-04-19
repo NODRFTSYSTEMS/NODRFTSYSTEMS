@@ -32,7 +32,7 @@ Status definitions:
 - `01_system/registry/final-approved-department-and-agent-registry.md`
   Role: normalized working registry for the approved agent architecture, including later founder-directed engineering expansion and skills optimization enhancement
   Status: active reference
-  Action: use as the staffing truth for approved departments, codes, and ownership; updated 2026-04-17 to 59 agents with SRA, VDA, LCA, SMA additions
+  Action: use as the staffing truth for approved departments, codes, and ownership; updated 2026-04-18 to 60 agents with QMA (Solomon) addition per Decision Log 2026-04-18-001
 
 - ~~`NoDrftSystems_Final_Approved_Agent_Registry.pdf`~~ — DELETED 2026-04-17 (converted to markdown; the registry `.md` is the canonical source)
   Note: the working registry `01_system/registry/final-approved-department-and-agent-registry.md` is the current 59-agent source of truth; no PDF export is required
@@ -70,7 +70,7 @@ Status definitions:
 - `03_agent-skills/skill-loading-matrix.md`
   Role: skill routing map for repeatable AI-assisted execution
   Status: canonical governance
-  Action: use before loading skills or assembling workflow-specific agent bundles; updated 2026-04-17 to include strategic-review, visual-direction, legal-compliance, and system-maintenance skills
+  Action: use before loading skills or assembling workflow-specific agent bundles; updated 2026-04-18 to include quantitative-review skill and Mathematical Analysis bundle
 
 - `03_agent-skills/skill-pack-build-specification.md`
   Role: production build specification for department and agent role skills
@@ -100,9 +100,9 @@ Status definitions:
   Action: load before generating, editing, or routing any skill pack; defines the required section order and escalation behavior standard
 
 - `03_agent-skills/manifest/skill-pack-manifest.yaml`
-  Role: machine-readable index of all 59 live skill packs, their source priorities, skill metadata, and authority-routing definitions
+  Role: machine-readable index of all 60 live skill packs, their source priorities, skill metadata, and authority-routing definitions
   Status: active reference
-  Action: use when routing agent activation to specific skill packs; keep synchronized with the approved department-and-agent registry and any new skill additions
+  Action: use when routing agent activation to specific skill packs; keep synchronized with the approved department-and-agent registry and any new skill additions; updated 2026-04-18 to include QMA (Solomon)
 
 ## Skill System
 
@@ -573,9 +573,11 @@ Status definitions:
 ## Source Archive Index
 
 - `90_source-documents/README.md`
-  Role: master index and authority-rule document for the 90_source-documents archive; documents binary-lock status, conversion priorities, directory inventory, and cross-reference table to live governance equivalents
+  Role: master index and authority-rule document for the 90_source-documents archive
   Status: active reference
-  Action: read before adding or modifying files in 90_source-documents; it defines which binary files are pending conversion and maps each source document to its live governance counterpart
+  Action: read before adding or modifying files in 90_source-documents
+
+**Conversion status — 2026-04-18:** All 43 .docx files and 1 .pdf file converted to markdown using python-docx and pdfminer.six. Markdown equivalents now exist alongside every .docx/.pdf in 90_source-documents/. Original binary files retained as source archive. No .docx or .pdf should be treated as operative — the markdown versions are the readable reference layer, but canonical governance lives in 01_system/.
 
 ## Assets
 
@@ -680,10 +682,11 @@ Status definitions:
 
 ### CasaClaro
 
-- `04_products/CASACLARO/casaclaro-app-summary.md`
+- `90_source-documents/ai-architecture/casaclaro-app-summary.md`
   Role: repo-based app summary for CasaClaro — how it works, how to run, and identified repo gaps (converted from PDF 2026-04-17)
   Status: active reference
   Action: use as the entry-level orientation document for the CasaClaro codebase; source PDF deleted
+  Note: file lives in 90_source-documents/ai-architecture/ — NOT in 04_products/CASACLARO/ (prior registry entry was stale)
 
 ## Proprietary Product Workspaces
 
@@ -739,3 +742,185 @@ Status definitions:
   Role: proprietary build declaration for FBD — Founder authorization, product scope, and 5 unresolved pre-launch decisions
   Status: canonical governance
   Action: Founder must document and resolve all 5 decisions before launch proceeds
+
+### Bucket Head Bilingual Site
+
+- `02_client-system/BUCKETHEAD_bilingual-site/00_admin/client-governance-profile.md`
+  Role: product control sheet and governance profile for Bucket Head Bilingual Site
+  Status: canonical governance
+  Action: complete workspace structure before Phase 2 work begins
+
+---
+
+## Proprietary Infrastructure — .claude/
+
+### Agent Rule Files (.claude/agents/)
+
+- `.claude/agents/reviewer_package_integrity.md`
+  Role: reviewer agent verifying every deliverable matches signed SOW scope exactly
+  Status: canonical governance (PROPRIETARY — never commit to client repos)
+  Action: activate at QA Pass 5, Release Gate 1, and all handoffs
+
+- `.claude/agents/reviewer_plain_language.md`
+  Role: reviewer agent enforcing Grade 8 reading level, brand voice, and no jargon
+  Status: canonical governance (PROPRIETARY)
+  Action: activate at QA Pass 2 on all client-facing copy
+
+- `.claude/agents/reviewer_pricing_safety.md`
+  Role: reviewer agent blocking prices not traceable to operative pricing governance
+  Status: canonical governance (PROPRIETARY)
+  Action: activate on all commercial artifacts before client delivery
+
+- `.claude/agents/reviewer_public_proof.md`
+  Role: reviewer agent verifying every statistic and claim has a verifiable source
+  Status: canonical governance (PROPRIETARY)
+  Action: activate at QA Pass 2 on all public-facing content
+
+- `.claude/agents/reviewer_localization.md`
+  Role: reviewer agent verifying EN/ES semantic and CTA parity
+  Status: canonical governance (PROPRIETARY)
+  Action: activate at QA Pass 5B for any bilingual surface
+
+- `.claude/agents/reviewer_accessibility.md`
+  Role: reviewer agent enforcing WCAG 2.1 AA compliance
+  Status: canonical governance (PROPRIETARY)
+  Action: mandatory for all T2+ web builds at QA Pass 6
+
+### Invokable Session Skills (.claude/skills/)
+
+- `.claude/skills/client_intake.md` — Status: canonical governance (PROPRIETARY) — load via /client_intake
+- `.claude/skills/scope_brief.md` — Status: canonical governance (PROPRIETARY) — load via /scope_brief
+- `.claude/skills/web_build.md` — Status: canonical governance (PROPRIETARY) — load via /web_build
+- `.claude/skills/hosting_maintenance.md` — Status: canonical governance (PROPRIETARY) — load via /hosting_maintenance
+- `.claude/skills/idea_development.md` — Status: canonical governance (PROPRIETARY) — load via /idea_development
+- `.claude/skills/business_formation.md` — Status: canonical governance (PROPRIETARY) — load via /business_formation
+- `.claude/skills/content_production.md` — Status: canonical governance (PROPRIETARY) — load via /content_production
+- `.claude/skills/qa_multipass.md` — Status: canonical governance (PROPRIETARY) — load via /qa_multipass
+- `.claude/skills/disclosure_gate.md` — Status: canonical governance (PROPRIETARY) — load via /disclosure_gate
+- `.claude/skills/completion_report.md` — Status: canonical governance (PROPRIETARY) — load via /completion_report
+- `.claude/skills/decision_log.md` — Status: canonical governance (PROPRIETARY) — load via /decision_log
+
+### Always-Active Behavioral Rules (.claude/rules/)
+
+- `.claude/rules/plan_mode.md`
+  Role: enforces the 7-phase Plan Before Execute sequence; requires startup declaration before any substantial task
+  Status: canonical governance (PROPRIETARY — always active, never commit to client repos)
+
+- `.claude/rules/github_disclosure_gate.md`
+  Role: pre-commit checklist fires before any git add/commit/push; cannot be waived by any agent
+  Status: canonical governance (PROPRIETARY — always active)
+
+- `.claude/rules/handover_protocol.md`
+  Role: 6-gate close-out sequence; blocks transfer without QA sign-off, legal review, disclosure sweep, and Founder approval
+  Status: canonical governance (PROPRIETARY — always active)
+
+---
+
+## Legal and Governance Infrastructure (01_system/legal/)
+
+- `01_system/legal/msa-template.md`
+  Role: Master Service Agreement template — synthesized from CLAUDE.md and governance docs; awaiting qualified counsel review
+  Status: needs human decision
+  Action: DO NOT send to clients until LR-2026-001 is APPROVED in legal_review_log.md
+
+- `01_system/legal/sow-template.md`
+  Role: Statement of Work template — references T0–T5 tier definitions; awaiting counsel review
+  Status: needs human decision
+  Action: DO NOT send to clients until LR-2026-002 is APPROVED in legal_review_log.md
+
+- `01_system/legal/nda-template.md`
+  Role: Mutual NDA template — includes proprietary AI systems provision; awaiting counsel review
+  Status: needs human decision
+  Action: DO NOT send to clients until LR-2026-003 is APPROVED in legal_review_log.md
+
+- `01_system/legal/legal_review_log.md`
+  Role: tracking log for all legal review requests and counsel sign-off status
+  Status: canonical governance
+  Action: every legal-adjacent document starts here before client use; updated 2026-04-18 with LR-2026-001 through LR-2026-003
+
+---
+
+## Operations (01_system/operations/)
+
+- `01_system/operations/sop-library.md`
+  Role: 12-SOP standard operating procedures library (SOP-001 through SOP-012) synthesized from all governance docs; covers full engagement lifecycle from intake to archive
+  Status: canonical governance
+  Action: load the relevant SOP before executing any repeatable workflow; updated 2026-04-18
+
+---
+
+## AI Review Authority
+
+- `01_system/ai-governance/ai-review-authority-matrix.md`
+  Role: 6-tier authority hierarchy with artifact-class review matrix, escalation chain, delegation boundaries, reviewer agent assignments, and non-delegable decisions list
+  Status: canonical governance
+  Action: load when routing review decisions or confirming approval authority; created 2026-04-18
+
+---
+
+## Product Governance (04_products/)
+
+### WCP — Walcott & Co. Press
+
+- `04_products/WCP/00_governance/build-activation-record.md`
+  Role: WCP build activation record covering build classification (Class 2), phase log, agent cell, and human gates
+  Status: canonical governance
+  Action: load before any WCP build phase; created 2026-04-18
+
+- `04_products/WCP/00_governance/evidence-ledger.md`
+  Role: WCP evidence ledger tracking QA and release gate evidence per phase
+  Status: canonical governance
+  Action: update at each phase gate; Phase 4–6 evidence pending
+
+- `04_products/WCP/00_governance/legal-compliance-review-wcp-2026-04-19.md`
+  Role: LCA compliance review report for WCP website covering privacy, terms, data collection, consent, commercial claims, and IP cross-check
+  Status: canonical governance
+  Action: review before Phase 5 release gate; Critical findings (missing Privacy Policy, missing Terms of Service) block release until resolved
+
+### CASACLARO
+
+- `04_products/CASACLARO/00_governance/build-activation-record.md`
+  Role: CasaClaro build activation record (Class 3) covering open incidents (data loss), LCA review requirement, and security gate
+  Status: canonical governance
+  Action: CC-O-001 (data recovery) is CRITICAL — resolve before Phase 3 continues; created 2026-04-18
+
+- `04_products/CASACLARO/00_governance/evidence-ledger.md`
+  Role: CasaClaro evidence ledger including incident log for 2026-04-18 data loss event
+  Status: canonical governance
+  Action: update when data recovery is confirmed; created 2026-04-18
+
+### Forgotten by Design
+
+- `04_products/forgotten-by-design-web/00_governance/build-activation-record.md`
+  Role: FBD build activation record (Class 2, Next.js 16 + Sanity v5) covering phase log and open items
+  Status: canonical governance
+  Action: FBD-O-004 (hosting account ownership) requires Founder decision; created 2026-04-18
+
+- `04_products/forgotten-by-design-web/00_governance/evidence-ledger.md`
+  Role: FBD evidence ledger — Phase 1 scaffolding on file; Phase 4–6 pending
+  Status: canonical governance
+  Action: update at each phase gate; created 2026-04-18
+
+---
+
+## QMA — Quantitative Mathematics Agent (added 2026-04-18)
+
+- `01_system/operations/decision-log.md`
+  Role: auditable record of all Founder and ARE decisions that modify governance, agents, pricing, legal, or release authority; Decision Log 2026-04-18-001 authorizes QMA addition
+  Status: canonical governance
+  Action: every architecture or governance change requires an entry here BEFORE the action is taken; updated 2026-04-18
+
+- `03_agent-skills/department-skill-pack/specialist-pool/qma-quantitative-mathematics-agent/SKILL.md`
+  Role: QMA (Solomon) full agent skill pack — primary objective, bounded domains, confidence floor (0.92), team deployment authority, Mathematical Analysis Cell protocol, workflow, escalation behavior, and hard rules
+  Status: canonical governance
+  Action: load when activating QMA for any mathematical analysis, formula governance, statistical modeling, or quantitative verification task; authorized per Decision Log 2026-04-18-001
+
+- `.claude/skills/quantitative_analysis.md`
+  Role: invokable session skill for activating QMA — 10-step sequence from problem formalization through human gate routing; covers confidence assessment, independent verification, and downstream implications routing
+  Status: canonical governance (PROPRIETARY — never commit to client repos)
+  Action: load via /quantitative_analysis for any complex calculation, mathematical modeling, or quantitative claim requiring formal verification
+
+- `03_agent-skills/quantitative-review/SKILL.md`
+  Role: workflow skill defining when and how to load QMA across build phases and deliverables — 8-trigger load table, 7-phase workflow (Mathematical Surface Inventory through Gate Routing), hard rules, and integration points
+  Status: canonical governance
+  Action: load before any build phase, deliverable, or analysis where formulas, calculations, models, financial projections, scoring logic, or quantitative claims exist; also updates 03_agent-skills/skill-loading-matrix.md and manifest
