@@ -1,5 +1,5 @@
 
-<h2 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">NoDrft Systems new client form — seven sections covering your business, your project, what you need, your timeline, your budget, who's involved, and a few final questions</h2>
+<h2 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">NoDrft Systems new client form — eight sections covering your business, your project, what you need, how it should look, your timeline, your budget, who's involved, and a few final questions</h2>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -27,9 +27,9 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23888' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .checkbox-group,.radio-group{display:flex;flex-direction:column;gap:8px}
-.check-item,.radio-item{display:flex;align-items:center;gap:10px;cursor:pointer;padding:9px 12px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);transition:border-color 0.2s,background 0.2s;font-size:14px;color:var(--color-text-primary)}
+.check-item,.radio-item{display:flex;align-items:flex-start;gap:10px;cursor:pointer;padding:9px 12px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);transition:border-color 0.2s,background 0.2s;font-size:14px;color:var(--color-text-primary)}
 .check-item:hover,.radio-item:hover{border-color:var(--color-border-secondary);background:var(--color-background-secondary)}
-.check-item input,.radio-item input{width:16px;height:16px;accent-color:#378ADD;cursor:pointer}
+.check-item input,.radio-item input{width:16px;height:16px;accent-color:#378ADD;cursor:pointer;flex-shrink:0;margin-top:2px}
 .check-item.selected,.radio-item.selected{border-color:#378ADD;background:rgba(55,138,221,0.05)}
 .inline-checks{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:1.75rem;padding-top:1.25rem;border-top:0.5px solid var(--color-border-tertiary)}
@@ -61,7 +61,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 <div class="form-wrap">
   <div class="form-header">
     <h1>NoDrft Systems — let's get to know your project</h1>
-    <p>Fill out this short form so we can understand what you need and how we can help. It should take about 8–10 minutes. There are no trick questions — just answer in your own words.</p>
+    <p>Fill out this short form so we can understand what you need and how we can help. It should take about 10–12 minutes. There are no trick questions — just answer in your own words.</p>
   </div>
 
   <div class="progress-bar" id="progress">
@@ -72,18 +72,19 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
     <div class="step-seg" id="seg4"></div>
     <div class="step-seg" id="seg5"></div>
     <div class="step-seg" id="seg6"></div>
+    <div class="step-seg" id="seg7"></div>
   </div>
 
   <!-- STEP 1: About your business -->
   <div class="section-card active" id="step0">
-    <div class="step-label">Part 1 <span class="step-num">1 of 7</span></div>
+    <div class="step-label">Part 1 <span class="step-num">1 of 8</span></div>
     <h2 class="section-title">About your business</h2>
     <p class="section-desc">Let's start with the basics. Tell us who you are and how to reach you.</p>
 
     <div class="two-col">
       <div class="field-row">
         <label>Business name <span class="req">*</span></label>
-        <input type="text" id="companyName" placeholder="e.g. Sunrise Accounting">
+        <input type="text" id="companyName" placeholder="e.g. Sunrise Accounting" autocomplete="organization">
       </div>
       <div class="field-row">
         <label>What type of business do you run? <span class="req">*</span></label>
@@ -119,7 +120,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       </div>
       <div class="field-row">
         <label>Your current website <span class="hint">(if you have one)</span></label>
-        <input type="url" id="website" placeholder="https://yourbusiness.com">
+        <input type="url" id="website" placeholder="https://yourbusiness.com" autocomplete="url">
       </div>
     </div>
 
@@ -128,22 +129,22 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
     <div class="two-col">
       <div class="field-row">
         <label>Your name <span class="req">*</span></label>
-        <input type="text" id="contactName" placeholder="Jane Smith">
+        <input type="text" id="contactName" placeholder="Jane Smith" autocomplete="name">
       </div>
       <div class="field-row">
         <label>Your role in the business <span class="req">*</span></label>
-        <input type="text" id="contactRole" placeholder="e.g. Owner, CEO, Marketing Manager">
+        <input type="text" id="contactRole" placeholder="e.g. Owner, CEO, Marketing Manager" autocomplete="organization-title">
       </div>
     </div>
 
     <div class="two-col">
       <div class="field-row">
         <label>Your email address <span class="req">*</span></label>
-        <input type="email" id="contactEmail" placeholder="jane@yourbusiness.com">
+        <input type="email" id="contactEmail" placeholder="jane@yourbusiness.com" autocomplete="email">
       </div>
       <div class="field-row">
         <label>Your phone number <span class="hint">(optional)</span></label>
-        <input type="tel" id="contactPhone" placeholder="+1 (555) 000-0000">
+        <input type="tel" id="contactPhone" placeholder="+1 (555) 000-0000" autocomplete="tel">
       </div>
     </div>
 
@@ -161,7 +162,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 
   <!-- STEP 2: What you're looking to do -->
   <div class="section-card" id="step1">
-    <div class="step-label">Part 2 <span class="step-num">2 of 7</span></div>
+    <div class="step-label">Part 2 <span class="step-num">2 of 8</span></div>
     <h2 class="section-title">What you're looking to do</h2>
     <p class="section-desc">Tell us in your own words what you're hoping to accomplish. Don't worry about using the "right" terms — just explain it like you would to a friend.</p>
 
@@ -205,13 +206,37 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 
   <!-- STEP 3: What you need us to build or do -->
   <div class="section-card" id="step2">
-    <div class="step-label">Part 3 <span class="step-num">3 of 7</span></div>
+    <div class="step-label">Part 3 <span class="step-num">3 of 8</span></div>
     <h2 class="section-title">What you need us to build or do</h2>
     <p class="section-desc">Describe what you're expecting from us. Use plain language — you don't need to know the technical terms. We'll figure out the details together.</p>
 
     <div class="field-row">
       <label>What exactly do you want us to create or deliver for you? <span class="req">*</span></label>
       <textarea id="deliverables" placeholder="e.g. A 5-page website with a contact form, an online store where people can buy my products, a logo and brand colors, a system to manage client appointments."></textarea>
+    </div>
+
+    <div class="two-col">
+      <div class="field-row">
+        <label>How many pages do you think you'll need? <span class="hint">(okay if unsure)</span></label>
+        <div class="radio-group" id="pageCount" style="flex-direction:column;gap:6px">
+          <label class="radio-item"><input type="radio" name="pageCount" value="1"> Just 1 page (like a landing page)</label>
+          <label class="radio-item"><input type="radio" name="pageCount" value="2–5"> 2–5 pages</label>
+          <label class="radio-item"><input type="radio" name="pageCount" value="6–15"> 6–15 pages</label>
+          <label class="radio-item"><input type="radio" name="pageCount" value="15+"> 15 or more pages</label>
+          <label class="radio-item"><input type="radio" name="pageCount" value="Not sure"> Not sure yet</label>
+        </div>
+      </div>
+      <div class="field-row">
+        <label>What do you want people to do when they visit your site?</label>
+        <div class="radio-group" id="primaryCTA" style="flex-direction:column;gap:6px">
+          <label class="radio-item"><input type="radio" name="primCTA" value="Form submission"> Fill out a form (contact, inquiry, sign up)</label>
+          <label class="radio-item"><input type="radio" name="primCTA" value="Phone call"> Call you</label>
+          <label class="radio-item"><input type="radio" name="primCTA" value="Purchase"> Buy something directly</label>
+          <label class="radio-item"><input type="radio" name="primCTA" value="Booking"> Book an appointment</label>
+          <label class="radio-item"><input type="radio" name="primCTA" value="Information only"> Just find information</label>
+          <label class="radio-item"><input type="radio" name="primCTA" value="Not sure"> Not sure yet</label>
+        </div>
+      </div>
     </div>
 
     <div class="field-row">
@@ -259,9 +284,87 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
     </div>
   </div>
 
-  <!-- STEP 4: Timeline -->
+  <!-- STEP 4: How it should look and feel -->
   <div class="section-card" id="step3">
-    <div class="step-label">Part 4 <span class="step-num">4 of 7</span></div>
+    <div class="step-label">Part 4 <span class="step-num">4 of 8</span></div>
+    <h2 class="section-title">How it should look and feel</h2>
+    <p class="section-desc">Help us understand the vibe you're going for and whether your content is ready. These answers shape our whole design approach — the more honest you are, the better the result.</p>
+
+    <div class="field-row">
+      <label>What design style feels right to you? <span class="req">*</span></label>
+      <div class="radio-group" id="designStyle">
+        <label class="radio-item"><input type="radio" name="designStyle" value="Minimal"> Clean and minimal — simple layout, lots of white space, easy to read</label>
+        <label class="radio-item"><input type="radio" name="designStyle" value="Bold"> Big and bold — strong visuals, dramatic text, makes a statement</label>
+        <label class="radio-item"><input type="radio" name="designStyle" value="Corporate"> Professional and structured — serious, trustworthy, corporate feel</label>
+        <label class="radio-item"><input type="radio" name="designStyle" value="Playful"> Friendly and approachable — warm, colorful, easy to connect with</label>
+        <label class="radio-item"><input type="radio" name="designStyle" value="Luxury"> High-end and refined — premium, polished, understated elegance</label>
+        <label class="radio-item"><input type="radio" name="designStyle" value="Unsure"> Not sure — we'll look at examples together on the first call</label>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <label>How much movement do you want on the site? <span class="req">*</span></label>
+      <div class="radio-group" id="animationPref">
+        <label class="radio-item"><input type="radio" name="animPref" value="None"> None — keep it fast and simple, no animations at all</label>
+        <label class="radio-item"><input type="radio" name="animPref" value="Subtle"> Light — subtle hover effects and gentle fade-ins</label>
+        <label class="radio-item"><input type="radio" name="animPref" value="Moderate"> Medium — elements move as you scroll, smooth page transitions</label>
+        <label class="radio-item"><input type="radio" name="animPref" value="Full"> Full experience — animated, cinematic, immersive from top to bottom</label>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="field-row">
+        <label>Do you have professional photos of your business? <span class="req">*</span></label>
+        <div class="radio-group" id="photographyStatus">
+          <label class="radio-item"><input type="radio" name="photoStatus" value="Have it"> Yes — professional photos ready to share</label>
+          <label class="radio-item"><input type="radio" name="photoStatus" value="Need sourcing"> No — we'd need a photographer</label>
+          <label class="radio-item"><input type="radio" name="photoStatus" value="Stock OK"> Stock photos from a library are fine</label>
+          <label class="radio-item"><input type="radio" name="photoStatus" value="Not sure"> Not sure yet</label>
+        </div>
+      </div>
+      <div class="field-row">
+        <label>Do you need video on the site? <span class="req">*</span></label>
+        <div class="radio-group" id="videoNeeded">
+          <label class="radio-item"><input type="radio" name="videoNeeded" value="Have it"> Yes — we have video ready to use</label>
+          <label class="radio-item"><input type="radio" name="videoNeeded" value="Need production"> Yes — we'd need it produced</label>
+          <label class="radio-item"><input type="radio" name="videoNeeded" value="No"> No video needed</label>
+          <label class="radio-item"><input type="radio" name="videoNeeded" value="Not sure"> Not sure yet</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <label>Do you have a logo and brand materials ready? <span class="req">*</span></label>
+      <div class="radio-group" id="brandAssetsStatus">
+        <label class="radio-item"><input type="radio" name="brandAssets" value="Full guidelines"> Yes — logo, colors, fonts, and brand guidelines all ready</label>
+        <label class="radio-item"><input type="radio" name="brandAssets" value="Logo only"> I have a logo but nothing else</label>
+        <label class="radio-item"><input type="radio" name="brandAssets" value="Nothing yet"> Starting fresh — nothing exists yet</label>
+        <label class="radio-item"><input type="radio" name="brandAssets" value="Not sure"> Not sure what we have</label>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <label>Is your website text written and ready? <span class="req">*</span>
+        <span class="hint">Your build doesn't start until text is ready — this affects your timeline.</span>
+      </label>
+      <div class="radio-group" id="copyReadiness">
+        <label class="radio-item"><input type="radio" name="copyStatus" value="Fully written"> Yes, fully written and approved — ready to hand over</label>
+        <label class="radio-item"><input type="radio" name="copyStatus" value="Partially done"> Some of it is written, some still needs work</label>
+        <label class="radio-item"><input type="radio" name="copyStatus" value="Not started"> Not written yet — I'll write it before we start building</label>
+        <label class="radio-item"><input type="radio" name="copyStatus" value="Needs NoDrft"> Not written — we want NoDrft Systems to write it for us</label>
+      </div>
+    </div>
+
+    <div id="err3" class="error-msg" style="display:none"></div>
+    <div class="nav-row">
+      <button class="btn btn-back" onclick="back(3)">Back</button>
+      <button class="btn btn-next" onclick="next(3)">Continue</button>
+    </div>
+  </div>
+
+  <!-- STEP 5: Timeline -->
+  <div class="section-card" id="step4">
+    <div class="step-label">Part 5 <span class="step-num">5 of 8</span></div>
     <h2 class="section-title">When do you need this done?</h2>
     <p class="section-desc">Give us your best guess. If you're not sure about the dates, that's perfectly fine — just let us know.</p>
 
@@ -295,23 +398,24 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       <textarea id="timelineRisks" placeholder="e.g. We need to get sign-off from our board, or we're waiting on a new hire to join before we can start." style="min-height:60px"></textarea>
     </div>
 
-    <div id="err3" class="error-msg" style="display:none"></div>
+    <div id="err4" class="error-msg" style="display:none"></div>
     <div class="nav-row">
-      <button class="btn btn-back" onclick="back(3)">Back</button>
-      <button class="btn btn-next" onclick="next(3)">Continue</button>
+      <button class="btn btn-back" onclick="back(4)">Back</button>
+      <button class="btn btn-next" onclick="next(4)">Continue</button>
     </div>
   </div>
 
-  <!-- STEP 5: Budget -->
-  <div class="section-card" id="step4">
-    <div class="step-label">Part 5 <span class="step-num">5 of 7</span></div>
+  <!-- STEP 6: Budget -->
+  <div class="section-card" id="step5">
+    <div class="step-label">Part 6 <span class="step-num">6 of 8</span></div>
     <h2 class="section-title">Your budget</h2>
     <p class="section-desc">Knowing your budget helps us suggest the right approach for you. We keep this completely confidential — it's just used to make sure we recommend something that actually fits.</p>
 
     <div class="field-row">
       <label>What's your rough budget for this project? <span class="req">*</span></label>
       <div class="radio-group" id="budgetRange">
-        <label class="radio-item"><input type="radio" name="budget" value="Under $5K"> Under $5,000</label>
+        <label class="radio-item"><input type="radio" name="budget" value="Under $2.5K"> Under $2,500</label>
+        <label class="radio-item"><input type="radio" name="budget" value="$2.5K–$5K"> $2,500 – $5,000</label>
         <label class="radio-item"><input type="radio" name="budget" value="$5K–$15K"> $5,000 – $15,000</label>
         <label class="radio-item"><input type="radio" name="budget" value="$15K–$30K"> $15,000 – $30,000</label>
         <label class="radio-item"><input type="radio" name="budget" value="$30K–$50K"> $30,000 – $50,000</label>
@@ -351,16 +455,16 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       <textarea id="internalResources" placeholder="e.g. I have a team member who can write the content, or my assistant can handle back-and-forth communication." style="min-height:60px"></textarea>
     </div>
 
-    <div id="err4" class="error-msg" style="display:none"></div>
+    <div id="err5" class="error-msg" style="display:none"></div>
     <div class="nav-row">
-      <button class="btn btn-back" onclick="back(4)">Back</button>
-      <button class="btn btn-next" onclick="next(4)">Continue</button>
+      <button class="btn btn-back" onclick="back(5)">Back</button>
+      <button class="btn btn-next" onclick="next(5)">Continue</button>
     </div>
   </div>
 
-  <!-- STEP 6: Who's involved -->
-  <div class="section-card" id="step5">
-    <div class="step-label">Part 6 <span class="step-num">6 of 7</span></div>
+  <!-- STEP 7: Who's involved -->
+  <div class="section-card" id="step6">
+    <div class="step-label">Part 7 <span class="step-num">7 of 8</span></div>
     <h2 class="section-title">Who's involved in this project?</h2>
     <p class="section-desc">Knowing who makes decisions and who needs to review things helps us avoid delays and unnecessary back-and-forth.</p>
 
@@ -410,16 +514,16 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       </div>
     </div>
 
-    <div id="err5" class="error-msg" style="display:none"></div>
+    <div id="err6" class="error-msg" style="display:none"></div>
     <div class="nav-row">
-      <button class="btn btn-back" onclick="back(5)">Back</button>
-      <button class="btn btn-next" onclick="next(5)">Continue</button>
+      <button class="btn btn-back" onclick="back(6)">Back</button>
+      <button class="btn btn-next" onclick="next(6)">Continue</button>
     </div>
   </div>
 
-  <!-- STEP 7: A few more questions -->
-  <div class="section-card" id="step6">
-    <div class="step-label">Part 7 <span class="step-num">7 of 7</span></div>
+  <!-- STEP 8: A few more questions -->
+  <div class="section-card" id="step7">
+    <div class="step-label">Part 8 <span class="step-num">8 of 8</span></div>
     <h2 class="section-title">A few more questions</h2>
     <p class="section-desc">Almost done. These last questions help us serve you better from day one.</p>
 
@@ -468,9 +572,9 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       </label>
     </div>
 
-    <div id="err6" class="error-msg" style="display:none"></div>
+    <div id="err7" class="error-msg" style="display:none"></div>
     <div class="nav-row">
-      <button class="btn btn-back" onclick="back(6)">Back</button>
+      <button class="btn btn-back" onclick="back(7)">Back</button>
       <button class="btn btn-submit" onclick="submitForm()">Submit my information</button>
     </div>
   </div>
@@ -500,9 +604,8 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 <script>
 /* ─── Internal intake packet data — not shown to client ─── */
 let cur=0;
-const total=7;
+const total=8;
 let lastSubmission=null;
-// Paste your Formspree endpoint URL here after setup (e.g. https://formspree.io/f/xxxxxxxx)
 const INTAKE_ENDPOINT='';
 
 function updateProgress(step){
@@ -518,10 +621,15 @@ function showStep(n){
   for(let i=0;i<total;i++){
     document.getElementById('step'+i).classList.remove('active');
   }
-  document.getElementById('step'+n).classList.add('active');
+  const card=document.getElementById('step'+n);
+  card.classList.add('active');
   updateProgress(n);
   cur=n;
-  window.scrollTo({top:0,behavior:'smooth'});
+  const wrap=document.querySelector('.form-wrap');
+  if(wrap){const top=wrap.getBoundingClientRect().top+window.scrollY-16;window.scrollTo({top:Math.max(0,top),behavior:'smooth'});}
+  else window.scrollTo({top:0,behavior:'smooth'});
+  const heading=card.querySelector('h2');
+  if(heading){if(!heading.hasAttribute('tabindex'))heading.setAttribute('tabindex','-1');requestAnimationFrame(()=>heading.focus({preventScroll:true}));}
 }
 
 function validate(step){
@@ -533,7 +641,7 @@ function validate(step){
     else if(!v('companySize'))msg='Please tell us how many people work in your business.';
     else if(!v('contactName'))msg='Please enter your name.';
     else if(!v('contactRole'))msg='Please enter your role in the business.';
-    else if(!v('contactEmail'))msg='Please enter a valid email address so we can reach you.';
+    else if(!v('contactEmail')||!isEmail(safe('contactEmail')))msg='Please enter a valid email address so we can reach you.';
   }else if(step===1){
     if(!v('projectTitle'))msg='Please give your project a name or short description.';
     else if(!document.querySelector('input[name="engType"]:checked'))msg='Please select the type of help you\'re looking for.';
@@ -543,16 +651,23 @@ function validate(step){
   }else if(step===2){
     if(!v('deliverables'))msg='Please describe what you\'d like us to create or deliver.';
   }else if(step===3){
+    if(!document.querySelector('input[name="designStyle"]:checked'))msg='Please select a design style.';
+    else if(!document.querySelector('input[name="animPref"]:checked'))msg='Please select how much movement you want on the site.';
+    else if(!document.querySelector('input[name="photoStatus"]:checked'))msg='Please let us know about your photography situation.';
+    else if(!document.querySelector('input[name="videoNeeded"]:checked'))msg='Please let us know whether you need video on the site.';
+    else if(!document.querySelector('input[name="brandAssets"]:checked'))msg='Please let us know about your logo and brand materials.';
+    else if(!document.querySelector('input[name="copyStatus"]:checked'))msg='Please let us know whether your website text is written.';
+  }else if(step===4){
     if(!v('startDate'))msg='Please give us an idea of when you\'d like to start.';
     else if(!v('endDate'))msg='Please give us an idea of when you need the project finished.';
-  }else if(step===4){
+  }else if(step===5){
     if(!document.querySelector('input[name="budget"]:checked'))msg='Please select a budget range.';
     else if(!document.querySelector('input[name="budgApprv"]:checked'))msg='Please let us know if your budget is ready to go.';
-  }else if(step===5){
+  }else if(step===6){
     if(!v('decisionMaker'))msg='Please tell us who has the final say on approving the work.';
     else if(!v('commChannel'))msg='Please choose how you\'d prefer we stay in touch.';
     else if(!v('updateFreq'))msg='Please choose how often you\'d like updates from us.';
-  }else if(step===6){
+  }else if(step===7){
     if(!document.getElementById('consent').checked)msg='Please check the box to confirm your information before submitting.';
   }
   if(msg){err.textContent=msg;err.style.display='block';return false;}
@@ -563,6 +678,8 @@ function v(id){
   const el=document.getElementById(id);
   return el&&el.value.trim()!=='';
 }
+
+function isEmail(str){return/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(str);}
 
 function next(step){if(validate(step))showStep(step+1);}
 function back(step){showStep(step-1);}
@@ -609,7 +726,7 @@ function normalizeDeliverableHint(text){
 function buildSubmission(){
   const data={
     submitted_at:new Date().toISOString(),
-    form_version:'client-facing-v1',
+    form_version:'client-facing-v2',
     company:{
       name:safe('companyName'),
       industry:safe('industry'),
@@ -630,12 +747,22 @@ function buildSubmission(){
       success_outcome:safe('successOutcome'),
       target_users:safe('targetUsers'),
       deliverables:safe('deliverables'),
+      page_count:radioValue('pageCount'),
+      primary_cta:radioValue('primCTA'),
       existing_assets:safe('existingAssets'),
       integrations:safe('integrations'),
       preferred_technology:safe('techPreferred'),
       avoid_technology:safe('techAvoid'),
       compliance:checkedValues('#complianceChecks'),
       references:safe('references')
+    },
+    visual:{
+      design_style:radioValue('designStyle'),
+      animation_pref:radioValue('animPref'),
+      photography:radioValue('photoStatus'),
+      video:radioValue('videoNeeded'),
+      brand_assets:radioValue('brandAssets'),
+      copy_status:radioValue('copyStatus')
     },
     timeline:{
       start_date:safe('startDate'),
@@ -668,25 +795,24 @@ function buildSubmission(){
     }
   };
 
-  /* ── Internal scoring (not shown to client) ── */
   const riskFlags=[];
   const missingData=[];
   let requiresDiscovery=false;
   let requiresFounder=false;
 
-  // Dimension 1: Budget clarity (20 max)
   let budgetClarity=0;
   if(data.budget.range && data.budget.range!=='Not disclosed'){
-    budgetClarity=(data.budget.range==='Under $5K')?10:20;
+    if(data.budget.range==='Under $2.5K') budgetClarity=5;
+    else if(data.budget.range==='$2.5K–$5K') budgetClarity=15;
+    else budgetClarity=20;
   }else{
     missingData.push('Budget range');
   }
-  if(data.budget.range==='Under $5K'){riskFlags.push('Budget is below the current service ladder.');}
+  if(data.budget.range==='Under $2.5K'){riskFlags.push('Budget is below the current service ladder.');}
 
-  // Dimension 2: Timeline realism (15 max)
   let timelineRealism=0;
   if(data.timeline.start_date && data.timeline.target_completion){
-    if(data.timeline.flexibility==='Yes, flexible') timelineRealism=15;
+    if(data.timeline.flexibility==='Yes') timelineRealism=15;
     else if(data.timeline.flexibility==='Somewhat') timelineRealism=8;
     else timelineRealism=5;
   }else{
@@ -695,7 +821,6 @@ function buildSubmission(){
   if(data.timeline.flexibility==='No'){riskFlags.push('Timeline is fixed with limited scope flexibility.');}
   if(data.timeline.hard_deadlines){riskFlags.push('External hard deadline present.');}
 
-  // Dimension 3: Decision-maker access (15 max)
   let decisionMakerAccess=0;
   if(data.stakeholders.decision_maker){
     if(data.stakeholders.decision_maker.toLowerCase()===data.contact.name.toLowerCase()){
@@ -707,17 +832,15 @@ function buildSubmission(){
     missingData.push('Decision-maker identification');
   }
   if(data.stakeholders.approval_count==='4+'){requiresFounder=true;riskFlags.push('Approval chain is high-friction.');}
-  else if(data.stakeholders.approval_count.startsWith('2')){riskFlags.push('Multiple approvers may slow milestone decisions.');}
+  else if(data.stakeholders.approval_count==='2–3'){riskFlags.push('Multiple approvers may slow milestone decisions.');}
 
-  // Dimension 4: ICP alignment (20 max) — estimated from fit signals
   let icpAlignment=10;
-  if(data.budget.range!=='Under $5K' && data.budget.range!=='Not disclosed' && data.project.engagement_type!=='Diagnostic'){
+  if(data.budget.range!=='Under $2.5K' && data.budget.range!=='Not disclosed' && data.project.engagement_type!=='Diagnostic'){
     icpAlignment=20;
-  }else if(data.budget.range==='Under $5K' && data.project.engagement_type==='Diagnostic'){
+  }else if(data.budget.range==='Under $2.5K' && data.project.engagement_type==='Diagnostic'){
     icpAlignment=0;
   }
 
-  // Dimension 5: Scope clarity (15 max)
   let scopeClarity=0;
   const deliverablesClear=data.project.deliverables.length>=25;
   const problemClear=data.project.business_problem.length>=30;
@@ -734,7 +857,6 @@ function buildSubmission(){
   if(!deliverablesClear){requiresDiscovery=true;riskFlags.push('Deliverables are still too vague for reliable scoping.');}
   if(!problemClear){requiresDiscovery=true;riskFlags.push('Business problem is underdefined.');}
 
-  // Dimension 6: Red flag reduction (15 max)
   if(data.budget.approved==='Pending'){riskFlags.push('Budget is not fully approved.');}
   if(data.budget.approved==='No'){riskFlags.push('Budget authority is not in place.');}
   if(data.budget.range==='Not disclosed'){requiresDiscovery=true;riskFlags.push('Budget has not been disclosed.');}
@@ -742,7 +864,12 @@ function buildSubmission(){
   if(data.project.engagement_type==='Diagnostic'){requiresDiscovery=true;}
   if(data.project.engagement_type==='Scale'){requiresFounder=true;riskFlags.push('Scale engagement implies higher delivery complexity.');}
 
-  // $15K founder-approval gate
+  if(data.visual.copy_status==='Not started'){riskFlags.push('Copy not written — timeline clock does not start until content is delivered.');}
+  if(data.visual.copy_status==='Needs NoDrft'){riskFlags.push('Copywriting in scope — must be priced as add-on before SOW is signed.');}
+  if(data.visual.brand_assets==='Nothing yet'){riskFlags.push('No brand assets on hand — logo and identity creation required before build begins.');}
+  if(data.visual.photography==='Need sourcing'){riskFlags.push('Photography production required — must be scoped and priced separately.');}
+  if(data.visual.video==='Need production'){riskFlags.push('Video production required — must be scoped and priced separately.');}
+
   const highValueBudget=['$15K–$30K','$30K–$50K','$50K–$100K','$100K+'].includes(data.budget.range);
 
   let redFlagScore=15;
@@ -789,7 +916,7 @@ function buildSummary(data){
   const risks=data.analysis.risk_flags.length?data.analysis.risk_flags.map(item=>'- '+item).join('\n'):'- No major risk flags detected from form responses alone.';
   const missing=data.analysis.missing_data.length?data.analysis.missing_data.map(item=>'- '+item).join('\n'):'- No critical missing data detected.';
   return [
-    'NODRFTSYSTEMS INTAKE PACKET (client-facing form v1)',
+    'NODRFTSYSTEMS INTAKE PACKET (client-facing form v2)',
     '',
     'Submitted: '+data.submitted_at,
     'Qualification score: '+data.analysis.qualification_score+'/100',
@@ -816,12 +943,22 @@ function buildSummary(data){
     '- Success outcome: '+data.project.success_outcome,
     '- Target users: '+data.project.target_users,
     '- Deliverables: '+data.project.deliverables,
+    '- Page / screen count: '+(data.project.page_count||'Not specified'),
+    '- Primary CTA: '+(data.project.primary_cta||'Not specified'),
     '- Existing assets: '+(data.project.existing_assets||'None provided'),
     '- Integrations: '+(data.project.integrations||'None provided'),
     '- Preferred technology: '+(data.project.preferred_technology||'Not specified'),
     '- Avoid technology: '+(data.project.avoid_technology||'Not specified'),
     '- Compliance: '+(data.project.compliance.length?data.project.compliance.join(', '):'None specified'),
     '- References: '+(data.project.references||'None provided'),
+    '',
+    'VISUAL DIRECTION',
+    '- Design style: '+(data.visual.design_style||'Not stated'),
+    '- Animation preference: '+(data.visual.animation_pref||'Not stated'),
+    '- Photography: '+(data.visual.photography||'Not stated'),
+    '- Video: '+(data.visual.video||'Not stated'),
+    '- Brand assets on hand: '+(data.visual.brand_assets||'Not stated'),
+    '- Copy / content status: '+(data.visual.copy_status||'Not stated'),
     '',
     'TIMELINE',
     '- Desired start: '+data.timeline.start_date,
@@ -875,7 +1012,6 @@ function safeFileStem(value){
   return (value||'nodrft-intake').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,48)||'nodrft-intake';
 }
 
-/* Internal-use download functions — attach to a hidden admin panel if needed */
 function downloadIntakeSummary(){
   if(!lastSubmission)return;
   downloadFile(lastSubmission.summary,safeFileStem(lastSubmission.data.company.name||lastSubmission.data.project.title)+'-intake-summary.txt','text/plain;charset=utf-8');
@@ -887,7 +1023,7 @@ function downloadIntakeJson(){
 }
 
 async function submitForm(){
-  if(!validate(6))return;
+  if(!validate(7))return;
   const data=buildSubmission();
   const summary=buildSummary(data);
   lastSubmission={data,summary};
@@ -905,6 +1041,13 @@ async function submitForm(){
     body.append('Engagement type',data.project.engagement_type||'');
     body.append('Business problem',data.project.business_problem||'');
     body.append('Success outcome',data.project.success_outcome||'');
+    body.append('Page count',data.project.page_count||'');
+    body.append('Primary CTA',data.project.primary_cta||'');
+    body.append('Design style',data.visual.design_style||'');
+    body.append('Animation preference',data.visual.animation_pref||'');
+    body.append('Photography',data.visual.photography||'');
+    body.append('Brand assets',data.visual.brand_assets||'');
+    body.append('Copy status',data.visual.copy_status||'');
     body.append('Budget',data.budget.range||'');
     body.append('Budget approved',data.budget.approved||'');
     body.append('Timeline',data.timeline.start_date+' → '+data.timeline.target_completion);
@@ -919,7 +1062,7 @@ async function submitForm(){
     }
   }
 
-  document.getElementById('step6').classList.remove('active');
+  document.getElementById('step7').classList.remove('active');
   document.getElementById('progress').style.display='none';
   document.getElementById('confirmCard').classList.add('active');
 }
@@ -938,8 +1081,14 @@ function printSummary(){
     row('Project','',d.project.title+' — '+d.project.engagement_type),
     row('Problem','',d.project.business_problem),
     row('Success looks like','',d.project.success_outcome),
-    row('Deliverables','',d.project.deliverables),
-    row('Timeline','',d.timeline.start_date+' → '+d.timeline.target_completion+(d.timeline.flexibility?' ('+d.timeline.flexibility+')'   :'')),
+    row('Deliverables','',d.project.deliverables+(d.project.page_count?' ('+d.project.page_count+' page(s))'  :'')),
+    row('Primary action','',d.project.primary_cta||'Not specified'),
+    row('Design style','',d.visual.design_style||'Not stated'),
+    row('Animation','',d.visual.animation_pref||'Not stated'),
+    row('Photography','',d.visual.photography||'Not stated'),
+    row('Brand assets','',d.visual.brand_assets||'Not stated'),
+    row('Copy status','',d.visual.copy_status||'Not stated'),
+    row('Timeline','',d.timeline.start_date+' → '+d.timeline.target_completion+(d.timeline.flexibility?' ('+d.timeline.flexibility+')':'')),
     row('Budget','',d.budget.range+' — '+d.budget.approved),
     row('Decision maker','',d.stakeholders.decision_maker+(d.stakeholders.approval_count?' ('+d.stakeholders.approval_count+' approver(s))':'')),
     row('Communication','',d.stakeholders.communication_channel+' / '+d.stakeholders.update_frequency),
