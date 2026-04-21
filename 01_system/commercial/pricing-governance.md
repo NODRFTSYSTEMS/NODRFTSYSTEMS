@@ -1,8 +1,8 @@
 # Pricing Governance
 
 **Classification:** Internal - Confidential - Proprietary
-**Status:** Canonical operative pricing - Founder approved 2026-04-18; amended 2026-04-20
-**Last updated:** 2026-04-20
+**Status:** Canonical operative pricing - Founder approved 2026-04-18; amended 2026-04-21
+**Last updated:** 2026-04-21
 **Owner:** Founder
 **STOP-001 resolution:** This document is hereby designated the single operative pricing source. All prior conflicting pricing documents (Business Plan v2, Business Foundation, Pricing Summary Sheet) are reference material only and must not be used for quoting. This closes STOP-001.
 
@@ -11,6 +11,23 @@
 ---
 
 ## Package Architecture - Operative Tiers
+
+### T0.A - Website Audit
+
+**Purpose:** Structured diagnostic of an existing website. Produces a scored written report with a clear recommendation before any build commitment.
+**Price:** $1,000 flat
+**Delivery:** 5 business days from confirmed start
+**Included:**
+- Written audit report with 6-dimension scoring (messaging clarity, conversion structure, SEO foundation, technical health, visual credibility, accessibility baseline)
+- Gap analysis with prioritized findings classified as Critical / Important / Enhancement
+- Package recommendation: which tier addresses the current gap
+- One 30-minute follow-up Q&A session (scheduled within 10 days of report delivery)
+**Excluded:** Design production, development, copywriting, implementation of any recommendations
+**Payment:** 100% upon signing
+**Note:** Website Audit is for diagnosing an existing site. It does not substitute for a Discovery Sprint. If scope validation is needed for a new build, Discovery Sprint (T0) is still required. A Website Audit may precede or replace the need for a Discovery Sprint depending on audit findings.
+**Platform note:** NoDrftSystems does not modify existing WordPress, Webflow, Wix, Squarespace, or similar platform installations. If the audit recommends improvement, the path forward is a new build (scoped via Discovery or a fixed package). This is communicated in the audit report.
+
+---
 
 ### T0 - Discovery Sprint
 
@@ -26,9 +43,10 @@
 
 ### T1 - Conversion Landing Page Sprint
 
-**Purpose:** Single-page conversion-focused website. No CMS.
+**Purpose:** Sprint-format single-page conversion website. Focused brief, fast delivery, single-purpose. Not a multi-page build — scope is deliberately constrained to maximize speed and conversion clarity for one offer.
 **Price:** $2,500
 **Delivery:** 10 business days from confirmed start (all client inputs received)
+**Positioning note vs T1S:** T1 is a sprint — one page, one audience, one conversion goal, 10 days. T1S is a full multi-page brochure build (up to 5 pages, same timeline extended). If a client asks which to choose: T1 if they have one campaign or offer to convert; T1S if they need a complete multi-page business presence.
 **Included:**
 - Up to 8 sections
 - 1 CTA form (lead capture or contact)
@@ -148,27 +166,33 @@
 | Add-On | Price | Notes |
 |--------|-------|-------|
 | Copywriting - T1 | $750 | Up to 8 sections |
+| Copywriting - T1S | $1,000 | Up to 5 pages |
 | Copywriting - T2 | $1,500 | Up to 5 pages |
 | Copywriting - T3 | $2,500 | Up to 15 pages |
-| Bilingual (EN/ES) - any tier | +25% of base price | Transcreation, not translation; TCA review required |
+| Bilingual (EN/ES) - T1 | $625 (+25%) | Transcreation, not translation; bilingual parity review required |
+| Bilingual (EN/ES) - T1S | $875 (+25%) | Transcreation, not translation |
+| Bilingual (EN/ES) - T2 | $1,375 (+25%) | Transcreation, not translation |
+| Bilingual (EN/ES) - T3 | $3,000 (+25%) | Transcreation, not translation; bilingual parity review required |
+| Bilingual (EN/ES) - T4/T5 | Custom (+25% of scoped base) | Quoted per Discovery scope |
+| CMS Onboarding Session | $350 | Packaged: 2-hour recorded session + written quick-reference guide; for T2+ clients; must be scheduled within 60 days of launch |
 | Blog setup and migration | $1,000 | Add to T2; included in T3 |
 | E-commerce integration | $2,500 | Single payment provider; product catalog up to 50 SKUs |
 | SEO content strategy | $1,000 | Keyword research + 3 pillar pages outlined; not copywriting |
 | Analytics deep-dive setup | $500 | GA4 + event schema + dashboard |
-| Rush delivery | +30% of base price | Delivery in less than 50% of standard timeline; subject to availability |
+| Rush delivery | +30% of base price | Delivery in less than 50% of standard timeline; subject to availability; confirmed in writing before scope begins |
 | Extended support window | $500/month | Per month beyond included window; max 3 months |
 
 ---
 
 ## Maintenance Retainers
 
-Maintenance retainers are separate from build pricing. They are never bundled into a build package.
+Maintenance retainers are separate from build pricing. They are never bundled into a build package. Retainer pricing reflects priority access and reserved capacity — not a discount on standard hours. Effective retainer rate ($120–130/hr) is below the standalone dev rate ($150/hr) specifically because of the commitment and scheduling predictability.
 
 | Tier | Hours/Month | SLA | Monthly Price | Best For |
 |------|-------------|-----|---------------|----------|
-| Starter | 5 hours | Standard (48hr response) | $500/month | Small static sites; occasional updates |
-| Standard | 12 hours | Priority (24hr response) | $1,200/month | Active sites; regular content updates; CMS |
-| Premium | 25 hours | Priority + Emergency (4hr) | $2,500/month | Web apps; business-critical uptime; complex integrations |
+| Starter | 5 hours | Standard (48hr response) | $650/month | Small static sites; occasional updates |
+| Standard | 12 hours | Priority (24hr response) | $1,500/month | Active sites; regular content updates; CMS |
+| Premium | 25 hours | Priority + Emergency (4hr) | $3,000/month | Web apps; business-critical uptime; complex integrations |
 
 **Retainer rules:**
 - Hours do not roll over month to month.
@@ -179,17 +203,35 @@ Maintenance retainers are separate from build pricing. They are never bundled in
 
 ---
 
-## Routine Usage (Recurring Agent Executions)
+## Content & SEO Retainers
 
-> **STOP:** Figures in this section are placeholders. This section is not operative for billing until the Founder confirms the included-run quota and per-run overage rate. See `01_system/operations/routine-usage-policy.md` for full policy rules.
+Content retainers are separate from maintenance retainers and build pricing. A client may hold both a maintenance retainer and a content retainer simultaneously.
+
+| Tier | Monthly Price | Deliverables | Notes |
+|------|---------------|--------------|-------|
+| Content Starter | $750/month | Up to 2 blog posts or content pieces per month; basic on-page SEO per piece | Approved brief required before writing begins; month-to-month after first month |
+| Content Standard | $1,500/month | Up to 4 pieces per month; SEO keyword tracking report; editorial calendar | Brand guidelines must be on file; 3-month minimum |
+
+**Content retainer rules:**
+- Client supplies topic direction and approves brief before writing begins. No ambient content generation.
+- All content passes QA Pass 2 (Content and Copy Review) before delivery.
+- Bilingual content requires the Bilingual add-on (see Add-Ons table) and a bilingual parity review pass.
+- No fabricated statistics, quotes, or named client evidence. All proof claims must be verified and supplied by the client.
+- Retainer SOW required; governed by MSA.
+
+---
+
+## Routine Usage (Recurring Agent Executions)
 
 Routine usage applies to maintenance retainer clients whose engagements include scheduled or recurring agent executions (health checks, drift detection, status reports, utilization pulls). Routines are not project work and not ad hoc requests.
 
+**Founder-approved 2026-04-21.**
+
 | Allocation | Specification |
 |------------|---------------|
-| Included routine runs (per rolling 24 hours) | **[FOUNDER DECISION REQUIRED]** |
-| Extra Usage (when enabled in SOW) | **[FOUNDER DECISION REQUIRED]** per run above daily quota |
-| Extra Usage enablement | Must be explicitly scoped in the SOW - not auto-enabled |
+| Included routine runs (per rolling 24 hours) | 5 runs per retainer client per rolling 24-hour window |
+| Extra Usage (when enabled in SOW) | $3.00 per run above daily quota |
+| Extra Usage enablement | Must be explicitly scoped in the SOW — not auto-enabled |
 | Overage tracking | ARCA tracks charges per billing cycle; Founder reviews before invoicing |
 
 **Routine pricing rules:**
@@ -207,16 +249,38 @@ Routine usage applies to maintenance retainer clients whose engagements include 
 | Development (hourly, outside retainer) | $150/hour | Requires Change Order |
 | Strategy and advisory | $200/hour | Minimum 2-hour engagement |
 | Emergency response (outside retainer) | $300/hour | 4hr SLA; minimum 2-hour billing |
-| Training and handoff sessions | $150/hour | Maximum 4 hours per engagement |
+| Training and handoff sessions | $150/hour | Maximum 4 hours per engagement; or use packaged CMS Onboarding Session ($350 flat) |
+
+**Scope expansion / Change Order rate:** Any work beyond signed SOW scope is billed at $150/hour (dev) or $200/hour (strategy) via a signed Change Order. No expansion work begins without a signed Change Order.
+
+**Platform modification note:** NoDrftSystems does not modify existing third-party CMS installations (WordPress, Webflow, Wix, Squarespace, Shopify, etc.). If a client has an existing site on these platforms, the path is a Website Audit ($1,000) or Discovery Sprint ($2,000) to scope a migration or new build. Hourly advisory may be used for brief consultations about existing platforms, but no implementation work is performed against them.
+
+---
+
+## Client Responsibilities (What the Client Brings)
+
+Every engagement clock starts only when all of the following are delivered by the client. Timeline delays caused by late client delivery extend the project timeline proportionally at no penalty to NoDrftSystems.
+
+| Item | Required For |
+|------|-------------|
+| Written copy for all pages | All tiers (unless Copywriting add-on is purchased) |
+| Logo files (SVG or high-resolution PNG) | All tiers |
+| Brand guidelines (colors, fonts, tone) | All tiers |
+| Photography and video assets | Any tier where media is expected (or written confirmation that stock/placeholder is acceptable) |
+| Domain access credentials | All tiers |
+| Hosting account access (if client-managed) | T1 and above |
+| CMS credentials (if migrating from existing) | Scoped separately via Discovery or Change Order |
+
+If brand assets are not ready at contract signing, the timeline clock does not start until they are delivered. This is communicated in every SOW.
 
 ---
 
 ## Regional Pricing (Colombia and Jamaica Markets)
 
-Regional pricing exists as calibration reference. Before quoting in a regional market:
-1. Confirm with Founder whether the regional edition is active for that engagement.
-2. Reference `90_source-documents/commercial/NoDrftSystems_Pricing_Colombia_2026.md` or `_Jamaica_2026.md` for calibration context.
-3. Do not use regional pricing as a public baseline without Founder authorization.
+Regional pricing is active and Founder-approved for quoting. Before applying regional pricing:
+1. Confirm with Founder that the engagement is a Colombia or Jamaica market engagement.
+2. Reference `90_source-documents/commercial/NoDrftSystems_Pricing_Colombia_2026.md` or `_Jamaica_2026.md` for the operative regional rates.
+3. Do not publish regional pricing publicly without Founder authorization.
 
 ---
 
@@ -249,7 +313,7 @@ Pricing governance is operational when all conditions are true:
 
 - [x] One package architecture is designated operative - **this document**
 - [x] All public offers have Founder sign-off - **approved 2026-04-20**
-- [x] Regional pricing status confirmed 2026-04-18 - Colombia and Jamaica editions are **internal competitive calibration references only**. They are not public-facing offers. Founder must verbally confirm per engagement before any regional adjustment is applied. See `90_source-documents/commercial/NoDrftSystems_Pricing_Colombia_2026.md` and `_Jamaica_2026.md`.
+- [x] Regional pricing status confirmed 2026-04-21 - Colombia and Jamaica editions are **active and Founder-approved for quoting**. Regional prices are internal — not published publicly. Founder must confirm per engagement before applying. See `90_source-documents/commercial/NoDrftSystems_Pricing_Colombia_2026.md` and `_Jamaica_2026.md`.
 - [x] Proposal template and SOW template point to this document
 - [x] Intake routing uses this package ladder
 - [x] STOP-001 closed - single pricing source designated
