@@ -1,0 +1,2 @@
+:HL["/forgotten-by-design-web/_next/static/chunks/0dqb8w7-gs3wp.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"5GdLOn40MSE3D1uoNG2ye"}

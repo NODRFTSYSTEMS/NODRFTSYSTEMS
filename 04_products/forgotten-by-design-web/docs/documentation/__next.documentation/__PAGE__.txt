@@ -1,0 +1,5 @@
+1:"$Sreact.fragment"
+2:I[897367,["/forgotten-by-design-web/_next/static/chunks/0u516672.siin.js","/forgotten-by-design-web/_next/static/chunks/0i.l9589uvx0j.js"],"OutletBoundary"]
+3:"$Sreact.suspense"
+0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"max-w-7xl mx-auto px-4 sm:px-6 py-16","children":[["$","header",null,{"className":"mb-12 border-b border-border pb-8","children":[["$","p",null,{"className":"font-mono text-xs uppercase tracking-widest text-accent mb-3","children":"Public Evidence"}],["$","h1",null,{"className":"font-serif text-4xl font-bold text-paper","children":"Documentation Packages"}],["$","p",null,{"className":"text-mist mt-3 max-w-xl","children":"Claims mapped to sources. Screenshots with archive identifiers. What cannot be proven, stated explicitly. Public by default."}]]}],["$","p",null,{"className":"text-mist font-mono text-sm","children":"No documentation packages published yet."}]]}],null,["$","$L2",null,{"children":["$","$3",null,{"name":"Next.MetadataOutlet","children":"$@4"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"5GdLOn40MSE3D1uoNG2ye"}
+4:null

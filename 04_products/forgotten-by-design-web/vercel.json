@@ -1,0 +1,19 @@
+{
+  "rewrites": [
+    {
+      "source": "/studio/(.*)",
+      "destination": "/studio/$1"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    }
+  ]
+}
