@@ -10,10 +10,10 @@ export async function generateMetadata({
   const title = `${t("title")} — Peak Equity Optimizer`;
   return {
     title,
-    description: "Frequently asked questions about Peak Equity Optimizer — platform, data sources, privacy, and pricing. Learn how PEO works, where data comes from, and how to get started.",
+    description: t("metaDescription"),
     openGraph: {
-      title,
-      description: "Get answers about PEO's verified ARV methodology, data sources, privacy practices, and pricing tiers.",
+      title: t("ogTitle"),
+      description: t("ogDescription"),
     },
   };
 }
@@ -59,7 +59,7 @@ export default async function FaqPage() {
       />
       <section className="section-hero" style={{ textAlign: "center" }}>
         <div className="container-narrow">
-          <div className="eyebrow" style={{ marginBottom: "14px" }}>Support</div>
+          <div className="eyebrow" style={{ marginBottom: "14px" }}>{t("eyebrow")}</div>
           <h1 className="display" style={{ marginBottom: "16px" }}>{t("title")}</h1>
         </div>
       </section>

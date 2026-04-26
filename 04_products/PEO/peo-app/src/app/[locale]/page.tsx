@@ -70,24 +70,24 @@ export default function HomePage() {
                 style={{ border: "none", borderRadius: 0 }}
               >
                 <div className="terminal-row" role="row">
-                  <span className="label" role="cell">Platform</span>
+                  <span className="label" role="cell">{t("terminalPlatform")}</span>
                   <span className="value" role="cell">Peak Equity Optimizer</span>
                 </div>
                 <div className="terminal-row" role="row">
-                  <span className="label" role="cell">Seller path</span>
+                  <span className="label" role="cell">{t("terminalSellerPath")}</span>
                   <span className="value" role="cell">Net proceeds, pricing range, timeline risk</span>
                 </div>
                 <div className="terminal-row" role="row">
-                  <span className="label" role="cell">Investor path</span>
+                  <span className="label" role="cell">{t("terminalInvestorPath")}</span>
                   <span className="value" role="cell">MAO, ARV, stress scenarios, deal score</span>
                 </div>
                 <div className="terminal-row" role="row">
-                  <span className="label" role="cell">Strategies</span>
+                  <span className="label" role="cell">{t("terminalStrategies")}</span>
                   <span className="value" role="cell">Flip · BRRRR · Rental · Wholesale</span>
                 </div>
                 <div className="terminal-row" role="row">
-                  <span className="label" role="cell">Academy</span>
-                  <span className="value" role="cell" style={{ color: "var(--green)" }}>Free — open access</span>
+                  <span className="label" role="cell">{t("terminalAcademy")}</span>
+                  <span className="value" role="cell" style={{ color: "var(--green)" }}>{t("terminalFreeAccess")}</span>
                 </div>
               </div>
             </div>
@@ -191,7 +191,7 @@ export default function HomePage() {
               </Link>
             </div>
 
-            {/* Investor Basic — featured */}
+            {/* Investor Core — featured */}
             <div className="feature-card" style={{ borderColor: "rgba(233,160,21,0.35)", position: "relative" }}>
               <div className="card-featured-badge">{t("roleFeaturedBadge")}</div>
               <div className="card-kicker">{t("roleInvestorKicker")}</div>
@@ -206,7 +206,7 @@ export default function HomePage() {
               </Link>
             </div>
 
-            {/* Investor Advanced */}
+            {/* Investor Elite */}
             <div className="feature-card">
               <div className="card-kicker">{t("roleInvestorAdvancedKicker")}</div>
               <h3 className="heading-sm" style={{ marginBottom: "12px" }}>
@@ -285,15 +285,15 @@ export default function HomePage() {
               </div>
               <div style={{ padding: "20px" }}>
                 <div className="stat-card" style={{ marginBottom: "14px" }}>
-                  <div className="stat-label">Estimated Net Proceeds</div>
+                  <div className="stat-label">{t("dashNetProceedsLabel")}</div>
                   <div className="stat-value" style={{ color: "var(--green)" }}>$284,400</div>
                 </div>
                 <div className="terminal-grid" style={{ borderRadius: "var(--radius-sm)" }}>
-                  <div className="terminal-row"><span className="label">Sale Price</span><span className="value">$340,000</span></div>
-                  <div className="terminal-row"><span className="label">Agent (6%)</span><span className="value" style={{ color: "var(--red)" }}>−$20,400</span></div>
-                  <div className="terminal-row"><span className="label">Closing (2%)</span><span className="value" style={{ color: "var(--red)" }}>−$6,800</span></div>
-                  <div className="terminal-row"><span className="label">Mortgage Payoff</span><span className="value" style={{ color: "var(--red)" }}>−$28,400</span></div>
-                  <div className="terminal-row"><span className="label">Net Proceeds</span><span className="value" style={{ color: "var(--green)" }}>$284,400</span></div>
+                  <div className="terminal-row"><span className="label">{t("dashSalePrice")}</span><span className="value">$340,000</span></div>
+                  <div className="terminal-row"><span className="label">{t("dashAgentCommission")}</span><span className="value" style={{ color: "var(--red)" }}>−$20,400</span></div>
+                  <div className="terminal-row"><span className="label">{t("dashClosing")}</span><span className="value" style={{ color: "var(--red)" }}>−$6,800</span></div>
+                  <div className="terminal-row"><span className="label">{t("dashMortgagePayoff")}</span><span className="value" style={{ color: "var(--red)" }}>−$28,400</span></div>
+                  <div className="terminal-row"><span className="label">{t("dashNetProceeds")}</span><span className="value" style={{ color: "var(--green)" }}>$284,400</span></div>
                 </div>
               </div>
             </div>
@@ -306,19 +306,19 @@ export default function HomePage() {
               <div style={{ padding: "20px" }}>
                 <div className="grid-2" style={{ gap: "12px", marginBottom: "14px" }}>
                   <div className="score-card is-pass">
-                    <div className="stat-label">Verified ARV</div>
+                    <div className="stat-label">{t("dashVerifiedArv")}</div>
                     <div className="stat-value">$325,000</div>
                   </div>
                   <div className="score-card is-pass">
-                    <div className="stat-label">MAO</div>
+                    <div className="stat-label">{t("dashMao")}</div>
                     <div className="stat-value">$211,250</div>
                   </div>
                 </div>
                 <div className="terminal-grid" style={{ borderRadius: "var(--radius-sm)" }}>
-                  <div className="terminal-row"><span className="label">Strategy</span><span className="value">Flip</span></div>
-                  <div className="terminal-row"><span className="label">Est. Profit</span><span className="value" style={{ color: "var(--green)" }}>$38,750</span></div>
-                  <div className="terminal-row"><span className="label">ROI</span><span className="value">18.3%</span></div>
-                  <div className="terminal-row"><span className="label">Confidence</span><span className="value" style={{ color: "var(--green)" }}>HIGH</span></div>
+                  <div className="terminal-row"><span className="label">{t("dashStrategy")}</span><span className="value">Flip</span></div>
+                  <div className="terminal-row"><span className="label">{t("dashEstProfit")}</span><span className="value" style={{ color: "var(--green)" }}>$38,750</span></div>
+                  <div className="terminal-row"><span className="label">{t("dashRoi")}</span><span className="value">18.3%</span></div>
+                  <div className="terminal-row"><span className="label">{t("dashConfidence")}</span><span className="value" style={{ color: "var(--green)" }}>{t("dashHigh")}</span></div>
                 </div>
               </div>
             </div>
@@ -336,7 +336,7 @@ export default function HomePage() {
           <div className="split-section">
             {/* Seller column */}
             <div>
-              <div className="card-kicker" style={{ color: "var(--text-muted)", marginBottom: "16px" }}>Sellers</div>
+              <div className="card-kicker" style={{ color: "var(--text-muted)", marginBottom: "16px" }}>{t("splitSellerKicker")}</div>
               <h2 className="heading-md" style={{ marginBottom: "24px" }}>
                 {t("splitSellerHeading")}
               </h2>
@@ -354,7 +354,7 @@ export default function HomePage() {
 
             {/* Investor column */}
             <div>
-              <div className="card-kicker" style={{ color: "var(--gold)", marginBottom: "16px" }}>Investors</div>
+              <div className="card-kicker" style={{ color: "var(--gold)", marginBottom: "16px" }}>{t("splitInvestorKicker")}</div>
               <h2 className="heading-md" style={{ marginBottom: "24px" }}>
                 {t("splitInvestorHeading")}
               </h2>

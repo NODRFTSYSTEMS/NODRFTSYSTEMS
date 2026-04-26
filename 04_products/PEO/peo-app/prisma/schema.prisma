@@ -16,10 +16,9 @@ datasource db {
 enum UserRole {
   anonymous_visitor
   free_user
-  seller_applicant
-  seller_verified
-  investor_basic
-  investor_advanced
+  seller
+  investor_core
+  investor_elite
   vendor
   admin_internal
 }
@@ -47,8 +46,8 @@ enum ApplicationStatus {
 
 enum ApplicationContext {
   seller_application
-  investor_basic_analysis
-  investor_advanced_analysis
+  investor_core_analysis
+  investor_elite_analysis
 }
 
 enum VendorStatus {

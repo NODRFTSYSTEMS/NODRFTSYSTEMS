@@ -7,7 +7,7 @@ import type { Prisma } from "@prisma/client";
 
 const contactSchema = z.object({
   message: z.string().min(1).max(500),
-  source: z.enum(["seller_app", "investor_basic", "investor_advanced"]),
+  source: z.enum(["seller_app", "investor_core", "investor_elite"]),
 });
 
 export async function POST(

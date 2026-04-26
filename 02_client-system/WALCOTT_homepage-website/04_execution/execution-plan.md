@@ -62,7 +62,7 @@
    - Initialize git repo in `04_products/WCP/`
    - Create `.github/workflows/deploy-pages.yml` and `ci.yml`
    - Create `.gitignore`, `.nojekyll`, `README.md`
-   - Push to `walcottcapitalgroup/walcottcostudios`
+   - Push to `NODRFTSYSTEMS/walcottcostudios`
    - Configure GitHub Pages source to GitHub Actions
    - Owner: PIS / RCA
 
@@ -89,7 +89,7 @@
 
 ## Dependencies
 
-- GitHub org access (`walcottcapitalgroup`)
+- GitHub org access (`NODRFTSYSTEMS`)
 - Repository creation permission
 - Local `node_modules` intact (for future rebuilds)
 - `website/` folder contains current build output

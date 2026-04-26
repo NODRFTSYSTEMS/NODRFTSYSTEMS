@@ -1,124 +1,125 @@
 /**
- * NoDrftSystems — Website Form Endpoint
+ * NoDrftSystems - Website Form Endpoint
  * Google Apps Script Web App
  *
- * Handles all public form submissions from nodrftsystems.com.
- * Receives POST from: Start an Engagement, Inquiries, Careers, Onboarding, Intake.
- * Emails each submission to the correct mailbox.
- * Logs every submission to a Google Sheet.
- *
  * SETUP (one time):
- * 1. Open script.google.com — create a new project, paste this file.
+ * 1. Open script.google.com - create a new project, paste this file.
  * 2. Run initSheet() once to create the log sheet.
- * 3. Deploy: Deploy → New deployment → Web App
+ * 3. Deploy: Deploy > New deployment > Web App
  *    - Execute as: Me (admin@nodrftsystems.com)
  *    - Who has access: Anyone
  * 4. Copy the Web App URL.
- * 5. Paste it into index.html meta tags for each form endpoint.
- *    (All 5 meta tags can use the same URL — routing is handled here by form-kind.)
+ * 5. Paste it into index.html for all 5 ndrf-form-*-endpoint meta tags.
  */
 
-// ─── CONFIG ───────────────────────────────────────────────────────────────────
-
-const CONFIG = {
-  // Paste your Google Sheet ID here after running initSheet()
-  // Sheet URL: https://docs.google.com/spreadsheets/d/SHEET_ID/edit
-  SHEET_ID: '',
+var CONFIG = {
+  SHEET_ID: '1cFER8uDp3xR_-q0x5znOJfWRubs0vX71I4Zeov6V0VE',
   SHEET_NAME: 'Submissions',
 
-  // Email routing by form kind
   ROUTING: {
-    engagement:  'sales@nodrftsystems.com',
-    inquiry:     'info@nodrftsystems.com',
-    careers:     'admin@nodrftsystems.com',
-    onboarding:  'info@nodrftsystems.com',
-    intake:      'sales@nodrftsystems.com',
+    engagement: 'sales@nodrftsystems.com',
+    inquiry:    'info@nodrftsystems.com',
+    careers:    'admin@nodrftsystems.com',
+    onboarding: 'info@nodrftsystems.com',
+    intake:     'sales@nodrftsystems.com'
   },
 
   FALLBACK_EMAIL: 'info@nodrftsystems.com',
 
-  // Subject prefix per form kind
   SUBJECT_PREFIX: {
     engagement: 'New Engagement Brief',
     inquiry:    'New Inquiry',
     careers:    'New Career Submission',
     onboarding: 'New Onboarding Submission',
-    intake:     'New Client Intake',
-  },
+    intake:     'New Client Intake'
+  }
 };
-
-// ─── MAIN HANDLER ─────────────────────────────────────────────────────────────
 
 function doPost(e) {
   try {
-    const params = e.parameter || {};
-    const formKind = (params['form-kind'] || params['formKind'] || 'inquiry').toLowerCase();
-    const toEmail  = CONFIG.ROUTING[formKind] || CONFIG.FALLBACK_EMAIL;
-    const subject  = buildSubject(formKind, params);
-    const body     = buildEmailBody(formKind, params);
+    var params   = e.parameter || {};
+    var formKind = (params['form-kind'] || params['formKind'] || 'inquiry').toLowerCase();
+    var toEmail  = CONFIG.ROUTING[formKind] || CONFIG.FALLBACK_EMAIL;
+    var subject  = buildSubject(formKind, params);
+    var body     = buildEmailBody(formKind, params);
 
     MailApp.sendEmail({
       to:      toEmail,
       subject: subject,
       body:    body,
-      replyTo: params.email || params['reply-email'] || '',
+      replyTo: params.email || params['reply-email'] || ''
     });
 
+    sendConfirmation(formKind, params);
     logToSheet(formKind, params);
 
-    return jsonResponse({ ok: true });
+    return ContentService
+      .createTextOutput(JSON.stringify({ ok: true }))
+      .setMimeType(ContentService.MimeType.JSON);
+
   } catch (err) {
     logError(err);
-    return jsonResponse({ ok: false, error: err.message }, 500);
+    return ContentService
+      .createTextOutput(JSON.stringify({ ok: false, error: err.message }))
+      .setMimeType(ContentService.MimeType.JSON);
   }
 }
 
-// Health check — confirms the endpoint is live
 function doGet(e) {
-  return jsonResponse({ ok: true, service: 'NoDrftSystems Form Endpoint', status: 'active' });
+  return ContentService
+    .createTextOutput(JSON.stringify({ ok: true, service: 'NoDrftSystems Form Endpoint', status: 'active' }))
+    .setMimeType(ContentService.MimeType.JSON);
 }
 
-// ─── EMAIL BUILDERS ───────────────────────────────────────────────────────────
-
 function buildSubject(formKind, params) {
-  const prefix = CONFIG.SUBJECT_PREFIX[formKind] || 'New Form Submission';
-  const name   = params.name || params['contact-name'] || '';
-  const org    = params.organization || params.company || params['org-name'] || '';
-  const suffix = [name, org].filter(Boolean).join(' — ');
-  return suffix ? `${prefix}: ${suffix}` : prefix;
+  var prefix = CONFIG.SUBJECT_PREFIX[formKind] || 'New Form Submission';
+  var name   = params.name || params['contact-name'] || '';
+  var org    = params.organization || params.company || params['org-name'] || '';
+  var parts  = [];
+  if (name) parts.push(name);
+  if (org)  parts.push(org);
+  return parts.length > 0 ? prefix + ': ' + parts.join(' - ') : prefix;
 }
 
 function buildEmailBody(formKind, params) {
-  const lines = [
-    `Form: ${formKind}`,
-    `Received: ${new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })} ET`,
+  var divider  = '---';
+  var received = new Date().toLocaleString();
+  var lines    = [
+    'Form: ' + formKind,
+    'Received: ' + received,
     '',
-    '─── SUBMISSION ───',
+    divider + ' SUBMISSION ' + divider
   ];
 
-  // Prioritized fields shown first
-  const priority = ['name', 'email', 'organization', 'company', 'phone',
-                    'offer', 'challenge', 'objective', 'investmentRange',
-                    'timeline', 'message', 'role', 'discipline'];
+  var priority = [
+    'name', 'email', 'organization', 'company', 'phone',
+    'offer', 'challenge', 'objective', 'investmentRange',
+    'timeline', 'message', 'role', 'discipline'
+  ];
 
-  const seen = new Set();
+  var seen = {};
 
-  priority.forEach(key => {
+  for (var i = 0; i < priority.length; i++) {
+    var key = priority[i];
     if (params[key] && params[key].trim()) {
-      lines.push(`${formatKey(key)}: ${params[key].trim()}`);
-      seen.add(key);
+      lines.push(formatKey(key) + ': ' + params[key].trim());
+      seen[key] = true;
     }
-  });
+  }
 
-  // Remaining fields
-  Object.entries(params).forEach(([key, val]) => {
-    if (seen.has(key) || key === 'form-kind' || key === 'formKind') return;
-    if (val && typeof val === 'string' && val.trim()) {
-      lines.push(`${formatKey(key)}: ${val.trim()}`);
+  var keys = Object.keys(params);
+  for (var j = 0; j < keys.length; j++) {
+    var k = keys[j];
+    if (seen[k] || k === 'form-kind' || k === 'formKind') continue;
+    var v = params[k];
+    if (v && typeof v === 'string' && v.trim()) {
+      lines.push(formatKey(k) + ': ' + v.trim());
     }
-  });
+  }
 
-  lines.push('', '─────────────────', 'NoDrftSystems — nodrftsystems.com');
+  lines.push('');
+  lines.push('-----------------');
+  lines.push('NoDrftSystems - nodrftsystems.com');
   return lines.join('\n');
 }
 
@@ -126,24 +127,21 @@ function formatKey(key) {
   return key
     .replace(/([A-Z])/g, ' $1')
     .replace(/[-_]/g, ' ')
-    .replace(/\b\w/g, c => c.toUpperCase())
+    .replace(/\b\w/g, function(c) { return c.toUpperCase(); })
     .trim();
 }
-
-// ─── SHEET LOGGING ────────────────────────────────────────────────────────────
 
 function logToSheet(formKind, params) {
   if (!CONFIG.SHEET_ID) return;
 
   try {
-    const ss    = SpreadsheetApp.openById(CONFIG.SHEET_ID);
-    const sheet = ss.getSheetByName(CONFIG.SHEET_NAME) || ss.insertSheet(CONFIG.SHEET_NAME);
+    var ss    = SpreadsheetApp.openById(CONFIG.SHEET_ID);
+    var sheet = ss.getSheetByName(CONFIG.SHEET_NAME) || ss.insertSheet(CONFIG.SHEET_NAME);
 
-    // Write header row if sheet is empty
     if (sheet.getLastRow() === 0) {
       sheet.appendRow([
         'Timestamp', 'Form Kind', 'Name', 'Email', 'Organization',
-        'Message / Challenge', 'Investment Range', 'Full Data',
+        'Message / Challenge', 'Investment Range', 'Full Data'
       ]);
       sheet.getRange(1, 1, 1, 8).setFontWeight('bold');
     }
@@ -156,46 +154,80 @@ function logToSheet(formKind, params) {
       params.organization || params.company || '',
       params.challenge || params.objective || params.message || '',
       params.investmentRange || params.budget || '',
-      JSON.stringify(params),
+      JSON.stringify(params)
     ]);
+
   } catch (err) {
-    console.error('Sheet log failed:', err.message);
+    Logger.log('Sheet log failed: ' + err.message);
   }
 }
 
-// Run once manually to create the sheet
 function initSheet() {
-  const ss = SpreadsheetApp.create('NoDrftSystems — Form Submissions');
-  const sheet = ss.getActiveSheet();
+  var ss    = SpreadsheetApp.create('NoDrftSystems - Form Submissions');
+  var sheet = ss.getActiveSheet();
   sheet.setName(CONFIG.SHEET_NAME);
   sheet.appendRow([
     'Timestamp', 'Form Kind', 'Name', 'Email', 'Organization',
-    'Message / Challenge', 'Investment Range', 'Full Data',
+    'Message / Challenge', 'Investment Range', 'Full Data'
   ]);
   sheet.getRange(1, 1, 1, 8).setFontWeight('bold');
 
-  console.log('Sheet created. Copy this Sheet ID into CONFIG.SHEET_ID:');
-  console.log(ss.getId());
-  console.log('Sheet URL:', ss.getUrl());
+  Logger.log('Sheet ID: ' + ss.getId());
+  Logger.log('Sheet URL: ' + ss.getUrl());
 }
 
-// ─── UTILITIES ────────────────────────────────────────────────────────────────
+function sendConfirmation(formKind, params) {
+  var clientEmail = params.email || params['reply-email'] || '';
+  if (!clientEmail) return;
 
-function jsonResponse(data, statusCode) {
-  const output = ContentService
-    .createTextOutput(JSON.stringify(data))
-    .setMimeType(ContentService.MimeType.JSON);
-  return output;
+  var name = params.name || params['contact-name'] || 'there';
+  var firstName = name.split(' ')[0];
+
+  var subjectMap = {
+    engagement:  'We received your engagement brief — NoDrftSystems',
+    inquiry:     'We received your inquiry — NoDrftSystems',
+    careers:     'We received your submission — NoDrftSystems',
+    onboarding:  'We received your onboarding request — NoDrftSystems',
+    intake:      'We received your project information — NoDrftSystems'
+  };
+  var subject = subjectMap[formKind] || 'We received your submission — NoDrftSystems';
+
+  var body = [
+    'Hi ' + firstName + ',',
+    '',
+    'Thank you for reaching out to NoDrftSystems.',
+    '',
+    'We have received your submission and will review it carefully. You can expect to hear back from us within 1 business day.',
+    '',
+    'If your inquiry is time-sensitive, reply directly to this email and we will prioritize accordingly.',
+    '',
+    'Zero Drift. Zero Compromise. Built to Last.',
+    '',
+    'NoDrftSystems',
+    'info@nodrftsystems.com',
+    'nodrftsystems.com'
+  ].join('\n');
+
+  try {
+    MailApp.sendEmail({
+      to:      clientEmail,
+      subject: subject,
+      body:    body,
+      replyTo: CONFIG.FALLBACK_EMAIL
+    });
+  } catch (e) {
+    Logger.log('Confirmation email failed: ' + e.message);
+  }
 }
 
 function logError(err) {
   try {
     MailApp.sendEmail({
       to:      CONFIG.FALLBACK_EMAIL,
-      subject: 'Form endpoint error — NoDrftSystems',
-      body:    `Error: ${err.message}\nStack: ${err.stack || 'n/a'}`,
+      subject: 'Form endpoint error - NoDrftSystems',
+      body:    'Error: ' + err.message + '\nStack: ' + (err.stack || 'n/a')
     });
   } catch (e) {
-    console.error('Error notification failed:', e.message);
+    Logger.log('Error notification failed: ' + e.message);
   }
 }

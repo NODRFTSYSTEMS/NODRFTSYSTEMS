@@ -10,6 +10,9 @@ This repository is organized into five working layers:
 
 ## Internal Products
 
+All products are owned and built by **NoDrftSystems** (`https://github.com/NODRFTSYSTEMS/`).
+
+- `04_products/CASACLARO/` — CasaClaro: marketplace platform (active build, owned by NoDrftSystems)
 - `04_products/PEO/` — Peak Equity Optimizer: trust-based real-estate intelligence platform (6-phase build, Class 3, activation record at `04_products/PEO/00_governance/`)
 
 Working rules:

@@ -27,7 +27,8 @@ export function getKillSwitchDefinition(id: KillSwitchId): KillSwitchDefinition 
 }
 
 export function calculateKillSwitchAdjustment(activeIds: KillSwitchId[]): number {
-  return activeIds.reduce((sum, id) => {
+  const uniqueIds = [...new Set(activeIds)];
+  return uniqueIds.reduce((sum, id) => {
     const def = getKillSwitchDefinition(id);
     if (!def) return sum;
     return sum + (def.costMin + def.costMax) / 2;
@@ -154,13 +155,16 @@ export function calculateCompQualityScore(
 }
 
 export function calculateStressProfit(inputs: InvestorInputs): number {
+  const downPct = inputs.downPaymentPct ?? 0.2;
+  const loanAmount = inputs.purchasePrice * (1 - downPct);
   const purchaseClosingCosts = inputs.purchasePrice * inputs.purchaseClosingRate;
   const dispositionCosts = inputs.arv * inputs.dispositionCostRate;
-  const points = inputs.purchasePrice * inputs.pointsRate;
-  const monthlyInterest = (inputs.purchasePrice * inputs.annualInterestRate) / 12;
+  const points = loanAmount * inputs.pointsRate;
+  const monthlyInterest = (loanAmount * inputs.annualInterestRate) / 12;
   const carryCosts = monthlyInterest * inputs.holdMonths;
   const totalCosts = purchaseClosingCosts + dispositionCosts + points + carryCosts;
-  return inputs.arv * 0.95 - inputs.purchasePrice - inputs.repairs * 1.15 - totalCosts;
+  const killSwitchAdjustment = calculateKillSwitchAdjustment(inputs.activeKillSwitches ?? []);
+  return inputs.arv * 0.95 - inputs.purchasePrice - inputs.repairs * 1.15 - totalCosts - killSwitchAdjustment;
 }
 
 export function calculateRiskBand(
@@ -183,14 +187,16 @@ export function calculateDealGrade(
   roi: number,
   stressProfit: number,
   confidenceTier: string,
-  dscr?: number
+  dscr?: number,
+  profile?: InvestorProfile
 ): { grade: string; score: number } {
+  const t = getProfileThresholds(profile);
   let score = 100;
 
-  if (roi < 15)          score -= 20;
-  if (profit < 30000)    score -= 15;
-  if (stressProfit < 0)  score -= 25;
-  if (dscr !== undefined && dscr < 1.25) score -= 15;
+  if (roi < t.targetProfitRate * 100)          score -= 20;
+  if (profit < t.minProfitFloor)               score -= 15;
+  if (stressProfit < 0)                        score -= 25;
+  if (dscr !== undefined && dscr < 1.25)       score -= 15;
 
   // Confidence penalty
   if (confidenceTier === "VERY_LOW") score -= 20;
@@ -218,12 +224,15 @@ export function calculateInvestorDeal(
   const killSwitchAdjustment = calculateKillSwitchAdjustment(activeKillSwitches);
   const profile = inputs.investorProfile;
 
+  const downPct = inputs.downPaymentPct ?? 0.2;
+  const loanAmount = inputs.purchasePrice * (1 - downPct);
+
   const purchaseClosingCosts = inputs.purchasePrice * inputs.purchaseClosingRate;
   const dispositionCosts = inputs.arv * inputs.dispositionCostRate;
-  const points = inputs.purchasePrice * inputs.pointsRate;
+  const points = loanAmount * inputs.pointsRate;
 
-  // Interest-only carry on purchase price for hold months
-  const monthlyInterest = (inputs.purchasePrice * inputs.annualInterestRate) / 12;
+  // Interest-only carry on LOAN AMOUNT (not purchase price) for hold months
+  const monthlyInterest = (loanAmount * inputs.annualInterestRate) / 12;
   const carryCosts = monthlyInterest * inputs.holdMonths;
 
   const totalCosts = purchaseClosingCosts + dispositionCosts + points + carryCosts;
@@ -236,11 +245,15 @@ export function calculateInvestorDeal(
   const mao = Math.min(canonicalMao, seventyPercentMao);
 
   const profit = inputs.arv - inputs.purchasePrice - inputs.repairs - totalCosts - killSwitchAdjustment;
-  const roi = inputs.purchasePrice > 0 ? (profit / inputs.purchasePrice) * 100 : 0;
+
+  // ROI denominator = cash actually invested (down payment + repairs + closing costs + points)
+  const cashInvested = inputs.purchasePrice * downPct + inputs.repairs + purchaseClosingCosts + points;
+  const roi = cashInvested > 0 ? (profit / cashInvested) * 100 : 0;
+
   const stressProfit = calculateStressProfit(inputs);
   const riskBand = calculateRiskBand(profit, roi, confidenceTier, profile);
 
-  const { grade: dealGrade, score: dealScore } = calculateDealGrade(profit, roi, stressProfit, confidenceTier);
+  const { grade: dealGrade, score: dealScore } = calculateDealGrade(profit, roi, stressProfit, confidenceTier, undefined, profile);
 
   return {
     mao: Number(mao.toFixed(2)),

@@ -90,13 +90,23 @@ Standardize on one tool per operational layer unless a second tool solves a clea
 
 ## Optional Layer
 
-### Dedicated E-Sign Tool
+### 7. DocuSign — E-Signature and Contract Execution
 
-- Status: optional if Google Workspace plan-level e-signature is operational and sufficient
-- Promote to core when:
-  - contract volume increases
-  - approval routing becomes more complex
-  - audit trail requirements exceed the Workspace baseline
+**Status: CORE — designated 2026-04-18 (STOP-003 resolved)**
+
+- Use for:
+  - All MSA, SOW, NDA, and Change Order executions
+  - Retainer agreements
+  - Any legally binding document requiring countersignature
+- Why designated:
+  - Audit trail, timestamped signatures, and tamper-evident records for every contract
+  - Integrates with Google Workspace for routing
+  - Industry standard for professional services billing workflows
+- Deployment rules:
+  - No contract is binding until countersigned via DocuSign
+  - Signed copies stored in 02_client-system/[CLIENT-WORKSPACE]/01_intake/ (MSA, NDA) or 04_execution/ (SOW, Change Orders)
+  - No manual PDF signatures or email-based acceptance as a substitute
+- Account setup: [REQUIRED: Founder to activate account before first contract send]
 
 ### Perplexity / NotebookLM
 
@@ -128,6 +138,7 @@ Standardize on one tool per operational layer unless a second tool solves a clea
 - Internal canonical layer: GitHub repository
 - Operations database: Airtable
 - Communication and client-sharing layer: Google Workspace
+- Contract execution: DocuSign (CORE — designated 2026-04-18)
 - Web delivery layer: Vercel
 - App backend layer: Supabase
 - AI execution layer: existing Codex / ChatGPT / Claude stack with defined task ownership
@@ -138,7 +149,7 @@ The tool stack is operational when:
 
 - each workflow has one primary system of record
 - intake records land in a structured operations database
-- contracts can be sent and signed without manual ad hoc workarounds
+- contracts are executed via DocuSign with countersignature and audit trail
 - web projects have preview and production deployment discipline
 - app-class work has a default backend path
 - AI tools are assigned by workflow role, not by personal preference

@@ -159,7 +159,7 @@ export default function InvestorAnalyzePage() {
     <div style={{ position: "relative", zIndex: 1 }}>
       <section style={{ padding: "64px 0 48px" }}>
         <div className="container" style={{ maxWidth: "760px" }}>
-          <div className="eyebrow" style={{ marginBottom: "10px" }}>Investor Platform</div>
+          <div className="eyebrow" style={{ marginBottom: "10px" }}>{t("eyebrow")}</div>
           <h1 style={{ fontFamily: "var(--display)", fontWeight: 700, fontSize: "clamp(1.6rem, 3vw, 2.2rem)", color: "var(--text)", letterSpacing: "-0.02em", marginBottom: "8px" }}>
             {t("newTitle")}
           </h1>

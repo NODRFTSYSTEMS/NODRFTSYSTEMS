@@ -194,7 +194,7 @@ export function filterInvestorResponse(result: InvestorAnalysisResult, role?: st
     };
   }
 
-  const isAdvancedRole = role === "investor_advanced" || role === "admin_internal";
+  const isAdvancedRole = role === "investor_elite" || role === "admin_internal";
 
   const baseResponse: Record<string, unknown> = {
     applicationId: result.applicationId,

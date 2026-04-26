@@ -26,7 +26,7 @@ export function calculateDscr(
   operatingExpenseRate: number,
   monthlyDebtService: number
 ): number {
-  if (monthlyDebtService <= 0) return 0;
+  if (monthlyDebtService <= 0) return Infinity;
   const noi = monthlyRent * (1 - operatingExpenseRate) * 12;
   return Number((noi / (monthlyDebtService * 12)).toFixed(2));
 }
@@ -196,14 +196,12 @@ export function calculateInvestorAdvancedDeal(
   );
   const effectiveRepairs = rehabTotal > 0 ? rehabTotal : inputs.repairs;
 
-  const investorInputs: InvestorInputs = {
-    ...inputs,
-    repairs: effectiveRepairs,
-  };
+  // Base inputs always use effective repairs so all downstream calculations are consistent
+  const baseInputs: InvestorAdvancedInputs = { ...inputs, repairs: effectiveRepairs };
 
-  const baseOutputs = calculateInvestorDeal(investorInputs, confidenceTier);
-  const advancedOutputs = buildAdvancedOutputs(inputs, baseOutputs, confidenceTier);
-  const scenarios = buildScenarios(inputs);
+  const baseOutputs = calculateInvestorDeal(baseInputs, confidenceTier);
+  const advancedOutputs = buildAdvancedOutputs(baseInputs, baseOutputs, confidenceTier);
+  const scenarios = buildScenarios(baseInputs);
 
   return {
     ...baseOutputs,

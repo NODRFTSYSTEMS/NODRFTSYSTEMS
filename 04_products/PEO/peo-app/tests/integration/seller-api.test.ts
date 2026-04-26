@@ -31,7 +31,7 @@ describe("Seller API integration", () => {
           id: demoUserId,
           clerkId: "demo-clerk-id",
           email: "demo@example.com",
-          role: "seller_applicant",
+          role: "seller",
         },
       });
     } catch {

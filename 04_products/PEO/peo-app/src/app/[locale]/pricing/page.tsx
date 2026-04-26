@@ -20,11 +20,11 @@ export async function generateMetadata({
 }
 
 const tierMeta = [
-  { key: "free",            featured: false, badge: "Start Free",    href: "/estimator",  cta: "Open Estimator" },
-  { key: "seller",          featured: false, badge: "Homeowners",    href: "/seller",     cta: "Start Seller Analysis" },
-  { key: "investorBasic",   featured: true,  badge: "Most Popular",  href: "/investor",   cta: "Start Investor Basic" },
-  { key: "investorAdvanced",featured: false, badge: "Full Platform", href: "/investor",   cta: "Start Investor Advanced" },
-  { key: "vendor",          featured: false, badge: "Marketplace",   href: "mailto:vendors@peakequityoptimizer.com?subject=Vendor%20Application",    cta: "Apply as Vendor" },
+  { key: "free",            featured: false, href: "/estimator" },
+  { key: "seller",          featured: false, href: "/seller" },
+  { key: "investorCore",    featured: true,  href: "/investor" },
+  { key: "investorElite",   featured: false, href: "/investor" },
+  { key: "vendor",          featured: false, href: "mailto:vendors@peakequityoptimizer.com?subject=Vendor%20Application" },
 ];
 
 export default function PricingPage() {
@@ -35,7 +35,7 @@ export default function PricingPage() {
       {/* Header */}
       <section className="section-hero" style={{ textAlign: "center" }}>
         <div className="container">
-          <div className="eyebrow" style={{ marginBottom: "14px" }}>Choose Your Plan</div>
+          <div className="eyebrow" style={{ marginBottom: "14px" }}>{t("eyebrow")}</div>
           <h1 className="display" style={{ marginBottom: "16px" }}>{t("title")}</h1>
           <p className="lead" style={{ maxWidth: "52ch", margin: "0 auto" }}>{t("subtitle")}</p>
         </div>
@@ -63,11 +63,11 @@ export default function PricingPage() {
       <section style={{ padding: "0 0 80px" }}>
         <div className="container-narrow" style={{ textAlign: "center" }}>
           <p className="body-xs" style={{ color: "var(--text-soft)" }}>
-            Paid tiers combine county assessor records, MLS data, and carefully estimated fields to produce verified values. Free tier is manual-input only — no live data, no comps.
+            {t("trustNote1")}
           </p>
           <p className="body-xs" style={{ color: "var(--text-soft)", marginTop: "8px" }}>
-            PEO is not an appraisal. Data availability varies by market.{" "}
-            <Link href="/trust" style={{ color: "var(--gold)", textDecoration: "none" }}>Trust Center →</Link>
+            {t("trustNote2")}{" "}
+            <Link href="/trust" style={{ color: "var(--gold)", textDecoration: "none" }}>{t("trustCenterLink")}</Link>
           </p>
         </div>
       </section>
@@ -77,6 +77,8 @@ export default function PricingPage() {
 
 function TierCard({ meta, t }: { meta: typeof tierMeta[number]; t: ReturnType<typeof useTranslations> }) {
   const features = [0, 1, 2, 3, 4].map((i) => t(`${meta.key}.features.${i}` as Parameters<typeof t>[0]));
+  const badge = t(`${meta.key}.badge` as Parameters<typeof t>[0]);
+  const cta = t(`${meta.key}.cta` as Parameters<typeof t>[0]);
 
   return (
     <div
@@ -91,12 +93,12 @@ function TierCard({ meta, t }: { meta: typeof tierMeta[number]; t: ReturnType<ty
     >
       {meta.featured && (
         <div className="featured-badge">
-          {meta.badge}
+          {badge}
         </div>
       )}
       {!meta.featured && (
         <div className="tier-badge">
-          {meta.badge}
+          {badge}
         </div>
       )}
 
@@ -127,7 +129,7 @@ function TierCard({ meta, t }: { meta: typeof tierMeta[number]; t: ReturnType<ty
         className={`button ${meta.featured ? "button-primary" : "button-secondary"}`}
         style={{ justifyContent: "center" }}
       >
-        {meta.cta}
+        {cta}
       </Link>
     </div>
   );

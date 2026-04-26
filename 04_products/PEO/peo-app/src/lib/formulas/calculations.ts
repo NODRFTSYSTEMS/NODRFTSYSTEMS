@@ -4,12 +4,13 @@
  * All functions are pure — no DOM or localStorage dependencies.
  */
 
+import { calculateRequiredProfit } from "./investor";
+
 // ─── Constants ───────────────────────────────────────────────────────────────
 
 const MAO_RULE_PCT = 0.70;
-const DESIRED_PROFIT_PCT = 0.30;
 const MIN_DESIRED_PROFIT = 30_000;
-const HOLD_COST_PCT_MO = 0.007;
+const HOLD_COST_PCT_MO = 0.004;
 const TX_COST_BUY_PCT = 0.03;
 const TX_COST_SELL_PCT = 0.09;
 
@@ -76,6 +77,7 @@ export interface MAOInputs {
   holdMonths?: number;
   desiredProfitOverride?: number;
   killSwitchAdjustment?: number;
+  profile?: import("./types").InvestorProfile;
 }
 
 export interface MAOResult {
@@ -113,7 +115,7 @@ export interface DealViabilityResult {
   flags: string[];
 }
 
-export interface StressScenario {
+export interface SimpleStressScenario {
   name: string;
   arv: number;
   repairs: number;
@@ -147,7 +149,7 @@ export interface DailyBurnResult {
   dailyMaint: number;
   totalDailyBurn: number;
   thirtyDayCost: number;
-  breakEvenDay: number;
+  holdDays: number;
 }
 
 export interface RepairEstimate {
@@ -217,7 +219,7 @@ export function calculateMAO(inputs: MAOInputs): MAOResult {
 
   const holdingCosts = arv * HOLD_COST_PCT_MO * holdMonths;
   const txCosts = arv * TX_COST_BUY_PCT + arv * TX_COST_SELL_PCT;
-  const desiredProfit = desiredProfitOverride ?? Math.max(arv * DESIRED_PROFIT_PCT, MIN_DESIRED_PROFIT);
+  const desiredProfit = desiredProfitOverride ?? calculateRequiredProfit(arv, inputs.profile);
 
   const mao = arv - repairs - holdingCosts - txCosts - desiredProfit - killSwitchAdjustment;
   const mao70 = arv * MAO_RULE_PCT - repairs;
@@ -354,12 +356,12 @@ export function calculateDealViability(
 
 // ─── Stress Scenarios ─────────────────────────────────────────────────────────
 
-export function calculateStressScenarios(baseDeal: { arv: number; repairs: number; holdMonths: number }): StressScenario[] {
+export function calculateStressScenarios(baseDeal: { arv: number; repairs: number; holdMonths: number }): SimpleStressScenario[] {
   const { arv, repairs, holdMonths } = baseDeal;
 
-  const scenario = (name: string, a: number, r: number, h: number, description: string): StressScenario => {
+  const scenario = (name: string, a: number, r: number, h: number, description: string): SimpleStressScenario => {
     const m = calculateMAO({ arv: a, repairs: r, holdMonths: h });
-    return { name, arv: a, repairs: r, holdMonths: h, description, mao: m.maoFinal, profit: a - r - m.holdingCosts - m.txCosts - baseDeal.arv * 0 };
+    return { name, arv: a, repairs: r, holdMonths: h, description, mao: m.maoFinal, profit: a - m.maoFinal - r - m.holdingCosts - m.txCosts };
   };
 
   return [
@@ -394,7 +396,7 @@ export function projectFlipProfit(
   const cashIn = downPayment + repairs + buyCosts + loanPoints;
   const profit = arv - totalCost;
   const roi = cashIn > 0 ? profit / cashIn : 0;
-  const breakEvenPrice = totalCost;
+  const breakEvenPrice = totalCost / (1 - TX_COST_SELL_PCT);
 
   return {
     profit: roundCurrency(profit),
@@ -438,7 +440,7 @@ export function calculateDailyBurn(
   const dailyMaint = purchasePrice * 0.0005 / 30;
   const totalDailyBurn = dailyInterest + dailyTax + dailyInsurance + dailyUtilities + dailyMaint;
   const thirtyDayCost = totalDailyBurn * 30;
-  const breakEvenDay = holdMo * 30;
+  const holdDays = holdMo * 30;
 
   return {
     dailyInterest: roundCurrency(dailyInterest),
@@ -448,7 +450,7 @@ export function calculateDailyBurn(
     dailyMaint: roundCurrency(dailyMaint),
     totalDailyBurn: roundCurrency(totalDailyBurn),
     thirtyDayCost: roundCurrency(thirtyDayCost),
-    breakEvenDay,
+    holdDays,
   };
 }
 
@@ -652,7 +654,7 @@ export function calculateSeasonalFactor(): SeasonalFactorResult {
   };
 }
 
-export function calculateSharpeRatio(roi: number, coeffVar: number): SharpeResult {
+export function calculateSharpeRatioClassic(roi: number, coeffVar: number): SharpeResult {
   const riskFreeRate = 0.045;
   const sharpe = coeffVar > 0 ? (roi - riskFreeRate) / coeffVar : 0;
 

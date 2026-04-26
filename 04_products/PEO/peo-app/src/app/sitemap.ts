@@ -1,5 +1,7 @@
 import { MetadataRoute } from "next";
 
+export const dynamic = "force-static";
+
 const BASE_URL = "https://peakequityoptimizer.com";
 
 const staticRoutes = [
@@ -16,6 +18,7 @@ const staticRoutes = [
   { path: "/academy/strategies", priority: 0.75, changeFrequency: "monthly" as const },
   { path: "/academy/templates", priority: 0.7, changeFrequency: "monthly" as const },
   { path: "/academy/formula-stack", priority: 0.7, changeFrequency: "monthly" as const },
+  { path: "/academy/glossary", priority: 0.75, changeFrequency: "monthly" as const },
   { path: "/legal/terms", priority: 0.3, changeFrequency: "yearly" as const },
   { path: "/legal/privacy", priority: 0.3, changeFrequency: "yearly" as const },
   { path: "/legal/disclosures", priority: 0.3, changeFrequency: "yearly" as const },

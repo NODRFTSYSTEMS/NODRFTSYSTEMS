@@ -54,6 +54,8 @@ export interface InvestorInputs {
   dispositionCostRate: number; // e.g., 0.09
   annualInterestRate: number;  // e.g., 0.12
   pointsRate: number;          // e.g., 0.02
+  // Optional down payment percentage (default 0.20 for 20%)
+  downPaymentPct?: number;
   // Optional kill switches (array of active kill switch IDs)
   activeKillSwitches?: KillSwitchId[];
   // Optional investor profile (used for threshold overrides)

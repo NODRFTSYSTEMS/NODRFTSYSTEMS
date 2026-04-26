@@ -16,7 +16,7 @@ export async function POST(
 
     const { id } = await params;
     const app = await prisma.sellerApplication.findUnique({
-      where: { id, context: { in: ["investor_basic_analysis", "investor_advanced_analysis"] } },
+      where: { id, context: { in: ["investor_core_analysis", "investor_elite_analysis"] } },
       include: { triage: true },
     });
 
@@ -28,8 +28,8 @@ export async function POST(
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
-    // Export permission: only investor_advanced and admin_internal may export
-    if (!requireRole(session.role, ["investor_advanced", "admin_internal"])) {
+    // Export permission: only investor_elite and admin_internal may export
+    if (!requireRole(session.role, ["investor_elite", "admin_internal"])) {
       return NextResponse.json({ error: "Upgrade required to export reports" }, { status: 403 });
     }
 
@@ -45,10 +45,10 @@ export async function POST(
     });
 
     const investorOutputs = (app.triage?.investorOutputs ?? {}) as Record<string, unknown>;
-    const isAdvanced = app.context === "investor_advanced_analysis";
+    const isAdvanced = app.context === "investor_elite_analysis";
 
     const exportPayload = {
-      watermark: "Peak Equity Optimizer — Investor Advanced Export",
+      watermark: "Peak Equity Optimizer — Investor Elite Export",
       generatedAt: new Date().toISOString(),
       disclaimer:
         "This report is generated for informational purposes and is not an appraisal or legal advice.",

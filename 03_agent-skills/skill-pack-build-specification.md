@@ -7,8 +7,8 @@ Define the exact file and folder structure, naming convention, generation rules,
 ## Verified Facts
 
 - The repository already contains a workflow-skill layer in `03_agent-skills/` built around reusable cross-project workflows such as intake analysis, documentation reconstruction, pricing safety review, workspace bootstrap, strategy brief creation, release-gate review, and handoff preparation.
-- The approved source registry baseline contains `55` official AI agents.
-- The current skill-pack layer contains `55` live role-skill folders, covering the full approved working architecture.
+- The approved source registry baseline contains `59` official AI agents (updated 2026-04-17: post-expansion engineering roles confirmed).
+- The current skill-pack layer contains `59` live role-skill folders, covering the full approved working architecture.
 - The approved repository registry organizes those roles across the following operational groups:
   - Supervisor Layer
   - Revenue & Sales

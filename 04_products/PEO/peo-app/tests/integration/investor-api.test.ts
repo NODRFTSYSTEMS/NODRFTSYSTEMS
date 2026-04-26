@@ -30,7 +30,7 @@ describe("Investor API integration", () => {
           id: demoUserId,
           clerkId: "demo-investor-clerk-id",
           email: "demo-investor@example.com",
-          role: "investor_basic",
+          role: "investor_core",
         },
       });
     } catch {

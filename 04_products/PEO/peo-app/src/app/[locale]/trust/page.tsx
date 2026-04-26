@@ -11,7 +11,7 @@ export async function generateMetadata({
   const title = `${t("title")} — Peak Equity Optimizer`;
   return {
     title,
-    description: "PEO methodology, data sources, definitions, and limitations. Understand how every number is produced.",
+    description: t("heroLead"),
     robots: { index: true, follow: true },
   };
 }
@@ -35,10 +35,10 @@ export default async function TrustPage({
     <div style={{ position: "relative", zIndex: 1 }}>
       <section className="section-hero" style={{ textAlign: "center" }}>
         <div className="container-narrow">
-          <div className="eyebrow" style={{ marginBottom: "14px" }}>Transparency</div>
+          <div className="eyebrow" style={{ marginBottom: "14px" }}>{t("eyebrow")}</div>
           <h1 className="display" style={{ marginBottom: "16px" }}>{t("title")}</h1>
           <p className="lead">
-            Every output PEO produces is traceable to a documented methodology. This page explains where data comes from, how calculations work, and what the platform cannot tell you.
+            {t("heroLead")}
           </p>
         </div>
       </section>
@@ -61,16 +61,16 @@ export default async function TrustPage({
       <section style={{ padding: "0 0 96px" }}>
         <div className="container-medium">
           <div className="card" style={{ textAlign: "center", padding: "40px 32px" }}>
-            <div className="eyebrow" style={{ marginBottom: "12px" }}>Go deeper</div>
+            <div className="eyebrow" style={{ marginBottom: "12px" }}>{t("academyEyebrow")}</div>
             <h2 className="heading-md" style={{ marginBottom: "16px" }}>
-              The full methodology is documented in the Academy.
+              {t("academyHeading")}
             </h2>
             <p className="body-sm" style={{ marginBottom: "24px" }}>
-              The Academy Methodology section explains how VERIFIED ARV is calculated, what confidence scoring measures, and how each output connects to its inputs.
+              {t("academyBody")}
             </p>
             <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
-              <Link href="/academy/methodology" className="button button-primary">Read Methodology</Link>
-              <Link href="/academy/formula-stack" className="button button-secondary">Formula Stack</Link>
+              <Link href="/academy/methodology" className="button button-primary">{t("ctaMethodology")}</Link>
+              <Link href="/academy/formula-stack" className="button button-secondary">{t("ctaFormulaStack")}</Link>
             </div>
           </div>
         </div>

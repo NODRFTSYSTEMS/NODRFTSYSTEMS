@@ -3,6 +3,50 @@
 import { useState, useRef, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
+import { UserButton, useUser } from "@clerk/nextjs";
+
+const clerkKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ?? "";
+const clerkConfigured =
+  clerkKey.startsWith("pk_") && clerkKey !== "pk_test_replace_me" && clerkKey.length > 30;
+
+function ClerkAuthButtons() {
+  const t = useTranslations("nav");
+  const { isSignedIn } = useUser();
+  if (isSignedIn) {
+    return (
+      <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+        <Link
+          href="/app"
+          className="button button-secondary"
+          style={{ padding: "8px 16px", fontSize: "0.82rem", minHeight: 36 }}
+        >
+          Dashboard
+        </Link>
+        <UserButton
+          appearance={{ elements: { avatarBox: { width: "34px", height: "34px" } } }}
+        />
+      </div>
+    );
+  }
+  return (
+    <>
+      <Link
+        href="/estimator"
+        className="button button-primary"
+        style={{ marginLeft: "8px", padding: "8px 18px", fontSize: "0.82rem" }}
+      >
+        {t("tryFree")}
+      </Link>
+      <Link
+        href="/sign-in"
+        className="button button-secondary"
+        style={{ marginLeft: "6px", padding: "8px 16px", fontSize: "0.82rem" }}
+      >
+        {t("signIn")}
+      </Link>
+    </>
+  );
+}
 
 export function Header() {
   const t = useTranslations("nav");
@@ -24,6 +68,7 @@ export function Header() {
     { href: "/how-it-works", label: t("howItWorks") },
     { href: "/trust", label: t("trust") },
     { href: "/faq", label: t("faq") },
+    { href: "/academy/glossary", label: t("academyGlossary") },
   ];
 
   const isResourcesActive = resourcesItems.some((item) => pathname === item.href);
@@ -90,31 +135,25 @@ export function Header() {
 
           {/* Brand */}
           <Link href="/" style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none" }}>
-            <div
+            <img
+              src="/icon.svg"
+              alt="Peak Equity Optimizer"
               aria-hidden="true"
-              style={{
-                width: "34px",
-                height: "34px",
-                borderRadius: "8px",
-                background: "var(--gold)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontFamily: "var(--display)",
-                fontWeight: 800,
-                fontSize: "0.85rem",
-                color: "#070a10",
-                flexShrink: 0,
-              }}
-            >
-              PE
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.1 }}>
-              <span style={{ fontFamily: "var(--display)", fontWeight: 700, fontSize: "0.95rem", color: "var(--text)" }}>
-                Peak Equity
-              </span>
-              <span style={{ fontSize: "0.65rem", color: "var(--text-soft)", letterSpacing: "0.12em", textTransform: "uppercase" }}>
-                Optimizer
+              width={38}
+              height={38}
+              style={{ flexShrink: 0 }}
+            />
+            <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.15 }}>
+              <div style={{ display: "flex", alignItems: "baseline", gap: "5px" }}>
+                <span style={{ fontFamily: "var(--display)", fontWeight: 700, fontSize: "0.98rem", color: "var(--text)", letterSpacing: "-0.01em" }}>
+                  PEAK
+                </span>
+                <span style={{ fontFamily: "var(--display)", fontWeight: 700, fontSize: "0.98rem", color: "#7FD416", letterSpacing: "-0.01em" }}>
+                  EQUITY
+                </span>
+              </div>
+              <span style={{ fontSize: "0.58rem", color: "var(--text-soft)", letterSpacing: "0.18em", textTransform: "uppercase" }}>
+                OPTIMIZER
               </span>
             </div>
           </Link>
@@ -208,14 +247,27 @@ export function Header() {
               {otherLocale.toUpperCase()}
             </Link>
 
-            {/* Primary CTA */}
-            <Link
-              href="/estimator"
-              className="button button-primary"
-              style={{ marginLeft: "8px", padding: "8px 18px", fontSize: "0.82rem" }}
-            >
-              {t("tryFree")}
-            </Link>
+            {/* Auth / CTA */}
+            {clerkConfigured ? (
+              <ClerkAuthButtons />
+            ) : (
+              <>
+                <Link
+                  href="/estimator"
+                  className="button button-primary"
+                  style={{ marginLeft: "8px", padding: "8px 18px", fontSize: "0.82rem" }}
+                >
+                  {t("tryFree")}
+                </Link>
+                <Link
+                  href="/sign-in"
+                  className="button button-secondary"
+                  style={{ marginLeft: "6px", padding: "8px 16px", fontSize: "0.82rem" }}
+                >
+                  {t("signIn")}
+                </Link>
+              </>
+            )}
           </nav>
 
           {/* Mobile menu button */}

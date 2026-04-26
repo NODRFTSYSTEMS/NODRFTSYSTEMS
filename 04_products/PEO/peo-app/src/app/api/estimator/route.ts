@@ -125,11 +125,8 @@ export async function POST(request: NextRequest) {
     }
 
     // wholesale
-    const maxOffer = calculateWholesaleSpread(data.askPrice, 0) <= 0
-      ? data.arv * 0.7 - data.repairs - data.assignmentFee
-      : data.arv * 0.7 - data.repairs - data.assignmentFee;
-
-    const spread = calculateWholesaleSpread(data.askPrice, maxOffer);
+    const maxOffer = data.arv * 0.7 - data.repairs - data.assignmentFee;
+    const spread = maxOffer - data.askPrice;
     const emd = calcSuggestedEMD(maxOffer > 0 ? maxOffer : data.askPrice);
     const viable = spread >= 5000;
 

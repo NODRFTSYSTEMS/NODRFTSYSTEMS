@@ -75,13 +75,13 @@ This workspace was originally bootstrapped on 2026-04-16 as a template test usin
    - Created `.github/workflows/deploy-pages.yml` (GitHub Actions → GitHub Pages)
    - Created `.github/workflows/ci.yml` (validation checks)
    - Created `.gitignore`, `.nojekyll`, `README.md`
-   - Added remote `origin` → `https://github.com/walcottcapitalgroup/walcottcostudios.git`
+   - Added remote `origin` → `https://github.com/NODRFTSYSTEMS/walcottcostudios.git`
    - Pushed `main` branch with initial commit
 
 2. **Deployment Configuration**
    - GitHub Pages source switched from "Deploy from a branch" to "GitHub Actions"
    - Workflow runs triggered successfully on push to `main`
-   - Live URL confirmed: `https://walcottcapitalgroup.github.io/walcottcostudios/`
+   - Live URL confirmed: `https://NODRFTSYSTEMS.github.io/walcottcostudios/`
 
 3. **Frontend Performance & Meta Tweaks**
    - Added inline brand-colored loader to `app/index.html` and `website/index.html`

@@ -10,7 +10,7 @@ export default function SellerDashboardPage() {
     <div style={{ position: "relative", zIndex: 1 }}>
       <section style={{ padding: "64px 0 48px" }}>
         <div className="container">
-          <div className="eyebrow" style={{ marginBottom: "10px" }}>Seller Platform</div>
+          <div className="eyebrow" style={{ marginBottom: "10px" }}>{t("eyebrow")}</div>
           <h1 style={{ fontFamily: "var(--display)", fontWeight: 700, fontSize: "clamp(1.8rem, 3vw, 2.4rem)", color: "var(--text)", letterSpacing: "-0.02em", marginBottom: "8px" }}>
             {t("title")}
           </h1>

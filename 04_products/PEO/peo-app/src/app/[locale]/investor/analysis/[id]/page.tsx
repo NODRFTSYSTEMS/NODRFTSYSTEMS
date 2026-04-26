@@ -220,7 +220,7 @@ export default function InvestorAnalysisDetailPage() {
         <div className="container">
           <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "16px", flexWrap: "wrap" }}>
             <div>
-              <div className="eyebrow" style={{ marginBottom: "10px" }}>Investor Platform</div>
+              <div className="eyebrow" style={{ marginBottom: "10px" }}>{t("eyebrow")}</div>
               <h1 style={{ fontFamily: "var(--display)", fontWeight: 700, fontSize: "clamp(1.6rem, 3vw, 2.2rem)", color: "var(--text)", letterSpacing: "-0.02em" }}>
                 {t("detailTitle")}
               </h1>

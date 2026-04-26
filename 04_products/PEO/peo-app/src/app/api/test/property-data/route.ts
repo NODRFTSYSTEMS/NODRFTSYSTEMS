@@ -25,10 +25,10 @@ async function rc<T>(path: string): Promise<{ data: T | null; status: number; ok
 }
 
 export async function GET(request: NextRequest) {
-  // Only available when Clerk is not configured (dev/review environment)
+  // Only available in local development with placeholder Clerk key
   const clerkKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ?? "";
   const clerkConfigured = clerkKey.startsWith("pk_") && clerkKey !== "pk_test_replace_me" && clerkKey.length > 30;
-  if (clerkConfigured) {
+  if (clerkConfigured || process.env.NODE_ENV !== "development") {
     return NextResponse.json({ error: "Not available in production" }, { status: 403 });
   }
 
@@ -75,11 +75,7 @@ export async function GET(request: NextRequest) {
       count: Array.isArray(activeListingsResult.data) ? activeListingsResult.data.length : 0,
       records: activeListingsResult.data,
     },
-    raw: {
-      property: propertyResult.data,
-      soldComps: soldCompsResult.data,
-      activeListings: activeListingsResult.data,
-    },
+    // raw data intentionally omitted — prevents API response shape leakage
   };
 
   const allOk = propertyResult.ok && soldCompsResult.ok && activeListingsResult.ok;

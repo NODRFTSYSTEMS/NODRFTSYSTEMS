@@ -46,7 +46,7 @@ export async function POST(
 
     const { id } = await params;
     const app = await prisma.sellerApplication.findUnique({
-      where: { id, context: { in: ["investor_basic_analysis", "investor_advanced_analysis"] } },
+      where: { id, context: { in: ["investor_core_analysis", "investor_elite_analysis"] } },
     });
 
     if (!app) {
@@ -75,7 +75,7 @@ export async function POST(
     }
 
     const existingInputs = (app.investorInputs ?? {}) as Partial<InvestorAdvancedInputs>;
-    const isAdvanced = app.context === "investor_advanced_analysis";
+    const isAdvanced = app.context === "investor_elite_analysis";
 
     const baseInputs: InvestorInputs = {
       purchasePrice: parsed.data.purchasePrice ?? existingInputs.purchasePrice ?? 0,

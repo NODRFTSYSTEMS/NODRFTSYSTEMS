@@ -23,7 +23,8 @@
     "academyGlossary": "Glossary",
     "switchLocale": "Switch to {locale}",
     "openMenu": "Open navigation menu",
-    "closeMenu": "Close navigation menu"
+    "closeMenu": "Close navigation menu",
+    "signIn": "Sign In"
   },
   "home": {
     "heroTitle": "You have one shot at this deal. Use a number you can defend.",
@@ -77,6 +78,27 @@
     "heroTitleLine2": "is all it takes to lose.",
     "heroProblemLine": "Most listings are priced on guesswork. Most offers are built on unverified ARVs. PEO fixes both — with live comps, verified data, and analysis you can show to a room.",
     "terminalAriaLabel": "Platform capabilities overview",
+    "terminalPlatform": "Platform",
+    "terminalSellerPath": "Seller path",
+    "terminalInvestorPath": "Investor path",
+    "terminalStrategies": "Strategies",
+    "terminalAcademy": "Academy",
+    "terminalFreeAccess": "Free — open access",
+    "dashNetProceedsLabel": "Estimated Net Proceeds",
+    "dashSalePrice": "Sale Price",
+    "dashAgentCommission": "Agent (6%)",
+    "dashClosing": "Closing (2%)",
+    "dashMortgagePayoff": "Mortgage Payoff",
+    "dashNetProceeds": "Net Proceeds",
+    "dashVerifiedArv": "Verified ARV",
+    "dashMao": "MAO",
+    "dashStrategy": "Strategy",
+    "dashEstProfit": "Est. Profit",
+    "dashRoi": "ROI",
+    "dashConfidence": "Confidence",
+    "dashHigh": "HIGH",
+    "splitSellerKicker": "Sellers",
+    "splitInvestorKicker": "Investors",
     "credBadge1Value": "Verified ARV",
     "credBadge1Label": "Median of actual closed sales — not an AVM",
     "credBadge2Value": "Live Data",
@@ -143,6 +165,7 @@
     "faqTeaser4A": "No. The Seller tier is a one-time payment per property analysis ($49). You pay when you run an analysis — not on a recurring basis."
   },
   "estimator": {
+    "eyebrow": "Free Estimator",
     "title": "Free Estimator",
     "subtitle": "Quick, manual-input calculations to explore a deal. No live data. No verified values.",
     "disclaimer": "This estimate is user-input driven and not based on live property facts or verified comps.",
@@ -212,7 +235,10 @@
     "strategyFlip": "Flip",
     "strategyBrrrr": "BRRRR",
     "strategyWholesale": "Wholesale",
-    "strategyBuyHold": "Buy & Hold"
+    "strategyBuyHold": "Buy & Hold",
+    "upgradeEyebrow": "Ready for verified data?",
+    "upgradeTitle": "These are manual estimates. Get live comps, verified ARV, and a full deal analysis.",
+    "upgradeBody": "Paid tiers pull real property data and qualified sold comps automatically — no manual entry required."
   },
   "pricing": {
     "title": "Pricing",
@@ -226,7 +252,9 @@
         "Flip profit preview",
         "BRRRR preview",
         "Instant — no signup required"
-      ]
+      ],
+      "badge": "Start Free",
+      "cta": "Open Estimator"
     },
     "seller": {
       "name": "Seller",
@@ -237,29 +265,9 @@
         "Market context and positioning",
         "Confidence score",
         "Seller readiness plan"
-      ]
-    },
-    "investorBasic": {
-      "name": "Investor Basic",
-      "price": "$99/mo",
-      "features": [
-        "Live data pulled the moment you enter an address",
-        "Median comp-backed ARV — not an estimate",
-        "Sold comps with quality scoring",
-        "MAO / profit / ROI",
-        "Summary report export"
-      ]
-    },
-    "investorAdvanced": {
-      "name": "Investor Advanced",
-      "price": "$299/mo",
-      "features": [
-        "All Basic features",
-        "Fine-tune comp selection and weightings",
-        "Line-item rehab budgeting",
-        "Scenario planner",
-        "Advanced appendices & exports"
-      ]
+      ],
+      "badge": "Homeowners",
+      "cta": "Start Seller Analysis"
     },
     "vendor": {
       "name": "Vendor",
@@ -270,12 +278,44 @@
         "Review responses",
         "Marketplace analytics",
         "Priority placement in directory"
-      ]
+      ],
+      "badge": "Marketplace",
+      "cta": "Apply as Vendor"
     },
+    "eyebrow": "Choose Your Plan",
+    "trustNote1": "Paid tiers combine county assessor records, MLS data, and carefully estimated fields to produce verified values. Free tier is manual-input only — no live data, no comps.",
+    "trustNote2": "PEO is not an appraisal. Data availability varies by market.",
+    "trustCenterLink": "Trust Center →",
     "metaTitle": "Pricing — Peak Equity Optimizer",
     "metaDescription": "Free estimator with no signup. Seller analysis from $49/property. Investor underwriting from $99/mo. Start free — pay only when you need verified live data.",
     "ogTitle": "Pricing — Peak Equity Optimizer",
-    "ogDescription": "Free estimator included. Seller analysis $49/property. Investor Basic $99/mo. Investor Advanced $299/mo. No credit card to start."
+    "ogDescription": "Free estimator included. Seller analysis $49/property. Investor Basic $99/mo. Investor Advanced $299/mo. No credit card to start.",
+    "investorCore": {
+      "name": "Investor Basic",
+      "price": "$99/mo",
+      "features": [
+        "Live data pulled the moment you enter an address",
+        "Median comp-backed ARV — not an estimate",
+        "Sold comps with quality scoring",
+        "MAO / profit / ROI",
+        "Summary report export"
+      ],
+      "badge": "Most Popular",
+      "cta": "Start Investor Core"
+    },
+    "investorElite": {
+      "name": "Investor Advanced",
+      "price": "$299/mo",
+      "features": [
+        "All Basic features",
+        "Fine-tune comp selection and weightings",
+        "Line-item rehab budgeting",
+        "Scenario planner",
+        "Advanced appendices & exports"
+      ],
+      "badge": "Full Platform",
+      "cta": "Start Investor Elite"
+    }
   },
   "faq": {
     "title": "Frequently Asked Questions",
@@ -312,7 +352,11 @@
       "a2": "Basic includes automatic ARV, comps, MAO, profit, ROI, and a summary report. Advanced adds comp controls, line-item rehab budgeting, scenario planning, DSCR, refi modeling, and advanced appendices.",
       "q3": "Is the Seller tier a subscription?",
       "a3": "No. The Seller tier is a one-time payment per property analysis ($49). You pay when you run an analysis — not on a recurring basis."
-    }
+    },
+    "eyebrow": "Support",
+    "metaDescription": "Frequently asked questions about Peak Equity Optimizer — platform, data sources, privacy, and pricing. Learn how PEO works, where data comes from, and how to get started.",
+    "ogTitle": "FAQ — Peak Equity Optimizer",
+    "ogDescription": "Get answers about PEO's verified ARV methodology, data sources, privacy practices, and pricing tiers."
   },
   "trust": {
     "title": "Trust Center",
@@ -323,9 +367,17 @@
     "methodologyText": "PEO combines live property facts, qualified sold comparables, and conservative underwriting formulas to produce a layered confidence score. The analysis runs through a multi-gate triage process — each gate evaluates data quality, comp coverage, valuation consistency, and model completeness. A deal that passes all gates receives a HIGH confidence tier. One that trips data or comp gates receives conditional status with visible flags.",
     "dataSourcesText": "Primary sources include county assessor records pulled live at the time of analysis. Secondary sources include MLS-recorded sold transactions within a defined radius and recency window. Where primary and secondary data are unavailable, estimated fields are used with explicit disclosure. The confidence score reflects how much of the analysis rests on estimated vs. verified inputs.",
     "definitionsText": "VERIFIED ARV is the median sale price of qualified sold comparables — not an AVM, not a Zestimate. MARKET ARV is the median active listing price within a comparable radius, shown for reference only and never used as an underwriting input. MAO (Maximum Allowable Offer) is calculated as ARV minus repairs, carrying costs, selling costs, and a required profit floor — the highest price at which the deal remains viable.",
-    "limitationsText": "PEO is not a licensed appraisal and should not be used as a substitute for one. Data availability varies significantly by market — rural and off-market properties may have insufficient comp coverage to produce a verified ARV. Property condition, deferred maintenance, and local market shifts that occur after the analysis date are not captured. All outputs are analytical tools to support — not replace — professional judgment."
+    "limitationsText": "PEO is not a licensed appraisal and should not be used as a substitute for one. Data availability varies significantly by market — rural and off-market properties may have insufficient comp coverage to produce a verified ARV. Property condition, deferred maintenance, and local market shifts that occur after the analysis date are not captured. All outputs are analytical tools to support — not replace — professional judgment.",
+    "eyebrow": "Transparency",
+    "heroLead": "Every output PEO produces is traceable to a documented methodology. This page explains where data comes from, how calculations work, and what the platform cannot tell you.",
+    "academyEyebrow": "Go deeper",
+    "academyHeading": "The full methodology is documented in the Academy.",
+    "academyBody": "The Academy Methodology section explains how VERIFIED ARV is calculated, what confidence scoring measures, and how each output connects to its inputs.",
+    "ctaMethodology": "Read Methodology",
+    "ctaFormulaStack": "Formula Stack"
   },
   "investorDashboard": {
+    "eyebrow": "Investor Platform",
     "title": "Investor Dashboard",
     "subtitle": "Analyze deals, verify ARV, and build confident offers.",
     "newAnalysisTitle": "Analyze a Property",
@@ -343,6 +395,7 @@
   "investorAnalysis": {
     "newTitle": "New Deal Analysis",
     "detailTitle": "Deal Analysis",
+    "eyebrow": "Investor Analysis",
     "address": "Property address",
     "purchasePrice": "Purchase price / asking price",
     "arv": "Estimated ARV",
@@ -398,6 +451,7 @@
     "dealScoreLabel": "Deal score"
   },
   "sellerDashboard": {
+    "eyebrow": "Seller Platform",
     "title": "Seller Dashboard",
     "subtitle": "Manage your property applications and track deal readiness.",
     "newApplicationTitle": "Start a New Application",
@@ -405,9 +459,18 @@
     "startApplication": "Start Application",
     "trackTitle": "Track Existing Applications",
     "trackDesc": "View status, triage results, and readiness tasks for your deals.",
-    "comingSoon": "Coming Soon"
+    "comingSoon": "Coming Soon",
+    "savedDealsTitle": "Saved Deals",
+    "dealComparisonTitle": "Deal Comparison",
+    "templatesTitle": "Document Templates",
+    "loadingDeals": "Loading deals…",
+    "noSavedDeals": "No saved deals yet.",
+    "runFirstAnalysis": "Run First Analysis",
+    "noDealsToCompare": "No deals to compare. Run an analysis first.",
+    "selectDeals": "Select up to 4 deals to compare:"
   },
   "sellerApplication": {
+    "eyebrow": "Seller Platform",
     "formTitle": "Start Your Seller Analysis",
     "detailTitle": "Seller Analysis",
     "address": "Property Address",
@@ -735,6 +798,10 @@
     "gainsTakeawayTitle": "Treat tax planning as a real sale-planning item.",
     "gainsTakeawayBody": "Before you make assumptions about what you will owe, keep records, understand your basis, review any major capital improvements, and treat tax implications as a real planning item rather than an afterthought.",
     "gainsDisclaimer": "Important note — We are not financial advisors, tax advisors, or attorneys. This content is educational in nature. Sellers should consult a qualified CPA or tax professional for advice specific to their property, holding period, use history, state, and entity structure.",
+    "mythsEyebrow": "Common Myths",
+    "risksEyebrow": "Key Risks",
+    "mitigationsEyebrow": "Risk Mitigation",
+    "importantNote": "Important note",
     "whoForTitle": "Who This Is For",
     "whoForBody1": "This seller analysis is designed for owners who want to make better decisions before they list, relist, reduce price, respond to buyer pressure, or consider alternative sale paths.",
     "whoForBody2": "It is especially useful for sellers who want a more disciplined pricing framework, better visibility into likely net proceeds, a clearer understanding of risk before going to market, more confidence during negotiation, and a more informed view of what the sale may actually mean financially.",
@@ -879,7 +946,13 @@
     "ctaEyebrow": "Ready to start?",
     "ctaTitle": "Try the free estimator or see full pricing.",
     "ctaPrimary": "Try Free Estimator",
-    "ctaSecondary": "View Pricing"
+    "ctaSecondary": "View Pricing",
+    "step1Title": "Enter the address and deal terms",
+    "step1Desc": "Share the property address and your key assumptions — purchase price, ARV, and repairs.",
+    "step2Title": "Get a verified, data-backed analysis",
+    "step2Desc": "We pull live comps, property facts, and market data automatically — then run the numbers through a multi-gate confidence model.",
+    "step3Title": "Act with confidence",
+    "step3Desc": "Walk into every negotiation with a defensible number: verified ARV, MAO, profit, ROI, and a full risk score."
   },
   "academy": {
     "metaTitle": "Academy — Peak Equity Optimizer",
@@ -892,5 +965,89 @@
     "strategiesMetaDescription": "Different deals require different analysis. Flip, BRRRR, rental, and wholesale strategies with key metrics and failure points.",
     "methodologyMetaTitle": "Methodology — Peak Equity Optimizer Academy",
     "methodologyMetaDescription": "How PEO produces VERIFIED ARV, confidence scoring, comp qualification, and triage gates. The analytical logic behind every output."
+  },
+  "appShell": {
+    "dashboard": "Dashboard",
+    "investor": "Investor",
+    "seller": "Seller",
+    "portfolio": "Portfolio",
+    "newAnalysis": "New Analysis",
+    "savedDeals": "Saved Deals",
+    "compare": "Compare",
+    "templates": "Templates",
+    "glossary": "Glossary",
+    "myDeals": "My Deals",
+    "newListing": "New Listing",
+    "marketPosition": "Market Position",
+    "readinessPlan": "Readiness Plan"
+  },
+  "investorPortfolio": {
+    "eyebrow": "Investor Platform",
+    "title": "Portfolio Dashboard",
+    "loading": "Loading portfolio...",
+    "totalProfit": "Total Profit",
+    "avgRoi": "Avg ROI",
+    "dealCount": "Deals",
+    "avgScore": "Avg Score",
+    "winRate": "Win Rate",
+    "profitTrend": "Profit Trend",
+    "strategyBreakdown": "Strategy Breakdown",
+    "dealStatus": "Deal Status",
+    "dealComparison": "Deal Comparison",
+    "recentDeals": "Recent Deals",
+    "newAnalysis": "New Analysis",
+    "noDeals": "No deals yet. Run your first analysis to get started.",
+    "noData": "No data yet",
+    "pipeline": "Deal Pipeline",
+    "clear": "Clear",
+    "view": "View",
+    "address": "Address",
+    "strategy": "Strategy",
+    "arv": "ARV",
+    "mao": "MAO",
+    "profit": "Profit",
+    "roi": "ROI",
+    "grade": "Grade",
+    "score": "Score",
+    "status": "Status"
+  },
+  "sellerHub": {
+    "eyebrow": "Seller Platform",
+    "title": "Seller Hub",
+    "loading": "Loading...",
+    "newListing": "New Listing",
+    "newListingDesc": "Submit a new property for analysis and readiness review.",
+    "marketPosition": "Market Position",
+    "marketPositionDesc": "Check where your property stands against current comps.",
+    "readinessPlan": "Readiness Plan",
+    "readinessPlanDesc": "View your pre-listing checklist and track progress.",
+    "startApplication": "Start Application",
+    "checkValue": "Check Value",
+    "viewPlan": "View Plan",
+    "myApplications": "My Applications",
+    "noApplications": "No applications yet. Start your first listing analysis.",
+    "address": "Address",
+    "status": "Status",
+    "arv": "Est. ARV",
+    "readiness": "Readiness",
+    "date": "Date",
+    "view": "View"
+  },
+  "admin": {
+    "eyebrow": "Administration",
+    "title": "Admin Dashboard",
+    "totalUsers": "Total Users",
+    "activeAnalyses": "Active Analyses",
+    "revenueMtd": "Revenue (MTD)",
+    "churnRate": "Churn Rate",
+    "comingSoonTitle": "Admin Tools Coming Soon",
+    "comingSoonBody": "The admin panel is under construction for Phase 6. Features will include user management, role assignment, audit log review, vendor verification, and revenue analytics."
+  },
+  "vendorDashboard": {
+    "eyebrow": "Marketplace",
+    "title": "Vendor Directory",
+    "loading": "Loading vendors…",
+    "comingSoonTitle": "Marketplace Coming Soon",
+    "comingSoonBody": "The vendor marketplace is under construction for Phase 6. Verified contractors, lenders, inspectors, and property managers will be listed here."
   }
 }

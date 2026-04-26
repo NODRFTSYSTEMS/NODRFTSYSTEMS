@@ -23,7 +23,8 @@
     "academyGlossary": "Glosario",
     "switchLocale": "Cambiar a {locale}",
     "openMenu": "Abrir menú de navegación",
-    "closeMenu": "Cerrar menú de navegación"
+    "closeMenu": "Cerrar menú de navegación",
+    "signIn": "Iniciar sesión"
   },
   "home": {
     "heroTitle": "Una oportunidad. Use un número que pueda demostrar.",
@@ -77,6 +78,27 @@
     "heroTitleLine2": "es todo lo que se necesita para perder.",
     "heroProblemLine": "La mayoría de los listados tienen precios basados en suposiciones. La mayoría de las ofertas se basan en ARVs no verificados. PEO soluciona ambos — con comparables en vivo, datos verificados y análisis que puede mostrar en una sala.",
     "terminalAriaLabel": "Resumen de capacidades de la plataforma",
+    "terminalPlatform": "Plataforma",
+    "terminalSellerPath": "Camino del vendedor",
+    "terminalInvestorPath": "Camino del inversor",
+    "terminalStrategies": "Estrategias",
+    "terminalAcademy": "Academia",
+    "terminalFreeAccess": "Gratis — acceso abierto",
+    "dashNetProceedsLabel": "Ganancias netas estimadas",
+    "dashSalePrice": "Precio de venta",
+    "dashAgentCommission": "Agente (6%)",
+    "dashClosing": "Cierre (2%)",
+    "dashMortgagePayoff": "Pago de hipoteca",
+    "dashNetProceeds": "Ganancias netas",
+    "dashVerifiedArv": "ARV verificado",
+    "dashMao": "MAO",
+    "dashStrategy": "Estrategia",
+    "dashEstProfit": "Ganancia est.",
+    "dashRoi": "ROI",
+    "dashConfidence": "Confianza",
+    "dashHigh": "ALTA",
+    "splitSellerKicker": "Vendedores",
+    "splitInvestorKicker": "Inversores",
     "credBadge1Value": "ARV Verificado",
     "credBadge1Label": "Mediana de ventas cerradas reales — no un AVM",
     "credBadge2Value": "Datos en vivo",
@@ -143,6 +165,7 @@
     "faqTeaser4A": "No. El nivel Vendedor es un pago único por análisis de propiedad ($49). Paga cuando ejecuta un análisis — no de forma recurrente."
   },
   "estimator": {
+    "eyebrow": "Calculadora gratis",
     "title": "Calculadora gratis",
     "subtitle": "Cálculos rápidos basados en entradas manuales para explorar una oferta. Sin datos en vivo. Sin valores verificados.",
     "disclaimer": "Este estimado se basa en entradas del usuario y no en datos de propiedad en vivo o comparables verificados.",
@@ -212,7 +235,10 @@
     "strategyFlip": "Flip",
     "strategyBrrrr": "BRRRR",
     "strategyWholesale": "Mayorista",
-    "strategyBuyHold": "Compra y mantén"
+    "strategyBuyHold": "Compra y mantén",
+    "upgradeEyebrow": "¿Listo para datos verificados?",
+    "upgradeTitle": "Estos son estimados manuales. Obtén comparables en vivo, ARV verificado y un análisis completo del trato.",
+    "upgradeBody": "Los planes pagados obtienen datos de propiedad reales y comparables de venta calificados automáticamente — sin entrada manual requerida."
   },
   "pricing": {
     "title": "Precios",
@@ -226,7 +252,9 @@
         "Vista previa de ganancias de flip",
         "Vista previa BRRRR",
         "Instantáneo — sin registro requerido"
-      ]
+      ],
+      "badge": "Empieza gratis",
+      "cta": "Abrir calculadora"
     },
     "seller": {
       "name": "Vendedor",
@@ -237,29 +265,9 @@
         "Contexto de mercado y posicionamiento",
         "Puntuación de confianza",
         "Plan de preparación para vendedor"
-      ]
-    },
-    "investorBasic": {
-      "name": "Inversor Básico",
-      "price": "$99/mes",
-      "features": [
-        "Datos en vivo en el momento en que ingresas la dirección",
-        "ARV basado en mediana de comparables — no una estimación",
-        "Comparables vendidos con puntuación de calidad",
-        "MAO / ganancia / ROI",
-        "Exportación de informe resumido"
-      ]
-    },
-    "investorAdvanced": {
-      "name": "Inversor Avanzado",
-      "price": "$299/mes",
-      "features": [
-        "Todas las funciones Básicas",
-        "Ajusta la selección y ponderación de comparables",
-        "Presupuesto de reparación detallado",
-        "Planificador de escenarios",
-        "Apéndices y exportaciones avanzadas"
-      ]
+      ],
+      "badge": "Propietarios",
+      "cta": "Iniciar análisis de vendedor"
     },
     "vendor": {
       "name": "Proveedor",
@@ -270,12 +278,44 @@
         "Respuestas a reseñas",
         "Analíticas del mercado",
         "Posicionamiento prioritario en el directorio"
-      ]
+      ],
+      "badge": "Mercado",
+      "cta": "Solicitar como proveedor"
     },
+    "eyebrow": "Elige tu plan",
+    "trustNote1": "Los niveles pagos combinan registros del evaluador del condado, datos de MLS y campos estimados cuidadosamente para producir valores verificados. El nivel gratuito es solo de entrada manual — sin datos en vivo, sin comparables.",
+    "trustNote2": "PEO no es una tasación. La disponibilidad de datos varía según el mercado.",
+    "trustCenterLink": "Centro de confianza →",
     "metaTitle": "Precios — Peak Equity Optimizer",
     "metaDescription": "Estimador gratuito sin registro. Análisis de vendedor desde $49/propiedad. Suscripción de inversionista desde $99/mes. Empiece gratis — pague solo cuando necesite datos verificados en vivo.",
     "ogTitle": "Precios — Peak Equity Optimizer",
-    "ogDescription": "Estimador gratuito incluido. Análisis de vendedor $49/propiedad. Inversionista Básico $99/mes. Inversionista Avanzado $299/mes. Sin tarjeta de crédito para empezar."
+    "ogDescription": "Estimador gratuito incluido. Análisis de vendedor $49/propiedad. Inversionista Básico $99/mes. Inversionista Avanzado $299/mes. Sin tarjeta de crédito para empezar.",
+    "investorCore": {
+      "name": "Inversor Básico",
+      "price": "$99/mes",
+      "features": [
+        "Datos en vivo en el momento en que ingresas la dirección",
+        "ARV basado en mediana de comparables — no una estimación",
+        "Comparables vendidos con puntuación de calidad",
+        "MAO / ganancia / ROI",
+        "Exportación de informe resumido"
+      ],
+      "badge": "Más popular",
+      "cta": "Iniciar Inversor Básico"
+    },
+    "investorElite": {
+      "name": "Inversor Avanzado",
+      "price": "$299/mes",
+      "features": [
+        "Todas las funciones Básicas",
+        "Ajusta la selección y ponderación de comparables",
+        "Presupuesto de reparación detallado",
+        "Planificador de escenarios",
+        "Apéndices y exportaciones avanzadas"
+      ],
+      "badge": "Plataforma completa",
+      "cta": "Iniciar Inversor Avanzado"
+    }
   },
   "faq": {
     "title": "Preguntas frecuentes",
@@ -312,7 +352,11 @@
       "a2": "Básico incluye ARV automático, comparables, MAO, ganancia, ROI e informe resumido. Avanzado agrega controles de comparables, presupuesto de reparación detallado, planificador de escenarios, DSCR, modelado de refinanciamiento y apéndices avanzados.",
       "q3": "¿El nivel Vendedor es una suscripción?",
       "a3": "No. El nivel Vendedor es un pago único por análisis de propiedad ($49). Pagas cuando realizas un análisis — no de forma recurrente."
-    }
+    },
+    "eyebrow": "Soporte",
+    "metaDescription": "Preguntas frecuentes sobre Peak Equity Optimizer — plataforma, fuentes de datos, privacidad y precios. Aprenda cómo funciona PEO, de dónde provienen los datos y cómo empezar.",
+    "ogTitle": "Preguntas frecuentes — Peak Equity Optimizer",
+    "ogDescription": "Obtenga respuestas sobre la metodología de ARV verificado de PEO, fuentes de datos, prácticas de privacidad y niveles de precios."
   },
   "trust": {
     "title": "Centro de confianza",
@@ -323,9 +367,17 @@
     "methodologyText": "PEO combina datos de propiedad en vivo, comparables vendidos calificados y fórmulas conservadoras de suscripción para producir una puntuación de confianza en capas. El análisis pasa por un proceso de triaje de múltiples etapas — cada etapa evalúa la calidad de los datos, la cobertura de comparables, la consistencia de la valoración y la completitud del modelo.",
     "dataSourcesText": "Las fuentes primarias incluyen registros del evaluador del condado obtenidos en vivo al momento del análisis. Las fuentes secundarias incluyen transacciones vendidas registradas en MLS dentro de un radio y ventana de tiempo definidos. Donde los datos primarios y secundarios no están disponibles, se usan campos estimados con divulgación explícita.",
     "definitionsText": "ARV VERIFICADO es el precio mediano de venta de comparables vendidos calificados — no un AVM, no un Zestimate. ARV DE MERCADO es el precio mediano de listados activos dentro de un radio comparable, mostrado solo como referencia y nunca usado como dato de suscripción. MAO (Oferta Máxima Permitida) se calcula como ARV menos reparaciones, costos de transporte, costos de venta y un piso de ganancia requerido.",
-    "limitationsText": "PEO no es una tasación con licencia y no debe usarse como sustituto de una. La disponibilidad de datos varía significativamente según el mercado. El estado de la propiedad, el mantenimiento diferido y los cambios del mercado local que ocurren después de la fecha de análisis no están capturados. Todos los resultados son herramientas analíticas para apoyar — no reemplazar — el juicio profesional."
+    "limitationsText": "PEO no es una tasación con licencia y no debe usarse como sustituto de una. La disponibilidad de datos varía significativamente según el mercado. El estado de la propiedad, el mantenimiento diferido y los cambios del mercado local que ocurren después de la fecha de análisis no están capturados. Todos los resultados son herramientas analíticas para apoyar — no reemplazar — el juicio profesional.",
+    "eyebrow": "Transparencia",
+    "heroLead": "Cada resultado que produce PEO es rastreable a una metodología documentada. Esta página explica de dónde provienen los datos, cómo funcionan los cálculos y qué no puede decirle la plataforma.",
+    "academyEyebrow": "Profundice",
+    "academyHeading": "La metodología completa está documentada en la Academia.",
+    "academyBody": "La sección de Metodología de la Academia explica cómo se calcula el ARV VERIFICADO, qué mide la puntuación de confianza y cómo cada resultado se conecta con sus entradas.",
+    "ctaMethodology": "Leer metodología",
+    "ctaFormulaStack": "Stack de fórmulas"
   },
   "investorDashboard": {
+    "eyebrow": "Plataforma de Inversor",
     "title": "Panel del inversor",
     "subtitle": "Analiza ofertas, verifica ARV y construye ofertas con confianza.",
     "newAnalysisTitle": "Analizar una propiedad",
@@ -343,6 +395,7 @@
   "investorAnalysis": {
     "newTitle": "Nuevo análisis de trato",
     "detailTitle": "Análisis del trato",
+    "eyebrow": "Análisis de Inversor",
     "address": "Dirección de la propiedad",
     "purchasePrice": "Precio de compra / precio solicitado",
     "arv": "ARV estimado",
@@ -398,6 +451,7 @@
     "dealScoreLabel": "Puntuación del trato"
   },
   "sellerDashboard": {
+    "eyebrow": "Plataforma de Vendedor",
     "title": "Panel del vendedor",
     "subtitle": "Gestiona tus solicitudes de propiedad y rastrea la preparación del trato.",
     "newApplicationTitle": "Iniciar una nueva solicitud",
@@ -405,7 +459,15 @@
     "startApplication": "Iniciar solicitud",
     "trackTitle": "Rastrear solicitudes existentes",
     "trackDesc": "Ver el estado, resultados de triaje y tareas de preparación para tus tratos.",
-    "comingSoon": "Próximamente"
+    "comingSoon": "Próximamente",
+    "savedDealsTitle": "Tratos Guardados",
+    "dealComparisonTitle": "Comparación de Tratos",
+    "templatesTitle": "Plantillas de Documentos",
+    "loadingDeals": "Cargando tratos…",
+    "noSavedDeals": "Aún no hay tratos guardados.",
+    "runFirstAnalysis": "Ejecutar Primer Análisis",
+    "noDealsToCompare": "No hay tratos para comparar. Ejecuta un análisis primero.",
+    "selectDeals": "Selecciona hasta 4 tratos para comparar:"
   },
   "sellerApplication": {
     "formTitle": "Iniciar análisis de vendedor",
@@ -735,6 +797,10 @@
     "gainsTakeawayTitle": "Trate la planificación fiscal como un elemento real de planificación de venta.",
     "gainsTakeawayBody": "Antes de hacer suposiciones sobre lo que debe, mantenga registros, comprenda su base, revise cualquier mejora de capital importante y trate las implicaciones fiscales como un elemento de planificación real en lugar de una reconsideración tardía.",
     "gainsDisclaimer": "Nota importante — No somos asesores financieros, asesores fiscales ni abogados. Este contenido es de naturaleza educativa. Los vendedores deben consultar a un CPA o profesional fiscal calificado para asesoramiento específico a su propiedad, período de tenencia, historial de uso, estado y estructura de entidad.",
+    "mythsEyebrow": "Mitos comunes",
+    "risksEyebrow": "Riesgos clave",
+    "mitigationsEyebrow": "Mitigación de riesgos",
+    "importantNote": "Nota importante",
     "whoForTitle": "Para Quién Es Esto",
     "whoForBody1": "Este análisis de vendedor está diseñado para propietarios que quieren tomar mejores decisiones antes de listar, relistar, reducir precios, responder a presión de compradores o considerar rutas de venta alternativas.",
     "whoForBody2": "Es especialmente útil para vendedores que quieren un marco de precios más disciplinado, mejor visibilidad de las ganancias netas probables, una comprensión más clara del riesgo antes de entrar al mercado, más confianza durante la negociación y una visión más informada de lo que la venta puede significar financieramente.",
@@ -879,7 +945,13 @@
     "ctaEyebrow": "¿Listo para empezar?",
     "ctaTitle": "Pruebe el estimador gratuito o vea los precios completos.",
     "ctaPrimary": "Probar Estimador Gratis",
-    "ctaSecondary": "Ver Precios"
+    "ctaSecondary": "Ver Precios",
+    "step1Title": "Ingresa la dirección y los términos del trato",
+    "step1Desc": "Proporciona la dirección de la propiedad y tus supuestos clave — precio de compra, ARV y reparaciones.",
+    "step2Title": "Obtén un análisis verificado respaldado por datos",
+    "step2Desc": "Extraemos comps en vivo, datos de la propiedad e información del mercado automáticamente — luego ejecutamos los números a través de un modelo de confianza de múltiples etapas.",
+    "step3Title": "Actúa con confianza",
+    "step3Desc": "Entra en cada negociación con un número defendible: ARV verificado, MAO, ganancia, ROI y una puntuación de riesgo completa."
   },
   "academy": {
     "metaTitle": "Academia — Peak Equity Optimizer",
@@ -892,5 +964,89 @@
     "strategiesMetaDescription": "Diferentes tratos requieren diferentes análisis. Estrategias de flip, BRRRR, alquiler y wholesale con métricas clave y puntos de falla.",
     "methodologyMetaTitle": "Metodología — Academia Peak Equity Optimizer",
     "methodologyMetaDescription": "Cómo PEO produce ARV VERIFICADO, puntuación de confianza, calificación de comps y compuertas de triaje. La lógica analítica detrás de cada resultado."
+  },
+  "appShell": {
+    "dashboard": "Dashboard",
+    "investor": "Inversor",
+    "seller": "Vendedor",
+    "portfolio": "Portafolio",
+    "newAnalysis": "Nuevo Análisis",
+    "savedDeals": "Tratos Guardados",
+    "compare": "Comparar",
+    "templates": "Plantillas",
+    "glossary": "Glosario",
+    "myDeals": "Mis Tratos",
+    "newListing": "Nueva Propiedad",
+    "marketPosition": "Posición de Mercado",
+    "readinessPlan": "Plan de Preparación"
+  },
+  "investorPortfolio": {
+    "eyebrow": "Plataforma de Inversor",
+    "title": "Panel de Portafolio",
+    "loading": "Cargando portafolio...",
+    "totalProfit": "Ganancia Total",
+    "avgRoi": "ROI Promedio",
+    "dealCount": "Tratos",
+    "avgScore": "Puntaje Promedio",
+    "winRate": "Tasa de Éxito",
+    "profitTrend": "Tendencia de Ganancia",
+    "strategyBreakdown": "Desglose por Estrategia",
+    "dealStatus": "Estado de Tratos",
+    "dealComparison": "Comparación de Tratos",
+    "recentDeals": "Tratos Recientes",
+    "newAnalysis": "Nuevo Análisis",
+    "noDeals": "Aún no hay tratos. Ejecuta tu primer análisis para comenzar.",
+    "noData": "Aún no hay datos",
+    "pipeline": "Pipeline de Tratos",
+    "clear": "Limpiar",
+    "view": "Ver",
+    "address": "Dirección",
+    "strategy": "Estrategia",
+    "arv": "ARV",
+    "mao": "MAO",
+    "profit": "Ganancia",
+    "roi": "ROI",
+    "grade": "Calificación",
+    "score": "Puntaje",
+    "status": "Estado"
+  },
+  "sellerHub": {
+    "eyebrow": "Plataforma de Vendedor",
+    "title": "Centro de Vendedor",
+    "loading": "Cargando...",
+    "newListing": "Nueva Propiedad",
+    "newListingDesc": "Envía una nueva propiedad para análisis y revisión de preparación.",
+    "marketPosition": "Posición de Mercado",
+    "marketPositionDesc": "Verifica dónde se posiciona tu propiedad frente a comparables actuales.",
+    "readinessPlan": "Plan de Preparación",
+    "readinessPlanDesc": "Revisa tu lista de verificación previa a la lista y haz seguimiento del progreso.",
+    "startApplication": "Iniciar Solicitud",
+    "checkValue": "Verificar Valor",
+    "viewPlan": "Ver Plan",
+    "myApplications": "Mis Solicitudes",
+    "noApplications": "Aún no hay solicitudes. Inicia tu primer análisis de propiedad.",
+    "address": "Dirección",
+    "status": "Estado",
+    "arv": "ARV Est.",
+    "readiness": "Preparación",
+    "date": "Fecha",
+    "view": "Ver"
+  },
+  "admin": {
+    "eyebrow": "Administración",
+    "title": "Panel de Administración",
+    "totalUsers": "Usuarios Totales",
+    "activeAnalyses": "Análisis Activos",
+    "revenueMtd": "Ingresos (MTD)",
+    "churnRate": "Tasa de Cancelación",
+    "comingSoonTitle": "Herramientas de Admin Próximamente",
+    "comingSoonBody": "El panel de administración está en construcción para la Fase 6. Las funciones incluirán gestión de usuarios, asignación de roles, revisión de registros de auditoría, verificación de proveedores y análisis de ingresos."
+  },
+  "vendorDashboard": {
+    "eyebrow": "Mercado",
+    "title": "Directorio de Proveedores",
+    "loading": "Cargando proveedores…",
+    "comingSoonTitle": "Mercado Próximamente",
+    "comingSoonBody": "El mercado de proveedores está en construcción para la Fase 6. Contratistas, prestamistas, inspectores y administradores de propiedades verificados serán listados aquí."
   }
 }

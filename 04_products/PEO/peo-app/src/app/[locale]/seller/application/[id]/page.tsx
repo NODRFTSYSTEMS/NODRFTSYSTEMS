@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
+import { track } from "@/lib/events/track";
 
 interface PropertyFacts {
   squareFootage?: number;
@@ -148,6 +149,15 @@ export default function ApplicationDetailPage() {
       .then((data) => {
         setApp(data.application);
         setLoading(false);
+        if (data.application?.triage) {
+          track({
+            event: "result_viewed",
+            props: {
+              applicationId: id,
+              confidenceTier: data.application.triage.confidenceTier,
+            },
+          });
+        }
       });
   }, [id]);
 
@@ -205,7 +215,7 @@ export default function ApplicationDetailPage() {
         <div className="container">
           <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "16px", flexWrap: "wrap" }}>
             <div>
-              <div className="eyebrow" style={{ marginBottom: "10px" }}>Seller Platform</div>
+              <div className="eyebrow" style={{ marginBottom: "10px" }}>{t("eyebrow")}</div>
               <h1 style={{ fontFamily: "var(--display)", fontWeight: 700, fontSize: "clamp(1.4rem, 2.5vw, 2rem)", color: "var(--text)", letterSpacing: "-0.02em", lineHeight: 1.25 }}>
                 {app.address}
               </h1>
@@ -215,9 +225,18 @@ export default function ApplicationDetailPage() {
                 </p>
               )}
             </div>
-            <span className="status-chip" style={{ background: "var(--green-dim)", color: "var(--green)", border: "1px solid rgba(39,174,96,0.25)" }}>
-              {t("analysisReady")}
-            </span>
+            <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+              <span className="status-chip" style={{ background: "var(--green-dim)", color: "var(--green)", border: "1px solid rgba(39,174,96,0.25)" }}>
+                {t("analysisReady")}
+              </span>
+              <button
+                onClick={() => window.print()}
+                className="button button-secondary"
+                style={{ fontSize: "0.75rem", padding: "6px 14px", minHeight: 32 }}
+              >
+                Print Report
+              </button>
+            </div>
           </div>
         </div>
       </section>

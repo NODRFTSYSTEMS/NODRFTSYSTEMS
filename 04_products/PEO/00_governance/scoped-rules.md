@@ -321,7 +321,7 @@ All of the following must write an AuditLog entry:
 | Styling | Tailwind CSS 4.x + shadcn/ui (Radix) |
 | Database | PostgreSQL — Neon (serverless) |
 | ORM | Prisma 6.x |
-| Auth | Clerk (pending Founder confirmation — O-001) |
+| Auth | Clerk (confirmed 2026-04-16 — O-001 closed) |
 | Cloud / Deploy | Vercel |
 | File Storage | Cloudflare R2 (signed URLs) |
 | i18n | next-intl 4.x |

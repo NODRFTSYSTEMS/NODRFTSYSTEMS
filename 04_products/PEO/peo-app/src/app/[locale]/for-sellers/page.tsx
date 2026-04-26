@@ -224,7 +224,7 @@ export default async function ForSellersPage({
                 {t("gainsTakeawayBody")}
               </p>
               <div className="education-banner">
-                <strong>Important note</strong> — {t("gainsDisclaimer")}
+                <strong>{t("importantNote")}</strong> — {t("gainsDisclaimer")}
               </div>
             </div>
           </div>
@@ -235,7 +235,7 @@ export default async function ForSellersPage({
       <section style={{ padding: "0 0 64px" }}>
         <div className="container">
           <div className="section-opener">
-            <div className="eyebrow" style={{ marginBottom: "12px" }}>Common Myths</div>
+            <div className="eyebrow" style={{ marginBottom: "12px" }}>{t("mythsEyebrow")}</div>
             <h2 className="heading-md">{t("mythsHeading")}</h2>
           </div>
           <div className="grid-3">
@@ -253,7 +253,7 @@ export default async function ForSellersPage({
       <section style={{ padding: "0 0 64px" }}>
         <div className="container">
           <div className="section-opener">
-            <div className="eyebrow" style={{ marginBottom: "12px" }}>Key Risks</div>
+            <div className="eyebrow" style={{ marginBottom: "12px" }}>{t("risksEyebrow")}</div>
             <h2 className="heading-md">{t("risksHeading")}</h2>
           </div>
           <div className="grid-3">
@@ -271,7 +271,7 @@ export default async function ForSellersPage({
       <section style={{ padding: "0 0 64px" }}>
         <div className="container">
           <div className="section-opener">
-            <div className="eyebrow" style={{ marginBottom: "12px" }}>Risk Mitigation</div>
+            <div className="eyebrow" style={{ marginBottom: "12px" }}>{t("mitigationsEyebrow")}</div>
             <h2 className="heading-md">{t("mitigationsHeading")}</h2>
           </div>
           <div className="grid-2" style={{ gap: "12px" }}>

@@ -32,7 +32,7 @@ async function getOrCreateDemoUser(): Promise<User> {
       id: DEMO_USER_ID,
       clerkId: "demo_clerk_id",
       email: "demo@peo.internal",
-      role: "seller_applicant",
+      role: "seller",
     },
   });
 }

@@ -3,11 +3,10 @@ import type { UserRole } from "@prisma/client";
 export const ROLE_HIERARCHY: Record<UserRole, number> = {
   anonymous_visitor: 0,
   free_user: 1,
-  seller_applicant: 2,
-  seller_verified: 3,
-  investor_basic: 4,
-  investor_advanced: 5,
-  vendor: 6,
+  seller: 2,
+  investor_core: 3,
+  investor_elite: 4,
+  vendor: 5,
   admin_internal: 10,
 };
 
@@ -22,7 +21,7 @@ export function requireRole(userRole: UserRole, required: UserRole | UserRole[])
   return hasRole(userRole, required);
 }
 
-export const SELLER_ROLES: UserRole[] = ["seller_applicant", "seller_verified", "admin_internal"];
-export const INVESTOR_ROLES: UserRole[] = ["investor_basic", "investor_advanced", "admin_internal"];
+export const SELLER_ROLES: UserRole[] = ["seller", "admin_internal"];
+export const INVESTOR_ROLES: UserRole[] = ["investor_core", "investor_elite", "admin_internal"];
 export const VENDOR_ROLES: UserRole[] = ["vendor", "admin_internal"];
 export const ADMIN_ROLES: UserRole[] = ["admin_internal"];

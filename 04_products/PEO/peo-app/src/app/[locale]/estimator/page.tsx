@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { TermTooltip } from "@/components/TermTooltip";
+import { track } from "@/lib/events/track";
 
 export default function EstimatorPage() {
   const t = useTranslations("estimator");
@@ -114,6 +115,13 @@ export default function EstimatorPage() {
       if (data.result) {
         setResult(data.result);
         setResultMode(data.mode as string);
+        track({
+          event: "estimator_completed",
+          props: {
+            mode,
+            strategy: mode === "investor" ? strategy : undefined,
+          },
+        });
       }
     } finally {
       setLoading(false);
@@ -329,7 +337,7 @@ export default function EstimatorPage() {
       <div className="container-wide">
         {/* Header */}
         <div className="section-opener">
-          <div className="eyebrow" style={{ marginBottom: "12px" }}>Free Estimator</div>
+          <div className="eyebrow" style={{ marginBottom: "12px" }}>{t("eyebrow")}</div>
           <h1 className="heading-lg" style={{ marginBottom: "12px" }}>
             {t("title")}
           </h1>
@@ -421,18 +429,28 @@ export default function EstimatorPage() {
         {/* Post-result upgrade prompt */}
         {result && (
           <div className="card" style={{ marginTop: "24px", padding: "28px 32px" }}>
-            <div className="eyebrow" style={{ marginBottom: "10px" }}>Ready for verified data?</div>
+            <div className="eyebrow" style={{ marginBottom: "10px" }}>{t("upgradeEyebrow")}</div>
             <h3 className="heading-sm" style={{ marginBottom: "10px", lineHeight: 1.35 }}>
-              These are manual estimates. Get live comps, verified ARV, and a full deal analysis.
+              {t("upgradeTitle")}
             </h3>
             <p className="body-xs" style={{ marginBottom: "20px" }}>
-              Paid tiers pull real property data and qualified sold comps automatically — no manual entry required.
+              {t("upgradeBody")}
             </p>
             <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
-              <Link href="/investor/analyze" className="button button-primary" style={{ fontSize: "0.85rem" }}>
+              <Link
+                href="/investor/analyze"
+                className="button button-primary"
+                style={{ fontSize: "0.85rem" }}
+                onClick={() => track({ event: "upgrade_clicked", props: { from: "estimator_result", targetTier: "investor_core", location: "estimator_cta" } })}
+              >
                 Start Investor Analysis →
               </Link>
-              <Link href="/pricing" className="button button-secondary" style={{ fontSize: "0.85rem" }}>
+              <Link
+                href="/pricing"
+                className="button button-secondary"
+                style={{ fontSize: "0.85rem" }}
+                onClick={() => track({ event: "upgrade_clicked", props: { from: "estimator_result", targetTier: "pricing_page", location: "estimator_cta" } })}
+              >
                 See Pricing →
               </Link>
             </div>

@@ -1,7 +1,8 @@
 # Final Approved Department and Agent Registry
 
 Status: Approved working registry  
-Primary source: `NoDrftSystems_Final_Approved_Agent_Registry.pdf`  
+Primary source: this normalized working registry plus Founder decision-log amendments  
+Baseline source archive: `NoDrftSystems_Final_Approved_Agent_Registry.pdf` (retired 2026-04-17 after markdown conversion)  
 Expansion authority: `engineering-expansion-approval-and-hire-list-2026-04-15.md`  
 Normalized: 2026-04-14
 
@@ -9,14 +10,14 @@ Normalized: 2026-04-14
 
 - The approved source registry baseline states `45` total official agents.
 - The approved source baseline tier distribution is `4` Tier 1 supervisor agents, `37` Tier 2 operational/governance agents across `8` departments, and `4` Tier 3 specialist agents.
-- The current official assigned working architecture has been expanded to `59` agents under the approved engineering expansion directive dated `2026-04-15` and the skills optimization directive dated `2026-04-17`.
+- The current official assigned working architecture has been expanded to `60` agents under the approved engineering expansion directive dated `2026-04-15`, the skills optimization directive dated `2026-04-17`, and the founder decision-log amendments dated `2026-04-18`.
 - `People, Roles & Governance` is explicitly formalized as a full department in the approved source.
 - Every agent below is explicitly assigned to a tier and department. No assignment in this file is implied.
 
 ## Current Approval Rule
 
 - The architecture is not capped at `40` agents.
-- The current official assigned architecture contains `59` agents.
+- The current official assigned architecture contains `60` agents.
 - Additional agents may be added when precision, governance coverage, or operational control requires it.
 - Existing agent codes and Caribbean names remain unchanged.
 
@@ -31,7 +32,7 @@ Normalized: 2026-04-14
 - Tier 2: Finance & Bookkeeping (`4`)
 - Tier 2: Strategic Intelligence (`4`)
 - Tier 2: People, Roles & Governance (`6`)
-- Tier 3: Specialist Pool (`8`)
+- Tier 3: Specialist Pool (`9`)
 
 ## Department Registry
 
@@ -143,6 +144,16 @@ Normalized: 2026-04-14
 | PIS | Keston | Platform & Infrastructure Specialist | MOA | ARE | On-Demand Specialist |
 | POS | Jovan | Performance Optimization Specialist | MOA | ARE | On-Demand Specialist |
 | ASIS | Tameka | Agent Systems Integration Specialist | MOA | ARE | On-Demand Specialist |
+| QMA | Solomon | Quantitative Mathematics Agent | MOA | ARE / Founder | On-Demand Specialist |
+
+### Business Analysis
+
+| Code | Caribbean Name | Canonical Name | Reports To (AI) | Human Owner | Activation Status |
+| --- | --- | --- | --- | --- | --- |
+| BAO | Cyrus | Business Analysis Orchestrator | MOA | Founder | Always-On |
+| FMA | Valentina | Financial Modeling Agent | BAO | Founder | Active - Triggered Workflow |
+| MCA | Sterling | Market & Competitive Analyst | BAO | Founder | Active - Triggered Workflow |
+| RSA | Imara | Risk & Strategy Analyst | BAO / QAS | Founder | Active - Triggered Workflow |
 
 ## Count Check
 
@@ -157,5 +168,18 @@ Normalized: 2026-04-14
 | Finance & Bookkeeping | 4 |
 | Strategic Intelligence | 4 |
 | People, Roles & Governance | 6 |
-| Specialist Pool | 8 |
-| Total Official Agents | 59 |
+| Specialist Pool | 9 |
+| Business Analysis | 4 |
+| Total Official Agents | 64 |
+
+---
+
+**Registry amendment 2026-04-18:** QMA (Solomon) — Quantitative Mathematics Agent — added to Specialist Pool as agent #60. Authorized by Founder per Decision Log entry 2026-04-18-001. ARE scope review remains a standing technical governance task. QMA holds team-deployment authority within bounded mathematical scope.
+
+**Architecture note 2026-04-19:** VECS is approved and formally activated as a permanent architectural overlay for public commercial routes. VECS executes through the existing approved bench — no separate staffing department or new registry agents have been added. The formal VECS activation package consists of:
+- `03_agent-skills/vecs-public-route/SKILL.md` — workflow skill governing cell activation, build phases, and release controls
+- `.claude/agents/reviewer_vecs.md` — independent route reviewer enforcing authority flow, anti-generic compliance, proof posture, CTA architecture, and interaction design governance
+
+VECS cell composition (existing agents): `VDA`, `DAA`, `FIS`, `BCA`, `STAA`, `AAA`, `PLA`, `BPA`, `QDA`, `QAS`. A separate VECS registry department or dedicated role-pack expansion remains deferred until evidence from live VECS pilots establishes that the current bench cannot cover the workload with sufficient precision.
+
+**Registry amendment 2026-04-24:** Business Analysis department added — 4 agents (BAO/Cyrus, FMA/Valentina, MCA/Sterling, RSA/Imara). Authorized by Founder per Deep Summit strategic review session 2026-04-24. Registry count moves from 60 → 64. Department serves external clients only via the Business Analysis Sprint service line. Skill file: `03_agent-skills/business-analysis-evaluation/SKILL.md`. Agent definitions: `03_agent-skills/business-analysis-evaluation/agents/openai.yaml`. Pricing for the Business Analysis Sprint is a standing Founder decision item — route all inquiries to Founder until pricing is set.

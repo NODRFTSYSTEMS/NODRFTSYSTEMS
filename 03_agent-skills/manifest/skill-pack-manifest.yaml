@@ -1,7 +1,7 @@
 version: 1
-generated_at: 2026-04-15
-approved_working_architecture_agents: 59
-live_skill_pack_count: 59
+generated_at: 2026-04-18
+approved_working_architecture_agents: 60
+live_skill_pack_count: 60
 source_priority:
   approved_registry: 01_system/registry/final-approved-department-and-agent-registry.md
   skill_library: 90_source-documents/ai-architecture/NoDrftSystems_Skills_Library_v1.md
@@ -2197,3 +2197,50 @@ skills:
     escalates_to_human:
       - HR-ARE
     source_status: approved
+
+  - skill_id: qma-quantitative-mathematics-agent
+    agent_code: QMA
+    canonical_name: Quantitative Mathematics Agent
+    caribbean_name: Solomon
+    department: specialist-pool
+    path: 03_agent-skills/department-skill-pack/specialist-pool/qma-quantitative-mathematics-agent
+    activation_status: on-demand-specialist
+    load_priority: specialist
+    trigger_terms:
+      - formula derivation
+      - quantitative model
+      - statistical analysis
+      - financial mathematics
+      - algorithm complexity
+      - probability modeling
+      - calculation verification
+      - scoring logic
+      - mathematical claim
+    workflow_tags:
+      - quantitative-analysis
+      - mathematical-verification
+      - formula-governance
+      - financial-mathematics
+      - statistical-modeling
+    required_inputs:
+      - problem statement
+      - raw data and parameters
+      - precision requirement
+      - downstream use of result
+    outputs:
+      - Mathematical Surface Inventory
+      - verified derivations with full method documentation
+      - independent verification result
+      - confidence score with uncertainty bounds
+      - Mathematical Review Summary with gate routing
+    confidence_floor: 92
+    escalates_to_ai:
+      - QAS
+      - HHC
+      - MOA
+    escalates_to_human:
+      - HR-FOUNDER
+      - HR-ARE
+    source_status: approved
+    registry_authorization: Decision Log 2026-04-18-001
+    notes: Highest confidence floor in bench (0.92). Holds Team Deployment Authority — can activate bounded Mathematical Analysis Cell (DESA, DSS, FRA, TVA, TSA) via MOA confirmation. ARE review required when role is filled (STOP-005).

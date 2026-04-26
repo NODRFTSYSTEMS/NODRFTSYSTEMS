@@ -1,10 +1,15 @@
 ---
 document: PEO Build Activation Record
 status: Active governance
-version: 1.1
-date: 2026-04-16
+version: 1.2
+date: 2026-04-22
 owner: Founder (nodrftsystems)
 authority: Mandatory Build Activation Protocol — `01_system/ai-governance/mandatory-build-activation-protocol-2026-04-15.md`
+cross-reference:
+  - `01_system/ai-governance/ai-review-authority-matrix.md` (system-level authority matrix)
+  - `04_products/PEO/00_governance/ai-review-authority-matrix.md` (PEO product-level derivative)
+  - `01_system/ai-governance/ai-native-operating-architecture.md` (workflow cells and review model)
+  - `01_system/ai-governance/visual-experience-conversion-systems-architecture-amendment-2026-04-19.md` (VECS public-route overlay)
 confidentiality: Proprietary internal — no external publishing approved
 ---
 
@@ -24,21 +29,21 @@ Justification:
 - Third-party data API integrations required (property data, geocoding, comp sources)
 - Auth provider integration required (provider TBD — O-001)
 - PII handling: property addresses, identity fields, financial inputs
-- Security boundary: RBAC across 8 roles, audit logging, upload scanning
-- Multi-route product with 5 distinct user surfaces
+- Security boundary: RBAC across 7 roles, audit logging, upload scanning
+- Multi-route product with 5 distinct user surfaces (free estimator, seller, investor basic, investor advanced, vendor marketplace)
 - Agent-system wiring for AI-assisted development
 
-Phase 6 (marketplace + admin + deployment) will be reclassified to Class 4 at that gate.
+Phase 6 (marketplace + admin + deployment) will be reclassified to Class 4 at that gate. VECS public-route review path applies to all homepage, pricing, academy, and trust-center changes per amendment 2026-04-19.
 
 ### Affected Technical Surfaces
 
 | Surface | Description |
 |---------|-------------|
-| Frontend | Public site, estimator (2 toggles), seller dashboard, investor basic dashboard, investor advanced dashboard, marketplace/vendor directory, trust center |
+| Frontend | Public site, estimator (2 toggles), seller hub, investor core dashboard, investor elite dashboard, marketplace/vendor directory, trust center |
 | Backend API | 8+ service domains: public_content, identity, estimator, seller, triage, readiness, investor, marketplace |
 | Database | Full schema from scratch — 13 entities (see data model in 01_specs/) |
 | Third-party integrations | Property data APIs (county assessor, listing platform, geocoding), auth provider, analytics platform |
-| Security boundary | RBAC (8 roles), PII controls, audit logging, upload scanning, rate limiting |
+| Security boundary | RBAC (7 roles), PII controls, audit logging, upload scanning, rate limiting |
 | Agent-system wiring | Skill activation, handoff routing, evidence ledger management |
 
 ### Human Assignments
@@ -85,9 +90,9 @@ Phase 6 (marketplace + admin + deployment) will be reclassified to Class 4 at th
 
 | Agent | Activation Trigger | Notes |
 |-------|-------------------|-------|
-| MOA | Always-on | |
-| CSM | Always-on | |
-| PMA | Always-on | |
+| MOA | Always-on | Expert mode: all routing decisions documented |
+| CSM | Always-on | Expert mode: full context continuity across Phases 1–6 |
+| PMA | Always-on | Expert mode: build packet control with zero drift tolerance |
 | RCA | Every governed phase | Mandatory — no exceptions |
 | SAA | Phase 1 + any boundary-setting work | |
 | BLS | Phases 2–6 | Primary implementation for backend |
@@ -103,7 +108,7 @@ Phase 6 (marketplace + admin + deployment) will be reclassified to Class 4 at th
 | Agent | Required Capability | Verification |
 |-------|-------------------|-------------|
 | SAA | Multi-service product decomposition, API boundary design | Confirm skill pack scope |
-| BLS | Formula Registry (30+ formulas, Layers A–G), triage engine, 4-dimension confidence scoring, kill-switch library | Confirm formula spec in 01_specs/ |
+| BLS | Formula Registry (30+ formulas, Layers A–G), triage engine, 4-dimension confidence scoring, kill-switch library | Confirm formula spec in 01_specs/; all calculations.ts exports verified |
 | FIS | 5-route UI, bilingual en-US/es-US, WCAG 2.1 AA, toggle-based estimator | Confirm design system spec |
 | DSS | 13-entity schema, versioning, audit log design, migration strategy | Confirm data model spec |
 | IDS | Property data API integration (providers TBD), auth provider (TBD) | Providers confirmed at Phase 3 gate |
@@ -339,18 +344,21 @@ The build must pause immediately if any of the following occur at any phase:
 
 Status note:
 - `Completion report filed` means the phase has a Gate 4A artifact in the repository. It does not mean release clearance.
-- Independent QAS review is complete for Phases 1–5. All prior required fixes (R-001 through R-005) confirmed closed. Phase 6 advancement cleared from QAS side — pending Founder + ARE approval and C-004 resolution.
+- Independent QAS review is complete for Phases 1–5. All prior required fixes (R-001 through R-005) confirmed closed. Phase 6 advancement cleared from QAS side — pending Founder + ARE approval.
+- PEO AI Review Authority Matrix (product-level) created 2026-04-22 — authority now fully scoped to PEO build cell.
+- Agent expert mode activated for all PEO cell specialists as of version 1.2.
 
 | Phase | Status | Documented Approval | Date | Primary Artifact |
 |-------|--------|-------------------|------|------------------|
 | Phase 1 — Governance + Specification | Completion report filed | Not separately recorded in repo | 2026-04-16 | `01_specs/phase-1-completion-report.md` |
 | Phase 2 — Public Website + Free Estimator | Completion report filed | Not separately recorded in repo | 2026-04-16 | `01_specs/phase-2-completion-report.md` |
 | Phase 3 — Seller Application + Triage Engine | Completion report filed | Founder build packet recorded | 2026-04-16 | `01_specs/phase-3-completion-report.md` |
-| Phase 4 — Investor Basic | QAS approved — all required fixes closed | Not verifiable in repo | 2026-04-16 | `01_specs/phase-4-completion-report.md` |
-| Phase 5 — Investor Advanced | QAS approved — all required fixes closed | Not verifiable in repo | 2026-04-16 | `01_specs/phase-5-completion-report.md` |
-| Phase 6 — Marketplace + Admin + Deployment | Prepared — pending Founder + ARE approval | Pending | 2026-04-16 | `01_specs/phase-6-build-packet.md` |
+| Phase 4 — Investor Core Dashboard + Analysis Elevation | QAS approved — all required fixes closed | Not verifiable in repo | 2026-04-16 | `01_specs/phase-4-completion-report.md` |
+| Phase 5 — Investor Elite + App Shell Architecture | QAS approved — all required fixes closed | Not verifiable in repo | 2026-04-16 | `01_specs/phase-5-completion-report.md` |
+| Phase 4–5 Supplemental (Prototype Surpass + Role Consolidation) | QAS review complete — 2 critical findings, 3 high findings | `00_governance/qas-review-phases-4-5-2026-04-22.md` | 2026-04-22 | `00_governance/qas-review-phases-4-5-2026-04-22.md` |
+| Phase 6 — Marketplace + Admin + Deployment | Prepared — pending Founder + ARE approval | Pending | 2026-04-22 | `01_specs/phase-6-build-packet.md` |
 
 ---
 
 *This document is the canonical activation record for the PEO build. It supersedes any informal plans or notes.*
-*Last updated: 2026-04-16 (Phase 6 Class 4 activation prep normalized; prior approval trail remains partially unverified in-repo)*
+*Last updated: 2026-04-22 (v1.2: PEO AI Review Authority Matrix added; agent expert mode activated; cross-references to system architecture and VECS amendment added; 60-agent registry aligned)*

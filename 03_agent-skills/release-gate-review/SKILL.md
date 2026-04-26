@@ -24,8 +24,9 @@ description: Use when a release candidate, launch package, or final delivery set
 1. Confirm the artifact is actually in release-candidate state.
 2. Check QA completion and unresolved blockers.
 3. Verify required approvals and sign-off evidence.
-4. Check deployment, access, and handoff readiness.
-5. Issue a pass, conditional pass, or fail recommendation.
+4. For web builds (T1+): confirm branded error states are present — branded 404 page must carry brand logo, brand voice copy, primary CTA, and homepage navigation link. Absent branded 404 = delivery defect; do not pass.
+5. Check deployment, access, and handoff readiness.
+6. Issue a pass, conditional pass, or fail recommendation.
 
 ## Outputs
 

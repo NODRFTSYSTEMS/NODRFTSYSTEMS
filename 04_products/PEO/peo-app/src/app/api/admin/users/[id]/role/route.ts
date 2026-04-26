@@ -9,10 +9,9 @@ const roleSchema = z.object({
   role: z.enum([
     "anonymous_visitor",
     "free_user",
-    "seller_applicant",
-    "seller_verified",
-    "investor_basic",
-    "investor_advanced",
+    "seller",
+    "investor_core",
+    "investor_elite",
     "vendor",
     "admin_internal",
   ]),

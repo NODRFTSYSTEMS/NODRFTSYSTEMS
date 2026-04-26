@@ -7,7 +7,7 @@ Produced retroactively after protocol breach and Founder authorization.
 ## 1. Build Record
 
 - **Build ID:** WCP-001
-- **Repository:** walcottcostudios (`walcottcapitalgroup/walcottcostudios`)
+- **Repository:** walcottcostudios (`NODRFTSYSTEMS/walcottcostudios`)
 - **Branch or Review Surface:** main
 - **Build Class:** Class 2
 - **Status:** Completed (retroactively authorized)
@@ -80,7 +80,7 @@ Produced retroactively after protocol breach and Founder authorization.
 | preview or runnable artifact | PASS | `http://localhost:8080` | HTTP 200 OK; all assets load |
 | trace or failure evidence | NONE | N/A | No build failures, runtime errors, or deployment failures encountered |
 | screenshots or recordings | N/A | N/A | Not captured; live URL verification used instead |
-| live URL verification | PASS | `https://walcottcapitalgroup.github.io/walcottcostudios/` | HTTP 200; site renders correctly |
+| live URL verification | PASS | `https://NODRFTSYSTEMS.github.io/walcottcostudios/` | HTTP 200; site renders correctly |
 | workflow run verification | PASS | GitHub Actions > Deploy GitHub Pages | Run completed successfully; Pages artifact uploaded and deployed |
 | asset path verification | PASS | `Invoke-WebRequest` on `/` and assets | All required assets return 200; `favicon.ico` 404 resolved by SVG favicon |
 
@@ -125,7 +125,7 @@ Produced retroactively after protocol breach and Founder authorization.
 ## 11. Corrective Build — WCP-HOTFIX-001 (2026-04-18)
 
 **Build Class:** Class 1 — Corrective Build  
-**Trigger:** Founder reported blank pages visible at `https://walcottcapitalgroup.github.io/walcottcostudios/#problem`  
+**Trigger:** Founder reported blank pages visible at `https://NODRFTSYSTEMS.github.io/walcottcostudios/#problem`  
 **Human Owner:** Founder  
 **Build Lead:** FIS (frontend) / TVA (verification) / DRA (deployment)  
 **Reviewer:** QAS (post-execution, same session)
@@ -152,7 +152,7 @@ GSAP `ScrollTrigger` animations in `App.tsx` faded all content (`img`, `.section
 | TypeScript build | PASS | `tsc -b && vite build` — no errors |
 | Vite build | PASS | `347 kB JS`, `86 kB CSS` — clean output |
 | Live URL | PASS | Site accessible; GitHub Actions deployed successfully |
-| Git push | PASS | `c5c536f..ac01017 main -> main` to `walcottcapitalgroup/walcottcostudios` |
+| Git push | PASS | `c5c536f..ac01017 main -> main` to `NODRFTSYSTEMS/walcottcostudios` |
 
 ### Protocol Note
 
@@ -220,7 +220,7 @@ Session began without mandatory preload. Preload was completed mid-session after
 | --- | --- | --- |
 | TypeScript build | PASS | `tsc -b && vite build` — no errors |
 | Vite build | PASS | 367 kB JS, 86 kB CSS — clean output |
-| Git push | PASS | `ac01017..e9d1899 main -> main` to `walcottcapitalgroup/walcottcostudios` |
+| Git push | PASS | `ac01017..e9d1899 main -> main` to `NODRFTSYSTEMS/walcottcostudios` |
 | Live URL | PENDING | GitHub Actions deploying |
 
 ### Open Items for WCP-003

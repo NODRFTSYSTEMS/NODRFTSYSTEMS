@@ -53,6 +53,10 @@
 - Mobile-responsive
 - Basic on-page SEO (meta title, description, headings)
 - Vercel deployment
+- Custom logo design (or use client-provided logo for existing brands)
+- Business signs & card design (print-ready digital files)
+- Branded QR code linked to the website
+- Domain name research and registration
 - 14-day post-launch defect support window
 **Excluded:** Copywriting, photography, CMS, hosting retainer, post-launch features
 **Revision rounds:** 2 rounds of revisions included
@@ -72,6 +76,10 @@
 - Contact form
 - Basic on-page SEO
 - Vercel deployment
+- Custom logo design (or use client-provided logo for existing brands)
+- Business signs & card design (print-ready digital files)
+- Branded QR code linked to the website
+- Domain name research and registration
 - 14-day post-launch defect support window
 **Excluded:** Copywriting, photography, CMS, blog/editorial setup, advanced analytics, hosting retainer, post-launch features
 **Revision rounds:** 2 rounds of revisions included
@@ -92,6 +100,10 @@
 - Basic on-page SEO
 - Google Analytics 4 setup
 - Vercel deployment
+- Custom logo design (or use client-provided logo for existing brands)
+- Business signs & card design (print-ready digital files)
+- Branded QR code linked to the website
+- Domain name research and registration
 - 30-day post-launch defect support window
 **Excluded:** Copywriting, photography, blog setup (add-on), hosting retainer, post-launch features
 **Revision rounds:** 2 rounds per deliverable
@@ -112,6 +124,10 @@
 - WCAG 2.1 AA accessibility compliance
 - Mobile-responsive
 - Vercel deployment
+- Custom logo design (or use client-provided logo for existing brands)
+- Business signs & card design (print-ready digital files)
+- Branded QR code linked to the website
+- Domain name research and registration
 - 30-day post-launch defect support window
 **Excluded:** Copywriting, photography, SEO content strategy (add-on), hosting retainer, post-launch features
 **Requires:** Discovery Sprint OR detailed approved brief from client
@@ -134,6 +150,10 @@
 - Security review
 - WCAG 2.1 AA (key surfaces)
 - Vercel + Supabase deployment
+- Custom logo design (or use client-provided logo for existing brands)
+- Business signs & card design (print-ready digital files)
+- Branded QR code linked to the website
+- Domain name research and registration
 - 45-day post-launch defect support window
 **Excluded:** Copywriting, advanced analytics, multiple payment processors, bilingual content
 **Requires:** Discovery Sprint (T0) completed and signed
@@ -154,6 +174,10 @@
 - Security review and penetration testing scope
 - WCAG 2.1 AA
 - SBOM, CVE review, deployment runbook
+- Custom logo design (or use client-provided logo for existing brands)
+- Business signs & card design (print-ready digital files)
+- Branded QR code linked to the website
+- Domain name research and registration
 - 60-day post-launch defect support window
 **Excluded:** Ongoing product management, post-launch feature roadmap, hosting retainer
 **Requires:** Discovery Sprint (T0) + architecture review by ARE/Founder
@@ -264,10 +288,10 @@ Every engagement clock starts only when all of the following are delivered by th
 | Item | Required For |
 |------|-------------|
 | Written copy for all pages | All tiers (unless Copywriting add-on is purchased) |
-| Logo files (SVG or high-resolution PNG) | All tiers |
+| Existing logo files (SVG or high-resolution PNG), if applicable | All tiers — logo design is included in all build packages; clients with an existing logo may provide it for use instead |
 | Brand guidelines (colors, fonts, tone) | All tiers |
 | Photography and video assets | Any tier where media is expected (or written confirmation that stock/placeholder is acceptable) |
-| Domain access credentials | All tiers |
+| Domain credentials (for existing domains only) | All tiers — domain acquisition is included in all build packages for new registrations; clients transferring an existing domain provide access credentials |
 | Hosting account access (if client-managed) | T1 and above |
 | CMS credentials (if migrating from existing) | Scoped separately via Discovery or Change Order |
 
@@ -281,6 +305,23 @@ Regional pricing is active and Founder-approved for quoting. Before applying reg
 1. Confirm with Founder that the engagement is a Colombia or Jamaica market engagement.
 2. Reference `90_source-documents/commercial/NoDrftSystems_Pricing_Colombia_2026.md` or `_Jamaica_2026.md` for the operative regional rates.
 3. Do not publish regional pricing publicly without Founder authorization.
+
+---
+
+## Public Pricing Display Rule
+
+**Effective 2026-04-25 — Founder approved.**
+
+Only hourly and advisory rates are displayed on the public NoDrftSystems website. All package prices (T0.A through T5), maintenance retainer monthly rates, and content retainer monthly rates are not published publicly.
+
+Pricing is provided directly to prospects after an engagement inquiry is received via the Start an Engagement form.
+
+**Rationale:** Prospects who see a package price before speaking with us may self-select out based on price alone — before understanding scope, inclusions, or value. Direct contact allows proper qualification and scoping before any number is discussed.
+
+**Enforcement:**
+- No proposal, SOW, invoice, or pricing page may publish package prices on any public-facing surface without explicit Founder approval and a Decision Log entry.
+- The `reviewer_pricing_safety` agent must verify compliance before any commercial artifact is released publicly.
+- The CLAUDE.md web_build tier table and `.claude/skills/web_build.md` reflect this rule.
 
 ---
 

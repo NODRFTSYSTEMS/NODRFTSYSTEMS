@@ -8,7 +8,7 @@ Gate 1 output — produced retroactively after protocol breach and Founder autho
 
 - **Build ID:** WCP-001
 - **Build Name:** Initial GitHub Repository Setup, Deployment Pipeline, and Frontend Performance Tweak
-- **Repository:** walcottcostudios (GitHub: walcottcapitalgroup/walcottcostudios)
+- **Repository:** walcottcostudios (GitHub: NODRFTSYSTEMS/walcottcostudios)
 - **Local Path:** `04_products/WCP/`
 - **Branch:** main
 - **Build Class:** Class 2 (standard feature build with deployment configuration)
@@ -32,7 +32,7 @@ Establish GitHub repository structure and deployment pipeline for The Walcott & 
 2. Create `.github/workflows/deploy-pages.yml` for GitHub Actions deployment to GitHub Pages
 3. Create `.github/workflows/ci.yml` for validation checks (build artifact verification, asset reference check)
 4. Create `.gitignore`, `.nojekyll`, `README.md`
-5. Push initial codebase to `https://github.com/walcottcapitalgroup/walcottcostudios`
+5. Push initial codebase to `https://github.com/NODRFTSYSTEMS/walcottcostudios`
 6. Configure GitHub Pages source to **GitHub Actions** (manual Settings step)
 7. Add inline brand-colored loader inside `<div id="root">` to prevent blank white screen during React hydration
 8. Add `<link rel="preload" as="image">` for hero portrait to improve LCP
@@ -56,7 +56,7 @@ Establish GitHub repository structure and deployment pipeline for The Walcott & 
 
 ## 6. Dependencies
 
-- GitHub repository `walcottcapitalgroup/walcottcostudios` created and accessible
+- GitHub repository `NODRFTSYSTEMS/walcottcostudios` created and accessible
 - GitHub Pages enabled on repository with **Source: GitHub Actions**
 - Local build artifacts (`website/` folder) already exist and are deployable
 - Vite build configuration already set (`base: './'`)
@@ -67,7 +67,7 @@ Establish GitHub repository structure and deployment pipeline for The Walcott & 
 ## 7. Acceptance Criteria
 
 1. GitHub Actions workflow triggers automatically on push to `main` when `website/` or workflow files change
-2. Live site accessible at `https://walcottcapitalgroup.github.io/walcottcostudios/`
+2. Live site accessible at `https://NODRFTSYSTEMS.github.io/walcottcostudios/`
 3. No blank white screen during page load — brand loader visible until React hydrates
 4. Hero image (`hero_portrait.jpg`) preloaded in HTML `<head>`
 5. Favicon renders in browser tab (SVG "W" on paper background)

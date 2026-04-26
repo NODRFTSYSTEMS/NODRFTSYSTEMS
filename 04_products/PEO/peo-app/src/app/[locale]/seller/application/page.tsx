@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
+import { track } from "@/lib/events/track";
 
 interface PropertyPreview {
   propertyFacts: {
@@ -89,6 +90,10 @@ export default function NewApplicationPage() {
         if (isDevBypass && appId.startsWith("dev-")) {
           sessionStorage.setItem(`dev-seller-${appId}`, JSON.stringify(data.application));
         }
+        track({
+          event: "application_submitted",
+          props: { applicationId: appId, context: "seller_application" },
+        });
         router.push(`/${locale}/seller/application/${appId}`);
       } else {
         setError(data.error || t("submitError"));
@@ -117,7 +122,7 @@ export default function NewApplicationPage() {
     <div style={{ position: "relative", zIndex: 1 }}>
       <section style={{ padding: "64px 0 48px" }}>
         <div className="container" style={{ maxWidth: "640px" }}>
-          <div className="eyebrow" style={{ marginBottom: "10px" }}>Seller Platform</div>
+          <div className="eyebrow" style={{ marginBottom: "10px" }}>{t("eyebrow")}</div>
           <h1 style={{ fontFamily: "var(--display)", fontWeight: 700, fontSize: "clamp(1.6rem, 3vw, 2.2rem)", color: "var(--text)", letterSpacing: "-0.02em" }}>
             {t("formTitle")}
           </h1>
@@ -252,6 +257,7 @@ export default function NewApplicationPage() {
                   disabled={loading}
                   className="button button-primary"
                   style={{ width: "100%", justifyContent: "center", opacity: loading ? 0.6 : 1 }}
+                  suppressHydrationWarning
                 >
                   {loading ? t("submitting") : t("submit")}
                 </button>

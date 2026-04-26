@@ -17,7 +17,7 @@ export async function GET(
 
     const { id } = await params;
     const app = await prisma.sellerApplication.findUnique({
-      where: { id, context: { in: ["investor_basic_analysis", "investor_advanced_analysis"] } },
+      where: { id, context: { in: ["investor_core_analysis", "investor_elite_analysis"] } },
       include: { triage: true },
     });
 
@@ -56,8 +56,8 @@ export async function GET(
       ].includes(f)
     );
 
-    const isAdvanced = app.context === "investor_advanced_analysis";
-    const isAdvancedRole = session.role === "investor_advanced" || session.role === "admin_internal";
+    const isAdvanced = app.context === "investor_elite_analysis";
+    const isAdvancedRole = session.role === "investor_elite" || session.role === "admin_internal";
 
     const result = {
       applicationId: app.id,

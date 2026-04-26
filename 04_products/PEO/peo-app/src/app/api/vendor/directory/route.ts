@@ -31,7 +31,7 @@ export async function GET(request: NextRequest) {
         website: v.website,
         bio: v.bio,
         reviewCount: v.reviews.length,
-        avgRating: Number(avgRating.toFixed(1)),
+        rating: Number(avgRating.toFixed(1)),
       };
     });
 

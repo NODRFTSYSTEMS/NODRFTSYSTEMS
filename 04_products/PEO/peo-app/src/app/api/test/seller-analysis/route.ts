@@ -17,7 +17,8 @@ const schema = z.object({
 
 function isDevEnv() {
   const clerkKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ?? "";
-  return !clerkKey.startsWith("pk_") || clerkKey === "pk_test_replace_me" || clerkKey.length <= 30;
+  const clerkConfigured = clerkKey.startsWith("pk_") && clerkKey !== "pk_test_replace_me" && clerkKey.length > 30;
+  return !clerkConfigured && process.env.NODE_ENV === "development";
 }
 
 function median(vals: number[]): number | null {
@@ -161,7 +162,7 @@ export async function POST(request: NextRequest) {
   } catch (err) {
     console.error("[/api/test/seller-analysis] Unhandled error:", err);
     return NextResponse.json(
-      { error: "Internal error", detail: err instanceof Error ? err.message : String(err) },
+      { error: "Internal server error" },
       { status: 500 }
     );
   }
