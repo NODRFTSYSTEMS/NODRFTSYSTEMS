@@ -33,7 +33,27 @@ review-extracts/
 .claude/
 edge-headless-profile/
 
-# Internal proprietary governance docs — never commit
+# NoDrftSystems Proprietary — never commit
+CLAUDE.md
+AGENTS.md
 00_governance/
+GITHUB-UPLOAD-PROTOCOL.md
+RELEASE-EVIDENCE-LEDGER.md
+REVIEW-SUMMARY.md
+
+# Internal prompt and skill files — never commit
+.github/prompts/
+.github/skills/
+
+# Internal review and QA artifacts — never commit
+review-package/
+review-docs/
+qa-docs/
+
+# Local mobile/QA capture artifacts — never commit
+mobile-review-*/
+deploy-mobile-*.png
+
+# Internal docs
 docs/design-handoff.md
 docs/stitch-desktop-brief.md

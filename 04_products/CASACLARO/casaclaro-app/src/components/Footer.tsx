@@ -70,9 +70,9 @@ export async function Footer({ locale = "en" }: FooterProps) {
               <Image
                 src="/logo.png"
                 alt="CasaClaro"
-                width={1024}
+                width={995}
                 height={1024}
-                style={{ objectFit: "contain", height: "140px", width: "auto" }}
+                style={{ objectFit: "contain", width: "176px", height: "auto", filter: "brightness(0) invert(1)" }}
               />
             </a>
             <p

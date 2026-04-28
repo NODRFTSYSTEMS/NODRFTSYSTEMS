@@ -44,7 +44,7 @@ export function Header({ locale = "en" }: HeaderProps) {
           style={{
             maxWidth: "var(--max, 1240px)",
             margin: "0 auto",
-            padding: "0 20px",
+            padding: "8px 20px",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
@@ -56,10 +56,10 @@ export function Header({ locale = "en" }: HeaderProps) {
             <Image
               src="/logo.png"
               alt="CasaClaro"
-              width={1024}
+              width={995}
               height={1024}
               priority
-              style={{ objectFit: "contain", height: "120px", width: "auto" }}
+              style={{ objectFit: "contain", width: "176px", height: "auto" }}
             />
           </Link>
 

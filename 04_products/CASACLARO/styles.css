@@ -163,12 +163,14 @@ p { margin: 0 0 1rem; }
 }
 .brand-logo {
   object-fit: contain;
-  height: 44px;
-  width: auto;
+  width: 176px;
+  height: auto;
   display: block;
 }
 .brand-logo--footer {
-  height: 56px;
+  width: 176px;
+  height: auto;
+  filter: brightness(0) invert(1);
 }
 .sr-only {
   position: absolute;
