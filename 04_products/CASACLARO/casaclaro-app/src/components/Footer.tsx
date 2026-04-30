@@ -67,13 +67,14 @@ export async function Footer({ locale = "en" }: FooterProps) {
         >
           {/* Brand */}
           <div>
-            <a href="/" style={{ display: "inline-block", margin: "0 0 10px" }}>
+            <a href="/" style={{ display: "inline-block", margin: "0 0 10px", width: "176px" }}>
               <Image
                 src="/logo.png"
                 alt="CasaClaro"
-                width={995}
-                height={1024}
-                style={{ objectFit: "contain", width: "176px", height: "auto" }}
+                width={176}
+                height={181}
+                style={{ objectFit: "contain" }}
+                priority
               />
             </a>
             <p

@@ -326,7 +326,8 @@ export default async function PartnersPage({ params }: Props) {
 
                     {/* Portrait */}
                     <img
-                      src={`https://picsum.photos/seed/${profile.portraitSeed}/200/200`}
+                      src={`/partners/${profile.portraitSeed}-200.png`}
+                      srcSet={`/partners/${profile.portraitSeed}-200.png 1x, /partners/${profile.portraitSeed}-400.png 2x`}
                       alt={profile.name}
                       width={72}
                       height={72}

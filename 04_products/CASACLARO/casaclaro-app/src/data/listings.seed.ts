@@ -1,20 +1,24 @@
 import type { Listing } from "@/types/listings";
 import { SITE_CONFIG } from "@/config/site.config";
 
-const UNSPLASH = 'https://images.unsplash.com';
+const PICSUM = 'https://picsum.photos';
 const PHOTOS = {
-  modernInterior:   'photo-1600596542815-ffad4c1539a9',
-  livingRoom:       'photo-1555041469-a586c61ea9bc',
-  bedroom:          'photo-1560185007-c5ca9d2c014d',
-  colonialExterior: 'photo-1583995080768-42657321314e',
-  tropicalTerrace:  'photo-1571896349842-33c89424de2d',
-  modernKitchen:    'photo-1556909114-f6e7ad7d3136',
-  rooftopView:      'photo-1522708323590-d24dbb6b0267',
-  modernBathroom:   'photo-1552321554-5fefe8c9ef14',
+  modernInterior:   'casaclaro-interior-1',
+  livingRoom:       'casaclaro-living-1',
+  bedroom:          'casaclaro-bedroom-1',
+  colonialExterior: 'casaclaro-colonial-1',
+  tropicalTerrace:  'casaclaro-terrace-1',
+  modernKitchen:    'casaclaro-kitchen-1',
+  rooftopView:      'casaclaro-rooftop-1',
+  modernBathroom:   'casaclaro-bathroom-1',
+  luxuryPenthouse:  'casaclaro-luxury-1',
+  countryGarden:    'casaclaro-country-1',
+  studioLoft:       'casaclaro-studio-1',
+  coastalSunset:    'casaclaro-sunset-1',
 };
 
-function photoUrl(id: string): string {
-  return `${UNSPLASH}/${id}?w=900&h=600&q=80&auto=format&fit=crop`;
+function photoUrl(seed: string): string {
+  return `${PICSUM}/seed/${seed}/900/600`;
 }
 
 function apartmentPhotos(): Listing["images"] {
@@ -42,6 +46,33 @@ function colonialPhotos(): Listing["images"] {
     { url: photoUrl(PHOTOS.colonialExterior), alt: 'Building exterior', is_primary: true },
     { url: photoUrl(PHOTOS.modernInterior),   alt: 'Interior',          is_primary: false },
     { url: photoUrl(PHOTOS.livingRoom),       alt: 'Living room',       is_primary: false },
+  ];
+}
+
+function luxuryPhotos(): Listing["images"] {
+  return [
+    { url: photoUrl(PHOTOS.luxuryPenthouse),  alt: 'Penthouse living',  is_primary: true },
+    { url: photoUrl(PHOTOS.modernKitchen),    alt: 'Gourmet kitchen',   is_primary: false },
+    { url: photoUrl(PHOTOS.rooftopView),      alt: 'Rooftop terrace',   is_primary: false },
+    { url: photoUrl(PHOTOS.modernBathroom),   alt: 'Master bath',       is_primary: false },
+    { url: photoUrl(PHOTOS.bedroom),          alt: 'Master bedroom',    is_primary: false },
+  ];
+}
+
+function countryPhotos(): Listing["images"] {
+  return [
+    { url: photoUrl(PHOTOS.countryGarden),    alt: 'Garden view',       is_primary: true },
+    { url: photoUrl(PHOTOS.livingRoom),       alt: 'Living room',       is_primary: false },
+    { url: photoUrl(PHOTOS.modernKitchen),    alt: 'Kitchen',           is_primary: false },
+    { url: photoUrl(PHOTOS.bedroom),          alt: 'Bedroom',           is_primary: false },
+  ];
+}
+
+function studioPhotos(): Listing["images"] {
+  return [
+    { url: photoUrl(PHOTOS.studioLoft),       alt: 'Loft studio',       is_primary: true },
+    { url: photoUrl(PHOTOS.modernBathroom),   alt: 'Bathroom',          is_primary: false },
+    { url: photoUrl(PHOTOS.rooftopView),      alt: 'Building view',     is_primary: false },
   ];
 }
 
@@ -820,6 +851,484 @@ export const SYNTHETIC_LISTINGS: Listing[] = [
     is_synthetic: true,
     listed_at: "2026-04-05T08:30:00Z",
     updated_at: "2026-04-11T13:00:00Z",
+  },
+
+  // ─── Bucaramanga (2 records) ────────────────────────────────────────────────
+  {
+    id: "bga-001",
+    slug: "cabecera-apartment-sale-bga-001",
+    listing_type: "sale",
+    property_type: "apartment",
+    city: "Bucaramanga",
+    city_slug: "bucaramanga",
+    neighborhood: "Cabecera",
+    address_summary: "Near Parque de las Ardillas",
+    price_usd: 178000,
+    price_cop: cop(178000),
+    area_sqm: 85,
+    bedrooms: 2,
+    bathrooms: 2,
+    parking_spots: 1,
+    furnished: false,
+    vetting_level: "fully_vetted",
+    vetting_report: {
+      title_clear: true,
+      legal_review_complete: true,
+      property_inspection_done: true,
+      hoa_rules_reviewed: true,
+      short_term_rental_permitted: false,
+      reviewer: "CasaClaro Professional Review Team",
+      reviewed_at: "2026-03-22",
+    },
+    vetting_summary_bullets: [
+      "Title clear — registered ownership confirmed",
+      "Full inspection and legal review complete",
+      "HOA: long-term rental only",
+    ],
+    images: apartmentPhotos(),
+    description_en:
+      "Modern two-bedroom apartment in Cabecera, Bucaramanga's most upscale neighborhood. Close to shopping, universities, and the city's best restaurants. Excellent value in a safe, walkable zone.",
+    description_es:
+      "Moderno apartamento de dos habitaciones en Cabecera, el barrio más exclusivo de Bucaramanga. Cerca de centros comerciales, universidades y los mejores restaurantes. Excelente valor en una zona segura y caminable.",
+    is_synthetic: true,
+    listed_at: "2026-04-02T09:00:00Z",
+    updated_at: "2026-04-10T14:00:00Z",
+  },
+  {
+    id: "bga-002",
+    slug: "san-francisco-apartment-rental-bga-002",
+    listing_type: "rental",
+    property_type: "apartment",
+    city: "Bucaramanga",
+    city_slug: "bucaramanga",
+    neighborhood: "San Francisco",
+    address_summary: "Near Centro Comercial Cacique",
+    price_usd: 1100,
+    price_cop: cop(1100),
+    area_sqm: 70,
+    bedrooms: 2,
+    bathrooms: 1,
+    parking_spots: 1,
+    furnished: true,
+    vetting_level: "professional_review",
+    vetting_report: {
+      title_clear: true,
+      legal_review_complete: false,
+      property_inspection_done: true,
+      hoa_rules_reviewed: true,
+      short_term_rental_permitted: null,
+      reviewer: "Licensed Santander Real Estate Professional",
+      reviewed_at: "2026-04-08",
+    },
+    vetting_summary_bullets: [
+      "Inspection passed — building in good condition",
+      "HOA rules reviewed",
+      "Legal review in progress",
+    ],
+    images: apartmentPhotos(),
+    description_en:
+      "Furnished two-bedroom apartment in San Francisco with quick access to shopping and the airport. Ideal for professionals on medium-term assignments.",
+    description_es:
+      "Apartamento amoblado de dos habitaciones en San Francisco con acceso rápido a centros comerciales y al aeropuerto. Ideal para profesionales en asignaciones de mediano plazo.",
+    is_synthetic: true,
+    listed_at: "2026-04-09T11:00:00Z",
+    updated_at: "2026-04-14T10:00:00Z",
+  },
+
+  // ─── Armenia (2 records) ────────────────────────────────────────────────────
+  {
+    id: "arm-001",
+    slug: "norte-house-sale-arm-001",
+    listing_type: "sale",
+    property_type: "house",
+    city: "Armenia",
+    city_slug: "armenia",
+    neighborhood: "Norte",
+    address_summary: "Near Parque de la Vida",
+    price_usd: 210000,
+    price_cop: cop(210000),
+    area_sqm: 180,
+    bedrooms: 3,
+    bathrooms: 2,
+    parking_spots: 2,
+    furnished: false,
+    vetting_level: "fully_vetted",
+    vetting_report: {
+      title_clear: true,
+      legal_review_complete: true,
+      property_inspection_done: true,
+      hoa_rules_reviewed: false,
+      short_term_rental_permitted: null,
+      reviewer: "CasaClaro Professional Review Team",
+      reviewed_at: "2026-03-18",
+    },
+    vetting_summary_bullets: [
+      "Title clear — single owner",
+      "Full structural and legal review complete",
+      "Garden and outdoor area inspected",
+    ],
+    images: countryPhotos(),
+    description_en:
+      "Charming three-bedroom house in Armenia's Norte district with a private garden and covered terrace. Located in the heart of the Coffee Region, 20 minutes from Parque Nacional del Café.",
+    description_es:
+      "Encantadora casa de tres habitaciones en el sector Norte de Armenia con jardín privado y terraza cubierta. Ubicada en el corazón del Eje Cafetero, a 20 minutos del Parque Nacional del Café.",
+    is_synthetic: true,
+    listed_at: "2026-03-28T08:00:00Z",
+    updated_at: "2026-04-07T12:00:00Z",
+  },
+  {
+    id: "arm-002",
+    slug: "centenario-apartment-rental-arm-002",
+    listing_type: "long_term_rental",
+    property_type: "apartment",
+    city: "Armenia",
+    city_slug: "armenia",
+    neighborhood: "Centenario",
+    address_summary: "Near Avenida Bolívar",
+    price_usd: 850,
+    price_cop: cop(850),
+    area_sqm: 60,
+    bedrooms: 2,
+    bathrooms: 1,
+    parking_spots: 1,
+    furnished: false,
+    vetting_level: "basic",
+    vetting_summary_bullets: [
+      "Owner-submitted listing",
+      "Contact and property details verified",
+    ],
+    images: apartmentPhotos(),
+    description_en:
+      "Unfurnished two-bedroom apartment in Centenario, a central Armenia neighborhood with easy access to public transport and the city's commercial core.",
+    description_es:
+      "Apartamento de dos habitaciones sin amueblar en Centenario, barrio céntrico de Armenia con fácil acceso al transporte público y al núcleo comercial de la ciudad.",
+    is_synthetic: true,
+    listed_at: "2026-04-12T10:00:00Z",
+    updated_at: "2026-04-12T10:00:00Z",
+  },
+
+  // ─── Medellín (1 additional record) ─────────────────────────────────────────
+  {
+    id: "mde-005",
+    slug: "el-poblado-luxury-penthouse-mde-005",
+    listing_type: "sale",
+    property_type: "penthouse",
+    city: "Medellín",
+    city_slug: "medellin",
+    neighborhood: "El Poblado",
+    address_summary: "Near Provenza, panoramic valley views",
+    price_usd: 650000,
+    price_cop: cop(650000),
+    area_sqm: 210,
+    bedrooms: 3,
+    bathrooms: 3,
+    parking_spots: 2,
+    furnished: false,
+    vetting_level: "fully_vetted",
+    vetting_report: {
+      title_clear: true,
+      legal_review_complete: true,
+      property_inspection_done: true,
+      hoa_rules_reviewed: true,
+      short_term_rental_permitted: false,
+      reviewer: "CasaClaro Professional Review Team",
+      reviewed_at: "2026-02-28",
+    },
+    vetting_summary_bullets: [
+      "Title clear — registered in single name",
+      "Full legal, structural, and systems review complete",
+      "HOA: long-term rental permitted, short-term not permitted",
+    ],
+    images: luxuryPhotos(),
+    description_en:
+      "Ultra-luxury three-bedroom penthouse in El Poblado with 360° valley views, private rooftop pool, and smart-home integration. One of the most exclusive addresses in Medellín.",
+    description_es:
+      "Penthouse ultra-lujoso de tres habitaciones en El Poblado con vistas panorámicas de 360°, piscina privada en azotea e integración de hogar inteligente. Una de las direcciones más exclusivas de Medellín.",
+    is_synthetic: true,
+    listed_at: "2026-03-10T09:00:00Z",
+    updated_at: "2026-04-05T16:00:00Z",
+  },
+
+  // ─── Bogotá (1 additional record) ───────────────────────────────────────────
+  {
+    id: "bog-004",
+    slug: "chapinero-studio-rental-bog-004",
+    listing_type: "rental",
+    property_type: "studio",
+    city: "Bogotá",
+    city_slug: "bogota",
+    neighborhood: "Chapinero",
+    address_summary: "Near Calle 63 TransMilenio",
+    price_usd: 780,
+    price_cop: cop(780),
+    area_sqm: 38,
+    bedrooms: 0,
+    bathrooms: 1,
+    parking_spots: 0,
+    furnished: true,
+    vetting_level: "professional_review",
+    vetting_report: {
+      title_clear: true,
+      legal_review_complete: false,
+      property_inspection_done: true,
+      hoa_rules_reviewed: true,
+      short_term_rental_permitted: null,
+      reviewer: "Licensed Cundinamarca Real Estate Professional",
+      reviewed_at: "2026-04-10",
+    },
+    vetting_summary_bullets: [
+      "Inspection passed — recently renovated",
+      "HOA rules reviewed",
+    ],
+    images: studioPhotos(),
+    description_en:
+      "Compact furnished studio in Chapinero, perfect for a solo remote worker or student. Fast internet, laundry in building, and steps from TransMilenio.",
+    description_es:
+      "Estudio amoblado compacto en Chapinero, perfecto para un trabajador remoto o estudiante. Internet rápido, lavandería en el edificio y a pasos del TransMilenio.",
+    is_synthetic: true,
+    listed_at: "2026-04-14T08:00:00Z",
+    updated_at: "2026-04-14T08:00:00Z",
+  },
+
+  // ─── Cartagena (1 additional record) ────────────────────────────────────────
+  {
+    id: "ctg-004",
+    slug: "castillogrande-penthouse-sale-ctg-004",
+    listing_type: "sale",
+    property_type: "penthouse",
+    city: "Cartagena",
+    city_slug: "cartagena",
+    neighborhood: "Castillogrande",
+    address_summary: "Oceanfront, private elevator",
+    price_usd: 480000,
+    price_cop: cop(480000),
+    area_sqm: 195,
+    bedrooms: 3,
+    bathrooms: 3,
+    parking_spots: 2,
+    furnished: false,
+    vetting_level: "fully_vetted",
+    vetting_report: {
+      title_clear: true,
+      legal_review_complete: true,
+      property_inspection_done: true,
+      hoa_rules_reviewed: true,
+      short_term_rental_permitted: true,
+      reviewer: "CasaClaro Professional Review Team",
+      reviewed_at: "2026-03-15",
+    },
+    vetting_summary_bullets: [
+      "Title clear — oceanfront ownership verified",
+      "Full inspection and legal review complete",
+      "Short-term rental permitted under local regulation",
+    ],
+    images: luxuryPhotos(),
+    description_en:
+      "Three-bedroom oceanfront penthouse in Castillogrande with private elevator, rooftop terrace, and direct bay views. One of Cartagena's most prestigious addresses.",
+    description_es:
+      "Penthouse frente al mar de tres habitaciones en Castillogrande con ascensor privado, terraza en azotea y vistas directas a la bahía. Una de las direcciones más prestigiosas de Cartagena.",
+    is_synthetic: true,
+    listed_at: "2026-03-22T09:00:00Z",
+    updated_at: "2026-04-08T14:00:00Z",
+  },
+
+  // ─── Cali (1 additional record) ─────────────────────────────────────────────
+  {
+    id: "cal-003",
+    slug: "san-antonio-house-sale-cal-003",
+    listing_type: "sale",
+    property_type: "house",
+    city: "Cali",
+    city_slug: "cali",
+    neighborhood: "San Antonio",
+    address_summary: "Colonial street near Parque Artesanal",
+    price_usd: 165000,
+    price_cop: cop(165000),
+    area_sqm: 140,
+    bedrooms: 3,
+    bathrooms: 2,
+    parking_spots: 1,
+    furnished: false,
+    vetting_level: "professional_review",
+    vetting_report: {
+      title_clear: true,
+      legal_review_complete: false,
+      property_inspection_done: true,
+      hoa_rules_reviewed: false,
+      short_term_rental_permitted: null,
+      reviewer: "Licensed Valle del Cauca Real Estate Professional",
+      reviewed_at: "2026-04-06",
+    },
+    vetting_summary_bullets: [
+      "Title clear — heritage overlay noted",
+      "Structural inspection passed",
+      "Heritage zoning restrictions apply",
+    ],
+    images: colonialPhotos(),
+    description_en:
+      "Restored three-bedroom house in Cali's historic San Antonio neighborhood. High ceilings, internal courtyard, and walking distance to the city's best salsa venues and cultural spaces.",
+    description_es:
+      "Casa restaurada de tres habitaciones en el histórico barrio San Antonio de Cali. Techos altos, patio interior y a pie de las mejores salsotecas y espacios culturales de la ciudad.",
+    is_synthetic: true,
+    listed_at: "2026-04-07T10:00:00Z",
+    updated_at: "2026-04-13T11:00:00Z",
+  },
+
+  // ─── Barranquilla (1 additional record) ─────────────────────────────────────
+  {
+    id: "baq-003",
+    slug: "villa-campestre-townhouse-sale-baq-003",
+    listing_type: "sale",
+    property_type: "townhouse",
+    city: "Barranquilla",
+    city_slug: "barranquilla",
+    neighborhood: "Villa Campestre",
+    address_summary: "Near Buenavista shopping district",
+    price_usd: 275000,
+    price_cop: cop(275000),
+    area_sqm: 175,
+    bedrooms: 3,
+    bathrooms: 3,
+    parking_spots: 2,
+    furnished: false,
+    vetting_level: "fully_vetted",
+    vetting_report: {
+      title_clear: true,
+      legal_review_complete: true,
+      property_inspection_done: true,
+      hoa_rules_reviewed: true,
+      short_term_rental_permitted: null,
+      reviewer: "CasaClaro Professional Review Team",
+      reviewed_at: "2026-03-20",
+    },
+    vetting_summary_bullets: [
+      "Title clear — no liens or encumbrances",
+      "Full structural and legal review complete",
+      "HOA in good standing",
+    ],
+    images: apartmentPhotos(),
+    description_en:
+      "Modern three-bedroom townhouse in Villa Campestre with private garden, covered terrace, and double garage. Close to shopping, international schools, and the Caribbean coast.",
+    description_es:
+      "Moderna casa adosada de tres habitaciones en Villa Campestre con jardín privado, terraza cubierta y doble garaje. Cerca de centros comerciales, colegios internacionales y la costa Caribe.",
+    is_synthetic: true,
+    listed_at: "2026-03-25T08:00:00Z",
+    updated_at: "2026-04-06T10:00:00Z",
+  },
+
+  // ─── Santa Marta (1 additional record) ──────────────────────────────────────
+  {
+    id: "smt-003",
+    slug: "taganga-house-rental-smt-003",
+    listing_type: "long_term_rental",
+    property_type: "house",
+    city: "Santa Marta",
+    city_slug: "santa-marta",
+    neighborhood: "Taganga",
+    address_summary: "Hillside with bay views",
+    price_usd: 1400,
+    price_cop: cop(1400),
+    area_sqm: 130,
+    bedrooms: 3,
+    bathrooms: 2,
+    parking_spots: 1,
+    furnished: true,
+    vetting_level: "professional_review",
+    vetting_report: {
+      title_clear: true,
+      legal_review_complete: false,
+      property_inspection_done: true,
+      hoa_rules_reviewed: false,
+      short_term_rental_permitted: true,
+      reviewer: "Licensed Magdalena Real Estate Professional",
+      reviewed_at: "2026-04-09",
+    },
+    vetting_summary_bullets: [
+      "Inspection passed — hillside construction verified",
+      "Short-term rental permitted in this zone",
+    ],
+    images: coastalPhotos(),
+    description_en:
+      "Furnished three-bedroom hillside house in Taganga with bay views, outdoor kitchen, and a short walk to the beach. Ideal for remote workers seeking a coastal lifestyle.",
+    description_es:
+      "Casa amoblada de tres habitaciones en la ladera de Taganga con vistas a la bahía, cocina exterior y caminata corta a la playa. Ideal para trabajadores remotos que buscan estilo de vida costero.",
+    is_synthetic: true,
+    listed_at: "2026-04-10T09:00:00Z",
+    updated_at: "2026-04-15T10:00:00Z",
+  },
+
+  // ─── Pereira (1 additional record) ──────────────────────────────────────────
+  {
+    id: "per-003",
+    slug: "pinares-penthouse-sale-per-003",
+    listing_type: "sale",
+    property_type: "penthouse",
+    city: "Pereira",
+    city_slug: "pereira",
+    neighborhood: "Pinares",
+    address_summary: "Near Unicentro Pereira, mountain views",
+    price_usd: 245000,
+    price_cop: cop(245000),
+    area_sqm: 155,
+    bedrooms: 3,
+    bathrooms: 2,
+    parking_spots: 2,
+    furnished: false,
+    vetting_level: "fully_vetted",
+    vetting_report: {
+      title_clear: true,
+      legal_review_complete: true,
+      property_inspection_done: true,
+      hoa_rules_reviewed: true,
+      short_term_rental_permitted: false,
+      reviewer: "CasaClaro Professional Review Team",
+      reviewed_at: "2026-03-12",
+    },
+    vetting_summary_bullets: [
+      "Title clear and registered",
+      "Full inspection and legal review complete",
+      "HOA: long-term rental only",
+    ],
+    images: luxuryPhotos(),
+    description_en:
+      "Spacious three-bedroom penthouse in Pinares with mountain views, private terrace, and high-end finishes. Exceptional value for a penthouse in the Coffee Region.",
+    description_es:
+      "Amplio penthouse de tres habitaciones en Pinares con vistas a la montaña, terraza privada y acabados de alta gama. Valor excepcional para un penthouse en el Eje Cafetero.",
+    is_synthetic: true,
+    listed_at: "2026-03-18T08:00:00Z",
+    updated_at: "2026-04-07T12:00:00Z",
+  },
+
+  // ─── Manizales (1 additional record) ────────────────────────────────────────
+  {
+    id: "mzl-002",
+    slug: "palogrande-apartment-rental-mzl-002",
+    listing_type: "rental",
+    property_type: "apartment",
+    city: "Manizales",
+    city_slug: "manizales",
+    neighborhood: "Palogrande",
+    address_summary: "Near Universidad de Caldas",
+    price_usd: 920,
+    price_cop: cop(920),
+    area_sqm: 75,
+    bedrooms: 2,
+    bathrooms: 2,
+    parking_spots: 1,
+    furnished: true,
+    vetting_level: "basic",
+    vetting_summary_bullets: [
+      "Owner-submitted listing reviewed for completeness",
+      "Contact verified",
+    ],
+    images: apartmentPhotos(),
+    description_en:
+      "Furnished two-bedroom apartment in Palogrande, a quiet university neighborhood with mountain views and easy access to Manizales's cultural center.",
+    description_es:
+      "Apartamento amoblado de dos habitaciones en Palogrande, barrio universitario tranquilo con vistas a la montaña y fácil acceso al centro cultural de Manizales.",
+    is_synthetic: true,
+    listed_at: "2026-04-13T10:00:00Z",
+    updated_at: "2026-04-13T10:00:00Z",
   },
 ];
 
