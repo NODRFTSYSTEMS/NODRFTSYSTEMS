@@ -37,7 +37,11 @@ export async function POST(req: NextRequest) {
   }
 
   const webhookUrl = process.env.FORM_WEBHOOK_URL;
-  if (webhookUrl) {
+  if (!webhookUrl) {
+    console.error("FORM_WEBHOOK_URL not configured");
+    return NextResponse.json({ ok: false, error: "Service unavailable" }, { status: 503 });
+  }
+  {
     try {
       const payload = {
         type: "careers",

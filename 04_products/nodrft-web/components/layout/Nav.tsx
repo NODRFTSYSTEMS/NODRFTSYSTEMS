@@ -11,6 +11,7 @@ type NavKey =
   | "home"
   | "capabilities"
   | "engagements"
+  | "insights"
   | "about"
   | "start"
   | "careers"
@@ -25,6 +26,7 @@ const NAV_LINKS: NavLink[] = [
   { href: "/", key: "home" },
   { href: "/capabilities", key: "capabilities" },
   { href: "/engagements", key: "engagements" },
+  { href: "/insights", key: "insights" },
   { href: "/about", key: "about" },
   { href: "/start", key: "start" },
   { href: "/careers", key: "careers" },
@@ -65,8 +67,8 @@ export function Nav() {
   }, [menuOpen]);
 
   function isActive(href: string) {
-    if (href === "/") return pathname === "/";
-    return pathname.startsWith(href);
+    if (href === "/") return pathname === `/${locale}`;
+    return pathname.startsWith(localHref(href));
   }
 
   function localHref(href: string) {
