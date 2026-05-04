@@ -97,8 +97,8 @@ export function Nav() {
               <svg
                 className="nav__logo-svg"
                 viewBox="0 0 280 60"
-                width="140"
-                height="30"
+                width="206"
+                height="44"
                 role="img"
                 aria-labelledby="navLogoTitle"
               >
@@ -124,9 +124,9 @@ export function Nav() {
                     y="28"
                     fill="var(--ink)"
                     fontFamily="Inter, Helvetica Neue, Arial, sans-serif"
-                    fontSize="24"
+                    fontSize="30"
                     fontWeight="600"
-                    letterSpacing="-0.5"
+                    letterSpacing="-0.8"
                   >
                     NoDrft
                     <tspan fill="var(--accent)" fontWeight="700">

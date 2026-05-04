@@ -387,7 +387,7 @@ textarea:focus:not(:focus-visible) {
   flex-shrink: 0;
 }
 .nav__logo:hover { color: var(--accent); }
-.nav__logo-svg { display: block; height: 38px; width: auto; }
+.nav__logo-svg { display: block; height: 44px; width: auto; }
 
 .nav__links {
   display: flex;
@@ -647,7 +647,7 @@ textarea:focus:not(:focus-visible) {
 /* --- 768px: nav collapse, 2-col drops to 1-col --- */
 @media (max-width: 768px) {
   .nav__links      { display: none; }
-  .nav__logo-svg   { height: 32px; }
+  .nav__logo-svg   { height: 36px; }
   .nav__toggle     { display: flex !important; }
 
   .nd-section      { padding: 64px var(--space-5); }
