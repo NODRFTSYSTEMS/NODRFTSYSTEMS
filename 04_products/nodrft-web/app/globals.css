@@ -270,11 +270,13 @@ textarea:focus:not(:focus-visible) {
    -------------------------------------------------------------------------- */
 .nd-geo-bg {
   position: relative;
+  isolation: isolate;
 }
 .nd-geo-bg::before {
   content: '';
   position: absolute;
   inset: 0;
+  z-index: -1;
   pointer-events: none;
   background-image:
     linear-gradient(24deg, transparent 48%, var(--geo-line) 49%, var(--geo-line) 51%, transparent 52%),
@@ -288,11 +290,13 @@ textarea:focus:not(:focus-visible) {
 
 .nd-grid-bg {
   position: relative;
+  isolation: isolate;
 }
 .nd-grid-bg::before {
   content: '';
   position: absolute;
   inset: 0;
+  z-index: -1;
   pointer-events: none;
   background-image:
     linear-gradient(to right, var(--geo-line) 1px, transparent 1px),
