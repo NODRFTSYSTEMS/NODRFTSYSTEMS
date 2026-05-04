@@ -1,0 +1,120 @@
+{
+  "nav": {
+    "ariaLabel": "Navegación principal",
+    "mobileMenuLabel": "Navegación móvil",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "home": "Inicio",
+    "capabilities": "Paquetes Web",
+    "engagements": "Proyectos Seleccionados",
+    "insights": "Perspectivas",
+    "about": "Nosotros",
+    "start": "Iniciar Proyecto",
+    "careers": "Carreras",
+    "inquiries": "Consultas",
+    "onboarding": "Incorporación"
+  },
+  "footer": {
+    "tagline": "Paquetes de sitios web y desarrollos digitales estructurados para equipos que necesitan mejor posicionamiento, recorridos de compradores más sólidos y una entrega disciplinada.",
+    "workLabel": "Trabajo",
+    "companyLabel": "Empresa",
+    "capabilities": "Paquetes Web",
+    "engagements": "Proyectos Seleccionados",
+    "insights": "Perspectivas",
+    "about": "Nosotros",
+    "careers": "Carreras",
+    "inquiries": "Consultas",
+    "privacy": "Privacidad",
+    "terms": "Términos",
+    "copyright": "© {year} NoDrftSystems. Todos los derechos reservados."
+  },
+  "common": {
+    "skipToContent": "Saltar al contenido",
+    "startEngagement": "Iniciar un Proyecto",
+    "explorePackages": "Explorar Paquetes",
+    "learnMore": "Saber Más"
+  },
+  "meta": {
+    "home": {
+      "title": "NoDrftSystems — Entrega Digital de Precisión",
+      "description": "Paquetes de sitios web y desarrollos digitales estructurados para equipos que necesitan mejor posicionamiento, recorridos de compradores más sólidos y entrega disciplinada."
+    },
+    "capabilities": {
+      "title": "Paquetes Web — NoDrftSystems",
+      "description": "Paquetes de sitios web con alcance claramente definido, desde páginas de aterrizaje hasta plataformas completas. Sin alcance oculto, sin desvío de scope."
+    },
+    "engagements": {
+      "title": "Proyectos Seleccionados — NoDrftSystems",
+      "description": "Una selección de proyectos anteriores en sitios web, plataformas digitales e infraestructura de contenido."
+    },
+    "insights": {
+      "title": "Perspectivas — NoDrftSystems",
+      "description": "Perspectivas sobre entrega digital, estructura de sitios web y práctica de construcción disciplinada."
+    },
+    "about": {
+      "title": "Nosotros — NoDrftSystems",
+      "description": "NoDrftSystems es un estudio digital de precisión que entrega sitios web y plataformas bajo un estándar de Cero Desviación."
+    },
+    "start": {
+      "title": "Iniciar Proyecto — NoDrftSystems",
+      "description": "Cuéntenos sobre su proyecto. Revisamos cada solicitud y respondemos en dos días hábiles."
+    },
+    "careers": {
+      "title": "Carreras — NoDrftSystems",
+      "description": "NoDrftSystems trabaja con un pequeño número de especialistas verificados. Si su trabajo es excepcional, queremos saber de usted."
+    },
+    "inquiries": {
+      "title": "Consultas — NoDrftSystems",
+      "description": "Consultas generales, conversaciones de asociación y todo lo que no encaje en un formulario de compromiso estándar."
+    },
+    "privacy": {
+      "title": "Política de Privacidad — NoDrftSystems",
+      "description": "Cómo NoDrftSystems recopila, utiliza y protege su información."
+    },
+    "terms": {
+      "title": "Términos de Servicio — NoDrftSystems",
+      "description": "Términos que rigen el uso de los servicios de NoDrftSystems y este sitio web."
+    },
+    "onboarding": {
+      "title": "Incorporación de Clientes — NoDrftSystems",
+      "description": "Información de inicio de proyecto para clientes activos de NoDrftSystems."
+    }
+  },
+  "home": {
+    "markerLabel": "NoDrftSystems",
+    "headline1": "Sitios web diseñados para rendir—",
+    "headline2": "estructurados para durar.",
+    "lead": "Sitios web modernos y plataformas digitales para organizaciones que necesitan mejor posicionamiento, mayor conversión y una ejecución más disciplinada.",
+    "whyLabel": "Por qué esto importa",
+    "whyHeadline": "Su presencia digital se evalúa antes que usted.",
+    "whyBody": "Esto es especialmente cierto para las empresas que no dependen del marketing, las que crecen a través de relaciones y referencias. El sitio web no es la estrategia de ventas. Pero cuando contradice la calidad real de la empresa, cuesta acuerdos que nunca se registraron como pérdidas.",
+    "strengthsLabel": "Por qué NoDrftSystems",
+    "strength1Title": "Claridad Primero",
+    "strength1Body": "El alcance se confirma antes de iniciar. Sin sorpresas.",
+    "strength2Title": "Entrega Estructurada",
+    "strength2Body": "Paquetes definidos con inclusiones y exclusiones claras.",
+    "strength3Title": "Cero Desviación",
+    "strength3Body": "Lo entregado se mantiene correcto después del traspaso.",
+    "strength4Title": "Listo Bilingüe",
+    "strength4Body": "Estructura bilingüe integrada desde el inicio. Entrega bilingüe completa disponible en cualquier paquete.",
+    "strength5Title": "Serio y Discreto",
+    "strength5Body": "Manejo profesional de proyectos sensibles.",
+    "costsLabel": "Lo que cuesta en silencio",
+    "costsHeadline": "La infraestructura digital débil tiene un costo que rara vez aparece en el presupuesto.",
+    "cost1Title": "Pérdida de credibilidad",
+    "cost1Body": "Los prospectos evalúan su sitio antes que a su equipo. Un sitio desactualizado crea una brecha de credibilidad que el equipo debe cerrar en cada conversación.",
+    "cost2Title": "Fuga de referencias",
+    "cost2Body": "El boca a boca todavía convierte, hasta que el sitio socava la referencia. Una presentación cálida llega, pero una presencia digital débil la frena antes de que se haga contacto.",
+    "cost3Title": "Fuga de conversión",
+    "cost3Body": "El tráfico que no convierte no es un problema de tráfico. Es un problema de estructura del sitio. Sin jerarquía clara y enrutamiento, los visitantes se van sin actuar.",
+    "cost4Title": "Fricción de ventas",
+    "cost4Body": "Un sitio mal estructurado obliga a los equipos de ventas a repetir contexto y enviar material manual. Cada conversación lleva una carga que el sitio debería manejar.",
+    "cost5Title": "Arrastre operacional",
+    "cost5Body": "Los sitios construidos sin estructura CMS o arquitectura documentada requieren intervención del desarrollador para actualizaciones básicas. Ese costo se acumula.",
+    "ctaLabel": "Listos cuando usted lo esté",
+    "ctaHeadline": "Inicie una conversación. No un proceso de ventas.",
+    "ctaBody": "Cuéntenos qué está construyendo. Le diremos honestamente si podemos ayudar.",
+    "ctaButton": "Iniciar un Proyecto",
+    "ctaSecondary": "Explorar Paquetes"
+  }
+}
