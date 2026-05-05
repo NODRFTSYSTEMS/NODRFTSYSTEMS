@@ -392,6 +392,13 @@ textarea:focus:not(:focus-visible) {
 }
 .nav__logo:hover { color: var(--accent); }
 .nav__logo-svg { display: block; height: 44px; width: auto; }
+.nav__logo-img {
+  display: block;
+  height: 40px;
+  width: auto;
+  transition: opacity var(--transition-fast);
+}
+.nav__logo:hover .nav__logo-img { opacity: 0.82; }
 
 .nav__links {
   display: flex;
@@ -758,6 +765,7 @@ textarea:focus:not(:focus-visible) {
 /* --- 768px: logo sizing, 2-col drops to 1-col --- */
 @media (max-width: 768px) {
   .nav__logo-svg   { height: 36px; }
+  .nav__logo-img   { height: 32px; }
 
   .nd-section      { padding: 64px var(--space-5); }
   .nd-section--tight { padding: 40px var(--space-5); }

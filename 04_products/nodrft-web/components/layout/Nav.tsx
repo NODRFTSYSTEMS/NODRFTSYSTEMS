@@ -3,6 +3,7 @@
 import { useTranslations, useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { LanguageToggle } from "./LanguageToggle";
 import { ThemeToggle } from "./ThemeToggle";
@@ -127,47 +128,14 @@ export function Nav() {
           <div className="nav__inner">
             {/* Logo */}
             <Link href={localHref("/")} className="nav__logo" aria-label="NoDrftSystems home">
-              <svg
-                className="nav__logo-svg"
-                viewBox="0 0 280 60"
-                width="206"
-                height="44"
-                role="img"
-                aria-labelledby="navLogoTitle"
-              >
-                <title id="navLogoTitle">NoDrftSystems</title>
-                <defs>
-                  <linearGradient id="nav-teal" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#2B5854" />
-                    <stop offset="100%" stopColor="#3A7A74" />
-                  </linearGradient>
-                  <linearGradient id="nav-copper" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#9C5B28" />
-                    <stop offset="100%" stopColor="#7A4620" />
-                  </linearGradient>
-                </defs>
-                <g transform="translate(6 6)">
-                  <path d="M0 24 L18 0 L18 48 L0 24Z" fill="url(#nav-copper)" opacity="0.9" />
-                  <path d="M20 24 L38 0 L38 48 L20 24Z" fill="url(#nav-teal)" />
-                  <path d="M18 16 L20 16 L20 32 L18 32 Z" fill="#1D3F3C" />
-                </g>
-                <g transform="translate(56 14)">
-                  <text
-                    x="0"
-                    y="28"
-                    fill="var(--ink)"
-                    fontFamily="Inter, Helvetica Neue, Arial, sans-serif"
-                    fontSize="30"
-                    fontWeight="600"
-                    letterSpacing="-0.8"
-                  >
-                    NoDrft
-                    <tspan fill="var(--accent)" fontWeight="700">
-                      Systems
-                    </tspan>
-                  </text>
-                </g>
-              </svg>
+              <Image
+                src="/assets/nodrftsystems-banner.png"
+                alt=""
+                width={2172}
+                height={724}
+                className="nav__logo-img"
+                priority
+              />
             </Link>
 
             {/* Desktop links */}
