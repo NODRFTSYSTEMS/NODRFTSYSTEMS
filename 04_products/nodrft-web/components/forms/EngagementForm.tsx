@@ -4,6 +4,37 @@ import { useState, useEffect, useRef } from "react";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
+const INDUSTRY_OPTIONS = {
+  en: [
+    { value: "", label: "Select your industry (optional)" },
+    { value: "healthcare-pharmacy", label: "Healthcare / Pharmacy" },
+    { value: "automotive", label: "Automotive (dealership, car wash, services)" },
+    { value: "food-beverage", label: "Food & Beverage (restaurant, café, catering)" },
+    { value: "construction-trades", label: "Construction / Trades" },
+    { value: "retail", label: "Retail" },
+    { value: "publishing-media", label: "Publishing / Media" },
+    { value: "content-creation", label: "Content Creation" },
+    { value: "professional-services", label: "Professional Services (legal, financial, consulting)" },
+    { value: "real-estate", label: "Real Estate" },
+    { value: "technology", label: "Technology / Software" },
+    { value: "other", label: "Other — I'll describe it below" },
+  ],
+  es: [
+    { value: "", label: "Seleccione su industria (opcional)" },
+    { value: "healthcare-pharmacy", label: "Salud / Farmacia" },
+    { value: "automotive", label: "Automotriz (concesionario, lavado, servicios)" },
+    { value: "food-beverage", label: "Alimentos y Bebidas (restaurante, café, catering)" },
+    { value: "construction-trades", label: "Construcción / Oficios" },
+    { value: "retail", label: "Comercio Minorista" },
+    { value: "publishing-media", label: "Editorial / Medios" },
+    { value: "content-creation", label: "Creación de Contenido" },
+    { value: "professional-services", label: "Servicios Profesionales (legal, financiero, consultoría)" },
+    { value: "real-estate", label: "Bienes Raíces" },
+    { value: "technology", label: "Tecnología / Software" },
+    { value: "other", label: "Otro — lo describo a continuación" },
+  ],
+};
+
 const SCOPE_OPTIONS = {
   en: [
     { value: "", label: "Select a scope class" },
@@ -58,6 +89,7 @@ const COPY = {
     namePh: "First and last name",
     email: "Email",
     emailPh: "your@email.com",
+    industry: "Industry (optional)",
     scope: "Scope class",
     description: "Project description",
     descriptionPh: "Describe the business problem, what you need built, and any known constraints. More context produces a better evaluation.",
@@ -79,6 +111,7 @@ const COPY = {
     namePh: "Nombre y apellido",
     email: "Correo electrónico",
     emailPh: "su@correo.com",
+    industry: "Industria (opcional)",
     scope: "Clase de alcance",
     description: "Descripción del proyecto",
     descriptionPh: "Describa el problema de negocio, qué necesita construir y cualquier restricción conocida. Más contexto produce una evaluación más precisa.",
@@ -101,6 +134,7 @@ interface Props {
 
 export function EngagementForm({ locale }: Props) {
   const c = COPY[locale];
+  const industries = INDUSTRY_OPTIONS[locale];
   const scopes = SCOPE_OPTIONS[locale];
   const timelines = TIMELINE_OPTIONS[locale];
 
@@ -109,6 +143,7 @@ export function EngagementForm({ locale }: Props) {
     org: "",
     name: "",
     email: "",
+    industry: "",
     scope: "",
     description: "",
     timeline: "",
@@ -253,6 +288,22 @@ export function EngagementForm({ locale }: Props) {
           aria-describedby={fieldErrors.email ? "eng-email-err" : undefined}
         />
         {fieldErrors.email && <span id="eng-email-err" className="nd-field-error" role="alert">{fieldErrors.email}</span>}
+      </div>
+
+      <div className="nd-field">
+        <label className="nd-field-label" htmlFor="eng-industry">{c.industry}</label>
+        <select
+          id="eng-industry"
+          className="nd-select"
+          value={fields.industry}
+          onChange={update("industry")}
+        >
+          {industries.map((opt) => (
+            <option key={opt.value} value={opt.value} disabled={opt.value === ""}>
+              {opt.label}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div className="nd-field">

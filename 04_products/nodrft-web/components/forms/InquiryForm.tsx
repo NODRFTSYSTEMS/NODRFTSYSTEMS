@@ -4,6 +4,37 @@ import { useState, useEffect, useRef } from "react";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
+const INDUSTRY_OPTIONS = {
+  en: [
+    { value: "", label: "Select your industry (optional)" },
+    { value: "healthcare-pharmacy", label: "Healthcare / Pharmacy" },
+    { value: "automotive", label: "Automotive (dealership, car wash, services)" },
+    { value: "food-beverage", label: "Food & Beverage (restaurant, café, catering)" },
+    { value: "construction-trades", label: "Construction / Trades" },
+    { value: "retail", label: "Retail" },
+    { value: "publishing-media", label: "Publishing / Media" },
+    { value: "content-creation", label: "Content Creation" },
+    { value: "professional-services", label: "Professional Services (legal, financial, consulting)" },
+    { value: "real-estate", label: "Real Estate" },
+    { value: "technology", label: "Technology / Software" },
+    { value: "other", label: "Other — I'll describe it below" },
+  ],
+  es: [
+    { value: "", label: "Seleccione su industria (opcional)" },
+    { value: "healthcare-pharmacy", label: "Salud / Farmacia" },
+    { value: "automotive", label: "Automotriz (concesionario, lavado, servicios)" },
+    { value: "food-beverage", label: "Alimentos y Bebidas (restaurante, café, catering)" },
+    { value: "construction-trades", label: "Construcción / Oficios" },
+    { value: "retail", label: "Comercio Minorista" },
+    { value: "publishing-media", label: "Editorial / Medios" },
+    { value: "content-creation", label: "Creación de Contenido" },
+    { value: "professional-services", label: "Servicios Profesionales (legal, financiero, consultoría)" },
+    { value: "real-estate", label: "Bienes Raíces" },
+    { value: "technology", label: "Tecnología / Software" },
+    { value: "other", label: "Otro — lo describo a continuación" },
+  ],
+};
+
 const URGENCY_OPTIONS = {
   en: [
     { value: "", label: "Select urgency level" },
@@ -27,6 +58,7 @@ const COPY = {
     emailPh: "your@email.com",
     org: "Organization (optional)",
     orgPh: "Company or project name",
+    industry: "Industry (optional)",
     body: "What are you looking to explore?",
     bodyPh: "Describe what you're thinking about — a project, a problem, a question about scope or fit. No commitment, no pressure.",
     urgency: "How urgent is this?",
@@ -45,6 +77,7 @@ const COPY = {
     emailPh: "su@correo.com",
     org: "Organización (opcional)",
     orgPh: "Nombre de la empresa o proyecto",
+    industry: "Industria (opcional)",
     body: "¿Qué desea explorar?",
     bodyPh: "Describa lo que tiene en mente — un proyecto, un problema, una pregunta sobre alcance o ajuste. Sin compromiso, sin presión.",
     urgency: "¿Qué tan urgente es esto?",
@@ -64,6 +97,7 @@ interface Props {
 
 export function InquiryForm({ locale }: Props) {
   const c = COPY[locale];
+  const industries = INDUSTRY_OPTIONS[locale];
   const urgencies = URGENCY_OPTIONS[locale];
 
   const [status, setStatus] = useState<Status>("idle");
@@ -71,6 +105,7 @@ export function InquiryForm({ locale }: Props) {
     name: "",
     email: "",
     org: "",
+    industry: "",
     body: "",
     urgency: "",
   });
@@ -208,6 +243,22 @@ export function InquiryForm({ locale }: Props) {
           onChange={update("org")}
           autoComplete="organization"
         />
+      </div>
+
+      <div className="nd-field">
+        <label className="nd-field-label" htmlFor="inq-industry">{c.industry}</label>
+        <select
+          id="inq-industry"
+          className="nd-select"
+          value={fields.industry}
+          onChange={update("industry")}
+        >
+          {industries.map((opt) => (
+            <option key={opt.value} value={opt.value} disabled={opt.value === ""}>
+              {opt.label}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div className="nd-field">

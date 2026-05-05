@@ -32,6 +32,7 @@ const COPY = {
   en: {
     label: "Start an Engagement",
     heading: "Submit a project brief.",
+    who: "We build for local and regional businesses that need a serious digital presence — without enterprise overhead.",
     lead: "Describe the problem, the scope class you believe fits, and your timeline. We review every submission and respond within 2 business days with an assessment of fit and the recommended starting point.",
     conditions: [
       "Submissions are evaluated — not auto-responded.",
@@ -47,6 +48,7 @@ const COPY = {
   es: {
     label: "Iniciar un Proyecto",
     heading: "Envíe un brief de proyecto.",
+    who: "Trabajamos con negocios locales y regionales que necesitan una presencia digital seria — sin la escala de una empresa corporativa.",
     lead: "Describa el problema, la clase de alcance que cree que aplica y su cronograma. Revisamos cada envío y respondemos en 2 días hábiles con una evaluación del ajuste y el punto de partida recomendado.",
     conditions: [
       "Los envíos son evaluados — no se responden automáticamente.",
@@ -74,9 +76,10 @@ export default async function StartPage({ params }: Props) {
             <span className="nd-label" style={{ display: "block", marginBottom: "var(--space-4)" }}>
               {copy.label}
             </span>
-            <h1 id="start-heading" className="nd-h1" style={{ marginBottom: "var(--space-6)" }}>
+            <h1 id="start-heading" className="nd-h1" style={{ marginBottom: "var(--space-4)" }}>
               {copy.heading}
             </h1>
+            <p className="nd-p-sm nd-start-who">{copy.who}</p>
             <p className="nd-lead">{copy.lead}</p>
           </FadeUp>
         </div>

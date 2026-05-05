@@ -40,6 +40,7 @@ export async function POST(req: NextRequest) {
       name: String(body.name).trim(),
       email: String(body.email).trim(),
       org: body.org ? String(body.org).trim() : "",
+      industry: body.industry ? String(body.industry).trim() : "",
       body: String(body.body).trim(),
       urgency: String(body.urgency).trim(),
       locale: String(body.locale ?? "en"),
