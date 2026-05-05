@@ -1214,6 +1214,8 @@ textarea:focus:not(:focus-visible) {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text-md);
+  display: block;
+  margin-top: var(--space-4);
 }
 .nd-price {
   font-family: var(--nd-font-mono, monospace);
@@ -1224,6 +1226,7 @@ textarea:focus:not(:focus-visible) {
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
+  margin-bottom: var(--space-3);
 }
 .nd-price:hover { color: var(--accent-hover); }
 .nd-pkg-subtext { color: var(--text-md); font-style: italic; }
@@ -1541,6 +1544,26 @@ textarea:focus:not(:focus-visible) {
   margin-bottom: var(--space-3);
   transform-origin: left center;
 }
+
+/* --------------------------------------------------------------------------
+   Spacing + layout utilities (replaces inline styles in page components)
+   -------------------------------------------------------------------------- */
+.nd-label-d-block   { display: block; }
+.nd-label-block-lg  { display: block; margin-bottom: var(--space-8); }
+.nd-h2-mb4          { margin-bottom: var(--space-4); }
+.nd-h2-mb6          { margin-bottom: var(--space-6); }
+.nd-h2-mb8          { margin-bottom: var(--space-8); }
+.nd-h3-mb2          { margin-bottom: var(--space-2); }
+.nd-h3-mb3          { margin-bottom: var(--space-3); }
+.nd-mb2             { margin-bottom: var(--space-2); }
+.nd-mb6             { margin-bottom: var(--space-6); }
+.nd-mb8             { margin-bottom: var(--space-8); }
+.nd-mt3             { margin-top: var(--space-3); }
+.nd-mt4             { margin-top: var(--space-4); }
+.nd-p-italic        { font-style: italic; }
+.nd-card--h-full    { height: 100%; }
+.nd-cta-row--center { justify-content: center; }
+.nd-grid-2--gap5    { row-gap: var(--space-5); }
 
 /* --------------------------------------------------------------------------
    Legal pages

@@ -214,12 +214,12 @@ export default async function HomePage({ params }: Props) {
       <section className="nd-section alt" aria-labelledby="why-matters-heading">
         <div className="nd-wrap">
           <FadeUp>
-            <span className="nd-label" style={{ display: "block", marginBottom: "var(--space-4)" }}>
+            <span className="nd-label nd-label-block">
               {t("whyLabel")}
             </span>
           </FadeUp>
           <FadeUp delay={0.05}>
-            <h2 id="why-matters-heading" className="nd-h2" style={{ marginBottom: "var(--space-6)" }}>
+            <h2 id="why-matters-heading" className="nd-h2 nd-h2-mb6">
               {t("whyHeadline")}
             </h2>
             <p className="nd-p">{t("whyBody")}</p>
@@ -231,16 +231,16 @@ export default async function HomePage({ params }: Props) {
       <section className="nd-section nd-grid-bg" aria-labelledby="strengths-heading">
         <div className="nd-wrap">
           <FadeUp>
-            <span className="nd-label" style={{ display: "block", marginBottom: "var(--space-8)" }}>
+            <span className="nd-label nd-label-block-lg">
               {t("strengthsLabel")}
             </span>
           </FadeUp>
           <div className="nd-grid-why">
             {STRENGTHS.map((s, i) => (
               <FadeUp key={i} delay={i * 0.06}>
-                <div className={`nd-card${i === 0 || i === 4 ? " nd-card--copper" : ""}`} style={{ position: "relative", height: "100%" }}>
+                <div className={`nd-card nd-card--h-full${i === 0 || i === 4 ? " nd-card--copper" : ""}`}>
                   <span className="nd-card__corner" aria-hidden="true" />
-                  <h3 className="nd-h3" style={{ marginBottom: "var(--space-3)" }}>{s.title}</h3>
+                  <h3 className="nd-h3 nd-h3-mb3">{s.title}</h3>
                   <p className="nd-p-sm">{s.body}</p>
                 </div>
               </FadeUp>
@@ -253,10 +253,10 @@ export default async function HomePage({ params }: Props) {
       <section className="nd-section alt" aria-labelledby="costs-heading">
         <div className="nd-wrap">
           <FadeUp>
-            <span className="nd-label" style={{ display: "block", marginBottom: "var(--space-4)" }}>
+            <span className="nd-label nd-label-block">
               {t("costsLabel")}
             </span>
-            <h2 id="costs-heading" className="nd-h2" style={{ marginBottom: "var(--space-8)" }}>
+            <h2 id="costs-heading" className="nd-h2 nd-h2-mb8">
               {t("costsHeadline")}
             </h2>
           </FadeUp>
@@ -277,13 +277,13 @@ export default async function HomePage({ params }: Props) {
       <section className="nd-section nd-grid-bg" aria-labelledby="packages-heading">
         <div className="nd-wrap">
           <FadeUp>
-            <span className="nd-label" style={{ display: "block", marginBottom: "var(--space-4)" }}>
+            <span className="nd-label nd-label-block">
               {loc === "en" ? "Entry packages" : "Paquetes de entrada"}
             </span>
-            <h2 id="packages-heading" className="nd-h2" style={{ marginBottom: "var(--space-4)" }}>
+            <h2 id="packages-heading" className="nd-h2 nd-h2-mb4">
               {loc === "en" ? "Start with the right scope." : "Comience con el alcance correcto."}
             </h2>
-            <p className="nd-p" style={{ marginBottom: "var(--space-8)" }}>
+            <p className="nd-p nd-mb8">
               {loc === "en"
                 ? "Most projects fit a defined package. If scope is unclear, start with a Discovery Sprint so the build is defined before you commit to building it."
                 : "La mayoría de los proyectos encaja en un paquete definido. Si el alcance no está claro, comience con un Discovery Sprint."}
@@ -292,17 +292,17 @@ export default async function HomePage({ params }: Props) {
           <div className="nd-grid-auto nd-pkg-grid">
             {entryPkgs.map((pkg, i) => (
               <FadeUp key={i} delay={i * 0.06}>
-                <div className="nd-card nd-pkg-card" style={{ position: "relative" }}>
+                <div className="nd-card nd-pkg-card">
                   <span className="nd-card__corner" aria-hidden="true" />
                   <div>
-                    <h3 className="nd-h3" style={{ marginBottom: "var(--space-2)" }}>{pkg.name}</h3>
-                    <a href={`/${locale}/start`} className="nd-price" style={{ display: "inline-block", marginBottom: "var(--space-3)" }}>
+                    <h3 className="nd-h3 nd-h3-mb2">{pkg.name}</h3>
+                    <a href={`/${locale}/start`} className="nd-price">
                       {loc === "en" ? "Get pricing →" : "Consultar precio →"}
                     </a>
-                    <p className="nd-p-sm" style={{ marginBottom: "var(--space-2)" }}>{pkg.body}</p>
+                    <p className="nd-p-sm nd-mb2">{pkg.body}</p>
                     <p className="nd-p-xs nd-pkg-subtext">{pkg.sub}</p>
                   </div>
-                  <span className="nd-timeline" style={{ marginTop: "var(--space-4)", display: "block" }}>
+                  <span className="nd-timeline">
                     {pkg.timeline}
                   </span>
                 </div>
@@ -310,7 +310,7 @@ export default async function HomePage({ params }: Props) {
             ))}
           </div>
           <FadeUp delay={0.2}>
-            <div className="nd-fit-note" style={{ marginTop: "var(--space-6)" }}>
+            <div className="nd-fit-note">
               <p className="nd-p-sm">
                 {loc === "en"
                   ? "Complex needs or unclear scope? Start with a "
@@ -331,7 +331,7 @@ export default async function HomePage({ params }: Props) {
       <section className="nd-section alt" aria-labelledby="work-record-heading">
         <div className="nd-wrap">
           <FadeUp>
-            <span className="nd-label" style={{ display: "block" }}>{workRecord.label}</span>
+            <span className="nd-label nd-label-d-block">{workRecord.label}</span>
             <hr className="nd-rule-accent" />
           </FadeUp>
           {workRecord.items.map((item, i) => (
@@ -342,10 +342,10 @@ export default async function HomePage({ params }: Props) {
             </FadeUp>
           ))}
           <FadeUp delay={0.15}>
-            <p className="nd-p-xs" style={{ fontStyle: "italic", marginTop: "var(--space-4)" }}>
+            <p className="nd-p-xs nd-p-italic nd-mt4">
               {workRecord.disclaimer}
             </p>
-            <p className="nd-p-xs" style={{ marginTop: "var(--space-3)" }}>
+            <p className="nd-p-xs nd-mt3">
               <a href={`/${locale}/engagements`}>{workRecord.link}</a>
             </p>
           </FadeUp>
@@ -356,19 +356,19 @@ export default async function HomePage({ params }: Props) {
       <section className="nd-section nd-grid-bg" aria-labelledby="misconceptions-heading">
         <div className="nd-wrap">
           <FadeUp>
-            <span className="nd-label" style={{ display: "block", marginBottom: "var(--space-4)" }}>
+            <span className="nd-label nd-label-block">
               {loc === "en" ? "Common misconceptions" : "Conceptos erróneos comunes"}
             </span>
-            <h2 id="misconceptions-heading" className="nd-h2" style={{ marginBottom: "var(--space-8)" }}>
+            <h2 id="misconceptions-heading" className="nd-h2 nd-h2-mb8">
               {loc === "en"
                 ? "What delays the decision—and why it’s worth reconsidering."
                 : "Lo que retrasa la decisión y por qué vale la pena reconsiderarlo."}
             </h2>
           </FadeUp>
-          <div className="nd-grid-2" style={{ rowGap: "var(--space-5)" }}>
+          <div className="nd-grid-2 nd-grid-2--gap5">
             {misconceptions.map((m, i) => (
               <FadeUp key={i} delay={i * 0.05}>
-                <div className="nd-card" style={{ position: "relative" }}>
+                <div className="nd-card">
                   <span className="nd-card__corner" aria-hidden="true" />
                   <p className="nd-misconception-q">{m.q}</p>
                   <p className="nd-p-sm">{m.a}</p>
@@ -383,10 +383,10 @@ export default async function HomePage({ params }: Props) {
       <section className="nd-section alt" aria-labelledby="fit-heading">
         <div className="nd-wrap">
           <FadeUp>
-            <span className="nd-label" style={{ display: "block" }}>{fit.label}</span>
+            <span className="nd-label nd-label-d-block">{fit.label}</span>
             <hr className="nd-rule-accent" />
           </FadeUp>
-          <ul className="nd-fit-list" aria-labelledby="fit-heading" style={{ marginBottom: "var(--space-6)" }}>
+          <ul className="nd-fit-list nd-mb6" aria-labelledby="fit-heading">
             {fit.items.map((item, i) => (
               <FadeUp key={i} delay={i * 0.05}>
                 <li className="nd-proof-item nd-p">{item}</li>
@@ -405,10 +405,10 @@ export default async function HomePage({ params }: Props) {
       <section className="nd-section nd-grid-bg" aria-labelledby="process-heading">
         <div className="nd-wrap">
           <FadeUp>
-            <span className="nd-label" style={{ display: "block", marginBottom: "var(--space-4)" }}>
+            <span className="nd-label nd-label-block">
               {loc === "en" ? "How it works" : "Cómo funciona"}
             </span>
-            <h2 id="process-heading" className="nd-h2" style={{ marginBottom: "var(--space-8)" }}>
+            <h2 id="process-heading" className="nd-h2 nd-h2-mb8">
               {loc === "en"
                 ? "What to expect from first contact to handoff."
                 : "Qué esperar desde el primer contacto hasta el traspaso."}
@@ -433,14 +433,14 @@ export default async function HomePage({ params }: Props) {
         <div className="nd-wrap">
           <FadeUp>
             <div className="nd-section-cta">
-              <span className="nd-label" style={{ display: "block", marginBottom: "var(--space-4)" }}>
+              <span className="nd-label nd-label-block">
                 {t("ctaLabel")}
               </span>
-              <h2 id="cta-heading" className="nd-h2" style={{ marginBottom: "var(--space-4)" }}>
+              <h2 id="cta-heading" className="nd-h2 nd-h2-mb4">
                 {t("ctaHeadline")}
               </h2>
               <p className="nd-p nd-section-cta__body">{t("ctaBody")}</p>
-              <div className="nd-cta-row" style={{ justifyContent: "center" }}>
+              <div className="nd-cta-row nd-cta-row--center">
                 <a href={`/${locale}/start`} className="btn btn--lg">
                   {t("ctaButton")}
                 </a>
