@@ -11,7 +11,7 @@ Purpose: define the mandatory activation logic, preconditions, role minimums, re
 
 - The active operating model uses the smallest viable sophisticated cell, not full-bench activation.
 - Reviewer authority remains separate from the implementation cell.
-- The technical bench has been expanded and the current working registry now reflects `60` official agents, including additional assistants and specialists in `Delivery & Build` and the `Specialist Pool`.
+- The technical bench has been expanded and the current working registry now reflects `64` official agents, including additional assistants and specialists in `Delivery & Build`, the `Specialist Pool`, and the `Business Analysis` department (BAO, FMA, MCA, RSA — added 2026-04-24).
 - Tier 1 supervisor agents and ARE are live in `.claude/agents/`.
 - VECS is now defined in canonical governance as a permanent architectural overlay for public commercial routes, executed through the existing approved bench.
 - The framework is proprietary internal operating infrastructure and is not approved for external publishing.
@@ -200,7 +200,7 @@ Before the build packet is approved, `MOA`, `PMA`, and `RCA` must complete an ex
 **Assessment steps:**
 
 1. **Surface mapping** — List every technical surface affected by the build (frontend, backend, API, database, infrastructure, third-party integration, agent-system wiring, performance path, security boundary).
-2. **Role-to-surface matching** — Map each affected surface to the smallest set of relevant and capable agents from the 60-agent approved registry:
+2. **Role-to-surface matching** — Map each affected surface to the smallest set of relevant and capable agents from the 64-agent approved registry:
    - Architecture / boundary-setting → `SAA`
    - Repository context / pattern inventory → `RCA`
    - Frontend UI / component implementation → `FIS`
@@ -455,8 +455,8 @@ This protocol is working only when:
 ### Recommended Next Build Order
 
 1. ~~Approve this protocol into the canonical governance layer.~~ **DONE — 2026-04-15**
-2. ~~Draft the ten new role charters so activation boundaries are explicit.~~ **DONE — 2026-04-17/18 (60 agents now reflected in the live registry after QMA addition)**
-3. ~~Build the corresponding skill packs.~~ **DONE — 2026-04-17/18 (60 role skill packs + 13 workflow skills + 11 .claude/skills + 6 reviewer agents + 3 rules)**
+2. ~~Draft the ten new role charters so activation boundaries are explicit.~~ **DONE — 2026-04-17/18 (64 agents in live registry as of 2026-04-24 after QMA + Business Analysis dept additions)**
+3. ~~Build the corresponding skill packs.~~ **DONE for 60 agents — 2026-04-17/18 (60 role skill packs + 13 workflow skills + 11 .claude/skills + 6 reviewer agents + 3 rules); 4 Business Analysis packs (BAO, FMA, MCA, RSA) pending per I-001**
 4. ~~Instantiate the activation and handoff checklist for the first governed repository and client profile.~~ **DONE — workspace templates live in 02_client-system/**
 5. **NEXT:** Populate the repository-agent capability map for the first governed product repository (CasaClaro or PEO recommended as first target).
 6. **NEXT:** Apply the activation checklist to the next real governed build — record Gate 0A agent routing note as the first live artifact.

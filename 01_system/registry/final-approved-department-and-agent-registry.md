@@ -10,14 +10,16 @@ Normalized: 2026-04-14
 
 - The approved source registry baseline states `45` total official agents.
 - The approved source baseline tier distribution is `4` Tier 1 supervisor agents, `37` Tier 2 operational/governance agents across `8` departments, and `4` Tier 3 specialist agents.
-- The current official assigned working architecture has been expanded to `60` agents under the approved engineering expansion directive dated `2026-04-15`, the skills optimization directive dated `2026-04-17`, and the founder decision-log amendments dated `2026-04-18`.
+- The current official assigned working architecture has been expanded to `64` agents under the approved engineering expansion directive dated `2026-04-15`, the skills optimization directive dated `2026-04-17`, the founder decision-log amendments dated `2026-04-18`, and the Business Analysis department addition dated `2026-04-24` (BAO/Cyrus, FMA/Valentina, MCA/Sterling, RSA/Imara).
 - `People, Roles & Governance` is explicitly formalized as a full department in the approved source.
+- `Business Analysis` is explicitly formalized as a full department per the 2026-04-24 registry amendment.
 - Every agent below is explicitly assigned to a tier and department. No assignment in this file is implied.
+- All agents carry a Caribbean name. New agents must be assigned a Caribbean name before activation.
 
 ## Current Approval Rule
 
 - The architecture is not capped at `40` agents.
-- The current official assigned architecture contains `60` agents.
+- The current official assigned architecture contains `64` agents.
 - Additional agents may be added when precision, governance coverage, or operational control requires it.
 - Existing agent codes and Caribbean names remain unchanged.
 

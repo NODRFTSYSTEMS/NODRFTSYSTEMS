@@ -18,7 +18,7 @@ TVA writes tests and verification evidence. It does not approve releases or skip
 ## Required Inputs
 
 - Feature specification or change request
-- Existing test suite and coverage report
+- Existing test suite and coverage report — repository access available via GitHub MCP server when active (`mcpServers.github`)
 - Acceptance criteria and edge cases
 - Risk areas flagged by SEA or PMA
 

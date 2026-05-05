@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useLocale } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 type Intent = "investing" | "employed" | "freelance" | "";
 type Stay = "short" | "long" | "";
@@ -250,9 +251,9 @@ export default function BusinessPage() {
             marginBottom: "20px",
           }}
         >
-          <a href="/relocation" style={{ color: "var(--terracotta, #e67e22)", textDecoration: "none", fontWeight: 600 }}>
+          <Link href="/relocation" style={{ color: "var(--terracotta, #e67e22)", textDecoration: "none", fontWeight: 600 }}>
             {loc === "es" ? "Reubicación" : "Relocate"}
-          </a>
+          </Link>
           <span>›</span>
           <span>{loc === "es" ? "Iniciar un Negocio" : "Starting a Business"}</span>
         </div>

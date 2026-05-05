@@ -37,14 +37,16 @@ These MCP integrations are live in the current operating environment:
 
 These are the highest-leverage next integrations. Add in priority order, subject to TACA review and ARE approval for each.
 
-| Integration | Purpose | Primary Agents Served | Priority |
-| --- | --- | --- | --- |
-| GitHub MCP | Repository context loading, CODEOWNERS enforcement, PR review, pattern inventory | RCA, SEA, TVA, DRA | 1 — highest |
-| Linear MCP (or equivalent) | Task tracking, milestone visibility, blocker logging | PSA, PMA, MOA | 2 |
-| Supabase MCP | Database schema access, migration review, data integrity | DSS, SEA, BLS | 3 |
-| Notion MCP (or equivalent) | Knowledge base access for knowledge-integrity-sweep and KDGA governance | KDGA, CSM | 4 |
+| Integration | Purpose | Primary Agents Served | Priority | Status |
+| --- | --- | --- | --- | --- |
+| GitHub MCP | Repository context loading, CODEOWNERS enforcement, PR review, pattern inventory | RCA, SEA, TVA, DRA | 1 — highest | Active |
+| Linear MCP (or equivalent) | Task tracking, milestone visibility, blocker logging | PSA, PMA, MOA | 2 | **Configured — awaiting credentials** |
+| Supabase MCP | Database schema access, migration review, data integrity | DSS, SEA, BLS | 3 | **Configured — awaiting credentials + LCA review** |
+| Notion MCP (or equivalent) | Knowledge base access for knowledge-integrity-sweep and KDGA governance | KDGA, CSM | 4 | Not yet added |
 
 **Why GitHub MCP first:** RCA's core task (repository context loading) is currently done through direct file reads. A GitHub MCP server provides cleaner pattern inventory, PR context, and CODEOWNERS enforcement at the integration level — reducing the manual context-loading overhead in every governed build.
+
+**Linear and Supabase activation:** Both servers are configured in `.claude/settings.json` with placeholders. Replace `<REPLACE_WITH_*>` tokens per `01_system/operations/mcp-credential-setup.md` to activate. Supabase requires additional LCA privacy review before any client database is connected.
 
 ---
 

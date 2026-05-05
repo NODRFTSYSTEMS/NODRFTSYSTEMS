@@ -11,6 +11,26 @@ Define which repository skills should load for which workflow so AI participatio
 - Do not combine unrelated phases such as intake, pricing, build, and handoff into one prompt when a bounded sequence is clearer.
 - If a workflow has no matching skill, add one only when the workflow is genuinely recurring.
 
+## Cross-Reference: SOP Library
+
+This matrix defines which skills to load. The SOP library (`01_system/operations/sop-library.md`) defines the step-by-step procedure for each workflow. They are parallel governance artifacts — skills govern activation, SOPs govern execution sequence. Use them together.
+
+| Workflow | Load Skill(s) From This Matrix | Follow SOP |
+|----------|-------------------------------|-----------|
+| New client inquiry and qualification | `client-intake-analysis` | SOP-001 |
+| Discovery Sprint execution | `strategy-brief-builder` | SOP-002 |
+| Scope brief and SOW production | `strategy-brief-builder`, `pricing-safety-review` | SOP-003 |
+| Build activation and execution | `system-maintenance`, `visual-direction` (if visual), `legal-compliance` (if legal), `vecs-public-route` (if VECS) | SOP-004 |
+| QA multi-pass and release gate | `release-gate-review`, `quantitative-review` (if math), `knowledge-integrity-sweep` | SOP-005 |
+| Client handover and close-out | `release-gate-review`, `handoff-preparation` | SOP-006 |
+| Ongoing maintenance retainer | `client-success-operating-protocol`, `system-maintenance` | SOP-007 |
+| GitHub operations and disclosure gate | `release-gate-review` | SOP-008 |
+| Content production | `knowledge-integrity-sweep` (before public release) | SOP-009 |
+| Business formation assistance | `legal-compliance` | SOP-010 |
+| Agent and skill activation | `system-maintenance` | SOP-011 |
+| Proprietary product build | `client-workspace-bootstrap`, `system-maintenance`, `visual-direction`, `vecs-public-route` (if applicable) | SOP-012 |
+| Business Analysis Sprint | `business-analysis-evaluation` | SOP-013 |
+
 ## Current Skill Registry
 
 | Skill | Load When | Required Inputs | Expected Outputs | Workflow Supported |
@@ -131,6 +151,19 @@ Required control assets:
 - `handoff-preparation`
 - `knowledge-integrity-sweep` — for any public-facing deliverable before external release; verifies claims before client or public exposure
 
+### Business Analysis Sprint
+
+- `business-analysis-evaluation` — FACT-STRICT workflow skill; activates BAO/FMA/MCA/RSA cell for the 17-section evaluation framework
+- `pricing-safety-review` — before any BA Sprint is proposed to a client; verify pricing matches `pricing-governance.md` tier table
+- `legal-compliance` — if the evaluation surfaces regulatory or legal red flags (activate LCA; do not advance without LCA flag status)
+- `quantitative-review` — for any section containing financial projections, unit economics, or modeling output (FMA sections 2.6–2.8, 2.16)
+
+See also: SOP-013 (Business Analysis Sprint Execution) for the step-by-step 12-stage procedure from intake to client delivery.
+
+Required reviewer agents before delivery:
+- `reviewer_public_proof` — all market demand claims, competitor references, and cited statistics
+- `reviewer_pricing_safety` — any pricing language in the evaluation output
+
 ### Mathematical analysis and formula governance
 
 - `quantitative-review`
@@ -145,6 +178,19 @@ Required control assets:
 - `release-gate-review` when a governed technical output is being assessed for advancement
 - `strategic-review` when cross-functional agent outputs conflict or require reconciliation before advancement
 - `system-maintenance` when tooling or dependency drift threatens governance artifact integrity
+
+## Multi-Provider Layer
+
+NoDrftSystems operates across three AI providers. Each has a parallel governance layer. Claude Code is primary and fully governed via CLAUDE.md + MCP. Kimi and Claude web require paste-in briefs. ChatGPT is backup only.
+
+| Provider | Role | Master Brief | Task Overlays | Notes |
+|----------|------|-------------|---------------|-------|
+| **Claude Code** | Primary | `CLAUDE.md` (auto-loads) | `.claude/skills/` + `03_agent-skills/` (auto-loads via skill system) | Full MCP governance. All high-risk artifact review happens here. |
+| **Claude Web / API** | Secondary analytical | `03_agent-skills/claude-web/claude-web-master-brief.md` | `claude-web-[task].md` — 10 task overlays | Paste-in brief. Same rules as Claude Code. Drafts route back to Claude Code for final review. |
+| **Kimi** | Secondary analytical | `03_agent-skills/kimi/kimi-master-brief.md` | `kimi-[task].md` — 10 task overlays | Paste-in brief. Drafts route back to Claude Code for final review. |
+| **ChatGPT** | Backup / DALL-E | `03_agent-skills/chatgpt/chatgpt-master-brief.md` | None (master brief only) | Backup use. Single brief covers all tasks. Image generation via DALL-E. All output routes to Claude Code. |
+
+**Rule:** Regardless of which provider produces a draft, the final review path is always Claude Code. No high-risk artifact (proposal, code, contract, BA Sprint report) is finalized in a non-Code session.
 
 ## Build Order For Future Skills
 
@@ -183,12 +229,13 @@ Only add more skills when one of these recurring gaps becomes operationally acti
    - `01_system/operations/company-baseline-register.md`
    - `01_system/commercial/public-proof-inventory.md`
    - `01_system/commercial/routine-usage-pricing-decision-brief-2026-04-19.md`
-11. Business Analysis service line and Kimi dedicated skills — Deep Summit 2026-04-24 [COMPLETED — 2026-04-24]
+11. Business Analysis service line and Kimi dedicated skills — Deep Summit 2026-04-24 [COMPLETED — 2026-04-24]; kimi-business-analysis.md added 2026-05-02
    - `03_agent-skills/business-analysis-evaluation/SKILL.md` — 17-section FACT-STRICT framework; BAO/FMA/MCA/RSA cell
    - `03_agent-skills/business-analysis-evaluation/agents/openai.yaml` — agent definitions for all 4 Business Analysis agents
    - `03_agent-skills/kimi/kimi-content-drafting.md` — self-contained CEA content drafting skill for Kimi
    - `03_agent-skills/kimi/kimi-document-synthesis.md` — self-contained DESA document synthesis skill for Kimi
    - `03_agent-skills/kimi/kimi-code-assist.md` — self-contained SEA code assist skill for Kimi
+   - `03_agent-skills/kimi/kimi-business-analysis.md` — FACT-STRICT BA Sprint skill for Kimi; includes RSA self-audit, 17-section framework summary, and mandatory Claude Code routing gate before delivery [ADDED 2026-05-02]
    - Registry: 4 new agents added (BAO, FMA, MCA, RSA); count 60 → 64
    - `01_system/ai-governance/technology-watch-protocol.md` — monthly TSA + TACA tech currency sweep
    - `01_system/ai-governance/mandatory-routing-signoff-protocol.md` — explicit routing and signoff chain for all artifact classes
@@ -203,43 +250,73 @@ Only add more skills when one of these recurring gaps becomes operationally acti
 | --- | --- | --- | --- | --- |
 | `business-analysis-evaluation` | Client submits a business idea for structured evaluation; Business Analysis Sprint engagement authorized by Founder | Client brief, budget/capital context, Founder authorization | 4-section FACT-STRICT report (Verified Facts / Analysis / Unknowns / Conclusion) covering all 17 analysis dimensions | Business Analysis service line |
 
-## Kimi Skills (Platform-Specific — Not Claude Code Workflow Skills)
+## Platform-Specific Skills (Kimi, Claude Web, ChatGPT)
 
-Kimi skills are loaded manually by the Founder at the start of a Kimi session. They live in `03_agent-skills/kimi/` and use a two-layer loading model.
+These skills are loaded manually by pasting into the respective provider. They are not Claude Code workflow skills. They live in `03_agent-skills/[provider]/` and use a two-layer loading model (master brief + task overlay) for Kimi and Claude web. ChatGPT uses a single master brief only.
 
-### Layer 1 — Master Brief (Load Every Session)
+### Kimi — `03_agent-skills/kimi/`
 
-**Always paste first:** `kimi/kimi-master-brief.md`
+| File | Purpose |
+|------|---------|
+| `kimi-master-brief.md` | Full operating brief — paste first every session |
+| `kimi-revenue-and-sales.md` | Outreach, proposals, pipeline, discovery call prep |
+| `kimi-content-drafting.md` | Content, copy, strategy briefs, client communications |
+| `kimi-document-synthesis.md` | Extracting and structuring from source documents |
+| `kimi-code-assist.md` | Writing, debugging, reviewing code |
+| `kimi-finance-and-bookkeeping.md` | Invoices, AR, cash flow, financial reporting |
+| `kimi-quality-and-compliance.md` | QA passes, compliance review, IP checks |
+| `kimi-client-success.md` | Onboarding, client communication, retainer management |
+| `kimi-strategic-intelligence.md` | Market research, competitive intelligence, strategic synthesis |
+| `kimi-visual-direction-and-design.md` | Visual direction briefs, design specs, brand strategy |
+| `kimi-business-analysis.md` | BA Sprint — 17-section FACT-STRICT evaluation (ADDED 2026-05-02) |
 
-This brief activates the full 64-agent bench with all governance rules, the supervisor layer, all agent codes and scopes, escalation conditions, and the high-risk artifact routing table. Kimi cannot properly route tasks or activate the correct agents without this brief active.
+### Claude Web / API — `03_agent-skills/claude-web/`
 
-### Layer 2 — Task Skill Overlays (Load Per Task)
+| File | Purpose |
+|------|---------|
+| `claude-web-master-brief.md` | Full operating brief — paste first every session |
+| `claude-web-revenue-and-sales.md` | Outreach, proposals, pipeline, discovery call prep |
+| `claude-web-content-drafting.md` | Content, copy, strategy briefs, client communications |
+| `claude-web-document-synthesis.md` | Extracting and structuring from source documents |
+| `claude-web-code-assist.md` | Writing, debugging, reviewing code (draft only — TVA+SCA required) |
+| `claude-web-finance-and-bookkeeping.md` | Invoices, AR, cash flow, financial reporting |
+| `claude-web-quality-and-compliance.md` | QA pre-review, self-check passes, compliance flagging |
+| `claude-web-client-success.md` | Onboarding, client communication, retainer management |
+| `claude-web-strategic-intelligence.md` | Market research, competitive intelligence, strategic synthesis |
+| `claude-web-visual-direction-and-design.md` | Visual direction briefs, design specs, brand strategy |
+| `claude-web-business-analysis.md` | BA Sprint — 17-section FACT-STRICT evaluation |
 
-After the master brief is confirmed, paste the appropriate task skill for the work at hand.
+### ChatGPT — `03_agent-skills/chatgpt/`
 
-| Skill File | Paste When | Default Agent | Full Bench Available |
-| --- | --- | --- | --- |
-| `kimi/kimi-content-drafting.md` | Writing content, proposals, briefs, client communications, copy | CEA (Kalila) | Yes — any of 64 agents |
-| `kimi/kimi-document-synthesis.md` | Synthesizing or extracting from large source documents | DESA (Niko) | Yes — any of 64 agents |
-| `kimi/kimi-code-assist.md` | Writing, debugging, reviewing code | SEA (Malik) | Yes — any of 64 agents |
-| `kimi/kimi-revenue-and-sales.md` | Outreach copy, prospect research, proposal drafts, discovery call prep, CRM log drafts | SDA (Marlon) for prospecting; PEA (Giselle) for proposals | Yes — any of 64 agents |
-| `kimi/kimi-finance-and-bookkeeping.md` | Invoice drafts, AR tracking, cash flow analysis, financial reporting | IGA (Shanice) for billing; FRA (Winston) for reporting | Yes — any of 64 agents |
-| `kimi/kimi-client-success.md` | Status reports, health scoring, client communications, onboarding, retainer tracking | CSM (Josette) for oversight; PSA (Donovan) for status | Yes — any of 64 agents |
-| `kimi/kimi-quality-and-compliance.md` | QA documentation, drift detection, IP/license review, legal compliance flagging, config audit | QAS (Imani) for QA; QADM (Fabian) for drift | Yes — any of 64 agents |
-| `kimi/kimi-strategic-intelligence.md` | Tech watch, market opportunity research, strategic synthesis, document synthesis, client health intelligence | SRA (Janice) for synthesis; TSA (Kareem) for tech watch | Yes — any of 64 agents |
-| `kimi/kimi-visual-direction-and-design.md` | Visual direction briefs, design specifications, brand consistency, accessibility review, deployment readiness | VDA (Jeanine) for direction; DAA (Anika) for specs | Yes — any of 64 agents |
+| File | Purpose |
+|------|---------|
+| `chatgpt-master-brief.md` | Compact operating brief — paste at session start. Covers all tasks. No task-specific overlays. |
 
-Each task skill can also be pasted standalone (without the master brief) for quick single-task sessions — the task skills include a condensed roster for common agents in that domain. For full bench access, load the master brief first.
+ChatGPT is the backup LLM. Use for: primary-provider unavailability, DALL-E image generation, and backup drafting. Single master brief covers all task types. No task-specific overlays — use Claude web or Kimi for complex multi-step work.
 
-### Session Startup Sequence
+### Session Startup Sequence (Kimi and Claude Web)
 
-1. Open new Kimi session
-2. Paste `kimi-master-brief.md` → wait for confirmation
+1. Open new session
+2. Paste `[provider]-master-brief.md` → wait for confirmation
 3. Paste the task skill file for this session's work
 4. State session objective, active agents, and known constraints
 5. Proceed
 
-All Kimi output is governed draft material. High-risk artifact classes (commercial, legal-adjacent, release, bilingual final) must route to Claude Code for applicable reviewer passes before finalization.
+**All non-Code provider output is governed draft material.** High-risk artifact classes (commercial proposals, code for production, contracts, BA Sprint final reports) must route to Claude Code for applicable reviewer passes and Founder approval before finalization. This rule applies regardless of provider.
+
+12. Claude web and ChatGPT provider governance layers [COMPLETED — 2026-05-02]
+   - `03_agent-skills/claude-web/claude-web-master-brief.md` — full operating brief for Claude.ai web and API sessions
+   - `03_agent-skills/claude-web/claude-web-business-analysis.md`
+   - `03_agent-skills/claude-web/claude-web-revenue-and-sales.md`
+   - `03_agent-skills/claude-web/claude-web-content-drafting.md`
+   - `03_agent-skills/claude-web/claude-web-code-assist.md`
+   - `03_agent-skills/claude-web/claude-web-finance-and-bookkeeping.md`
+   - `03_agent-skills/claude-web/claude-web-quality-and-compliance.md`
+   - `03_agent-skills/claude-web/claude-web-client-success.md`
+   - `03_agent-skills/claude-web/claude-web-strategic-intelligence.md`
+   - `03_agent-skills/claude-web/claude-web-visual-direction-and-design.md`
+   - `03_agent-skills/claude-web/claude-web-document-synthesis.md`
+   - `03_agent-skills/chatgpt/chatgpt-master-brief.md` — compact backup brief for ChatGPT sessions
 
 ## Acceptance Criteria
 
@@ -249,3 +326,4 @@ The skill system is working when:
 - agents can load a skill without guessing the workflow scope
 - required inputs and expected outputs are clear
 - the skill layer reduces prompt drift instead of increasing it
+- every active AI provider has at least a master brief governing operating rules and escalation paths

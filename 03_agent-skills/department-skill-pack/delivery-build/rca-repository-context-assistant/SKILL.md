@@ -17,7 +17,7 @@ RCA analyzes repository context. It does not modify code without SEA direction.
 
 ## Required Inputs
 
-- Repository access or codebase snapshot
+- Repository access or codebase snapshot — available via GitHub MCP server when active (`mcpServers.github`)
 - Current engineering standards and style guides
 - Change request or feature specification
 - Test suite location and coverage information

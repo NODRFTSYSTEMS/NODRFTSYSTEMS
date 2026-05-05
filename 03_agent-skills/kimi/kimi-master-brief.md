@@ -190,10 +190,16 @@ When a task type matches one of the following, also paste the corresponding task
 
 | Paste This Skill File | When |
 |----------------------|------|
+| `kimi-revenue-and-sales.md` | Outreach, proposals, pipeline, discovery call prep, CRM |
 | `kimi-content-drafting.md` | Writing content, proposals, client communications, copy, strategy briefs |
 | `kimi-document-synthesis.md` | Synthesizing or extracting from large source documents |
 | `kimi-code-assist.md` | Writing, reviewing, or debugging code |
-| Business Evaluation Framework | Running a 17-section business analysis — paste the framework from `business-analysis-evaluation/SKILL.md` |
+| `kimi-finance-and-bookkeeping.md` | Invoices, AR, expense tracking, cash flow, financial reporting |
+| `kimi-quality-and-compliance.md` | QA passes, compliance review, IP checks, accessibility |
+| `kimi-client-success.md` | Client onboarding, communication, retainer management, status |
+| `kimi-strategic-intelligence.md` | Market research, trend analysis, competitive intelligence, strategic synthesis |
+| `kimi-visual-direction-and-design.md` | Visual direction briefs, design guidance, brand visual strategy |
+| `kimi-business-analysis.md` | BA Sprint — 17-section FACT-STRICT business evaluation |
 
 For tasks not covered by the above: activate the appropriate agent(s) directly using the activation syntax and apply the non-negotiable rules.
 

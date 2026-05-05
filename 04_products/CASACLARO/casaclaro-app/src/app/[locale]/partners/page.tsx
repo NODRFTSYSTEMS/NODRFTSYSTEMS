@@ -1,4 +1,3 @@
-import { Link } from "@/i18n/navigation";
 import { ContactForm } from "@/components/ContactForm";
 
 interface Props {
@@ -279,8 +278,8 @@ export default async function PartnersPage({ params }: Props) {
         }}
       >
         {locale === "en"
-          ? "The profiles below are representative examples of the professional types in the CasaClaro network. Individual partner onboarding is ongoing. Contact us to request an introduction."
-          : "Los perfiles a continuación son ejemplos representativos de los tipos de profesionales en la red CasaClaro. La incorporación individual de socios está en curso. Contáctanos para solicitar una presentación."}
+          ? "CasaClaro connects buyers with verified professionals across Colombia's major cities. Introductions are individually matched to your property type, city, and timeline. Use the form below to request a match."
+          : "CasaClaro conecta compradores con profesionales verificados en las principales ciudades de Colombia. Las presentaciones se asignan individualmente según tu tipo de propiedad, ciudad y cronograma. Usa el formulario al final de esta página para solicitar una conexión."}
       </div>
 
       {/* Partner type sections */}
@@ -413,8 +412,8 @@ export default async function PartnersPage({ params }: Props) {
 
                   {/* CTA */}
                   <div style={{ marginTop: "4px" }}>
-                    <Link
-                      href="/for-agents"
+                    <a
+                      href="#partner-apply"
                       className="partner-cta-link"
                       style={{
                         display: "inline-block",
@@ -427,7 +426,7 @@ export default async function PartnersPage({ params }: Props) {
                       }}
                     >
                       {locale === "en" ? "Request Introduction →" : "Solicitar Presentación →"}
-                    </Link>
+                    </a>
                   </div>
                 </article>
               ))}
@@ -437,7 +436,7 @@ export default async function PartnersPage({ params }: Props) {
       </div>
 
       {/* Join the partner network */}
-      <div style={{ marginTop: "72px" }}>
+      <div id="partner-apply" style={{ marginTop: "72px" }}>
         <div style={{ marginBottom: "24px" }}>
           <h2 style={{ fontFamily: "var(--font-display, Georgia, serif)", fontSize: "1.6rem", fontWeight: 400, color: "var(--ocean, #1f3a4d)", margin: "0 0 8px" }}>
             {locale === "en" ? "Apply to the partner network" : "Aplicar a la red de socios"}

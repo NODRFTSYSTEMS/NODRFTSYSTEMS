@@ -3,6 +3,7 @@
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import { useLocale } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { CITIES } from "@/data/cities.data";
 import type { City } from "@/types/cities";
 
@@ -71,6 +72,8 @@ function DetailPanel({
             color: "var(--muted, #6b7280)",
             lineHeight: 1,
             flexShrink: 0,
+            minWidth: "44px",
+            minHeight: "44px",
           }}
         >
           ×
@@ -203,12 +206,12 @@ function DetailPanel({
 
       {/* CTAs */}
       <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-        <a href="/listings" style={{ display: "block", background: city.markerColor, color: "#fff", textAlign: "center", padding: "10px", borderRadius: "10px", textDecoration: "none", fontSize: "0.83rem", fontWeight: 600, fontFamily: "var(--font-body, system-ui)" }}>
+        <Link href="/listings" style={{ display: "block", background: city.markerColor, color: "#fff", textAlign: "center", padding: "10px", borderRadius: "10px", textDecoration: "none", fontSize: "0.83rem", fontWeight: 600, fontFamily: "var(--font-body, system-ui)" }}>
           {loc === "es" ? `Propiedades en ${city.name}` : `Listings in ${city.name}`}
-        </a>
-        <a href="/relocation" style={{ display: "block", background: "transparent", color: "var(--ocean, #1f3a4d)", textAlign: "center", padding: "10px", borderRadius: "10px", textDecoration: "none", fontSize: "0.83rem", fontWeight: 600, border: "1px solid var(--border, rgba(35,49,63,0.15))", fontFamily: "var(--font-body, system-ui)" }}>
+        </Link>
+        <Link href="/relocation" style={{ display: "block", background: "transparent", color: "var(--ocean, #1f3a4d)", textAlign: "center", padding: "10px", borderRadius: "10px", textDecoration: "none", fontSize: "0.83rem", fontWeight: 600, border: "1px solid var(--border, rgba(35,49,63,0.15))", fontFamily: "var(--font-body, system-ui)" }}>
           {loc === "es" ? "Guía de reubicación" : "Relocation guide"}
-        </a>
+        </Link>
       </div>
     </aside>
   );

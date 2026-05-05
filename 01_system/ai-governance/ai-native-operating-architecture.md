@@ -6,9 +6,9 @@ Define the realistic AI operating model for NoDrftSystems so the approved agent 
 
 ## Verified Facts
 
-- The approved working registry currently contains `60` official agents.
+- The approved working registry currently contains `64` official agents.
 - The approved registry explicitly states the architecture is not capped at `40`.
-- The approved structure includes `4` supervisor-layer agents, `47` departmental operational and governance agents across `8` departments, and `9` specialist-pool agents.
+- The approved structure includes `4` supervisor-layer agents, `51` departmental operational and governance agents across `9` departments, and `9` specialist-pool agents.
 - The repository now contains a dedicated skill layer in `03_agent-skills/`.
 - Tier 1 supervisor agents and ARE are now deployed in `.claude/agents/` and are part of the live operating stack.
 - VECS is approved in canonical governance as a permanent public-route architectural overlay that currently executes through the existing bench rather than a separate staffing expansion.
@@ -430,7 +430,7 @@ For high-risk artifacts, at least one critical review should come from a differe
 
 The architecture is not capped at any fixed number.
 
-- The current official bench is `60` agents.
+- The current official bench is `64` agents.
 - `VECS` currently operates through the approved existing bench and does not yet create a separate staffing count in the live registry.
 - Additional agents may be added when precision, governance coverage, or operational control requires it.
 - Each new agent requires: a workflow justification that cannot be covered by an existing agent, a proposed bounded scope that does not conflict with an existing agent's scope, an assigned human owner, and Founder or ARE approval before activation.
@@ -562,7 +562,7 @@ These rules are the session-level tripwires. Agent-level drift detection (PCA, Q
 
 The AI operating architecture is working when:
 
-- the `60`-agent approved registry remains the staffing truth
+- the `64`-agent approved registry remains the staffing truth
 - workflow cells activate only the roles actually required
 - skills are used to standardize recurring workflows
 - no artifact self-certifies its own readiness

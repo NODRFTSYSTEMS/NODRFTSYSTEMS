@@ -1,7 +1,12 @@
 version: 1
 generated_at: 2026-04-18
-approved_working_architecture_agents: 60
-live_skill_pack_count: 60
+last_count_audit: 2026-05-02
+last_updated: 2026-05-02
+approved_working_architecture_agents: 64
+live_skill_pack_count: 64
+pending_skill_packs: 0
+pending_agents: []
+count_note: "64 agents / 64 skill packs. Business Analysis dept (BAO/Cyrus, FMA/Valentina, MCA/Sterling, RSA/Imara) packs completed 2026-05-02 per I-001. QMA anatomy (openai.yaml + role-charter.md) also completed 2026-05-02 per A-002."
 source_priority:
   approved_registry: 01_system/registry/final-approved-department-and-agent-registry.md
   skill_library: 90_source-documents/ai-architecture/NoDrftSystems_Skills_Library_v1.md
@@ -2244,3 +2249,166 @@ skills:
     source_status: approved
     registry_authorization: Decision Log 2026-04-18-001
     notes: Highest confidence floor in bench (0.92). Holds Team Deployment Authority — can activate bounded Mathematical Analysis Cell (DESA, DSS, FRA, TVA, TSA) via MOA confirmation. ARE review required when role is filled (STOP-005).
+
+  # --- BUSINESS ANALYSIS ---
+
+  - skill_id: bao-business-analysis-orchestrator
+    agent_code: BAO
+    canonical_name: Business Analysis Orchestrator
+    caribbean_name: Cyrus
+    department: business-analysis
+    path: 03_agent-skills/department-skill-pack/business-analysis/bao-business-analysis-orchestrator
+    activation_status: on-demand-founder-auth
+    load_priority: specialist
+    trigger_terms:
+      - business analysis sprint
+      - concept evaluation
+      - 17-section evaluation
+      - business idea analysis
+      - concept snapshot
+    workflow_tags:
+      - business-analysis
+      - orchestration
+      - evaluation
+    required_inputs:
+      - written client brief
+      - founder authorization
+      - budget/capital context from client
+      - engagement logged in workspace
+    outputs:
+      - section 2.1 concept snapshot
+      - section 2.10 founder fit
+      - section 2.11 LTV levers
+      - section 2.15 execution paths
+      - section 2.17 rating table
+      - assembled business evaluation report
+    confidence_floor: 90
+    escalates_to_ai:
+      - QAS
+      - HHC
+    escalates_to_human:
+      - HR-FOUNDER
+    source_status: approved
+    registry_authorization: final-approved-department-and-agent-registry.md (2026-04-24)
+    notes: Tier 1 supervisor for Business Analysis department. Must confirm written brief + Founder auth before any section begins. Coordinates FMA, MCA, RSA, QAS cell.
+
+  - skill_id: fma-financial-modeling-agent
+    agent_code: FMA
+    canonical_name: Financial Modeling Agent
+    caribbean_name: Valentina
+    department: business-analysis
+    path: 03_agent-skills/department-skill-pack/business-analysis/fma-financial-modeling-agent
+    activation_status: on-demand-founder-auth
+    load_priority: specialist
+    trigger_terms:
+      - unit economics
+      - cash flow timing
+      - minimum capital
+      - exit potential
+      - financial model
+    workflow_tags:
+      - financial-modeling
+      - unit-economics
+      - capital-analysis
+    required_inputs:
+      - section 2.1 from BAO
+      - revenue model from client brief
+      - client-provided capital context
+      - delivery model description
+    outputs:
+      - section 2.6 unit economics
+      - section 2.7 cash flow timing
+      - section 2.8 minimum capital
+      - capital fit input for section 2.10
+      - section 2.11 LTV levers
+      - section 2.16 exit potential
+      - financial upside rating input for 2.17
+    confidence_floor: 85
+    escalates_to_ai:
+      - BAO
+      - QAS
+    escalates_to_human:
+      - HR-FOUNDER
+    source_status: approved
+    registry_authorization: final-approved-department-and-agent-registry.md (2026-04-24)
+    notes: Hard stop at Section 2.6 if capital context is missing. All figures step-by-step in labeled ranges — no single-point estimates.
+
+  - skill_id: mca-market-competitive-analyst
+    agent_code: MCA
+    canonical_name: Market & Competitive Analyst
+    caribbean_name: Sterling
+    department: business-analysis
+    path: 03_agent-skills/department-skill-pack/business-analysis/mca-market-competitive-analyst
+    activation_status: on-demand-founder-auth
+    load_priority: specialist
+    trigger_terms:
+      - market demand validation
+      - competitive landscape
+      - distribution strategy
+      - originality assessment
+      - market analysis
+    workflow_tags:
+      - market-analysis
+      - competitive-intelligence
+      - distribution
+    required_inputs:
+      - section 2.1 from BAO
+      - industry context from client brief
+      - client-provided market data if any
+      - target market description
+    outputs:
+      - section 2.2 market depth and demand
+      - section 2.3 competitive landscape
+      - section 2.9 distribution strategy
+      - section 2.14 originality and virality
+      - differentiation/defensibility rating input for 2.17
+    confidence_floor: 80
+    escalates_to_ai:
+      - BAO
+      - QAS
+    escalates_to_human:
+      - HR-FOUNDER
+    source_status: approved
+    registry_authorization: final-approved-department-and-agent-registry.md (2026-04-24)
+    notes: No fabricated TAM/SAM figures. All size estimates labeled as broad ranges. Must state explicitly when no credible demand evidence exists.
+
+  - skill_id: rsa-risk-strategy-analyst
+    agent_code: RSA
+    canonical_name: Risk & Strategy Analyst
+    caribbean_name: Imara
+    department: business-analysis
+    path: 03_agent-skills/department-skill-pack/business-analysis/rsa-risk-strategy-analyst
+    activation_status: on-demand-founder-auth
+    load_priority: specialist
+    trigger_terms:
+      - logic gap check
+      - feasibility assessment
+      - risk matrix
+      - missed opportunities
+      - FACT-STRICT audit
+    workflow_tags:
+      - risk-analysis
+      - feasibility
+      - fact-strict-audit
+    required_inputs:
+      - section 2.1 from BAO
+      - all prior sections before 2.12 and 2.13
+      - concept description from client brief
+      - operational context from client
+    outputs:
+      - section 2.4 logic and gap check
+      - section 2.5 practical feasibility
+      - section 2.12 risk profile and failure modes
+      - section 2.13 missed opportunities
+      - execution complexity + overall attractiveness inputs for 2.17
+      - FACT-STRICT audit clearance or violation report
+    confidence_floor: 85
+    escalates_to_ai:
+      - BAO
+      - QAS
+      - LCA
+    escalates_to_human:
+      - HR-FOUNDER
+    source_status: approved
+    registry_authorization: final-approved-department-and-agent-registry.md (2026-04-24)
+    notes: Mandatory FACT-STRICT auditor for the complete assembled evaluation before QAS review. At least one High Severity risk required in Section 2.12. Activates LCA immediately if regulatory flags appear in Sections 2.5 or 2.12.

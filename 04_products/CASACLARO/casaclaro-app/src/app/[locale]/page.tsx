@@ -63,65 +63,68 @@ export default async function Home({ params }: Props) {
   return (
     <div>
       {/* ─── Hero ────────────────────────────────────────────────────────────── */}
-      <section
-        style={{
-          maxWidth: "var(--max, 1240px)",
-          margin: "0 auto",
-          padding: "88px 20px 72px",
-          textAlign: "center",
-        }}
-      >
-        <p style={{ fontFamily: "var(--font-body, system-ui)", fontSize: "0.78rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--terracotta, #e67e22)", margin: "0 0 20px" }}>
-          CasaClaro
-        </p>
-        <h1
+      <section style={{ background: "var(--ocean, #1f3a4d)" }}>
+        <div
           style={{
-            fontFamily: "var(--font-display, Georgia, serif)",
-            fontSize: "clamp(2.4rem, 5.5vw, 3.8rem)",
-            fontWeight: 400,
-            color: "var(--ocean, #1f3a4d)",
-            margin: "0 0 24px",
-            lineHeight: 1.08,
-            maxWidth: "760px",
-            marginLeft: "auto",
-            marginRight: "auto",
+            maxWidth: "var(--max, 1240px)",
+            margin: "0 auto",
+            padding: "108px 20px 88px",
+            textAlign: "center",
           }}
         >
-          {isEn
-            ? "Read Colombia clearly before you buy, rent, or relocate."
-            : "Entiende Colombia con claridad antes de comprar, arrendar o mudarte."}
-        </h1>
-        <p style={{ fontSize: "1.05rem", color: "var(--muted, #6b7280)", margin: "0 0 40px", maxWidth: "560px", marginLeft: "auto", marginRight: "auto", lineHeight: 1.65, fontFamily: "var(--font-body, system-ui)" }}>
-          {isEn
-            ? "Bilingual property platform for buyers, renters, and expats. Vetted listings, real neighborhood data, and full relocation context — built for the international Colombia market."
-            : "Plataforma bilingüe para compradores, arrendatarios y expats. Listados verificados, datos reales de barrio y contexto completo de reubicación."}
-        </p>
-        <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
-          <Link href="/listings" className="btn btn-primary" style={{ fontSize: "0.95rem", padding: "14px 32px" }}>
-            {isEn ? "Browse Listings" : "Ver Listados"}
-          </Link>
-          <Link href="/cities" className="btn btn-secondary" style={{ fontSize: "0.95rem", padding: "14px 32px" }}>
-            {isEn ? "Compare Cities" : "Comparar Ciudades"}
-          </Link>
-        </div>
+          <p style={{ fontFamily: "var(--font-body, system-ui)", fontSize: "0.78rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--marigold, #f1c40f)", margin: "0 0 20px" }}>
+            CasaClaro
+          </p>
+          <h1
+            style={{
+              fontFamily: "var(--font-display, Georgia, serif)",
+              fontSize: "clamp(2.4rem, 5.5vw, 3.8rem)",
+              fontWeight: 400,
+              color: "#fff",
+              margin: "0 0 24px",
+              lineHeight: 1.08,
+              maxWidth: "760px",
+              marginLeft: "auto",
+              marginRight: "auto",
+              textShadow: "0 2px 20px rgba(0,0,0,0.3)",
+            }}
+          >
+            {isEn
+              ? "Read Colombia clearly before you buy, rent, or relocate."
+              : "Entiende Colombia con claridad antes de comprar, arrendar o mudarte."}
+          </h1>
+          <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.82)", margin: "0 0 40px", maxWidth: "560px", marginLeft: "auto", marginRight: "auto", lineHeight: 1.65, fontFamily: "var(--font-body, system-ui)" }}>
+            {isEn
+              ? "Bilingual property platform for buyers, renters, and expats. Vetted listings, real neighborhood data, and full relocation context — built for the international Colombia market."
+              : "Plataforma bilingüe para compradores, arrendatarios y expats. Listados verificados, datos reales de barrio y contexto completo de reubicación."}
+          </p>
+          <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
+            <Link href="/listings" className="btn btn-primary" style={{ fontSize: "0.95rem", padding: "14px 32px" }}>
+              {isEn ? "Browse Listings" : "Ver Listados"}
+            </Link>
+            <Link href="/cities" className="btn btn-secondary" style={{ fontSize: "0.95rem", padding: "14px 32px", borderColor: "rgba(255,255,255,0.5)", color: "#fff" }}>
+              {isEn ? "Compare Cities" : "Comparar Ciudades"}
+            </Link>
+          </div>
 
-        {/* Stat bar */}
-        <div style={{ display: "flex", gap: "0", justifyContent: "center", marginTop: "56px", flexWrap: "wrap", borderTop: "1px solid rgba(31,58,77,0.08)", paddingTop: "40px" }}>
-          {[
-            { n: "8", label: isEn ? "Cities covered" : "Ciudades cubiertas" },
-            { n: "20+", label: isEn ? "Vetted listings" : "Listados verificados" },
-            { n: "EN/ES", label: isEn ? "Fully bilingual" : "Completamente bilingüe" },
-            { n: "3", label: isEn ? "Vetting tiers" : "Niveles de verificación" },
-          ].map((stat, i) => (
-            <div key={i} style={{ flex: "1 1 140px", padding: "0 24px", borderRight: i < 3 ? "1px solid rgba(31,58,77,0.08)" : "none", textAlign: "center" }}>
-              <p style={{ fontFamily: "var(--font-display, Georgia, serif)", fontSize: "2rem", fontWeight: 400, color: "var(--ocean, #1f3a4d)", margin: "0 0 4px", lineHeight: 1 }}>
-                {stat.n}
-              </p>
-              <p style={{ fontSize: "0.75rem", color: "rgba(31,58,77,0.45)", margin: 0, fontFamily: "var(--font-body, system-ui)", letterSpacing: "0.02em" }}>
-                {stat.label}
-              </p>
-            </div>
-          ))}
+          {/* Stat bar */}
+          <div style={{ display: "flex", gap: "0", justifyContent: "center", marginTop: "56px", flexWrap: "wrap", borderTop: "1px solid rgba(255,255,255,0.15)", paddingTop: "40px" }}>
+            {[
+              { n: "7", label: isEn ? "Cities covered" : "Ciudades cubiertas" },
+              { n: "20+", label: isEn ? "Vetted listings" : "Listados verificados" },
+              { n: "EN/ES", label: isEn ? "Fully bilingual" : "Completamente bilingüe" },
+              { n: "3", label: isEn ? "Vetting tiers" : "Niveles de verificación" },
+            ].map((stat, i) => (
+              <div key={i} style={{ flex: "1 1 140px", padding: "0 24px", borderRight: i < 3 ? "1px solid rgba(255,255,255,0.15)" : "none", textAlign: "center" }}>
+                <p style={{ fontFamily: "var(--font-display, Georgia, serif)", fontSize: "2rem", fontWeight: 400, color: "#fff", margin: "0 0 4px", lineHeight: 1 }}>
+                  {stat.n}
+                </p>
+                <p style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.6)", margin: 0, fontFamily: "var(--font-body, system-ui)", letterSpacing: "0.02em" }}>
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -137,14 +140,14 @@ export default async function Home({ params }: Props) {
                 {isEn ? "Colombia's top expat destinations" : "Los mejores destinos expat de Colombia"}
               </h2>
             </div>
-            <a href="/cities" style={{ fontSize: "0.84rem", fontWeight: 600, color: "var(--lagoon, #1f6f78)", textDecoration: "none", fontFamily: "var(--font-body, system-ui)", whiteSpace: "nowrap" }}>
+            <Link href="/cities" style={{ fontSize: "0.84rem", fontWeight: 600, color: "var(--lagoon, #1f6f78)", textDecoration: "none", fontFamily: "var(--font-body, system-ui)", whiteSpace: "nowrap" }}>
               {isEn ? "Compare all cities →" : "Comparar todas →"}
-            </a>
+            </Link>
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: "16px" }}>
             {featuredCities.map((city) => (
-              <a
+              <Link
                 key={city.slug}
                 href="/cities"
                 className="city-card-link"
@@ -178,7 +181,7 @@ export default async function Home({ params }: Props) {
                     </div>
                   </div>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -196,9 +199,9 @@ export default async function Home({ params }: Props) {
                 {isEn ? "Vetted properties, reviewed for clarity" : "Propiedades verificadas, revisadas con claridad"}
               </h2>
             </div>
-            <a href="/listings" style={{ fontSize: "0.84rem", fontWeight: 600, color: "var(--lagoon, #1f6f78)", textDecoration: "none", fontFamily: "var(--font-body, system-ui)", whiteSpace: "nowrap" }}>
+            <Link href="/listings" style={{ fontSize: "0.84rem", fontWeight: 600, color: "var(--lagoon, #1f6f78)", textDecoration: "none", fontFamily: "var(--font-body, system-ui)", whiteSpace: "nowrap" }}>
               {isEn ? "View all listings →" : "Ver todos los listados →"}
-            </a>
+            </Link>
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: "20px" }}>
@@ -210,7 +213,7 @@ export default async function Home({ params }: Props) {
                 : `$${listing.price_usd.toLocaleString()}/mo`;
 
               return (
-                <a key={listing.slug} href={`/listings/${listing.slug}`} className="listing-card-link" style={{ textDecoration: "none", color: "inherit" }}>
+                <Link key={listing.slug} href={`/listings/${listing.slug}` as "/"} className="listing-card-link" style={{ textDecoration: "none", color: "inherit" }}>
                   <div className="listing-card" style={{ background: "white", borderRadius: "var(--radius, 26px)", overflow: "hidden", border: "1px solid rgba(31,58,77,0.06)", boxShadow: "0 2px 12px rgba(31,58,77,0.05)" }}>
                     <div style={{ position: "relative", aspectRatio: "16/10", overflow: "hidden" }}>
                       <img src={primaryImg.url} alt={primaryImg.alt} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
@@ -232,7 +235,7 @@ export default async function Home({ params }: Props) {
                       </div>
                     </div>
                   </div>
-                </a>
+                </Link>
               );
             })}
           </div>
@@ -261,9 +264,9 @@ export default async function Home({ params }: Props) {
                 <p style={{ fontSize: "0.85rem", color: "rgba(31,58,77,0.6)", lineHeight: 1.65, margin: "0 0 18px", fontFamily: "var(--font-body, system-ui)" }}>
                   {isEn ? step.bodyEn : step.bodyEs}
                 </p>
-                <a href={step.href} style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--terracotta, #e67e22)", textDecoration: "none", fontFamily: "var(--font-body, system-ui)" }}>
+                <Link href={step.href as "/"} style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--terracotta, #e67e22)", textDecoration: "none", fontFamily: "var(--font-body, system-ui)" }}>
                   {isEn ? step.ctaEn : step.ctaEs} →
-                </a>
+                </Link>
               </div>
             ))}
           </div>

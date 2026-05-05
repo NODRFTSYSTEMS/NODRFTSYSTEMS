@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Link } from "@/i18n/navigation";
 import { CurrencyWidget } from "./CurrencyWidget";
 import { fetchFxRate } from "@/lib/fx";
 
@@ -67,7 +68,7 @@ export async function Footer({ locale = "en" }: FooterProps) {
         >
           {/* Brand */}
           <div>
-            <a href="/" style={{ display: "inline-block", margin: "0 0 10px", width: "176px" }}>
+            <Link href="/" style={{ display: "inline-block", margin: "0 0 10px", width: "176px" }}>
               <Image
                 src="/logo.png"
                 alt="CasaClaro"
@@ -76,7 +77,7 @@ export async function Footer({ locale = "en" }: FooterProps) {
                 style={{ objectFit: "contain" }}
                 priority
               />
-            </a>
+            </Link>
             <p
               style={{
                 fontSize: "0.83rem",
@@ -95,9 +96,9 @@ export async function Footer({ locale = "en" }: FooterProps) {
                 { href: "/listings", label: locale === "en" ? "Browse Listings" : "Ver Listados" },
                 { href: "/cities", label: locale === "en" ? "Explore Cities" : "Explorar Ciudades" },
               ].map((cta) => (
-                <a
+                <Link
                   key={cta.href}
-                  href={cta.href}
+                  href={cta.href as "/"}
                   style={{
                     display: "inline-block",
                     padding: "7px 14px",
@@ -112,7 +113,7 @@ export async function Footer({ locale = "en" }: FooterProps) {
                   }}
                 >
                   {cta.label}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -136,8 +137,8 @@ export async function Footer({ locale = "en" }: FooterProps) {
               <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: "9px" }}>
                 {col.links.map((link) => (
                   <li key={link.href}>
-                    <a
-                      href={link.href}
+                    <Link
+                      href={link.href as "/"}
                       style={{
                         fontSize: "0.84rem",
                         color: "rgba(255,255,255,0.65)",
@@ -147,7 +148,7 @@ export async function Footer({ locale = "en" }: FooterProps) {
                       }}
                     >
                       {locale === "en" ? link.en : link.es}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -173,7 +174,7 @@ export async function Footer({ locale = "en" }: FooterProps) {
             style={{
               fontSize: "0.75rem",
               margin: 0,
-              color: "rgba(255,255,255,0.35)",
+              color: "rgba(255,255,255,0.55)",
               fontFamily: "var(--font-body, system-ui)",
             }}
           >

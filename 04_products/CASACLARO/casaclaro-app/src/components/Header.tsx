@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
+import { useState, useEffect, useRef } from "react";
 import { usePathname, useRouter, Link } from "@/i18n/navigation";
 
 const navLinks = [
@@ -23,6 +22,32 @@ export function Header({ locale = "en" }: HeaderProps) {
   const router = useRouter();
   const safeLocale = locale === "es" ? "es" : "en";
   const [mobileOpen, setMobileOpen] = useState(false);
+  const mobileNavRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const el = mobileNavRef.current;
+    if (!el) return;
+    const focusable = el.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+    const elements = Array.from(focusable);
+    if (!elements.length) return;
+    const first = elements[0];
+    const last = elements[elements.length - 1];
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") { setMobileOpen(false); return; }
+      if (e.key !== "Tab") return;
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    first.focus();
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [mobileOpen]);
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
@@ -31,6 +56,17 @@ export function Header({ locale = "en" }: HeaderProps) {
 
   return (
     <>
+      {/* Full-width banner masthead — scrolls with page */}
+      <Link href="/" style={{ display: "block", lineHeight: 0, overflow: "hidden" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/hero-banner.png"
+          alt="CasaClaro — Bienes Raíces Colombia"
+          className="site-banner"
+          style={{ width: "100%", objectFit: "cover", objectPosition: "center 30%", display: "block" }}
+        />
+      </Link>
+
       <header
         style={{
           background: "var(--sand, #fff8ef)",
@@ -52,20 +88,8 @@ export function Header({ locale = "en" }: HeaderProps) {
             gap: "16px",
           }}
         >
-          {/* Logo */}
-          <Link href="/" style={{ flexShrink: 0, display: "flex", alignItems: "center" }}>
-            <Image
-              src="/logo.png"
-              alt="CasaClaro"
-              width={995}
-              height={1024}
-              priority
-              style={{ objectFit: "contain", width: "176px", height: "auto" }}
-            />
-          </Link>
-
           {/* Desktop nav */}
-          <nav aria-label="Main navigation" style={{ flex: 1, display: "flex", justifyContent: "center" }}>
+          <nav aria-label="Main navigation" style={{ flex: 1, display: "flex", justifyContent: "flex-start" }}>
             <ul
               style={{
                 listStyle: "none",
@@ -87,7 +111,7 @@ export function Header({ locale = "en" }: HeaderProps) {
                         padding: "6px 12px",
                         borderRadius: "8px",
                         fontFamily: "var(--font-body, system-ui)",
-                        fontSize: "0.83rem",
+                        fontSize: "0.875rem",
                         fontWeight: active ? 600 : 500,
                         color: active ? "var(--terracotta, #e67e22)" : "var(--charcoal, #23313f)",
                         textDecoration: "none",
@@ -118,7 +142,9 @@ export function Header({ locale = "en" }: HeaderProps) {
                   aria-pressed={safeLocale === lang}
                   onClick={() => router.replace(pathname, { locale: lang })}
                   style={{
-                    padding: "4px 10px",
+                    padding: "0 10px",
+                    minHeight: "44px",
+                    minWidth: "44px",
                     borderRadius: "999px",
                     border: "1px solid var(--border, rgba(35,49,63,0.12))",
                     background: safeLocale === lang ? "var(--ocean, #1f3a4d)" : "transparent",
@@ -174,6 +200,7 @@ export function Header({ locale = "en" }: HeaderProps) {
         {/* Mobile dropdown menu */}
         {mobileOpen && (
           <div
+            ref={mobileNavRef}
             style={{
               borderTop: "1px solid var(--border, rgba(35,49,63,0.1))",
               background: "var(--sand, #fff8ef)",
@@ -213,7 +240,9 @@ export function Header({ locale = "en" }: HeaderProps) {
       </header>
 
       <style>{`
+        .site-banner { height: 140px; }
         @media (max-width: 720px) {
+          .site-banner { height: 90px; }
           .mobile-menu-btn { display: block !important; }
           header nav { display: none !important; }
         }

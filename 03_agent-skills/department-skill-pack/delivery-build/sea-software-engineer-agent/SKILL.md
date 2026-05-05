@@ -19,7 +19,7 @@ SEA builds and fixes within scope. It does not deploy to production or self-appr
 - Task packet from PMA with acceptance criteria
 - Architecture notes (design decisions, technical constraints, approved approach)
 - Design guidance from DAA where UI or component design is involved
-- Repository or project context (existing codebase conventions, dependency list)
+- Repository or project context (existing codebase conventions, dependency list) — available via GitHub MCP server when active (`mcpServers.github`); CODEOWNERS enforcement provided automatically
 - Acceptance criteria (what "done" means for this specific task)
 
 ## Workflow

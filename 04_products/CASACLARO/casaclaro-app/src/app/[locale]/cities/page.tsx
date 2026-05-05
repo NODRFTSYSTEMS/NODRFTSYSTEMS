@@ -16,6 +16,58 @@ const ColombiaMap = dynamic(
 
 type View = "list" | "map" | "compare";
 
+const CITY_IMAGES: Record<string, { src: string; alt: { en: string; es: string } }> = {
+  bogota: {
+    src: "/cities/bogota-header.png",
+    alt: {
+      en: "Illustrative Bogota skyline with the Andes in the background",
+      es: "Vista ilustrativa de Bogota con los Andes al fondo",
+    },
+  },
+  medellin: {
+    src: "/cities/medellin-header.png",
+    alt: {
+      en: "Illustrative Medellin valley view with green mountains",
+      es: "Vista ilustrativa del valle de Medellin con montanas verdes",
+    },
+  },
+  cali: {
+    src: "/cities/cali-header.png",
+    alt: {
+      en: "Illustrative Cali city view with warm valley hills",
+      es: "Vista ilustrativa de Cali con colinas calidas del valle",
+    },
+  },
+  barranquilla: {
+    src: "/cities/barranquilla-header.png",
+    alt: {
+      en: "Illustrative Barranquilla city and river landscape",
+      es: "Paisaje ilustrativo de Barranquilla con ciudad y rio",
+    },
+  },
+  cartagena: {
+    src: "/cities/cartagena-header.png",
+    alt: {
+      en: "Illustrative Cartagena colonial rooftops and Caribbean water",
+      es: "Vista ilustrativa de tejados coloniales de Cartagena y agua caribena",
+    },
+  },
+  manizales: {
+    src: "/cities/manizales-header.png",
+    alt: {
+      en: "Illustrative Manizales hillside city in the Coffee Region",
+      es: "Vista ilustrativa de Manizales en ladera dentro del Eje Cafetero",
+    },
+  },
+  barichara: {
+    src: "/cities/barichara-header.png",
+    alt: {
+      en: "Illustrative Barichara stone street and whitewashed heritage homes",
+      es: "Calle de piedra ilustrativa de Barichara con casas patrimoniales encaladas",
+    },
+  },
+};
+
 function MetricRow({ label, value }: { label: string; value: string }) {
   return (
     <div
@@ -47,6 +99,7 @@ function CityCard({
 }) {
   const loc = locale === "es" ? "es" : "en";
   const m = city.metrics;
+  const image = CITY_IMAGES[city.slug];
 
   return (
     <article
@@ -57,12 +110,37 @@ function CityCard({
           ? `2px solid ${city.markerColor}`
           : "1px solid var(--border, rgba(35,49,63,0.1))",
         borderRadius: "var(--radius-sm, 18px)",
-        padding: "24px",
+        overflow: "hidden",
         cursor: "pointer",
         transition: "box-shadow 0.15s, border 0.15s",
         boxShadow: selected ? `0 4px 20px ${city.markerColor}30` : "none",
       }}
     >
+      {image && (
+        <div style={{ position: "relative", aspectRatio: "16 / 7", background: "var(--sand, #fff8ef)" }}>
+          <img
+            src={image.src}
+            alt={image.alt[loc]}
+            loading="lazy"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              display: "block",
+            }}
+          />
+          <div
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: "linear-gradient(180deg, rgba(31,58,77,0.04) 0%, rgba(31,58,77,0.18) 100%)",
+            }}
+          />
+        </div>
+      )}
+
+      <div style={{ padding: "22px 24px 24px" }}>
       {/* Header */}
       <div style={{ display: "flex", alignItems: "flex-start", gap: "12px", marginBottom: "12px" }}>
         <div
@@ -234,6 +312,7 @@ function CityCard({
           ))}
         </div>
       )}
+      </div>
     </article>
   );
 }
@@ -406,7 +485,8 @@ export default function CitiesPage() {
       onClick={() => setView(v)}
       aria-pressed={view === v}
       style={{
-        padding: "8px 18px",
+        padding: "0 18px",
+        minHeight: "44px",
         borderRadius: "999px",
         border: "1px solid var(--border, rgba(35,49,63,0.15))",
         background: view === v ? "var(--ocean, #1f3a4d)" : "transparent",
@@ -551,6 +631,8 @@ export default function CitiesPage() {
                   fontSize: "1.2rem",
                   cursor: "pointer",
                   color: "var(--muted, #6b7280)",
+                  minWidth: "44px",
+                  minHeight: "44px",
                 }}
               >
                 ×

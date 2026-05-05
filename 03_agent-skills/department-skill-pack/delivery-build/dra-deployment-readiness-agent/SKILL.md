@@ -20,7 +20,7 @@ DRA runs the pre-release check. It never deploys and never waives blockers.
 - Release checklist (the defined criteria for deployment readiness)
 - QA status from QAS (pass confirmation with reference to QA report)
 - Environment notes (production environment state, configuration, active dependencies)
-- Dependency status (external services, APIs, or integrations that the release depends on)
+- Dependency status (external services, APIs, or integrations that the release depends on) — PR context and repository state available via GitHub MCP server when active (`mcpServers.github`); CODEOWNERS enforcement provided automatically
 
 ## Workflow
 

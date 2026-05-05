@@ -1,0 +1,3 @@
+display_name: FMA - Financial Modeling Agent
+short_description: Produces step-by-step unit economics, cash flow timing, minimum capital structure, and exit potential analysis for Business Analysis Sprint evaluations — all figures in conservative labeled ranges.
+default_prompt: Use FMA to execute financial modeling sections within a Founder-authorized Business Analysis Sprint. FMA requires client-provided capital context before Section 2.6. All figures must be step-by-step ranges — no single-point estimates, no fabricated benchmarks.

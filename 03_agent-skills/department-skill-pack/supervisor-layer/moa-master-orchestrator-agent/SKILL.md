@@ -31,7 +31,7 @@ MOA is the first agent activated on any non-trivial task. It assigns, sequences,
 4. Assign the task to the primary agent with full context package.
 5. Map dependencies — which agents or outputs must be completed before this task or after it.
 6. Log the routing rationale with confidence level.
-7. Set a stall detection point — if no progress signal arrives within 4 hours, flag for re-routing.
+7. Set a stall detection point — if no progress signal arrives within 4 hours, escalate to HHC for human review. **Stall detection mechanism:** this is a Founder-supervised human check. At the end of any active working session, the Founder reviews the session state of any task that was assigned but has produced no output. If the 4-hour threshold has passed with no resolution signal, the Founder issues a recovery directive via HHC. No automated scheduler exists — the check is explicit human review at session end. This mechanism is acknowledged as a human-supervised interval check, not an automated one.
 8. Monitor for scope change requests during execution and re-route if a change is confirmed.
 
 ## Outputs

@@ -2,7 +2,7 @@
 
 Status: canonical governance
 Date: 2026-04-18
-Last amended: 2026-04-19 - VECS public-route review path added; ARE deployment status reconciled; 60-agent references aligned
+Last amended: 2026-05-02 — Business Analysis artifact class added (Section 2); BA cross-references added (Section 7). Prior amendment 2026-04-19: VECS public-route review path added; ARE deployment status reconciled. Agent count: 64 as of 2026-04-24 (BA department addition).
 Owners: Founder, ARE, QAS (Imani), HHC (Desmond)
 Confidentiality: proprietary internal framework; no external publishing approved
 Purpose: define who reviews what, at what authority level, with what escalation path and delegation boundaries, for every artifact class produced by the NoDrftSystems multi-agent system
@@ -172,6 +172,33 @@ For every artifact class: who produces it, who does peer review, which independe
 
 ---
 
+### Business Analysis Artifacts
+*(Business Analysis Sprint evaluations — 17-section FACT-STRICT structured evaluations of a client's business idea)*
+
+| Step | Actor | Action |
+|------|-------|--------|
+| Confirm pre-conditions | BAO (Cyrus) | Verify written business brief on file, capital context received, and Founder authorization on record — hard stop if any missing |
+| Concept snapshot (Section 2.1) | BAO (Cyrus) | Document founder profile, problem hypothesis, and solution concept without editorializing |
+| Financial modeling | FMA (Valentina) | Execute Sections 2.6–2.8, 2.10, 2.11 (joint), 2.16, 2.17 — all figures in labeled conservative ranges, step-by-step derivations required |
+| Market analysis | MCA (Sterling) | Execute Sections 2.2, 2.3, 2.9, 2.14, 2.17 — evidence-based only; no fabricated TAM/SAM figures |
+| Risk and strategy | RSA (Imara) | Execute Sections 2.4, 2.5, 2.12, 2.13, 2.17 — must include at least one High Severity risk |
+| Assembly and synthesis | BAO (Cyrus) | Compile all sections into 4-block structure (Verified Facts / Analysis / Unknowns / Conclusion); confirm FACT-STRICT compliance |
+| FACT-STRICT audit | RSA (Imara) | Mandatory full-evaluation audit before QAS review — flag any invented figure, missing label, or single-point estimate that should be a range |
+| Quantitative verification | QMA (Solomon) | Verify any financial formula or quantitative model in FMA output for mathematical correctness |
+| Quality gate | QAS (Imani) | Pass 2 (content, FACT-STRICT compliance) + Pass 5 (scope completeness against client brief) — both required before Founder review |
+| Human gate | **Founder** | **Mandatory — non-delegable. No BA Sprint output reaches a client without Founder review and explicit approval.** |
+| Skill to load | `business-analysis-evaluation` (workflow) | Full cell activation, FACT-STRICT enforcement, 17-section framework |
+
+**Non-delegable items:** Founder authorization is required BEFORE the Sprint begins AND before any output is delivered to a client. No exception. BA Sprint output must never expose agent codes, cell composition, scoring weights, or skill file contents in client-facing deliverables.
+
+**FACT-STRICT MODE — four mandatory rules for every BA Sprint section:**
+1. No invented figures — every number must come from the client brief or a cited source
+2. No unlabeled estimates — every estimate is labeled "(estimate)" with the basis stated
+3. All calculations step-by-step — no black-box conclusions
+4. Ranges not single points — never state a single revenue or market size figure without a range and confidence label
+
+---
+
 ### Intake and Qualification Artifacts
 *(qualification decisions, lead scoring, routing decisions, Discovery Sprint confirmations)*
 
@@ -300,9 +327,11 @@ These items ALWAYS require Founder regardless of any delegation rule, any effici
 |----------|----------|-------------|
 | Mandatory Build Activation Protocol | `01_system/ai-governance/mandatory-build-activation-protocol-2026-04-15.md` | Defines gate sequence; this matrix defines authority at each gate |
 | AI-Native Operating Architecture | `01_system/ai-governance/ai-native-operating-architecture.md` | Defines workflow cells; this matrix defines review authority within each cell |
-| Agent Registry | `01_system/registry/final-approved-department-and-agent-registry.md` | Defines the 60 agents; this matrix defines their review roles |
+| Agent Registry | `01_system/registry/final-approved-department-and-agent-registry.md` | Defines the 64 agents (as of 2026-04-24); this matrix defines their review roles |
 | VECS Architecture Amendment | `01_system/ai-governance/visual-experience-conversion-systems-architecture-amendment-2026-04-19.md` | Defines the public-route overlay whose review path is formalized in this matrix |
 | Company Baseline Gap-Closure Protocol | `01_system/ai-governance/company-baseline-gap-closure-protocol-2026-04-19.md` | Defines the controlled closure path for company-level unknowns and proprietary-surface reconciliation |
 | Skill Loading Matrix | `03_agent-skills/skill-loading-matrix.md` | Defines when workflow skills load; this matrix defines what reviews follow |
 | Reviewer Agents | `.claude/agents/` | The 6 reviewer implementations referenced in Section 5 |
 | CLAUDE.md | repository root | Root authority — supersedes this matrix where they conflict |
+| Business Analysis Orchestrator Skill | `03_agent-skills/business-analysis-evaluation/SKILL.md` | Defines the 17-section FACT-STRICT framework; the review path in Section 2 above operationalizes the BA Sprint gate sequence |
+| Business Analysis Sprint SOP | `01_system/operations/sop-library.md` SOP-013 | Step-by-step procedure for executing the BA Sprint; this matrix defines the authority at each gate |

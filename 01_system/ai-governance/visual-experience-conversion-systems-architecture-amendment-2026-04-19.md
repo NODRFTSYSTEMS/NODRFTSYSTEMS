@@ -4,7 +4,7 @@ Status: canonical governance
 Date: 2026-04-19
 Owners: Founder, ARE, QAS, MOA
 Confidentiality: proprietary internal framework; no external publishing approved
-Purpose: establish Visual Experience & Conversion Systems (VECS) as the permanent architectural authority for public commercial route systems while keeping current execution aligned to the live 60-agent bench
+Purpose: establish Visual Experience & Conversion Systems (VECS) as the permanent architectural authority for public commercial route systems while keeping current execution aligned to the live 64-agent bench (64 as of 2026-04-24)
 
 ## 1. Verified Facts
 

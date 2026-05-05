@@ -1,0 +1,23 @@
+{
+  "name": "nodrft-governance-mcp",
+  "version": "0.2.0",
+  "description": "NoDrftSystems Governance MCP Server — read-only context, routing, QA, and authority enforcement",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "node --test --import tsx/esm tests/authority-check.test.ts tests/route-task-to-agent.test.ts tests/scope-drift-check.test.ts tests/registry-loader.test.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.10.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}

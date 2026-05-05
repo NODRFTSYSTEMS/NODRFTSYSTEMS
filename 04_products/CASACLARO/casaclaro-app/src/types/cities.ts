@@ -30,6 +30,10 @@ export interface City {
   tagline: { en: string; es: string };
   description: { en: string; es: string };
   whyItMatters: { en: string[]; es: string[] };
+  image?: {
+    src: string;
+    alt: { en: string; es: string };
+  };
 
   metrics: CityMetrics;
   keyIndustries: { en: string[]; es: string[] };

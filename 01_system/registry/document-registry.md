@@ -32,15 +32,15 @@ Status definitions:
 - `01_system/registry/final-approved-department-and-agent-registry.md`
   Role: normalized working registry for the approved agent architecture, including later founder-directed engineering expansion and skills optimization enhancement
   Status: active reference
-  Action: use as the staffing truth for approved departments, codes, and ownership; updated 2026-04-18 to 60 agents with QMA (Solomon) addition per Decision Log 2026-04-18-001
+  Action: use as the staffing truth for approved departments, codes, and ownership; count history: 59 (pre-2026-04-18) → 60 with QMA addition (Decision Log 2026-04-18-001) → 64 with Business Analysis department addition (BAO, FMA, MCA, RSA, 2026-04-24) — current approved count is 64
 
 - ~~`NoDrftSystems_Final_Approved_Agent_Registry.pdf`~~ — DELETED 2026-04-17 (converted to markdown; the registry `.md` is the canonical source)
-  Note: the working registry `01_system/registry/final-approved-department-and-agent-registry.md` is the current 59-agent source of truth; no PDF export is required
+  Note: the working registry `01_system/registry/final-approved-department-and-agent-registry.md` is the current 64-agent source of truth; no PDF export is required
 
 - `01_system/ai-governance/ai-native-operating-architecture.md`
   Role: workflow activation, review-gate, and AI operating model guidance
   Status: canonical governance
-  Action: use for activation logic and control rules; updated 2026-04-17 to reflect 59-agent architecture, QAS stage-gate discipline, and new workflow cell members; do not let it override the approved registry on staffing counts or department structure
+  Action: use for activation logic and control rules; originally updated 2026-04-17 to reflect 59-agent architecture; current approved registry count is 64 — do not let this document override the approved registry on staffing counts or department structure
 
 - `01_system/commercial/pricing-governance.md`
   Role: pricing hierarchy, control chain, and quoting discipline
@@ -51,6 +51,16 @@ Status definitions:
   Role: lean tool standardization policy
   Status: canonical governance
   Action: use when adding, removing, or standardizing workflow tools
+
+- `01_system/operations/global-operations-matrix.md`
+  Role: jurisdiction, currency, privacy, tax, language, and contract boundaries for all cross-border proposals and engagements
+  Status: canonical governance
+  Action: use before any proposal, SOW, or retainer crosses a jurisdiction boundary; update when new regions are approved
+
+- `01_system/operations/mcp-credential-setup.md`
+  Role: controlled location for MCP server credential acquisition, rotation, and configuration instructions
+  Status: active reference
+  Action: use when onboarding, rotating, or troubleshooting MCP server credentials; does not contain live secrets
 
 - `02_client-system/client-intake-operating-system.md`
   Role: lead intake, qualification, routing, and workspace-entry operating rules
@@ -100,9 +110,9 @@ Status definitions:
   Action: load before generating, editing, or routing any skill pack; defines the required section order and escalation behavior standard
 
 - `03_agent-skills/manifest/skill-pack-manifest.yaml`
-  Role: machine-readable index of all 60 live skill packs, their source priorities, skill metadata, and authority-routing definitions
+  Role: machine-readable index of live skill packs, their source priorities, skill metadata, and authority-routing definitions
   Status: active reference
-  Action: use when routing agent activation to specific skill packs; keep synchronized with the approved department-and-agent registry and any new skill additions; updated 2026-04-18 to include QMA (Solomon)
+  Action: use when routing agent activation to specific skill packs; keep synchronized with the approved department-and-agent registry; **manifest synchronized 2026-05-02 (I-001 complete)** — 64/64 agents and skill packs confirmed; `validate-registry-consistency.py` passes (exit 0); run validator before recording any future count change as current
 
 ## Skill System
 
@@ -151,10 +161,27 @@ Status definitions:
   Status: active reference
   Action: load when assembling final delivery packages, access transfer notes, and archive records
 
-- `03_agent-skills/department-skill-pack/` (59 role skill folders — full approved working architecture)
-  Role: individual role skill packs for all 59 approved agents across the Supervisor Layer, Revenue & Sales, Marketing & Content, Delivery & Build, Quality & Compliance, Client Success, Finance & Bookkeeping, Strategic Intelligence, People Roles & Governance, and Specialist Pool departments
+- `03_agent-skills/department-skill-pack/` (64 role skill folders — complete; 64/64)
+  Role: individual role skill packs for approved agents across the Supervisor Layer, Revenue & Sales, Marketing & Content, Delivery & Build, Quality & Compliance, Client Success, Finance & Bookkeeping, Strategic Intelligence, People Roles & Governance, Specialist Pool, and Business Analysis departments
   Status: active reference
-  Action: load the relevant role-skill folder when activating a named agent for bounded task execution; the 10 engineering expansion roles (SAA, RCA, FIS, BLS, IDS, TVA, DSS, PIS, POS, ASIS) were added 2026-04-15 per engineering-expansion-approval-and-hire-list-2026-04-15.md; the 4 skills optimization roles (SRA, VDA, LCA, SMA) were added 2026-04-17 per the skills optimization and enhancement directive
+  Action: load the relevant role-skill folder when activating a named agent for bounded task execution; the 10 engineering expansion roles (SAA, RCA, FIS, BLS, IDS, TVA, DSS, PIS, POS, ASIS) were added 2026-04-15; the 4 skills optimization roles (SRA, VDA, LCA, SMA) were added 2026-04-17; QMA added 2026-04-18; Business Analysis department (BAO, FMA, MCA, RSA) added 2026-04-24; all 64 skill packs complete (I-001 resolved 2026-05-02); `validate-registry-consistency.py` passes exit 0
+
+## Platform-Specific Provider Skills
+
+- `03_agent-skills/kimi/` (11 files — complete as of 2026-05-02)
+  Role: Kimi session governance layer — master brief + 10 task overlays covering all active NoDrftSystems workflow types; paste-in model; governs the full 64-agent bench in Kimi sessions without Claude Code
+  Status: active reference
+  Action: load `kimi-master-brief.md` first every Kimi session; then load the task-specific overlay; all output routes to Claude Code for final review before high-risk use
+
+- `03_agent-skills/claude-web/` (11 files — built 2026-05-02)
+  Role: Claude web / API session governance layer — master brief + 10 task overlays; covers all active workflow types for claude.ai web and API sessions outside Claude Code; same governance standards as Claude Code, no MCP server
+  Status: active reference
+  Action: load `claude-web-master-brief.md` first every Claude web session; then load the task-specific overlay; all output routes to Claude Code for final review before high-risk use
+
+- `03_agent-skills/chatgpt/chatgpt-master-brief.md`
+  Role: Compact governance brief for ChatGPT backup sessions — covers all task types in a single file; enforces the 4 non-negotiable rules, full agent bench, FACT-STRICT mode, and hard blocks on high-risk artifacts
+  Status: active reference
+  Action: paste at the start of every ChatGPT session; ChatGPT is backup only — all output routes to Claude Code before finalization; no task-specific overlays (use Claude web or Kimi for complex multi-step work)
 
 ## Strategy
 
@@ -422,6 +449,11 @@ Status definitions:
   Status: active reference
   Action: use before first activation of any new role in a governed build; requires Founder and ARE sign-off before active use
 
+- `01_system/ai-governance/retroactive-agent-activation-record-2026-05-02.md`
+  Role: retroactive consolidated activation record for the Wave 1–2 baseline (45 agents, pre-2026-04-15) and engineering expansion batch (10 agents, 2026-04-15); closes governance gap E-004 from master-system-accuracy-sweep-2026-05-02.md
+  Status: active reference
+  Action: retain as the consolidated audit trail for the original and expanded bench; for new activations, create a Decision Log entry or activation readiness record BEFORE creating agent files
+
 - `01_system/ai-governance/build-prompt-library/00-root-contract-template.md`
   Role: canonical template for the persistent root contract used across governed technical builds
   Status: canonical governance
@@ -498,9 +530,14 @@ Status definitions:
   Action: populate per governed repository to support activation and handoff discipline
 
 - `01_system/ai-governance/explicit-protocol-control-sweep-2026-04-15.md`
-  Role: audit record of explicit versus implied operating controls across agents, roles, skills, prompts, and governance artifacts; last updated 2026-04-16 to reflect all 55 skill packs verified complete and secondary gaps (workspace AGENTS.md cell definition, CHSA routing matrix, DESA confidence floor, manifest date) resolved
+  Role: audit record of explicit versus implied operating controls across agents, roles, skills, prompts, and governance artifacts; amended 2026-05-02 to reflect BA dept addition (64/64 agents/packs), MCP server build, QMA anatomy fix, and count-inconsistency sweep
+  Status: active reference — superseded by master-system-accuracy-sweep-2026-05-02.md for current gap status
+  Action: retain as historical sweep record; see master-system-accuracy-sweep-2026-05-02.md for current open items
+
+- `01_system/ai-governance/master-system-accuracy-sweep-2026-05-02.md`
+  Role: current master system accuracy and execution prowess sweep; covers accuracy gaps (stale counts), structural gaps (missing SOP-013, missing Decision Log entry), and execution prowess gaps (5 Founder-blocked items, MOA stall detection, Kimi multi-provider gap)
   Status: active reference
-  Action: use to track fixed versus unresolved control gaps; primary remaining gaps are live instantiation of client governance profiles, prompt/tool inventories, and repository-agent capability maps
+  Action: use to track open items; 3 accuracy fixes applied this session (ai-native-operating-architecture, mandatory-build-activation-protocol, document-registry); remaining 5 items require Founder decisions
 
 ## Brand and Web
 
@@ -924,3 +961,22 @@ Status definitions:
   Role: workflow skill defining when and how to load QMA across build phases and deliverables — 8-trigger load table, 7-phase workflow (Mathematical Surface Inventory through Gate Routing), hard rules, and integration points
   Status: canonical governance
   Action: load before any build phase, deliverable, or analysis where formulas, calculations, models, financial projections, scoring logic, or quantitative claims exist; also updates 03_agent-skills/skill-loading-matrix.md and manifest
+
+---
+
+## Integration Infrastructure (MCP Servers and Governed Tooling)
+
+- `01_system/ai-governance/canonical-tool-inventory.md`
+  Role: master system-level inventory of all active MCP servers and governed tooling in `.claude/settings.json` — access scope, write power, credential rules, data exposure risk, and fallback paths for each; created 2026-05-02
+  Status: canonical governance
+  Action: load before adding any new MCP server or integration; every addition requires TACA review and ARE approval before activation; updated 2026-05-02 with nodrft-governance MCP, GitHub MCP, and backfill entries for Figma, Gmail, Google Calendar MCPs
+
+- `01_system/ai-governance/mcp-architecture-direction-2026-04-19.md`
+  Role: MCP integration standard, Phase 1 priority list, Phase 2 persistent memory direction, and governance rules for all MCP server additions
+  Status: canonical governance
+  Action: load when evaluating, adding, or governing any MCP server integration; reference before TACA review of any new MCP server
+
+- `04_products/nodrft-governance-mcp/`
+  Role: NoDrftSystems Governance MCP Server — internal MCP server providing governed context assembly (generate_context_package), task routing (route_task_to_agent), authority checks (run_authority_check), scope-drift detection (run_scope_drift_check), governance context loading (get_governance_context), and escalation log formatting (prepare_escalation_log_entry); 16 resources; 2 prompts; 53/53 tests passing
+  Status: canonical governance (PROPRIETARY — never include in client repositories or handoff packages)
+  Action: server is registered as `mcpServers.nodrft-governance` in `.claude/settings.json`; approved for internal use per Decision Log 2026-05-02-001; TACA formal review required before production client-session use; see `04_products/nodrft-governance-mcp/src/` for source and `dist/` for compiled entry point

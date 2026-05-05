@@ -77,6 +77,8 @@ Confirm before starting. Request missing items in one message.
 
 **Branded 404 is a deployment requirement.** If DRA output is produced, branded 404 status (brand logo, brand voice copy, primary CTA, homepage nav link) must be confirmed present. Absent branded 404 = IMPORTANT deficiency that blocks deployment gate.
 
+**Pricing copy in visual briefs.** If a visual direction brief includes copy for a packages page, pricing section, or service rate — do not write specific prices. Flag with `[PRICING: Visual brief includes pricing copy — pricing-safety-review required in Claude Code before any price appears on a public surface.]` All pricing copy on public surfaces routes to Claude Code for pricing-safety-review + Founder approval.
+
 ---
 
 ## OUTPUT STRUCTURE

@@ -2,8 +2,9 @@
 document: CASACLARO Build Activation Record
 product: CasaClaro — Colombia Real Estate Marketplace
 status: Active governance
-version: 1.0
+version: 1.1
 date: 2026-04-18
+last-amended: 2026-05-05
 owner: Founder (nodrftsystems)
 authority: Mandatory Build Activation Protocol — `01_system/ai-governance/mandatory-build-activation-protocol-2026-04-15.md`
 confidentiality: Proprietary internal — no external publishing approved
@@ -31,8 +32,8 @@ Reclassification to Class 4 may apply if payment processing is added.
 | Phase | Description | Status | Notes |
 |-------|-------------|--------|-------|
 | Phase 1 | Discovery and scope definition | COMPLETE | — |
-| Phase 2 | Architecture and data model | IN PROGRESS | QA fixes documented (6 items, commit 3cb3217 pre-loss). Reconciliation session 2026-04-20 confirms file recovery successful. |
-| Phase 3 | Core marketplace build + full Next.js app elevation | ACTIVE | Founder approved 2026-04-20. Scope expanded: full Next.js 16 + TypeScript + React app scaffold at `04_products/CASACLARO/casaclaro-app/`. Current listings page is Sprint 1 deliverable. Static site archived in place at `04_products/CASACLARO/`. |
+| Phase 2 | Architecture and data model | COMPLETE | QA fixes confirmed present in source as of 2026-05-05 audit. Static HTML build archived to `02_client-system/CASACLARO_marketplace-v1/07_archive/static-build-phase2/` on 2026-05-05. |
+| Phase 3 | Core marketplace build — Next.js app | ACTIVE | Authoritative build: `04_products/CASACLARO/casaclaro-app/`. Next.js 16 + TypeScript + React + next-intl + Tailwind v4 + Leaflet. Implemented features: partner portraits and directory, logo in header and footer, dedicated listings page, streamlined footer, live FX currency display, contextual weather widgets, realistic property photography, optimized background imagery, enhanced UX and navigation flow. Next milestone: comprehensive editorial and content review (QA Pass 2). |
 | Phase 4 | QA and security review | PENDING | — |
 | Phase 5 | Founder review and release gate | PENDING | — |
 | Phase 6 | Launch and Colombia market activation | PENDING | — |
@@ -69,3 +70,5 @@ Reclassification to Class 4 may apply if payment processing is added.
 | CC-O-005 | Colombia market legal review (data residency, property listing regulations) | Founder + counsel | IMPORTANT | OPEN |
 | CC-O-006 | Founder sign-off to resume Phase 3 build and authorize full Next.js app scaffold | Founder | IMPORTANT | RESOLVED — Founder approved CasaClaro full app elevation plan 2026-04-20. Phase 3 ACTIVE. |
 | CC-O-007 | Retire AI_REVIEW_AUTHORITY_MATRIX.md to 07_archive (legacy pre-governance file) | Founder / MOA | ENHANCEMENT | OPEN — legacy header added 2026-04-20 |
+| CC-O-008 | Static HTML build archived to 07_archive/static-build-phase2/ — authoritative build is now casaclaro-app/ exclusively | MOA | RESOLVED | RESOLVED 2026-05-05 |
+| CC-O-009 | Editorial and content review (QA Pass 2) against casaclaro-app — next immediate milestone | QAS / QDA | IMPORTANT | OPEN — Phase 3 next action |

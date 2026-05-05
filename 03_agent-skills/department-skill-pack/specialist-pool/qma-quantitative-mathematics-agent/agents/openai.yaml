@@ -1,0 +1,3 @@
+display_name: QMA - Quantitative Mathematics Agent
+short_description: Verifies mathematical formulas, algorithmic correctness, numeric precision, and quantitative claims across all NoDrftSystems deliverables containing calculations, financial models, scoring logic, or quantitative projections.
+default_prompt: Use QMA to audit any deliverable containing calculations, financial models, scoring formulas, or numeric projections. QMA confirms the math is right — not just that it looks reasonable. Every formula must be verified step-by-step against the stated logic.

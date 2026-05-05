@@ -1,0 +1,116 @@
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { z } from "zod";
+
+export function register(server: McpServer): void {
+  server.prompt(
+    "startup_declaration",
+    "Generate a governance-compliant startup declaration for a new session on an active project. The startup declaration confirms loaded governance files, active agents, current project phase, required artifact trail, and any blocking gaps. Required before any substantial task per plan_mode.md.",
+    {
+      project_id: z.string().min(2).describe("Project identifier"),
+      project_phase: z
+        .enum([
+          "intake",
+          "discovery",
+          "strategy",
+          "architecture",
+          "implementation",
+          "qa",
+          "release",
+          "handoff",
+          "maintenance",
+        ])
+        .describe("Current project phase"),
+      objective: z.string().min(10).describe("Objective of this session"),
+      agent_codes: z
+        .array(z.string())
+        .optional()
+        .describe("Active agent codes for this session"),
+      known_gaps: z
+        .string()
+        .optional()
+        .describe("Any known gaps, missing inputs, or unresolved decisions"),
+    },
+    async ({ project_id, project_phase, objective, agent_codes, known_gaps }) => {
+      const agents = agent_codes ?? [];
+      const agentList = agents.length > 0 ? agents.join(", ") : "Not yet assigned";
+
+      const phaseArtifactTrail: Record<string, string[]> = {
+        intake: ["inquiry_log.md", "evaluation_scorecard.md", "routing_decision.md"],
+        discovery: ["discovery_brief.md", "scope_brief.md", "risk_flags.md"],
+        strategy: ["scope_brief.md", "package_recommendation.md", "decision_log.md"],
+        architecture: ["architecture_decision.md", "dependency_plan.md", "sbom_draft.md"],
+        implementation: ["build_artifacts/", "tvа_verification_evidence.md", "sca_review.md"],
+        qa: ["qa_pass_records.md", "defect_log.md", "qas_signoff.md"],
+        release: ["deployment_readiness.md", "disclosure_gate_log.md", "release_notes.md"],
+        handoff: ["handoff_package/", "access_log.md", "founder_approval.md"],
+        maintenance: ["change_log.md", "sbom_update.md"],
+      };
+
+      const trail = phaseArtifactTrail[project_phase] ?? ["[consult SOW for required artifacts]"];
+
+      const text = [
+        `# STARTUP DECLARATION`,
+        ``,
+        `**Session Date:** ${new Date().toISOString().split("T")[0]}`,
+        `**Project:** ${project_id}`,
+        `**Phase:** ${project_phase}`,
+        `**Objective:** ${objective}`,
+        ``,
+        `## Governance Files Loaded This Session`,
+        `- CLAUDE.md (root operating contract)`,
+        `- .claude/rules/plan_mode.md`,
+        `- .claude/rules/github_disclosure_gate.md`,
+        `- .claude/rules/handover_protocol.md`,
+        `- nodrft-governance-mcp server active (read-only governance access)`,
+        ``,
+        `## Active Named Agents`,
+        agentList,
+        ``,
+        `## Current Project Phase`,
+        `Phase: ${project_phase}`,
+        ``,
+        `## Required Artifact Trail for This Phase`,
+        trail.map((a) => `- [ ] ${a}`).join("\n"),
+        ``,
+        `## Blocking Gaps / Missing Inputs`,
+        known_gaps
+          ? known_gaps
+          : "None identified at session start. Flag immediately if gaps emerge during execution.",
+        ``,
+        `## Operating Constraints (Always Active)`,
+        `- Execute only within defined task scope and signed SOW`,
+        `- Separate verified facts from analysis in every output`,
+        `- No drift — scope expansion requires explicit instruction and Founder authorization`,
+        `- No output is final until it passes QA gates and receives required human sign-off`,
+        `- Flag contradictions, unresolved decisions, missing dependencies, and operational risk`,
+        ``,
+        `## Authority Hierarchy (This Session)`,
+        `1. Founder — final authority on all strategic, commercial, legal, and release decisions`,
+        `2. ARE — technical and process authority; approves production releases`,
+        `3. QAS (Imani) — quality gate authority; no artifact advances without QAS sign-off`,
+        `4. HHC (Desmond) — escalation routing; coordinates ARE and Founder review`,
+        `5. MOA (Zayne) — orchestration; routes work to correct agent cell`,
+        ``,
+        `## Startup Declaration Checklist`,
+        `- [ ] Objective is clear, scoped, and bounded`,
+        `- [ ] Signed SOW is on file for this project`,
+        `- [ ] No context from other client sessions is active`,
+        `- [ ] Required skills are identified and will be loaded before execution`,
+        `- [ ] Blocking gaps above are logged and will not be bypassed`,
+        ``,
+        `If any checklist item cannot be confirmed truthfully: STOP. Request clarification before proceeding.`,
+        ``,
+        `*Generated by nodrft-governance-mcp — startup_declaration prompt*`,
+      ].join("\n");
+
+      return {
+        messages: [
+          {
+            role: "user" as const,
+            content: { type: "text" as const, text: text },
+          },
+        ],
+      };
+    }
+  );
+}

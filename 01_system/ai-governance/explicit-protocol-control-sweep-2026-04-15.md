@@ -2,14 +2,14 @@
 
 Status: active reference  
 Date: 2026-04-15  
-Last updated: 2026-04-19  
+Last updated: 2026-04-19 | Count amendment note added 2026-05-02  
 Owners: PRGA, PCA, KDGA, QAS, ARE  
 Confidentiality: proprietary internal framework; no external publishing approved  
 Purpose: sweep the agent, role, skill, prompt, and governance layers for places where operating control is still implied rather than explicit
 
 ## 1. Verified Facts
 
-- The official working registry now records `60` official agents under the expanded working architecture. Agent count history: 45 (baseline) → 55 (engineering expansion 2026-04-15) → 59 (skills optimization directive 2026-04-17: SRA, VDA, LCA, SMA added) → 60 (QMA added 2026-04-18 per Founder Decision Log 2026-04-18-001).
+- The official working registry now records `64` official agents under the expanded working architecture. Agent count history: 45 (baseline) → 55 (engineering expansion 2026-04-15) → 59 (skills optimization directive 2026-04-17: SRA, VDA, LCA, SMA added) → 60 (QMA added 2026-04-18 per Decision Log 2026-04-18-001) → 64 (Business Analysis dept BAO, FMA, MCA, RSA added 2026-04-24). The 60 skill packs referenced below were verified at the time of this sweep; 4 Business Analysis packs are pending as of 2026-05-02.
 - The live role-skill layer has been directory-verified to contain `60` `SKILL.md` files under `03_agent-skills/department-skill-pack/` — all 60 skill packs are structurally complete (SKILL.md + agents/openai.yaml + references/role-charter.md all present).
 - New agents added 2026-04-17 (Skills Optimization Directive): SRA (Strategic Review Agent — Janice, Strategic Intelligence), VDA (Visual Direction Agent — Jeanine, Delivery & Build), LCA (Legal Compliance Agent — Dorothy, Quality & Compliance), SMA (System Maintenance Agent — Yvonne, People, Roles & Governance). Activation readiness record on file: `new-agent-activation-readiness-record-2026-04-17.md`.
 - New agent added 2026-04-18: QMA (Quantitative Mathematics Agent — Solomon, Specialist Pool). Founder Decision Log 2026-04-18-001 on file.
@@ -117,4 +117,45 @@ The explicit-control sweep is operationally complete only when:
 
 ## 4. Conclusion
 
-As of 2026-04-19, the system has reached its highest explicit-control state to date. All 60 agents are covered by skill packs. VECS is formally activated. Six standard capabilities that were previously handled ad hoc are now governed by explicit skills and policies. The MCP control-plane direction is established. Remaining open items are operational — not architectural: Routine Usage pricing confirmation, live control-asset instantiation for most workspaces, and the MOA stall-detection mechanism decision. The system is governance-complete and operationally ready. The next focus is live instantiation and the first fully governed build against the complete control stack.
+> **SUPERSEDED — 2026-05-02.** The language below was accurate on 2026-04-19 and is preserved as a historical record. It no longer represents current system state. For current status, see the Amendment section below and `master-system-accuracy-sweep-2026-05-02.md`.
+
+*[Historical — 2026-04-19]* As of 2026-04-19, the system has reached its highest explicit-control state to date. All 60 agents are covered by skill packs. VECS is formally activated. Six standard capabilities that were previously handled ad hoc are now governed by explicit skills and policies. The MCP control-plane direction is established. Remaining open items are operational — not architectural: Routine Usage pricing confirmation, live control-asset instantiation for most workspaces, and the MOA stall-detection mechanism decision. The system is governance-complete and operationally ready. The next focus is live instantiation and the first fully governed build against the complete control stack.
+
+---
+
+## Amendment — 2026-05-02 (Sweep Accuracy Note)
+
+**This conclusion was accurate for 2026-04-19. It is NOT durable.** The following events occurred after the conclusion was written:
+
+| Event | Date | Impact on Sweep Validity |
+|---|---|---|
+| Business Analysis department added (BAO/FMA/MCA/RSA) | 2026-04-24 | "All 60 agents covered" was false — 4 agents had no skill packs |
+| Governance MCP server built and approved | 2026-05-02 | New infrastructure layer not reflected in tool inventory or control sweep |
+| BA skill packs built (I-001) | 2026-05-02 | Resolved — 64 agents / 64 skill packs |
+| QMA anatomy completed (A-002) | 2026-05-02 | QMA openai.yaml + role-charter.md were missing; now complete |
+| Registry count updated to 64 across all canonical docs | 2026-05-02 | Count inconsistency sweep complete |
+| Decision Log 2026-04-24-001 created | 2026-05-02 | Retroactive governance record for BA dept addition; no longer a governance gap |
+| SOP-013 added (Business Analysis Sprint) | 2026-05-02 | Operators now have a governed procedure for BA Sprint execution |
+| MOA stall detection documented as explicit human-supervised check | 2026-05-02 | Mechanism is now explicit, not implied; see MOA SKILL.md step 7 |
+| Business Analysis artifact class added to ai-review-authority-matrix.md | 2026-05-02 | Source governance document now matches MCP server rules |
+| Section 4 conclusion labeled SUPERSEDED | 2026-05-02 | Stale "governance-complete" language now clearly marked as historical |
+
+**Updated acceptance criteria status (as of 2026-05-02 — final update):**
+- Every approved live role has a corresponding skill pack — **MET: 64/64**
+- Every skill pack has full anatomy (SKILL.md + openai.yaml + role-charter.md) — **MET**
+- Governance MCP server operational — **MET: v0.2.0**
+- Decision Log entry exists for every agent architecture change — **MET: 2026-04-24-001 created**
+- SOP coverage for all active service lines — **MET: SOP-013 added**
+- MOA stall detection mechanism explicitly documented — **MET: explicit human-supervised check, written into MOA SKILL.md**
+- Business Analysis artifact class in source authority matrix — **MET**
+- Live control asset instantiation for all client workspaces — **Partially met (PEO only) — STILL OPEN**
+- Routine Usage pricing figures confirmed — **MET: 100 runs / $0.75 overage; Decision Log 2026-05-02-003**
+- DocuSign activated — **STILL OPEN — Founder external setup required**
+- BA Sprint pricing confirmed — **STILL OPEN — Founder decision required**
+- GitHub MCP PAT set — **STILL OPEN — Founder action required**
+
+**Sweep re-run trigger:** This sweep must be re-run any time a registry amendment, new skill addition, or infrastructure change is made. The "governance-complete" language in Section 4 is labeled SUPERSEDED and applies only to 2026-04-19.
+
+**Validation tool:** Run `validate-registry-consistency.py` before recording any sweep as current. Sweep is only valid if the validator exits 0.
+
+**Current canonical gap reference:** `01_system/ai-governance/master-system-accuracy-sweep-2026-05-02.md` supersedes this document for tracking open items.

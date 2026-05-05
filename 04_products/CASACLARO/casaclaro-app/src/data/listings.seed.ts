@@ -1,78 +1,72 @@
 import type { Listing } from "@/types/listings";
 import { SITE_CONFIG } from "@/config/site.config";
 
-const PICSUM = 'https://picsum.photos';
 const PHOTOS = {
-  modernInterior:   'casaclaro-interior-1',
-  livingRoom:       'casaclaro-living-1',
-  bedroom:          'casaclaro-bedroom-1',
-  colonialExterior: 'casaclaro-colonial-1',
-  tropicalTerrace:  'casaclaro-terrace-1',
-  modernKitchen:    'casaclaro-kitchen-1',
-  rooftopView:      'casaclaro-rooftop-1',
-  modernBathroom:   'casaclaro-bathroom-1',
-  luxuryPenthouse:  'casaclaro-luxury-1',
-  countryGarden:    'casaclaro-country-1',
-  studioLoft:       'casaclaro-studio-1',
-  coastalSunset:    'casaclaro-sunset-1',
+  modernInterior:   '/listings/casaclaro-modern-interior.png',
+  livingRoom:       '/listings/casaclaro-living-room.png',
+  bedroom:          '/listings/casaclaro-bedroom.png',
+  colonialExterior: '/listings/casaclaro-colonial-exterior.png',
+  tropicalTerrace:  '/listings/casaclaro-tropical-terrace.png',
+  modernKitchen:    '/listings/casaclaro-modern-kitchen.png',
+  rooftopView:      '/listings/casaclaro-rooftop-view.png',
+  modernBathroom:   '/listings/casaclaro-modern-bathroom.png',
+  luxuryPenthouse:  '/listings/casaclaro-luxury-penthouse.png',
+  countryGarden:    '/listings/casaclaro-country-garden.png',
+  studioLoft:       '/listings/casaclaro-studio-loft.png',
 };
-
-function photoUrl(seed: string): string {
-  return `${PICSUM}/seed/${seed}/900/600`;
-}
 
 function apartmentPhotos(): Listing["images"] {
   return [
-    { url: photoUrl(PHOTOS.modernInterior),   alt: 'Living area',       is_primary: true },
-    { url: photoUrl(PHOTOS.livingRoom),       alt: 'Living room',       is_primary: false },
-    { url: photoUrl(PHOTOS.modernKitchen),    alt: 'Kitchen',           is_primary: false },
-    { url: photoUrl(PHOTOS.bedroom),          alt: 'Master bedroom',    is_primary: false },
-    { url: photoUrl(PHOTOS.modernBathroom),   alt: 'Bathroom',          is_primary: false },
-    { url: photoUrl(PHOTOS.rooftopView),      alt: 'Building view',     is_primary: false },
+    { url: PHOTOS.modernInterior,   alt: 'Living area',       is_primary: true },
+    { url: PHOTOS.livingRoom,       alt: 'Living room',       is_primary: false },
+    { url: PHOTOS.modernKitchen,    alt: 'Kitchen',           is_primary: false },
+    { url: PHOTOS.bedroom,          alt: 'Master bedroom',    is_primary: false },
+    { url: PHOTOS.modernBathroom,   alt: 'Bathroom',          is_primary: false },
+    { url: PHOTOS.rooftopView,      alt: 'Building view',     is_primary: false },
   ];
 }
 
 function coastalPhotos(): Listing["images"] {
   return [
-    { url: photoUrl(PHOTOS.tropicalTerrace),  alt: 'Terrace / pool',    is_primary: true },
-    { url: photoUrl(PHOTOS.modernInterior),   alt: 'Interior',          is_primary: false },
-    { url: photoUrl(PHOTOS.bedroom),          alt: 'Bedroom',           is_primary: false },
-    { url: photoUrl(PHOTOS.modernKitchen),    alt: 'Kitchen',           is_primary: false },
+    { url: PHOTOS.tropicalTerrace,  alt: 'Terrace / pool',    is_primary: true },
+    { url: PHOTOS.modernInterior,   alt: 'Interior',          is_primary: false },
+    { url: PHOTOS.bedroom,          alt: 'Bedroom',           is_primary: false },
+    { url: PHOTOS.modernKitchen,    alt: 'Kitchen',           is_primary: false },
   ];
 }
 
 function colonialPhotos(): Listing["images"] {
   return [
-    { url: photoUrl(PHOTOS.colonialExterior), alt: 'Building exterior', is_primary: true },
-    { url: photoUrl(PHOTOS.modernInterior),   alt: 'Interior',          is_primary: false },
-    { url: photoUrl(PHOTOS.livingRoom),       alt: 'Living room',       is_primary: false },
+    { url: PHOTOS.colonialExterior, alt: 'Building exterior', is_primary: true },
+    { url: PHOTOS.modernInterior,   alt: 'Interior',          is_primary: false },
+    { url: PHOTOS.livingRoom,       alt: 'Living room',       is_primary: false },
   ];
 }
 
 function luxuryPhotos(): Listing["images"] {
   return [
-    { url: photoUrl(PHOTOS.luxuryPenthouse),  alt: 'Penthouse living',  is_primary: true },
-    { url: photoUrl(PHOTOS.modernKitchen),    alt: 'Gourmet kitchen',   is_primary: false },
-    { url: photoUrl(PHOTOS.rooftopView),      alt: 'Rooftop terrace',   is_primary: false },
-    { url: photoUrl(PHOTOS.modernBathroom),   alt: 'Master bath',       is_primary: false },
-    { url: photoUrl(PHOTOS.bedroom),          alt: 'Master bedroom',    is_primary: false },
+    { url: PHOTOS.luxuryPenthouse,  alt: 'Penthouse living',  is_primary: true },
+    { url: PHOTOS.modernKitchen,    alt: 'Gourmet kitchen',   is_primary: false },
+    { url: PHOTOS.rooftopView,      alt: 'Rooftop terrace',   is_primary: false },
+    { url: PHOTOS.modernBathroom,   alt: 'Master bath',       is_primary: false },
+    { url: PHOTOS.bedroom,          alt: 'Master bedroom',    is_primary: false },
   ];
 }
 
 function countryPhotos(): Listing["images"] {
   return [
-    { url: photoUrl(PHOTOS.countryGarden),    alt: 'Garden view',       is_primary: true },
-    { url: photoUrl(PHOTOS.livingRoom),       alt: 'Living room',       is_primary: false },
-    { url: photoUrl(PHOTOS.modernKitchen),    alt: 'Kitchen',           is_primary: false },
-    { url: photoUrl(PHOTOS.bedroom),          alt: 'Bedroom',           is_primary: false },
+    { url: PHOTOS.countryGarden,    alt: 'Garden view',       is_primary: true },
+    { url: PHOTOS.livingRoom,       alt: 'Living room',       is_primary: false },
+    { url: PHOTOS.modernKitchen,    alt: 'Kitchen',           is_primary: false },
+    { url: PHOTOS.bedroom,          alt: 'Bedroom',           is_primary: false },
   ];
 }
 
 function studioPhotos(): Listing["images"] {
   return [
-    { url: photoUrl(PHOTOS.studioLoft),       alt: 'Loft studio',       is_primary: true },
-    { url: photoUrl(PHOTOS.modernBathroom),   alt: 'Bathroom',          is_primary: false },
-    { url: photoUrl(PHOTOS.rooftopView),      alt: 'Building view',     is_primary: false },
+    { url: PHOTOS.studioLoft,       alt: 'Loft studio',       is_primary: true },
+    { url: PHOTOS.modernBathroom,   alt: 'Bathroom',          is_primary: false },
+    { url: PHOTOS.rooftopView,      alt: 'Building view',     is_primary: false },
   ];
 }
 

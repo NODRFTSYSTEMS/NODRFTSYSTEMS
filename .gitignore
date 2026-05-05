@@ -1,6 +1,7 @@
 # NoDrftSystems Proprietary — Never Commit
 CLAUDE.md
 .claude/
+.codex/
 
 # Client Data — NDA-protected, never commit
 02_client-system/
