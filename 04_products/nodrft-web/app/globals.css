@@ -1522,7 +1522,10 @@ textarea:focus:not(:focus-visible) {
   color: var(--error);
 }
 .nd-form-error-summary { margin-bottom: var(--space-4); }
-.nd-start-who { margin-bottom: var(--space-4); color: var(--accent); }
+.nd-label-block { display: block; margin-bottom: var(--space-4); }
+.nd-section-h1  { margin-bottom: var(--space-4); }
+.nd-section-h3  { margin-bottom: var(--space-3); }
+.nd-section-p   { margin-bottom: var(--space-4); }
 .nd-form-submit-btn { margin-top: var(--space-5); width: 100%; }
 
 /* --------------------------------------------------------------------------

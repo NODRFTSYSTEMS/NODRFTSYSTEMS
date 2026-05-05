@@ -32,7 +32,6 @@ const COPY = {
   en: {
     label: "Start an Engagement",
     heading: "Submit a project brief.",
-    who: "We build for local and regional businesses that need a serious digital presence — without enterprise overhead.",
     lead: "Describe the problem, the scope class you believe fits, and your timeline. We review every submission and respond within 2 business days with an assessment of fit and the recommended starting point.",
     conditions: [
       "Submissions are evaluated — not auto-responded.",
@@ -48,7 +47,6 @@ const COPY = {
   es: {
     label: "Iniciar un Proyecto",
     heading: "Envíe un brief de proyecto.",
-    who: "Trabajamos con negocios locales y regionales que necesitan una presencia digital seria — sin la escala de una empresa corporativa.",
     lead: "Describa el problema, la clase de alcance que cree que aplica y su cronograma. Revisamos cada envío y respondemos en 2 días hábiles con una evaluación del ajuste y el punto de partida recomendado.",
     conditions: [
       "Los envíos son evaluados — no se responden automáticamente.",
@@ -73,13 +71,8 @@ export default async function StartPage({ params }: Props) {
       <section className="nd-section nd-geo-bg" aria-labelledby="start-heading">
         <div className="nd-wrap-narrow">
           <FadeUp>
-            <span className="nd-label" style={{ display: "block", marginBottom: "var(--space-4)" }}>
-              {copy.label}
-            </span>
-            <h1 id="start-heading" className="nd-h1" style={{ marginBottom: "var(--space-4)" }}>
-              {copy.heading}
-            </h1>
-            <p className="nd-p-sm nd-start-who">{copy.who}</p>
+            <span className="nd-label nd-label-block">{copy.label}</span>
+            <h1 id="start-heading" className="nd-h1 nd-section-h1">{copy.heading}</h1>
             <p className="nd-lead">{copy.lead}</p>
           </FadeUp>
         </div>
@@ -88,9 +81,7 @@ export default async function StartPage({ params }: Props) {
       <section className="nd-section alt" aria-label={copy.conditionsLabel}>
         <div className="nd-wrap-narrow">
           <FadeUp>
-            <span className="nd-label" style={{ display: "block", marginBottom: "var(--space-4)" }}>
-              {copy.conditionsLabel}
-            </span>
+            <span className="nd-label nd-label-block">{copy.conditionsLabel}</span>
             <ul className="nd-conditions-list">
               {copy.conditions.map((c, i) => (
                 <li key={i} className="nd-p-sm nd-condition-item">{c}</li>
@@ -111,10 +102,8 @@ export default async function StartPage({ params }: Props) {
       <section className="nd-section alt" aria-labelledby="not-ready-heading">
         <div className="nd-wrap-narrow">
           <FadeUp>
-            <h2 id="not-ready-heading" className="nd-h3" style={{ marginBottom: "var(--space-3)" }}>
-              {copy.notReadyHeading}
-            </h2>
-            <p className="nd-p-sm" style={{ marginBottom: "var(--space-4)" }}>{copy.notReadyBody}</p>
+            <h2 id="not-ready-heading" className="nd-h3 nd-section-h3">{copy.notReadyHeading}</h2>
+            <p className="nd-p-sm nd-section-p">{copy.notReadyBody}</p>
             <a href={`/${locale}/inquiries`} className="nd-link-arrow">{copy.notReadyCta}</a>
           </FadeUp>
         </div>
