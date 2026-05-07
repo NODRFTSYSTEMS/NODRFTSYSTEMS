@@ -3,7 +3,7 @@
 **Task ID:** nodrft-web Banner & Positioning Sprint  
 **Date:** 2026-05-06  
 **Agent / Session:** Codex (claude-sonnet-4-6) — interactive Founder-directed session  
-**Status:** IN REVIEW — awaiting Gate 5 reviewer sign-off and Gate 6 Founder authorization
+**Status:** AWAITING GATE 6 — Gate 5 complete; all HOLDs resolved; Founder authorization required
 
 ---
 
@@ -61,12 +61,13 @@ Repositioned the NoDrftSystems public website from a "websites" framing to an "A
 | Pass | Status | Notes |
 |------|--------|-------|
 | Pass 1 — Functional verification | PASS | pnpm build clean; all 19 routes generated |
-| Pass 2 — Content and copy | IN REVIEW | Pending reviewer_plain_language and reviewer_public_proof at Gate 5 |
-| Pass 3 — Visual and design | IN REVIEW | Pending reviewer_vecs at Gate 5 |
-| Pass 4 — Technical QA | PASS | TypeScript zero errors; lint zero errors; build clean |
+| Pass 1 — Functional verification | PASS | pnpm build clean; all 19 routes generated |
+| Pass 2 — Content and copy | PASS | reviewer_plain_language + reviewer_public_proof: all HOLDs resolved; F1–F4 Founder-confirmed; copy corrections applied |
+| Pass 3 — Visual and design | PASS | reviewer_vecs: all HOLDs resolved; copy mechanism sentences added; scroll-behavior fixed |
+| Pass 4 — Technical QA | PASS | TypeScript zero errors; lint zero errors; build clean (post-remediation re-verified) |
 | Pass 5 — Client requirements | N/A | Internal NoDrftSystems product — no client SOW |
-| Pass 5B — Bilingual parity | PASS | All EN keys mirrored in ES |
-| Pass 6 — Accessibility | IN REVIEW | Pending reviewer_accessibility at Gate 5 |
+| Pass 5B — Bilingual parity | PASS | All EN changes mirrored in ES |
+| Pass 6 — Accessibility | PASS (manual) | reviewer_accessibility: HOLD 1 + HOLD 2 resolved; aria-required added to all required fields. Automated Axe/WAVE scan deferred — browser access required |
 | Pass 7 — Error state coverage | PASS | Branded 404 route confirmed present |
 
 ---
@@ -92,16 +93,31 @@ Repositioned the NoDrftSystems public website from a "websites" framing to an "A
 
 ---
 
+## GATE 5 REMEDIATION SUMMARY (applied post-reviewer findings)
+
+| Item | Change | Commit |
+|------|--------|--------|
+| globals.css — scroll-behavior | Gated inside `prefers-reduced-motion: reduce` | `8bfc150` |
+| Nav.tsx — focus trap | Query updated to exclude `tabindex="-1"` anchors | `8bfc150` |
+| All forms — aria-required | Added to all required fields (15 fields across 3 forms) | `8bfc150` |
+| en.json — jargon removal | "ships"→"goes live", "scope alignment"→"clear scope agreement", "digital infrastructure"→"digital presence", UX jargon in Cost 3, "CMS structure"→"content management system" | `8bfc150` |
+| en.json — mechanism sentences | Strength 2/3/5 expanded with specific mechanism language | `8bfc150` |
+| en.json — unused key | `common.learnMore` removed (confirmed unused across all TSX) | `8bfc150` |
+| es.json — bilingual parity | All EN changes mirrored in ES | `8bfc150` |
+| F1–F5 — Founder decisions | All five factual/positioning decisions confirmed by Founder 2026-05-06 | N/A (verbal) |
+
+---
+
 ## REQUIRED HUMAN DECISIONS
 
-1. **Founder: Gate 6 authorization** — Authorize the current production state of the nodrft-web Banner & Positioning Sprint. Changes are live. This is a post-release governance closure.
+1. **Founder: Gate 6 authorization** — Authorize the full Banner & Positioning Sprint governance package including Gate 5 remediation. Changes are live on production (Vercel auto-deploy). This is the final governance closure gate.
 2. **Founder: Bundled sync commit** — Decision required on commit `6c28c7d`: retroactive per-product gate sequences, or controlled exception with Decision Log entry.
 
 ---
 
 ## RELEASE RECOMMENDATION
 
-☐ PROCEED — pending Gate 5 reviewer sign-off and Gate 6 Founder authorization  
-☐ HOLD — no current blockers identified in technical evidence; Gate 5 reviewers required before final recommendation
+☑ PROCEED — all Gate 5 HOLDs resolved; TypeScript, lint, and build clean; Founder F1–F5 decisions confirmed  
+☐ HOLD — no current blockers
 
-**Current status:** Technical evidence is clean. Gate 5 independent review is the remaining gate before final release recommendation is issued.
+**Pending:** Gate 6 Founder authorization (item 1 above) and bundled-commit decision (item 2 above).

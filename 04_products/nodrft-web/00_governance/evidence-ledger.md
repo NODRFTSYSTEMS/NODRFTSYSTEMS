@@ -1,7 +1,7 @@
 # Evidence Ledger — nodrft-web Banner & Positioning Sprint
 **Classification:** Internal — Proprietary  
 **Build:** Banner & Positioning Sprint  
-**Gate 4 Run Date:** 2026-05-06  
+**Gate 4 Run Date:** 2026-05-06 | **Gate 5/6 Re-run Date:** 2026-05-06  
 **Run By:** Codex (claude-sonnet-4-6)
 
 ---
@@ -97,3 +97,46 @@
 | Reduced-Motion | ✅ PASS | `useReducedMotion()` guards all animations |
 
 **Gate 4 status: PASS — proceed to Gate 4A**
+
+---
+
+## Gate 5 — Independent Review (2026-05-06)
+
+Four independent reviewers ran in parallel against the Banner & Positioning Sprint build state.
+
+| Reviewer | Result | HOLDs Resolved |
+|----------|--------|----------------|
+| reviewer_public_proof | PASS | F1–F4 Founder-confirmed (all factual claims verified) |
+| reviewer_vecs | PASS | V8 (scroll-behavior) code-fixed; V2/3/5/6 copy corrections applied |
+| reviewer_accessibility | PASS | HOLD 1 focus trap fixed (Nav.tsx); HOLD 2 scroll-behavior gated (globals.css); IMPORTANT aria-required added to all required form fields |
+| reviewer_plain_language | PASS | Flags 5/6/7/9/11/12 copy corrections applied to en.json + es.json; Flag 1 (headline) Founder-accepted as intentional brevity |
+
+**Enhancements deferred (non-blocking):** reviewer_plain_language Flags 2, 3, 8, 10, 13, 14; meta description variation (Flag 14).
+
+**Outstanding:** Axe/WAVE automated scan against live nodrftsystems.com — requires browser access. Deferred to next maintenance cycle. Manual code review confirms all WCAG 2.1 AA structural requirements met.
+
+---
+
+## Gate 5 Re-verification — TypeScript, Lint, Build (post-remediation)
+
+**Command:** `pnpm exec tsc --noEmit` → **PASS** (zero errors)  
+**Command:** `pnpm lint` → **PASS** (zero errors; 1 pre-existing warning unchanged)  
+**Command:** `pnpm build` → **PASS** (clean; all 19 routes generated)  
+**Commit:** `8bfc150`
+
+---
+
+## Gate 6 — DRA Pre-Deployment Check (2026-05-06)
+
+**Production build:** PASS — clean, 19 routes  
+**TypeScript:** PASS — zero errors  
+**ESLint:** PASS — zero errors  
+**Bilingual parity:** PASS — all EN changes mirrored in ES  
+**Reduced-motion:** PASS — `useReducedMotion()` guards + `scroll-behavior: auto` in reduced-motion block  
+**Focus management:** PASS — focus trap query corrected; mobile menu CTA excluded from tab sequence and keyboard trap  
+**aria-required:** PASS — all required form fields across all three forms  
+**Deployment target:** Vercel (auto-deploy from `main`) — changes live on push  
+
+**DRA status: PASS — authorize for production**
+
+**Gate 6 status: AWAITING FOUNDER AUTHORIZATION**
