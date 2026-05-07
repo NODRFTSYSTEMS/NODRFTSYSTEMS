@@ -206,6 +206,7 @@ export function InquiryForm({ locale }: Props) {
           value={fields.name}
           onChange={update("name")}
           autoComplete="name"
+          aria-required="true"
           aria-invalid={fieldErrors.name ? "true" : undefined}
           aria-describedby={fieldErrors.name ? "inq-name-err" : undefined}
         />
@@ -224,6 +225,7 @@ export function InquiryForm({ locale }: Props) {
           value={fields.email}
           onChange={update("email")}
           autoComplete="email"
+          aria-required="true"
           aria-invalid={fieldErrors.email ? "true" : undefined}
           aria-describedby={fieldErrors.email ? "inq-email-err" : undefined}
         />
@@ -272,6 +274,7 @@ export function InquiryForm({ locale }: Props) {
           value={fields.body}
           onChange={update("body")}
           rows={5}
+          aria-required="true"
           aria-invalid={fieldErrors.body ? "true" : undefined}
           aria-describedby={fieldErrors.body ? "inq-body-err" : undefined}
         />
@@ -287,6 +290,7 @@ export function InquiryForm({ locale }: Props) {
           className="nd-select"
           value={fields.urgency}
           onChange={update("urgency")}
+          aria-required="true"
           aria-invalid={fieldErrors.urgency ? "true" : undefined}
           aria-describedby={fieldErrors.urgency ? "inq-urgency-err" : undefined}
         >

@@ -305,6 +305,7 @@ export function EngagementForm({ locale }: Props) {
           value={fields.org}
           onChange={update("org")}
           autoComplete="organization"
+          aria-required="true"
           aria-invalid={fieldErrors.org ? "true" : undefined}
           aria-describedby={fieldErrors.org ? "eng-org-err" : undefined}
         />
@@ -323,6 +324,7 @@ export function EngagementForm({ locale }: Props) {
           value={fields.name}
           onChange={update("name")}
           autoComplete="name"
+          aria-required="true"
           aria-invalid={fieldErrors.name ? "true" : undefined}
           aria-describedby={fieldErrors.name ? "eng-name-err" : undefined}
         />
@@ -341,6 +343,7 @@ export function EngagementForm({ locale }: Props) {
           value={fields.email}
           onChange={update("email")}
           autoComplete="email"
+          aria-required="true"
           aria-invalid={fieldErrors.email ? "true" : undefined}
           aria-describedby={fieldErrors.email ? "eng-email-err" : undefined}
         />
@@ -372,6 +375,7 @@ export function EngagementForm({ locale }: Props) {
           className="nd-select"
           value={fields.scope}
           onChange={update("scope")}
+          aria-required="true"
           aria-invalid={fieldErrors.scope ? "true" : undefined}
           aria-describedby={fieldErrors.scope ? "eng-scope-err" : undefined}
         >
@@ -395,6 +399,7 @@ export function EngagementForm({ locale }: Props) {
           value={fields.description}
           onChange={update("description")}
           rows={6}
+          aria-required="true"
           aria-invalid={fieldErrors.description ? "true" : undefined}
           aria-describedby={fieldErrors.description ? "eng-desc-err" : undefined}
         />
@@ -410,6 +415,7 @@ export function EngagementForm({ locale }: Props) {
           className="nd-select"
           value={fields.timeline}
           onChange={update("timeline")}
+          aria-required="true"
           aria-invalid={fieldErrors.timeline ? "true" : undefined}
           aria-describedby={fieldErrors.timeline ? "eng-timeline-err" : undefined}
         >

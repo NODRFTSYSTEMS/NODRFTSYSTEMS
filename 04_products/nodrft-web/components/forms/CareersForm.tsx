@@ -177,6 +177,7 @@ export function CareersForm({ locale }: Props) {
           value={fields.name}
           onChange={update("name")}
           autoComplete="name"
+          aria-required="true"
           aria-invalid={fieldErrors.name ? "true" : undefined}
           aria-describedby={fieldErrors.name ? "car-name-err" : undefined}
         />
@@ -195,6 +196,7 @@ export function CareersForm({ locale }: Props) {
           value={fields.email}
           onChange={update("email")}
           autoComplete="email"
+          aria-required="true"
           aria-invalid={fieldErrors.email ? "true" : undefined}
           aria-describedby={fieldErrors.email ? "car-email-err" : undefined}
         />
@@ -213,6 +215,7 @@ export function CareersForm({ locale }: Props) {
           value={fields.discipline}
           onChange={update("discipline")}
           autoComplete="off"
+          aria-required="true"
           aria-invalid={fieldErrors.discipline ? "true" : undefined}
           aria-describedby={fieldErrors.discipline ? "car-discipline-err" : undefined}
         />
@@ -228,6 +231,7 @@ export function CareersForm({ locale }: Props) {
           className="nd-select"
           value={fields.availability}
           onChange={update("availability")}
+          aria-required="true"
           aria-invalid={fieldErrors.availability ? "true" : undefined}
           aria-describedby={fieldErrors.availability ? "car-availability-err" : undefined}
         >
@@ -266,6 +270,7 @@ export function CareersForm({ locale }: Props) {
           value={fields.brief}
           onChange={update("brief")}
           rows={7}
+          aria-required="true"
           aria-invalid={fieldErrors.brief ? "true" : undefined}
           aria-describedby={fieldErrors.brief ? "car-brief-err" : undefined}
         />

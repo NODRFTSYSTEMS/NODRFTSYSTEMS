@@ -70,7 +70,7 @@ export function Nav() {
   useEffect(() => {
     if (!menuOpen || !menuRef.current) return;
     const focusable = menuRef.current.querySelectorAll<HTMLElement>(
-      'a[href], button, [tabindex]:not([tabindex="-1"])'
+      'a[href]:not([tabindex="-1"]), button, [tabindex]:not([tabindex="-1"])'
     );
     const first = focusable[0];
     const last = focusable[focusable.length - 1];
