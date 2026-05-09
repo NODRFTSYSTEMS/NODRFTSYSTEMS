@@ -38,11 +38,13 @@
   --color-rx-dispensed-bg: #F3F4F6;
   --color-rx-dispensed-fg: #4B5563;
 
-  /* Tags — schedule darkened for WCAG AA; nhf already passes */
+  /* Tags — schedule + nhf foregrounds darkened for WCAG AA buffer at 11px
+     (verified 2026-05-09: nhf at #2563EB measured 4.75:1 vs AA 4.5:1 — passing
+     but marginal; #1D4ED8 measures 6.16:1 for comfortable AA headroom) */
   --color-tag-schedule-bg: #FEE2E2;
   --color-tag-schedule-fg: #991B1B;
   --color-tag-nhf-bg: #EFF6FF;
-  --color-tag-nhf-fg: #2563EB;
+  --color-tag-nhf-fg: #1D4ED8;
 
   /* Text */
   --color-text-primary: #111827;

@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import { Plus, Crown } from '@phosphor-icons/react'
 import { PageHeader } from '@/components/PageHeader'
 import { Button } from '@/components/Button'
@@ -12,6 +13,7 @@ const TIER_VARIANT: Record<LoyaltyMember['tier'], 'neutral' | 'info' | 'success'
 }
 
 export function LoyaltyPage() {
+  const navigate = useNavigate()
   const totalPoints = SAMPLE_LOYALTY.reduce((sum, m) => sum + m.points, 0)
   const platinum = SAMPLE_LOYALTY.filter((m) => m.tier === 'Platinum').length
   return (
@@ -20,7 +22,7 @@ export function LoyaltyPage() {
         title="Loyalty Members"
         subtitle={`${SAMPLE_LOYALTY.length} enrolled · ${totalPoints.toLocaleString()} total points · ${platinum} Platinum`}
         cta={
-          <Button variant="primary" size="md">
+          <Button variant="primary" size="md" onClick={() => navigate('/pos/loyalty/new')}>
             <Plus size={16} weight="bold" />
             Enroll Member
           </Button>
@@ -41,7 +43,11 @@ export function LoyaltyPage() {
             </thead>
             <tbody>
               {SAMPLE_LOYALTY.map((m) => (
-                <tr key={m.id} className="h-11 border-b border-border-subtle hover:bg-bg-subtle transition-colors cursor-pointer">
+                <tr
+                  key={m.id}
+                  onClick={() => navigate(`/pos/loyalty/${m.id}`)}
+                  className="h-11 border-b border-border-subtle hover:bg-bg-subtle transition-colors cursor-pointer"
+                >
                   <td className="px-4">
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 rounded-pill bg-primary/10 text-primary flex items-center justify-center type-label font-semibold shrink-0">
