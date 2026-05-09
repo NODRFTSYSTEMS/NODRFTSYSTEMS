@@ -1,6 +1,9 @@
 import * as Tooltip from '@radix-ui/react-tooltip'
-import { MagnifyingGlass, SignOut } from '@phosphor-icons/react'
+import { CaretDown, MagnifyingGlass, SignOut } from '@phosphor-icons/react'
 import { NavLink } from 'react-router-dom'
+import { ROLES, type Role } from '@/types/auth'
+import { type RoutePermissionKey } from '@/config/route-permissions'
+import { usePermissionsStore } from '@/stores/permissions'
 
 /** Trigger CommandPalette (which listens for Cmd/Ctrl+K on window). */
 function openCommandPalette() {
@@ -9,15 +12,18 @@ function openCommandPalette() {
 
 /**
  * Sidebar — design handoff Section 4.1.
- * 240px wide, --color-bg-sidebar background, logo zone (64px), nav groups, user account zone (sticky bottom, 56px).
- * Tooltip descriptions on every nav item (Radix Tooltip) — surfaces purpose without crowding the label.
+ * 240px wide, --color-bg-sidebar background, logo zone (64px), nav groups, user account zone.
  *
- * Routes harmonized to BAP scope. Role filtering is added when ProtectedRoute exposes session.user.role.
+ * Role-aware filtering: each nav item's `path` is checked against the permissions store.
+ * If the acting role doesn't have access to a route, the item is hidden. If a group has
+ * zero accessible items, the entire group is hidden. The role switcher in the user zone
+ * lets reviewers act as any role to verify the matrix; real session replaces this in
+ * production.
  */
 
 interface NavItemDef {
   label: string
-  path: string
+  path: RoutePermissionKey
   description: string
 }
 
@@ -85,12 +91,29 @@ const NAV_GROUPS: NavGroupDef[] = [
     label: 'Admin',
     items: [
       { label: 'Users', path: '/admin/users', description: 'Manage staff accounts, roles, and access' },
+      { label: 'Permissions', path: '/admin/permissions', description: 'Role-to-route access matrix — what each role can access' },
       { label: 'Audit Log', path: '/admin/audit', description: 'System activity log — who did what and when' },
       { label: 'Settings', path: '/admin/settings', description: 'System configuration, thresholds, integrations' },
       { label: 'Security', path: '/admin/security', description: 'Two-factor auth, session controls, security policies' },
     ],
   },
 ]
+
+const ROLE_LABELS: Record<Role, string> = {
+  pharmacist: 'Pharmacist',
+  pharmacy_technician: 'Pharmacy Technician',
+  front_desk_cashier: 'Front Desk / Cashier',
+  manager: 'Manager',
+  admin: 'Admin',
+}
+
+const ROLE_INITIALS: Record<Role, string> = {
+  pharmacist: 'PH',
+  pharmacy_technician: 'PT',
+  front_desk_cashier: 'FD',
+  manager: 'MG',
+  admin: 'AD',
+}
 
 function NavItemRow({ item }: { item: NavItemDef }) {
   return (
@@ -125,10 +148,21 @@ function NavItemRow({ item }: { item: NavItemDef }) {
   )
 }
 
-// Demo user — replaced when ProtectedRoute exposes session.user.
-const DEMO_USER = { name: 'A. Clarke', role: 'Pharmacist', initials: 'AC' }
-
 export function Sidebar() {
+  const actingRole = usePermissionsStore((s) => s.actingRole)
+  const setActingRole = usePermissionsStore((s) => s.setActingRole)
+  const canRoleAccess = usePermissionsStore((s) => s.canRoleAccess)
+
+  // Filter nav by current role
+  const visibleGroups = NAV_GROUPS
+    .map((group) => ({
+      ...group,
+      items: group.items.filter((item) => canRoleAccess(actingRole, item.path)),
+    }))
+    .filter((group) => group.items.length > 0)
+
+  const dashboardVisible = canRoleAccess(actingRole, '/dashboard')
+
   return (
     <Tooltip.Provider>
       <aside
@@ -167,38 +201,40 @@ export function Sidebar() {
         {/* Nav */}
         <nav className="flex-1 overflow-y-auto py-3 px-2 space-y-4" aria-label="Primary">
           {/* Dashboard (top-level, no group) */}
-          <Tooltip.Root delayDuration={600}>
-            <Tooltip.Trigger asChild>
-              <NavLink
-                to="/dashboard"
-                className={({ isActive }) =>
-                  [
-                    'block h-9 px-4 type-body-sm font-medium leading-9 rounded-control transition-colors relative select-none',
-                    isActive
-                      ? 'bg-bg-sidebar-hover text-white before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:h-5 before:w-[3px] before:rounded-r before:bg-primary'
-                      : 'text-text-on-dark hover:bg-bg-sidebar-hover',
-                  ].join(' ')
-                }
-              >
-                Dashboard
-              </NavLink>
-            </Tooltip.Trigger>
-            <Tooltip.Portal>
-              <Tooltip.Content
-                side="right"
-                sideOffset={16}
-                className="z-50 max-w-[240px] rounded bg-text-primary px-3 py-2 shadow-dropdown"
-              >
-                <p className="text-xs text-white leading-snug">
-                  Today's overview — metrics, alerts, prescription board
-                </p>
-                <Tooltip.Arrow className="fill-text-primary" />
-              </Tooltip.Content>
-            </Tooltip.Portal>
-          </Tooltip.Root>
+          {dashboardVisible && (
+            <Tooltip.Root delayDuration={600}>
+              <Tooltip.Trigger asChild>
+                <NavLink
+                  to="/dashboard"
+                  className={({ isActive }) =>
+                    [
+                      'block h-9 px-4 type-body-sm font-medium leading-9 rounded-control transition-colors relative select-none',
+                      isActive
+                        ? 'bg-bg-sidebar-hover text-white before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:h-5 before:w-[3px] before:rounded-r before:bg-primary'
+                        : 'text-text-on-dark hover:bg-bg-sidebar-hover',
+                    ].join(' ')
+                  }
+                >
+                  Dashboard
+                </NavLink>
+              </Tooltip.Trigger>
+              <Tooltip.Portal>
+                <Tooltip.Content
+                  side="right"
+                  sideOffset={16}
+                  className="z-50 max-w-[240px] rounded bg-text-primary px-3 py-2 shadow-dropdown"
+                >
+                  <p className="text-xs text-white leading-snug">
+                    Today's overview — metrics, alerts, prescription board
+                  </p>
+                  <Tooltip.Arrow className="fill-text-primary" />
+                </Tooltip.Content>
+              </Tooltip.Portal>
+            </Tooltip.Root>
+          )}
 
           {/* Groups */}
-          {NAV_GROUPS.map((group) => (
+          {visibleGroups.map((group) => (
             <div key={group.label}>
               <p className="type-caption text-text-on-dark-dim px-4 mb-1">{group.label}</p>
               <div className="flex flex-col gap-px">
@@ -210,32 +246,61 @@ export function Sidebar() {
           ))}
         </nav>
 
-        {/* User account zone — Section 4.1, 56px sticky bottom */}
-        <div className="flex items-center gap-3 h-14 px-4 border-t border-white/10 shrink-0">
-          <div className="flex items-center justify-center w-8 h-8 rounded-pill bg-primary/30 text-primary text-xs font-semibold shrink-0">
-            {DEMO_USER.initials}
+        {/* User account zone — Section 4.1, 64px sticky bottom */}
+        <div className="border-t border-white/10 shrink-0">
+          {/* Acting-as role switcher (sample mode — replaced by real session.user when auth wires) */}
+          <div className="px-4 py-2 border-b border-white/5 bg-bg-sidebar-hover/40">
+            <label className="block">
+              <span className="type-tiny text-text-on-dark-dim uppercase tracking-wider">Acting as</span>
+              <div className="mt-1 relative">
+                <select
+                  value={actingRole}
+                  onChange={(e) => setActingRole(e.target.value as Role)}
+                  aria-label="Switch acting role for sample-mode permissions demo"
+                  className="w-full appearance-none h-8 pl-2 pr-7 type-body-sm bg-bg-sidebar text-white border border-white/10 rounded-control focus:outline-none focus:border-primary cursor-pointer"
+                >
+                  {ROLES.map((r) => (
+                    <option key={r} value={r} className="bg-bg-sidebar text-white">
+                      {ROLE_LABELS[r]}
+                    </option>
+                  ))}
+                </select>
+                <CaretDown
+                  size={12}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-text-on-dark-dim pointer-events-none"
+                  aria-hidden="true"
+                />
+              </div>
+            </label>
           </div>
-          <div className="flex-1 min-w-0">
-            <p className="type-body-sm text-text-on-dark truncate">{DEMO_USER.name}</p>
-            <p className="type-label text-text-on-dark-dim truncate">{DEMO_USER.role}</p>
+
+          {/* User identity row */}
+          <div className="flex items-center gap-3 h-14 px-4">
+            <div className="flex items-center justify-center w-8 h-8 rounded-pill bg-primary/30 text-primary text-xs font-semibold shrink-0">
+              {ROLE_INITIALS[actingRole]}
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="type-body-sm text-text-on-dark truncate">Demo User</p>
+              <p className="type-label text-text-on-dark-dim truncate">{ROLE_LABELS[actingRole]}</p>
+            </div>
+            <Tooltip.Root delayDuration={400}>
+              <Tooltip.Trigger asChild>
+                <button
+                  type="button"
+                  className="text-text-on-dark-dim hover:text-text-on-dark transition-colors"
+                  aria-label="Sign out"
+                >
+                  <SignOut size={18} />
+                </button>
+              </Tooltip.Trigger>
+              <Tooltip.Portal>
+                <Tooltip.Content side="top" className="z-50 rounded bg-text-primary px-2 py-1 shadow-dropdown">
+                  <p className="text-xs text-white">Sign out</p>
+                  <Tooltip.Arrow className="fill-text-primary" />
+                </Tooltip.Content>
+              </Tooltip.Portal>
+            </Tooltip.Root>
           </div>
-          <Tooltip.Root delayDuration={400}>
-            <Tooltip.Trigger asChild>
-              <button
-                type="button"
-                className="text-text-secondary hover:text-text-on-dark transition-colors"
-                aria-label="Sign out"
-              >
-                <SignOut size={18} />
-              </button>
-            </Tooltip.Trigger>
-            <Tooltip.Portal>
-              <Tooltip.Content side="top" className="z-50 rounded bg-text-primary px-2 py-1 shadow-dropdown">
-                <p className="text-xs text-white">Sign out</p>
-                <Tooltip.Arrow className="fill-text-primary" />
-              </Tooltip.Content>
-            </Tooltip.Portal>
-          </Tooltip.Root>
         </div>
       </aside>
     </Tooltip.Provider>

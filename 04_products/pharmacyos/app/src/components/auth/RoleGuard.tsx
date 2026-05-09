@@ -1,5 +1,7 @@
 import type { PropsWithChildren } from 'react'
+import { Navigate } from 'react-router-dom'
 import type { Role } from '@/types/auth'
+import { usePermissionsStore } from '@/stores/permissions'
 
 type RoleGuardProps = PropsWithChildren<{
   roles: readonly Role[]
@@ -8,18 +10,22 @@ type RoleGuardProps = PropsWithChildren<{
 /**
  * Role gate for role-restricted routes.
  *
- * STUB IMPLEMENTATION (2026-05-08):
- *   Passes children through unconditionally; the `roles` prop is recorded for the future implementation.
- *   When auth is wired (see ProtectedRoute):
- *     - Read role from session.user.app_metadata.role (custom JWT claim)
- *     - If role is in `roles` array: render children
- *     - If not: redirect to /unauthorized (a rendered screen, not a 404 — per ADR Decision 7)
+ * Sample-mode (current — pre-Supabase): reads `actingRole` from the permissions
+ * store. The role-switcher in the Sidebar lets reviewers act as any role to
+ * verify permission filtering. If the acting role is not in `roles`, redirect
+ * to /unauthorized.
  *
- * Note: this is the UI enforcement layer. RLS at the database and Edge Function JWT verification are
- * the actual security boundaries. UI route guarding is UX, not security.
+ * Production (post-Slice 22+ auth): reads from session.user.app_metadata.role
+ * (custom JWT claim). Same enforcement logic; different source of role.
+ *
+ * Note: this is the UI enforcement layer. RLS at the database and Edge
+ * Function JWT verification are the actual security boundaries per ADR
+ * Decision 7. UI route guarding is UX, not security.
  */
 export function RoleGuard({ roles, children }: RoleGuardProps) {
-  // TODO(auth): replace stub with real role check using session JWT claim
-  void roles
+  const actingRole = usePermissionsStore((s) => s.actingRole)
+  if (!roles.includes(actingRole)) {
+    return <Navigate to="/unauthorized" replace />
+  }
   return <>{children}</>
 }

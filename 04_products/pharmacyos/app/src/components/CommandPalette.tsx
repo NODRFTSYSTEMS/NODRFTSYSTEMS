@@ -36,6 +36,7 @@ const COMMANDS: CommandItem[] = [
   { label: 'Reports — Revenue', path: '/reports/revenue', keywords: 'reports revenue sales money' },
   { label: 'AI — Job Queue', path: '/ai/queue', keywords: 'ai job queue extraction' },
   { label: 'Admin — Users', path: '/admin/users', keywords: 'admin users staff accounts' },
+  { label: 'Admin — Permissions', path: '/admin/permissions', keywords: 'admin permissions roles access matrix rbac' },
   { label: 'Admin — Audit Log', path: '/admin/audit', keywords: 'admin audit log activity' },
   { label: 'Admin — Settings', path: '/admin/settings', keywords: 'admin settings configuration' },
   { label: 'Admin — Security', path: '/admin/security', keywords: 'admin security 2fa sessions' },

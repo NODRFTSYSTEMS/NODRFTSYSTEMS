@@ -78,6 +78,11 @@ export const ROUTE_PERMISSIONS = {
   '/admin/audit': { path: '/admin/audit', roles: ['admin'] },
   '/admin/settings': { path: '/admin/settings', roles: ['admin'] },
   '/admin/security': { path: '/admin/security', roles: ['admin'] },
+  '/admin/permissions': { path: '/admin/permissions', roles: ['admin'] },
+
+  // Errors — visible to any signed-in role (the Unauthorized page itself must
+  // be reachable by roles that hit a guarded route)
+  '/unauthorized': { path: '/unauthorized', roles: ALL_ROLES },
 } as const satisfies Record<string, RoutePermission>
 
 export type RoutePermissionKey = keyof typeof ROUTE_PERMISSIONS

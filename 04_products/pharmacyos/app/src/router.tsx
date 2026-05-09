@@ -36,6 +36,7 @@ const RevenueReportPage = lazy(() => import('@/pages/reporting/RevenueReportPage
 const UsersPage = lazy(() => import('@/pages/admin/UsersPage'))
 const SettingsPage = lazy(() => import('@/pages/admin/SettingsPage'))
 const SecurityPage = lazy(() => import('@/pages/admin/SecurityPage'))
+const PermissionsPage = lazy(() => import('@/pages/admin/PermissionsPage'))
 const UnauthorizedPage = lazy(() => import('@/pages/UnauthorizedPage'))
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'))
 const AlertsPage = lazy(() => import('@/pages/inventory/AlertsPage'))
@@ -246,6 +247,10 @@ export const router = createBrowserRouter([
       {
         element: <RoleGuard roles={ROUTE_PERMISSIONS['/admin/security'].roles}>{lazyPage(SecurityPage)}</RoleGuard>,
         path: '/admin/security',
+      },
+      {
+        element: <RoleGuard roles={ROUTE_PERMISSIONS['/admin/permissions'].roles}>{lazyPage(PermissionsPage)}</RoleGuard>,
+        path: '/admin/permissions',
       },
     ],
   },
