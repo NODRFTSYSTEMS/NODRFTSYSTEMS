@@ -2,6 +2,7 @@
 import { PageHeader } from '@/components/PageHeader'
 import { Button } from '@/components/Button'
 import { StatusPill } from '@/components/StatusPill'
+import { useToast } from '@/components/Toast'
 import { SAMPLE_SCHEDULE_LOG } from '@/data/sample'
 
 /**
@@ -10,7 +11,13 @@ import { SAMPLE_SCHEDULE_LOG } from '@/data/sample'
  * Pharmacist sign-off required for every entry (verified column).
  */
 export function ScheduleLogPage() {
+  const toast = useToast()
   const verified = SAMPLE_SCHEDULE_LOG.filter((e) => e.verified).length
+
+  function handleExport(format: 'PDF' | 'CSV') {
+    toast.show(`${format} export requires Supabase backend — integration in progress`, { variant: 'info' })
+  }
+
   return (
     <div className="flex flex-col h-full">
       <PageHeader
@@ -18,11 +25,11 @@ export function ScheduleLogPage() {
         subtitle={`Regulatory record Â· ${SAMPLE_SCHEDULE_LOG.length} entries Â· ${verified} pharmacist-verified Â· append-only`}
         cta={
           <div className="flex items-center gap-2">
-            <Button variant="secondary" size="md">
+            <Button variant="secondary" size="md" onClick={() => handleExport('PDF')}>
               <DownloadSimple size={16} weight="bold" />
               Export PDF
             </Button>
-            <Button variant="secondary" size="md">
+            <Button variant="secondary" size="md" onClick={() => handleExport('CSV')}>
               <DownloadSimple size={16} weight="bold" />
               Export CSV
             </Button>

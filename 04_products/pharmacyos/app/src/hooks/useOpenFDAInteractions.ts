@@ -68,11 +68,16 @@ async function fetchInteractions(drugName: string): Promise<string | null> {
  */
 export function useOpenFDAInteractions(drugs: string[]): InteractionResult[] {
   const [results, setResults] = useState<InteractionResult[]>(
-    drugs.map((d) => ({ drug: d, interactions: null, error: null, loading: drugs.length >= 1 }))
+    drugs.map((d) => ({ drug: d, interactions: null, error: null, loading: drugs.length >= 2 }))
   )
 
   useEffect(() => {
-    if (drugs.length === 0) return
+    // Cross-drug interactions only exist when there are ≥2 drugs. Skip the
+    // network call entirely for single-drug prescriptions.
+    if (drugs.length < 2) {
+      setResults(drugs.map((d) => ({ drug: d, interactions: null, error: null, loading: false })))
+      return
+    }
 
     setResults(drugs.map((d) => ({ drug: d, interactions: null, error: null, loading: true })))
 
