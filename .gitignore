@@ -69,3 +69,8 @@ __pycache__/
 **/.git/
 **/*.bak
 
+# Archived workspaces — self-contained, not tracked by master
+# Each archived directory under 99_archive/ is governed by its own .git
+# (or simply preserved as-is); master only tracks 99_archive/README.md
+99_archive/*/
+
