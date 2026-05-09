@@ -46,9 +46,9 @@ export function LoginPage() {
       )}
 
       <FormField label="Email" required>
-        {(id) => (
+        {(p) => (
           <Input
-            id={id}
+            {...p}
             type="email"
             autoComplete="email"
             placeholder="you@pharmacy.com"
@@ -61,9 +61,9 @@ export function LoginPage() {
       </FormField>
 
       <FormField label="Password" required>
-        {(id) => (
+        {(p) => (
           <Input
-            id={id}
+            {...p}
             type="password"
             autoComplete="current-password"
             placeholder="••••••••••••"

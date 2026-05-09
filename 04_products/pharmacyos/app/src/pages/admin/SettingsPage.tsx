@@ -14,17 +14,17 @@ export function SettingsPage() {
         <div className="max-w-3xl flex flex-col gap-4">
           <Section icon={<Building size={18} className="text-rx-received-fg" />} title="Pharmacy Profile" description="Identity used on receipts, prescriptions, and reports.">
             <FormField label="Pharmacy Name" required>
-              {(id) => <Input id={id} defaultValue={pharmacyConfig.name} />}
+              {(p) => <Input {...p} defaultValue={pharmacyConfig.name} />}
             </FormField>
             <FormField label="Address">
-              {(id) => <Input id={id} defaultValue={pharmacyConfig.address} />}
+              {(p) => <Input {...p} defaultValue={pharmacyConfig.address} />}
             </FormField>
             <div className="grid grid-cols-2 gap-4">
               <FormField label="Phone">
-                {(id) => <Input id={id} type="tel" defaultValue={pharmacyConfig.phone} mono />}
+                {(p) => <Input {...p} type="tel" defaultValue={pharmacyConfig.phone} mono />}
               </FormField>
               <FormField label="Pharmacy Council #">
-                {(id) => <Input id={id} defaultValue={pharmacyConfig.pharmacyCouncilNumber} mono />}
+                {(p) => <Input {...p} defaultValue={pharmacyConfig.pharmacyCouncilNumber} mono />}
               </FormField>
             </div>
             <SaveRow section="Pharmacy profile" />
@@ -33,10 +33,10 @@ export function SettingsPage() {
           <Section icon={<Database size={18} className="text-rx-filled-fg" />} title="Inventory Defaults" description="Thresholds applied across all SKUs unless overridden per drug.">
             <div className="grid grid-cols-2 gap-4">
               <FormField label="Low Stock Threshold (units)" helper="Triggers low-stock alert">
-                {(id) => <Input id={id} type="number" defaultValue={pharmacyConfig.defaults.lowStockThreshold} mono />}
+                {(p) => <Input {...p} type="number" defaultValue={pharmacyConfig.defaults.lowStockThreshold} mono />}
               </FormField>
               <FormField label="Expiry Alert Window (days)" helper="Items expiring within this window appear in alerts">
-                {(id) => <Input id={id} type="number" defaultValue={pharmacyConfig.defaults.expiryAlertWindowDays} mono />}
+                {(p) => <Input {...p} type="number" defaultValue={pharmacyConfig.defaults.expiryAlertWindowDays} mono />}
               </FormField>
             </div>
             <Checkbox
