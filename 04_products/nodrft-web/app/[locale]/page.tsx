@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
+import Link from "next/link";
 import type { Locale } from "@/content/types";
 import { FadeUp } from "@/components/motion/FadeUp";
 import { HeroAnimated } from "@/components/motion/HeroAnimated";
@@ -55,6 +56,10 @@ const MISCONCEPTIONS = {
       q: "“We’ll do this once content is ready.”",
       a: "Content readiness is managed during scoping, not as a prerequisite to it. Waiting for perfect content postpones structure, routing, and design—and perfect content rarely arrives on its own.",
     },
+    {
+      q: "“We can build this in-house.”",
+      a: "In-house teams often can. The question is governance and time-to-correct, not technical capability. Internal builds without external review architecture tend to accumulate debt quietly — scope changes get absorbed, test coverage slips, handoff documentation falls behind. The cost isn’t the build. It’s the first time something breaks and nobody knows why.",
+    },
   ],
   es: [
     {
@@ -81,6 +86,10 @@ const MISCONCEPTIONS = {
       q: "“Lo haremos cuando el contenido esté listo.”",
       a: "La preparación del contenido se gestiona durante el alcance, no como requisito previo. Esperar contenido perfecto pospone estructura, enrutamiento y diseño.",
     },
+    {
+      q: "“Podemos construirlo internamente.”",
+      a: "Los equipos internos a menudo pueden. La pregunta es gobernanza y tiempo de corrección, no capacidad técnica. Las construcciones internas sin arquitectura de revisión externa tienden a acumular deuda silenciosamente — los cambios de alcance se absorben, la cobertura de pruebas cae, la documentación de traspaso se queda atrás. El costo no es la construcción. Es la primera vez que algo falla y nadie sabe por qué.",
+    },
   ],
 };
 
@@ -88,20 +97,20 @@ const FIT = {
   en: {
     label: "Who we serve best",
     items: [
-      "Organizations where positioning accuracy and delivery consistency are strategic requirements",
-      "Teams with defined decision authority and a scope that can be locked before build begins",
-      "Projects where a single accountable decision-maker holds scope authority",
-      "Companies investing in systems that must remain correct through handoff — without rework cycles",
+      "Organizations that lose business when their digital presence doesn’t match their actual quality",
+      "Teams with a clear owner — one person who can say yes, hold the scope, and move without a committee",
+      "Founders and operators who have been burned by a previous build — and need a delivery model with real accountability, not a new round of promises",
+      "Companies building platforms and tools that need to work five years from now, not just at launch",
     ],
     note: "Not every project is accepted. Fit matters to the quality of the outcome. We evaluate scope clarity, timeline, decision structure, and budget reality before proposing. When it’s a strong fit, the engagement gets full commitment.",
   },
   es: {
     label: "A quiénes servimos mejor",
     items: [
-      "Organizaciones donde la precisión de posicionamiento y la consistencia de entrega son requisitos estratégicos",
-      "Equipos con autoridad de decisión definida y un alcance que puede cerrarse antes de construir",
-      "Proyectos donde un único responsable de decisiones mantiene la autoridad de alcance",
-      "Empresas que invierten en sistemas que deben mantenerse correctos hasta el traspaso — sin ciclos de retrabajo",
+      "Organizaciones que pierden negocios cuando su presencia digital no refleja su calidad real",
+      "Equipos con un responsable claro — una persona que puede decir sí, mantener el alcance y avanzar sin comités",
+      "Fundadores y operadores que han sufrido las consecuencias de una construcción anterior — y necesitan un modelo de entrega con responsabilidad real, no una nueva ronda de promesas",
+      "Empresas que construyen plataformas y herramientas que necesitan funcionar en cinco años, no solo al lanzamiento",
     ],
     note: "No todos los proyectos son aceptados. El ajuste importa para la calidad del resultado. Evaluamos la claridad del alcance, el cronograma, la estructura de decisiones y la realidad del presupuesto antes de proponer. Cuando es un ajuste sólido, el compromiso es total.",
   },
@@ -223,6 +232,7 @@ export default async function HomePage({ params }: Props) {
               {t("whyHeadline")}
             </h2>
             <p className="nd-p">{t("whyBody")}</p>
+            <p className="nd-p" style={{ marginTop: "var(--space-4)" }}>{t("whyBody2")}</p>
           </FadeUp>
         </div>
       </section>
@@ -296,9 +306,9 @@ export default async function HomePage({ params }: Props) {
                   <span className="nd-card__corner" aria-hidden="true" />
                   <div>
                     <h3 className="nd-h3 nd-h3-mb2">{pkg.name}</h3>
-                    <a href={`/${locale}/start`} className="nd-price">
+                    <Link href={`/${locale}/start`} className="nd-price">
                       {loc === "en" ? "Get pricing →" : "Consultar precio →"}
-                    </a>
+                    </Link>
                     <p className="nd-p-sm nd-mb2">{pkg.body}</p>
                     <p className="nd-p-xs nd-pkg-subtext">{pkg.sub}</p>
                   </div>
@@ -315,11 +325,11 @@ export default async function HomePage({ params }: Props) {
                 {loc === "en"
                   ? "Complex needs or unclear scope? Start with a "
                   : "¿Necesidades complejas o alcance poco claro? Comience con un "}
-                <a href={`/${locale}/start`}>{loc === "en" ? "Discovery Sprint" : "Discovery Sprint"}</a>
+                <Link href={`/${locale}/start`}>{loc === "en" ? "Discovery Sprint" : "Discovery Sprint"}</Link>
                 {loc === "en"
                   ? " or visit the "
                   : " o visite la página de "}
-                <a href={`/${locale}/capabilities`}>{loc === "en" ? "Website Packages" : "Paquetes Web"}</a>
+                <Link href={`/${locale}/capabilities`}>{loc === "en" ? "Website Packages" : "Paquetes Web"}</Link>
                 {loc === "en" ? " page for the full decision framework." : " para el marco de decisión completo."}
               </p>
             </div>
@@ -346,7 +356,7 @@ export default async function HomePage({ params }: Props) {
               {workRecord.disclaimer}
             </p>
             <p className="nd-p-xs nd-mt3">
-              <a href={`/${locale}/engagements`}>{workRecord.link}</a>
+              <Link href={`/${locale}/engagements`}>{workRecord.link}</Link>
             </p>
           </FadeUp>
         </div>
@@ -441,9 +451,9 @@ export default async function HomePage({ params }: Props) {
               </h2>
               <p className="nd-p nd-section-cta__body">{t("ctaBody")}</p>
               <div className="nd-cta-row nd-cta-row--center">
-                <a href={`/${locale}/start`} className="btn btn--lg">
+                <Link href={`/${locale}/start`} className="btn btn--lg">
                   {t("ctaButton")}
-                </a>
+                </Link>
               </div>
             </div>
           </FadeUp>
