@@ -24,6 +24,9 @@ const TwoFactorPage = lazy(() => import('@/pages/auth/TwoFactorPage'))
 const PatientDetailPage = lazy(() => import('@/pages/patients/PatientDetailPage'))
 const PrescriptionDetailPage = lazy(() => import('@/pages/prescriptions/PrescriptionDetailPage'))
 const DrugDetailPage = lazy(() => import('@/pages/inventory/DrugDetailPage'))
+const POSTerminalPage = lazy(() => import('@/pages/pos/POSTerminalPage'))
+const POSProductsPage = lazy(() => import('@/pages/pos/POSProductsPage'))
+const POSReportsPage = lazy(() => import('@/pages/pos/POSReportsPage'))
 
 function PageFallback() {
   return (
@@ -164,6 +167,44 @@ export const router = createBrowserRouter([
         path: '/reports/revenue',
       },
 
+      // POS back-office (under sidebar — terminal itself is fullscreen)
+      {
+        element: <RoleGuard roles={ROUTE_PERMISSIONS['/pos/products'].roles}>{lazyPage(POSProductsPage)}</RoleGuard>,
+        path: '/pos/products',
+      },
+      {
+        element: <RoleGuard roles={ROUTE_PERMISSIONS['/pos/products/:id'].roles}><Placeholder title="POS product detail" /></RoleGuard>,
+        path: '/pos/products/:id',
+      },
+      {
+        element: <RoleGuard roles={ROUTE_PERMISSIONS['/pos/inventory'].roles}><Placeholder title="POS inventory" /></RoleGuard>,
+        path: '/pos/inventory',
+      },
+      {
+        element: <RoleGuard roles={ROUTE_PERMISSIONS['/pos/suppliers'].roles}><Placeholder title="POS suppliers" /></RoleGuard>,
+        path: '/pos/suppliers',
+      },
+      {
+        element: <RoleGuard roles={ROUTE_PERMISSIONS['/pos/reports'].roles}>{lazyPage(POSReportsPage)}</RoleGuard>,
+        path: '/pos/reports',
+      },
+      {
+        element: <RoleGuard roles={ROUTE_PERMISSIONS['/pos/loyalty'].roles}>{lazyPage(LoyaltyPage)}</RoleGuard>,
+        path: '/pos/loyalty',
+      },
+      {
+        element: <RoleGuard roles={ROUTE_PERMISSIONS['/pos/loyalty/new'].roles}><Placeholder title="New loyalty member" /></RoleGuard>,
+        path: '/pos/loyalty/new',
+      },
+      {
+        element: <RoleGuard roles={ROUTE_PERMISSIONS['/pos/loyalty/:id'].roles}><Placeholder title="Loyalty member profile" /></RoleGuard>,
+        path: '/pos/loyalty/:id',
+      },
+      {
+        element: <RoleGuard roles={ROUTE_PERMISSIONS['/pos/loyalty/dashboard'].roles}><Placeholder title="Loyalty dashboard" /></RoleGuard>,
+        path: '/pos/loyalty/dashboard',
+      },
+
       // AI (1)
       {
         element: <RoleGuard roles={ROUTE_PERMISSIONS['/ai/queue'].roles}>{lazyPage(JobQueuePage)}</RoleGuard>,
@@ -190,7 +231,7 @@ export const router = createBrowserRouter([
     ],
   },
 
-  // POS — separate layout
+  // POS terminal — fullscreen, no sidebar (handoff Section 3.2)
   {
     element: (
       <ProtectedRoute>
@@ -199,44 +240,8 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        element: <RoleGuard roles={ROUTE_PERMISSIONS['/pos'].roles}><Placeholder title="POS terminal" /></RoleGuard>,
+        element: <RoleGuard roles={ROUTE_PERMISSIONS['/pos'].roles}>{lazyPage(POSTerminalPage)}</RoleGuard>,
         path: '/pos',
-      },
-      {
-        element: <RoleGuard roles={ROUTE_PERMISSIONS['/pos/products'].roles}><Placeholder title="POS products" /></RoleGuard>,
-        path: '/pos/products',
-      },
-      {
-        element: <RoleGuard roles={ROUTE_PERMISSIONS['/pos/products/:id'].roles}><Placeholder title="POS product detail" /></RoleGuard>,
-        path: '/pos/products/:id',
-      },
-      {
-        element: <RoleGuard roles={ROUTE_PERMISSIONS['/pos/inventory'].roles}><Placeholder title="POS inventory" /></RoleGuard>,
-        path: '/pos/inventory',
-      },
-      {
-        element: <RoleGuard roles={ROUTE_PERMISSIONS['/pos/suppliers'].roles}><Placeholder title="POS suppliers" /></RoleGuard>,
-        path: '/pos/suppliers',
-      },
-      {
-        element: <RoleGuard roles={ROUTE_PERMISSIONS['/pos/reports'].roles}><Placeholder title="POS reports" /></RoleGuard>,
-        path: '/pos/reports',
-      },
-      {
-        element: <RoleGuard roles={ROUTE_PERMISSIONS['/pos/loyalty'].roles}>{lazyPage(LoyaltyPage)}</RoleGuard>,
-        path: '/pos/loyalty',
-      },
-      {
-        element: <RoleGuard roles={ROUTE_PERMISSIONS['/pos/loyalty/new'].roles}><Placeholder title="New loyalty member" /></RoleGuard>,
-        path: '/pos/loyalty/new',
-      },
-      {
-        element: <RoleGuard roles={ROUTE_PERMISSIONS['/pos/loyalty/:id'].roles}><Placeholder title="Loyalty member profile" /></RoleGuard>,
-        path: '/pos/loyalty/:id',
-      },
-      {
-        element: <RoleGuard roles={ROUTE_PERMISSIONS['/pos/loyalty/dashboard'].roles}><Placeholder title="Loyalty dashboard" /></RoleGuard>,
-        path: '/pos/loyalty/dashboard',
       },
     ],
   },
