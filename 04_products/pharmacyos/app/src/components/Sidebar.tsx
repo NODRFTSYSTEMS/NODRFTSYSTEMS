@@ -137,7 +137,7 @@ export function Sidebar() {
           </div>
           <div className="min-w-0">
             <p className="type-card-title text-white leading-tight truncate">PharmacyOS</p>
-            <p className="type-tiny text-text-secondary leading-tight mt-px truncate">
+            <p className="type-tiny text-text-on-dark-dim leading-tight mt-px truncate">
               Built by NoDrftSystems
             </p>
           </div>
@@ -179,7 +179,7 @@ export function Sidebar() {
           {/* Groups */}
           {NAV_GROUPS.map((group) => (
             <div key={group.label}>
-              <p className="type-caption text-text-secondary px-4 mb-1">{group.label}</p>
+              <p className="type-caption text-text-on-dark-dim px-4 mb-1">{group.label}</p>
               <div className="flex flex-col gap-px">
                 {group.items.map((item) => (
                   <NavItemRow key={item.path} item={item} />
@@ -196,7 +196,7 @@ export function Sidebar() {
           </div>
           <div className="flex-1 min-w-0">
             <p className="type-body-sm text-text-on-dark truncate">{DEMO_USER.name}</p>
-            <p className="type-label text-text-secondary truncate">{DEMO_USER.role}</p>
+            <p className="type-label text-text-on-dark-dim truncate">{DEMO_USER.role}</p>
           </div>
           <Tooltip.Root delayDuration={400}>
             <Tooltip.Trigger asChild>

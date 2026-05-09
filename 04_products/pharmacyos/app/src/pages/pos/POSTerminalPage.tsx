@@ -58,7 +58,7 @@ export function POSTerminalPage() {
     return (
       <div className="h-full flex items-center justify-center bg-bg-base">
         <div className="bg-bg-surface rounded-card shadow-modal p-12 max-w-md w-full text-center">
-          <div className="w-16 h-16 rounded-pill bg-rx-filled-bg text-rx-filled-fg flex items-center justify-center mx-auto mb-4 font-bold text-2xl">✓</div>
+          <div aria-hidden="true" className="w-16 h-16 rounded-pill bg-rx-filled-bg text-rx-filled-fg flex items-center justify-center mx-auto mb-4 font-bold text-2xl">✓</div>
           <p className="type-section text-text-primary mb-1">Transaction complete</p>
           <p className="text-sm text-text-secondary mb-6">Receipt printed</p>
           <dl className="grid grid-cols-2 gap-4 mb-6 text-left">

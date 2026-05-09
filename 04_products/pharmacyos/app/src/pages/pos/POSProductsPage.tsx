@@ -22,6 +22,7 @@ export function POSProductsPage() {
             <MagnifyingGlass size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
             <input
               type="search"
+              aria-label="Search POS products by name, barcode, or category"
               placeholder="Search by name, barcode, or category…"
               className="w-full h-10 pl-9 pr-3 type-body-sm bg-bg-surface border border-border rounded-control focus:outline-none focus:border-primary focus:ring-[3px] focus:ring-primary/20"
             />
@@ -31,6 +32,7 @@ export function POSProductsPage() {
       <section className="flex-1 p-6 overflow-y-auto">
         <div className="bg-bg-surface rounded-card shadow-card overflow-hidden">
           <table className="w-full">
+            <caption className="sr-only">Data table</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                 <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">Product</th>

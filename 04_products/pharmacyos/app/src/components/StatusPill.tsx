@@ -16,6 +16,7 @@ export type StatusVariant =
   | 'neutral'
   | 'schedule'
   | 'nhf'
+  | 'allergy'
 
 const VARIANTS: Record<StatusVariant, string> = {
   received:  'bg-rx-received-bg text-rx-received-fg',
@@ -29,6 +30,7 @@ const VARIANTS: Record<StatusVariant, string> = {
   neutral:   'bg-rx-dispensed-bg text-rx-dispensed-fg',
   schedule:  'bg-tag-schedule-bg text-tag-schedule-fg',
   nhf:       'bg-tag-nhf-bg text-tag-nhf-fg',
+  allergy:   'bg-rx-verified-bg text-rx-verified-fg',
 }
 
 export function StatusPill({

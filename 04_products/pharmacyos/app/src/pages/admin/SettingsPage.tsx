@@ -76,7 +76,7 @@ function Section({ icon, title, description, children }: { icon: React.ReactNode
       <div className="flex items-start gap-3 mb-5 pb-4 border-b border-border-subtle">
         <div className="w-10 h-10 rounded-control bg-bg-subtle flex items-center justify-center shrink-0">{icon}</div>
         <div>
-          <p className="type-card-title text-text-primary">{title}</p>
+          <h3 className="type-card-title text-text-primary">{title}</h3>
           <p className="text-xs text-text-secondary mt-0.5">{description}</p>
         </div>
       </div>

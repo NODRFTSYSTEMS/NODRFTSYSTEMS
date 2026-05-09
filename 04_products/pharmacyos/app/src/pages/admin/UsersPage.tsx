@@ -48,6 +48,7 @@ export function UsersPage() {
               <MagnifyingGlass size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
               <input
                 type="search"
+                aria-label="Search users by name or email"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search by name or email…"
@@ -69,6 +70,7 @@ export function UsersPage() {
       <section className="flex-1 p-6 overflow-y-auto">
         <div className="bg-bg-surface rounded-card shadow-card overflow-hidden">
           <table className="w-full">
+            <caption className="sr-only">Data table</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                 <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">User</th>

@@ -47,6 +47,7 @@ export function PatientsPage() {
             <MagnifyingGlass size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
             <input
               type="search"
+              aria-label="Search patients by name, NHF number, or phone"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search by name, NHF #, or phone…"
@@ -58,6 +59,7 @@ export function PatientsPage() {
       <section className="flex-1 p-6 overflow-y-auto">
         <div className="bg-bg-surface rounded-card shadow-card overflow-hidden">
           <table className="w-full">
+            <caption className="sr-only">Data table</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                 <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">Patient</th>
@@ -105,7 +107,10 @@ export function PatientsPage() {
                       ) : (
                         <div className="flex flex-wrap gap-1">
                           {p.allergies.map((a) => (
-                            <StatusPill key={a} variant="error">{a}</StatusPill>
+                            <StatusPill key={a} variant="allergy">
+                              <span className="sr-only">Allergy: </span>
+                              {a}
+                            </StatusPill>
                           ))}
                         </div>
                       )}

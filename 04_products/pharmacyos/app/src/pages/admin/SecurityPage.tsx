@@ -61,6 +61,7 @@ export function SecurityPage() {
               </p>
             </div>
             <table className="w-full">
+            <caption className="sr-only">Data table</caption>
               <thead>
                 <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                   <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">User</th>
@@ -88,9 +89,10 @@ export function SecurityPage() {
         {/* Active sessions */}
         <div className="bg-bg-surface rounded-card shadow-card overflow-hidden">
           <div className="px-4 py-3 border-b border-border">
-            <p className="type-caption text-text-secondary">Active Sessions</p>
+            <h2 className="type-caption text-text-secondary">Active Sessions</h2>
           </div>
           <table className="w-full">
+            <caption className="sr-only">Data table</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                 <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">User</th>
@@ -119,12 +121,13 @@ export function SecurityPage() {
         {/* Recent auth events */}
         <div className="bg-bg-surface rounded-card shadow-card overflow-hidden">
           <div className="px-4 py-3 border-b border-border">
-            <p className="type-caption text-text-secondary">Recent Authentication Events</p>
+            <h2 className="type-caption text-text-secondary">Recent Authentication Events</h2>
           </div>
           {securityEvents.length === 0 ? (
             <p className="px-4 py-6 text-center text-sm text-text-secondary">No authentication events in the last 24 hours.</p>
           ) : (
             <table className="w-full">
+            <caption className="sr-only">Data table</caption>
               <thead>
                 <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                   <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">Time</th>

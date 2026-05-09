@@ -57,7 +57,10 @@ export function PatientDetailPage() {
             {patient.allergies.length > 0 && (
               <div className="flex flex-wrap gap-1.5 mt-2">
                 {patient.allergies.map((a) => (
-                  <StatusPill key={a} variant="error">{a}</StatusPill>
+                  <StatusPill key={a} variant="allergy">
+                    <span className="sr-only">Allergy: </span>
+                    {a}
+                  </StatusPill>
                 ))}
               </div>
             )}
@@ -83,6 +86,7 @@ export function PatientDetailPage() {
               content: (
                 <div className="bg-bg-surface rounded-card shadow-card overflow-hidden">
                   <table className="w-full">
+            <caption className="sr-only">Data table</caption>
                     <thead>
                       <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                         <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">Rx #</th>
@@ -119,7 +123,7 @@ export function PatientDetailPage() {
               label: 'Insurance',
               content: (
                 <div className="bg-bg-surface rounded-card shadow-card p-6">
-                  <p className="type-card-title text-text-primary mb-3">National Health Fund (NHF)</p>
+                  <h2 className="type-card-title text-text-primary mb-3">National Health Fund (NHF)</h2>
                   <dl className="grid grid-cols-2 gap-4 text-sm">
                     <div>
                       <dt className="type-label text-text-secondary mb-1">NHF Number</dt>
@@ -141,7 +145,7 @@ export function PatientDetailPage() {
                   <div className="flex items-start gap-3">
                     <ShieldCheck size={20} className="text-rx-filled-fg shrink-0 mt-0.5" />
                     <div>
-                      <p className="type-card-title text-text-primary">Jamaica Data Protection Act consent</p>
+                      <h2 className="type-card-title text-text-primary">Jamaica Data Protection Act consent</h2>
                       <p className="text-xs text-text-secondary mt-1">
                         Consent v1.0 captured at registration · {patient.lastVisit}
                       </p>

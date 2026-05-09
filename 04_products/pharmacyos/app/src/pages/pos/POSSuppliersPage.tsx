@@ -11,6 +11,7 @@ export function POSSuppliersPage() {
       <div className="bg-bg-surface rounded-card shadow-card border border-border overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
+            <caption className="sr-only">Data table</caption>
             <caption className="sr-only">POS supplier directory</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">

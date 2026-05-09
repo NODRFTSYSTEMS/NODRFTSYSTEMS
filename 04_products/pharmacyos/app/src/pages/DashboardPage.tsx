@@ -69,7 +69,7 @@ export function DashboardPage() {
             className="col-span-3 bg-bg-surface rounded-card shadow-card p-4"
             aria-label="Prescription board"
           >
-            <p className="type-caption text-text-secondary mb-3">Prescription Board</p>
+            <h2 className="type-caption text-text-secondary mb-3">Prescription Board</h2>
             <div className="grid grid-cols-4 gap-3">
               {RX_COLUMNS.map((col) => {
                 const items = activeRx.filter((r) => r.status === col)
@@ -126,7 +126,7 @@ export function DashboardPage() {
             className="col-span-2 bg-bg-surface rounded-card shadow-card p-4"
             aria-label="Stock alerts"
           >
-            <p className="type-caption text-text-secondary mb-3">Stock Alerts</p>
+            <h2 className="type-caption text-text-secondary mb-3">Stock Alerts</h2>
             {stockAlerts.length === 0 ? (
               <p className="text-sm text-text-secondary">No alerts</p>
             ) : (
@@ -169,9 +169,10 @@ export function DashboardPage() {
           aria-label="Recent activity"
         >
           <div className="px-4 py-3 border-b border-border">
-            <p className="type-caption text-text-secondary">Recent Activity</p>
+            <h2 className="type-caption text-text-secondary">Recent Activity</h2>
           </div>
           <table className="w-full">
+            <caption className="sr-only">Data table</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                 {['Time', 'User', 'Role', 'Action', 'Target'].map((h) => (

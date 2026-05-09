@@ -40,6 +40,7 @@ export function AuditLogPage() {
               <MagnifyingGlass size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
               <input
                 type="search"
+                aria-label="Search audit log by action, user, or target"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search actions, users, or targets…"
@@ -66,6 +67,7 @@ export function AuditLogPage() {
       <section className="flex-1 p-6 overflow-y-auto">
         <div className="bg-bg-surface rounded-card shadow-card overflow-hidden">
           <table className="w-full">
+            <caption className="sr-only">Data table</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                 <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">Time</th>

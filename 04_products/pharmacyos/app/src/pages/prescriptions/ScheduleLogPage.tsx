@@ -38,6 +38,7 @@ export function ScheduleLogPage() {
             </p>
           </div>
           <table className="w-full">
+            <caption className="sr-only">Data table</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                 <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">Log #</th>

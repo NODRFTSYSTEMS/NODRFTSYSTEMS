@@ -86,6 +86,7 @@ export function DrugDetailPage() {
             <p className="px-4 py-6 text-center text-sm text-text-secondary">No recent prescriptions reference this drug.</p>
           ) : (
             <table className="w-full">
+            <caption className="sr-only">Data table</caption>
               <thead>
                 <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                   <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">Rx #</th>

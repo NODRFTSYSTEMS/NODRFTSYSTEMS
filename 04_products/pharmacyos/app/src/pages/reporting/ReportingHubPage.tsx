@@ -53,7 +53,7 @@ export function ReportingHubPage() {
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between mb-1">
-                  <p className="type-card-title text-text-primary">{r.title}</p>
+                  <h3 className="type-card-title text-text-primary">{r.title}</h3>
                   <ArrowRight size={16} className="text-text-disabled group-hover:text-primary transition-colors" />
                 </div>
                 <p className="text-sm text-text-secondary leading-snug">{r.description}</p>

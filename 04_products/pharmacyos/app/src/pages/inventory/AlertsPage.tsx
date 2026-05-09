@@ -28,6 +28,7 @@ export function AlertsPage() {
         </div>
         <div className="overflow-x-auto">
           <table className="w-full">
+            <caption className="sr-only">Data table</caption>
             <caption className="sr-only">Low stock alerts — items below reorder point</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
@@ -73,6 +74,7 @@ export function AlertsPage() {
         </div>
         <div className="overflow-x-auto">
           <table className="w-full">
+            <caption className="sr-only">Data table</caption>
             <caption className="sr-only">Expiry alerts — items expiring within 90 days</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">

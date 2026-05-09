@@ -58,6 +58,7 @@ export function LoyaltyDashboardPage() {
         </div>
         <div className="overflow-x-auto">
           <table className="w-full">
+            <caption className="sr-only">Data table</caption>
             <caption className="sr-only">Top loyalty spenders by points balance</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
