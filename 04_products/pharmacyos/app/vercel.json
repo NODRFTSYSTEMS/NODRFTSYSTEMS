@@ -1,4 +1,5 @@
 {
+  "_note": "Vercel reads the vercel.json at the REPO ROOT (../vercel.json). This file is reference only.",
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
