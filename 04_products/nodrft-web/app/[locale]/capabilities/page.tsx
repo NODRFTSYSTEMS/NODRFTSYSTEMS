@@ -32,13 +32,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const COPY = {
   en: {
     label: "Website Packages",
-    heading: "Every scope is defined before build starts. Every deliverable hands off clean.",
+    heading: "Every scope is defined before build starts. Every deliverable hands off built to hold.",
     lead: "Eight defined scopes. Each one with explicit boundaries: what's in, what's out, what you own at the end, and what comes next.",
     sub: "Pricing is provided after an engagement inquiry. Scope determines price, and scope is established through a conversation.",
     findLabel: "Find your package",
     findSub: "Select the package that fits your situation.",
     pathLabel: "Which path fits",
-    pathHeading: "Three starting situations. One right entry point each.",
+    pathHeading: "Four starting situations. One right entry point each.",
     paths: [
       {
         tag: "You have a live site",
@@ -58,6 +58,13 @@ const COPY = {
         tag: "You need more than a website",
         heading: "User accounts, dashboards, workflows, or data integrations.",
         body: "When the requirement is an application layer — not just a public-facing site — the entry point is Platform Starter (bounded: user login, dashboard, structured data intake, up to three integrations) or Ecosystem Build (multi-surface: public site, application, and admin panel as a single coordinated program). A Discovery Sprint is required before either.",
+        cta: "Go to Platform Starter →",
+        href: "#pkg-platform",
+      },
+      {
+        tag: "You need AI in your operations",
+        heading: "Automated workflows, intelligent document processing, or a governance layer on top of existing AI tools.",
+        body: "The entry point is an MCP/Agent System Setup or Platform Starter, preceded by a BA Architecture Sprint to confirm the right scope. These are not website projects. They are infrastructure decisions that compound over time.",
         cta: "Go to Platform Starter →",
         href: "#pkg-platform",
       },
@@ -105,13 +112,13 @@ const COPY = {
   },
   es: {
     label: "Paquetes Web",
-    heading: "Cada alcance se define antes de construir. Cada entregable se traspasa en orden.",
+    heading: "Cada alcance se define antes de construir. Cada entregable se traspasa construido para durar.",
     lead: "Ocho alcances definidos. Cada uno con límites explícitos: qué incluye, qué no, qué usted posee al final y cuál es el siguiente paso.",
     sub: "El precio se proporciona tras una consulta de proyecto. El alcance determina el precio, y el alcance se establece mediante una conversación.",
     findLabel: "Encuentre su paquete",
     findSub: "Seleccione el paquete que se ajuste a su situación.",
     pathLabel: "Cuál ruta encaja",
-    pathHeading: "Tres situaciones de partida. Un punto de entrada correcto para cada una.",
+    pathHeading: "Cuatro situaciones de partida. Un punto de entrada correcto para cada una.",
     paths: [
       {
         tag: "Tiene un sitio activo",
@@ -131,6 +138,13 @@ const COPY = {
         tag: "Necesita más que un sitio",
         heading: "Cuentas de usuario, paneles, flujos de trabajo o integraciones de datos.",
         body: "Cuando el requisito es una capa de aplicación — no solo un sitio público — el punto de entrada es Plataforma Inicial (acotado: acceso de usuario, panel, intake de datos estructurado, hasta tres integraciones) o Construcción de Ecosistema (multi-superficie: sitio público, aplicación y panel de administración como un programa coordinado único). Se requiere un Discovery Sprint antes de ambos.",
+        cta: "Ir a Plataforma Inicial →",
+        href: "#pkg-platform",
+      },
+      {
+        tag: "Necesita IA en sus operaciones",
+        heading: "Flujos de trabajo automatizados, procesamiento inteligente de documentos o una capa de gobernanza sobre herramientas de IA existentes.",
+        body: "El punto de entrada es una Configuración de Sistemas MCP/Agente o Plataforma Inicial, precedida de un BA Architecture Sprint para confirmar el alcance correcto. Estos no son proyectos de sitios web. Son decisiones de infraestructura que generan valor con el tiempo.",
         cta: "Ir a Plataforma Inicial →",
         href: "#pkg-platform",
       },
@@ -467,10 +481,15 @@ export default async function CapabilitiesPage({ params }: Props) {
             <h2 id="social-heading" className="nd-h2" style={{ marginBottom: "var(--space-3)" }}>
               {loc === "en" ? "Social Content Production" : "Producción de Contenido Social"}
             </h2>
-            <p className="nd-p" style={{ maxWidth: "640px", marginBottom: "var(--space-8)" }}>
+            <p className="nd-p" style={{ maxWidth: "640px", marginBottom: "var(--space-4)" }}>
               {loc === "en"
                 ? "Platform-native content for Instagram, TikTok, and Facebook — strategy, copy, design, and delivery. Platform boosting and ad spend are client-managed and client-paid, separate from production fees."
                 : "Contenido nativo para Instagram, TikTok y Facebook — estrategia, redacción, diseño y entrega. El impulso de plataforma y el gasto en publicidad son administrados y pagados directamente por el cliente, separados de las tarifas de producción."}
+            </p>
+            <p className="nd-p-sm" style={{ maxWidth: "640px", marginBottom: "var(--space-8)", color: "var(--text-md)", fontStyle: "italic" }}>
+              {loc === "en"
+                ? "Social content production is available as an add-on engagement for active website and platform clients. It is not a standalone service — it runs in coordination with your digital presence build, not independent of it."
+                : "La producción de contenido social está disponible como compromiso adicional para clientes activos de sitios web y plataformas. No es un servicio independiente — se ejecuta en coordinación con su construcción de presencia digital, no de forma autónoma."}
             </p>
           </FadeUp>
           <FadeUp delay={0.05}>
@@ -567,6 +586,68 @@ export default async function CapabilitiesPage({ params }: Props) {
               {loc === "en"
                 ? "All tiers are monthly retainer engagements. Scope and platform mix confirmed at onboarding."
                 : "Todos los niveles son compromisos de retención mensual. El alcance y la combinación de plataformas se confirman en el inicio."}
+            </p>
+          </FadeUp>
+        </div>
+      </section>
+
+      {/* Maintenance Retainer */}
+      <section id="pkg-retainer" className="nd-section alt" aria-labelledby="retainer-heading">
+        <div className="nd-wrap">
+          <FadeUp>
+            <span className="nd-label" style={{ display: "block", marginBottom: "var(--space-3)" }}>
+              {loc === "en" ? "MAINTENANCE RETAINER" : "RETAINER DE MANTENIMIENTO"}
+            </span>
+            <h2 id="retainer-heading" className="nd-h2" style={{ marginBottom: "var(--space-3)" }}>
+              {loc === "en" ? "Built systems require maintenance." : "Los sistemas construidos requieren mantenimiento."}
+            </h2>
+            <p className="nd-p" style={{ maxWidth: "640px", marginBottom: "var(--space-8)" }}>
+              {loc === "en"
+                ? "Four structured tiers — Care, Growth, Systems, and Embedded — covering everything from basic monitoring and fixes to full embedded delivery capacity. Scope, SLA, and response times are defined in the SOW. Pricing is provided after an active or completed build engagement."
+                : "Cuatro niveles estructurados — Care, Growth, Systems y Embedded — que cubren desde monitoreo básico y correcciones hasta capacidad completa de entrega integrada. El alcance, los SLA y los tiempos de respuesta se definen en el SOW. El precio se proporciona después de un compromiso de construcción activo o completado."}
+            </p>
+          </FadeUp>
+          <FadeUp delay={0.05}>
+            <div style={{ display: "flex", gap: "var(--space-10)", flexWrap: "wrap", marginBottom: "var(--space-6)" }}>
+              <div>
+                <h3 className="nd-h3" style={{ marginBottom: "var(--space-4)" }}>
+                  {loc === "en" ? "What retainers cover" : "Qué cubren los retainers"}
+                </h3>
+                {(loc === "en" ? [
+                  "Ongoing monitoring, security updates, and dependency management",
+                  "Bug fixes and post-launch corrections within defined scope",
+                  "Content updates, configuration changes, and minor feature iterations",
+                  "Priority response SLAs and emergency access windows",
+                ] : [
+                  "Monitoreo continuo, actualizaciones de seguridad y gestión de dependencias",
+                  "Correcciones de errores y ajustes post-lanzamiento dentro del alcance definido",
+                  "Actualizaciones de contenido, cambios de configuración e iteraciones menores",
+                  "SLA de respuesta prioritaria y ventanas de acceso de emergencia",
+                ]).map((item, i) => (
+                  <p key={i} className="nd-inc" style={{ marginBottom: "var(--space-2)" }}>{item}</p>
+                ))}
+              </div>
+              <div>
+                <h3 className="nd-h3" style={{ marginBottom: "var(--space-4)", color: "var(--text-md)" }}>
+                  {loc === "en" ? "What retainers do not cover" : "Qué no cubren los retainers"}
+                </h3>
+                {(loc === "en" ? [
+                  "New features or scope additions — these require a Change Order or new package",
+                  "Standalone retainers without a prior or active build engagement",
+                  "Open-ended delivery without defined scope and signed SOW",
+                ] : [
+                  "Nuevas funciones o adiciones de alcance — requieren una orden de cambio o nuevo paquete",
+                  "Retainers independientes sin un compromiso de construcción previo o activo",
+                  "Entrega abierta sin alcance definido y SOW firmado",
+                ]).map((item, i) => (
+                  <p key={i} className="nd-exc" style={{ marginBottom: "var(--space-2)" }}>{item}</p>
+                ))}
+              </div>
+            </div>
+            <p className="nd-p-sm" style={{ color: "var(--text-md)", fontStyle: "italic" }}>
+              {loc === "en"
+                ? "Retainers are separate from build pricing. Available to active and completed clients only. Pricing quoted after engagement review."
+                : "Los retainers son independientes del precio de construcción. Disponibles solo para clientes activos y completados. Precio cotizado tras revisión del compromiso."}
             </p>
           </FadeUp>
         </div>

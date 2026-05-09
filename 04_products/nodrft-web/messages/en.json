@@ -15,7 +15,7 @@
     "onboarding": "Onboarding"
   },
   "footer": {
-    "tagline": "AI-integrated digital systems. Every output governed. Every delivery documented.",
+    "tagline": "AI-integrated digital systems. Every output reviewed. Every handoff built to hold.",
     "workLabel": "Work",
     "companyLabel": "Company",
     "capabilities": "Website Packages",
@@ -52,7 +52,7 @@
     },
     "about": {
       "title": "About — NoDrftSystems",
-      "description": "NoDrftSystems is a precision digital studio building AI-integrated systems and platforms under a Zero Drift standard."
+      "description": "NoDrftSystems is a precision digital studio building AI-integrated, human-governed digital systems and platforms — from conversion websites to full-stack operating systems — under a Zero Drift standard."
     },
     "start": {
       "title": "Start an Engagement — NoDrftSystems",
@@ -80,24 +80,25 @@
     }
   },
   "home": {
-    "markerLabel": "AI-INTEGRATED · HUMAN-GOVERNED · ZERO DRIFT",
-    "headline1": "Digital systems. Built to perform—",
-    "headline2": "structured to last.",
+    "markerLabel": "ZERO DRIFT · AI-INTEGRATED · HUMAN-GOVERNED",
+    "headline1": "Digital systems built to perform.",
+    "headline2": "Governed to stay correct.",
     "lead": "AI-integrated digital systems. Scoped precisely. Delivered without drift.",
     "whyLabel": "Why this matters",
     "whyHeadline": "Your digital presence is evaluated before you are.",
     "whyBody": "This is especially true for firms that don't rely on marketing—firms that grow through relationships, referrals, and reputation. The website isn't the sales strategy. But when it contradicts the firm's actual quality, it costs deals.",
+    "whyBody2": "The same principle applies to operating systems, platforms, and applications. When the system you depend on runs on infrastructure you don't own, architecture you can't modify, or code that requires a former contractor to maintain — it costs you differently. But the cost is just as real.",
     "strengthsLabel": "Why NoDrftSystems",
-    "strength1Title": "Strategy First",
-    "strength1Body": "No build begins without a locked scope and confirmed brief.",
-    "strength2Title": "Structured Delivery",
-    "strength2Body": "Defined packages with clear inclusions and exclusions. Every change is scoped and priced before work begins — no surprise additions.",
-    "strength3Title": "Zero Drift",
-    "strength3Body": "Scope is locked at kickoff. Changes require a formal change order.",
+    "strength1Title": "AI-Integrated Production",
+    "strength1Body": "A multi-agent architecture produces, reviews, and quality-gates every deliverable. Human authority authorizes every release. The result is agency-quality output without the agency overhead — and a paper trail at every stage.",
+    "strength2Title": "Zero Drift by Design",
+    "strength2Body": "Scope is locked before build begins. Every addition requires a formal change order. No scope creep, no invoice surprises, no ambiguity about what was promised. The name exists for a reason.",
+    "strength3Title": "Full-Stack Capability",
+    "strength3Body": "From a single-page conversion site to a multi-surface platform with authentication, data integration, and AI features — the same delivery standard applies at every tier.",
     "strength4Title": "Bilingual Native",
-    "strength4Body": "This site runs natively in English and Spanish — bilingual is not an add-on. Full bilingual delivery is available on any package.",
-    "strength5Title": "Governed Output",
-    "strength5Body": "AI-integrated workflows, governed output. Every deliverable reviewed before release. Sign-off is mandatory — no exceptions, no shortcuts.",
+    "strength4Body": "English and Spanish are not optional add-ons. Bilingual delivery is built into the production architecture — transcreation, parity review, and cultural accuracy are standard, not premium.",
+    "strength5Title": "Selective by Principle",
+    "strength5Body": "Not every project is accepted. Fit is evaluated before any proposal is made. When a project proceeds, it gets full commitment — because it passed the bar that protects everyone's outcome.",
     "costsLabel": "What it quietly costs",
     "costsHeadline": "A weak digital presence has a cost that rarely appears on a budget line.",
     "cost1Title": "Credibility loss",
