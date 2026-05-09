@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+﻿import { useMemo, useState } from 'react'
 import { Plus, MagnifyingGlass } from '@phosphor-icons/react'
 import { PageHeader } from '@/components/PageHeader'
 import { Button } from '@/components/Button'
@@ -35,7 +35,7 @@ export function UsersPage() {
     <div className="flex flex-col h-full">
       <PageHeader
         title="Users"
-        subtitle={`${SAMPLE_STAFF.length} staff · ${active} active · ${with2fa} with 2FA${query || role !== 'All' ? ` · ${filtered.length} matching` : ''}`}
+        subtitle={`${SAMPLE_STAFF.length} staff Â· ${active} active Â· ${with2fa} with 2FA${query || role !== 'All' ? ` Â· ${filtered.length} matching` : ''}`}
         cta={
           <Button variant="primary" size="md">
             <Plus size={16} weight="bold" />
@@ -51,7 +51,7 @@ export function UsersPage() {
                 aria-label="Search users by name or email"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search by name or email…"
+                placeholder="Search by name or emailâ€¦"
                 className="w-full h-10 pl-9 pr-3 type-body-sm bg-bg-surface border border-border rounded-control focus:outline-none focus:border-primary focus:ring-[3px] focus:ring-primary/20"
               />
             </div>
@@ -70,7 +70,7 @@ export function UsersPage() {
       <section className="flex-1 p-6 overflow-y-auto">
         <div className="bg-bg-surface rounded-card shadow-card overflow-hidden">
           <table className="w-full">
-            <caption className="sr-only">Data table</caption>
+            <caption className="sr-only">Staff user accounts</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                 <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">User</th>

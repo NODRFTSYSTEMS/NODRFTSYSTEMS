@@ -1,4 +1,4 @@
-import { DownloadSimple } from '@phosphor-icons/react'
+﻿import { DownloadSimple } from '@phosphor-icons/react'
 import { PageHeader } from '@/components/PageHeader'
 import { Button } from '@/components/Button'
 import { StatusPill } from '@/components/StatusPill'
@@ -42,7 +42,7 @@ export function InventoryReportPage() {
           <Kpi title="Total SKUs" value={totalSkus.toString()} note="active drug catalog" />
           <Kpi title="Total Units" value={totalUnits.toLocaleString()} note="on hand across all lots" />
           <Kpi title="Inventory Value" value={`JMD ${inventoryValue.toLocaleString()}`} note="at unit cost" />
-          <Kpi title="Action Items" value={(expiringSoon.length + lowStock.length).toString()} note={`${lowStock.length} low · ${expiringSoon.length} expiring`} />
+          <Kpi title="Action Items" value={(expiringSoon.length + lowStock.length).toString()} note={`${lowStock.length} low Â· ${expiringSoon.length} expiring`} />
         </div>
 
         {/* Recent receives */}
@@ -51,7 +51,7 @@ export function InventoryReportPage() {
             <p className="type-caption text-text-secondary">Recent Stock Receives</p>
           </div>
           <table className="w-full">
-            <caption className="sr-only">Data table</caption>
+            <caption className="sr-only">Inventory stock movement report</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                 <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">Receive #</th>
@@ -88,7 +88,7 @@ export function InventoryReportPage() {
         {/* Expiring + low-stock callouts */}
         <div className="grid grid-cols-2 gap-4">
           <Callout title="Expiring Within 90 Days" items={expiringSoon.map((s) => ({ name: s.drug, detail: `Expiry ${s.expiryDate}`, tag: 'warning' }))} />
-          <Callout title="Below Reorder Point" items={lowStock.map((s) => ({ name: s.drug, detail: `${s.qtyOnHand} on hand · reorder at ${s.reorderPoint}`, tag: 'error' }))} />
+          <Callout title="Below Reorder Point" items={lowStock.map((s) => ({ name: s.drug, detail: `${s.qtyOnHand} on hand Â· reorder at ${s.reorderPoint}`, tag: 'error' }))} />
         </div>
       </section>
     </div>

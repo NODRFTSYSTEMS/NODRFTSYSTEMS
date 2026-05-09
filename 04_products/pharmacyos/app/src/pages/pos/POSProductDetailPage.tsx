@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+﻿import { useParams } from 'react-router-dom'
 import { PageHeader } from '@/components/PageHeader'
 import { StatusPill } from '@/components/StatusPill'
 import { SAMPLE_POS_PRODUCTS } from '@/data/sample'
@@ -89,7 +89,6 @@ export function POSProductDetailPage() {
         </div>
         <div className="overflow-x-auto">
           <table className="w-full">
-            <caption className="sr-only">Data table</caption>
             <caption className="sr-only">Recent POS transactions for this product</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">

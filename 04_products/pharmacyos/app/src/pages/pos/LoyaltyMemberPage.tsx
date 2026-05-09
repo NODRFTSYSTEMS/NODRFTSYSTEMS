@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+﻿import { useParams } from 'react-router-dom'
 import { PageHeader } from '@/components/PageHeader'
 import { SAMPLE_LOYALTY } from '@/data/sample'
 import { Crown, Coin, ShoppingCart } from '@phosphor-icons/react'
@@ -65,7 +65,6 @@ export function LoyaltyMemberPage() {
         </div>
         <div className="overflow-x-auto">
           <table className="w-full">
-            <caption className="sr-only">Data table</caption>
             <caption className="sr-only">Points transaction history</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">

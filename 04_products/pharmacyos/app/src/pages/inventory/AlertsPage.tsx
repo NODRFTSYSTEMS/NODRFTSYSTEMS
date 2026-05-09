@@ -1,4 +1,4 @@
-import { PageHeader } from '@/components/PageHeader'
+﻿import { PageHeader } from '@/components/PageHeader'
 import { StatusPill } from '@/components/StatusPill'
 import { SAMPLE_STOCK } from '@/data/sample'
 import { Warning, Calendar } from '@phosphor-icons/react'
@@ -28,8 +28,7 @@ export function AlertsPage() {
         </div>
         <div className="overflow-x-auto">
           <table className="w-full">
-            <caption className="sr-only">Data table</caption>
-            <caption className="sr-only">Low stock alerts — items below reorder point</caption>
+            <caption className="sr-only">Low stock alerts â€” items below reorder point</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                 <th className="px-4 py-2 text-left type-caption text-text-secondary">Drug</th>
@@ -74,8 +73,7 @@ export function AlertsPage() {
         </div>
         <div className="overflow-x-auto">
           <table className="w-full">
-            <caption className="sr-only">Data table</caption>
-            <caption className="sr-only">Expiry alerts — items expiring within 90 days</caption>
+            <caption className="sr-only">Expiry alerts â€” items expiring within 90 days</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                 <th className="px-4 py-2 text-left type-caption text-text-secondary">Drug</th>

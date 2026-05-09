@@ -1,4 +1,4 @@
-import { Robot, FileText, Receipt, MagnifyingGlass } from '@phosphor-icons/react'
+﻿import { Robot, FileText, Receipt, MagnifyingGlass } from '@phosphor-icons/react'
 import { PageHeader } from '@/components/PageHeader'
 import { StatusPill } from '@/components/StatusPill'
 import { SAMPLE_AI_JOBS, type JobStatus, type AIJob } from '@/data/sample'
@@ -23,12 +23,12 @@ export function JobQueuePage() {
     <div className="flex flex-col h-full">
       <PageHeader
         title="AI Job Queue"
-        subtitle={`${SAMPLE_AI_JOBS.length} jobs · ${processing} processing · ${reviewable} need review`}
+        subtitle={`${SAMPLE_AI_JOBS.length} jobs Â· ${processing} processing Â· ${reviewable} need review`}
       />
       <section className="flex-1 p-6 overflow-y-auto">
         <div className="bg-bg-surface rounded-card shadow-card overflow-hidden">
           <table className="w-full">
-            <caption className="sr-only">Data table</caption>
+            <caption className="sr-only">AI processing job queue</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                 <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">Job #</th>
@@ -59,12 +59,12 @@ export function JobQueuePage() {
                     {job.confidence != null ? (
                       <span className={job.confidence < 0.85 ? 'text-warning' : ''}>{(job.confidence * 100).toFixed(0)}%</span>
                     ) : (
-                      <span className="text-text-disabled">—</span>
+                      <span className="text-text-disabled">â€”</span>
                     )}
                   </td>
                   <td className="px-4 type-mono-data text-text-secondary whitespace-nowrap">{job.createdAt}</td>
                   <td className="px-4 type-mono-data text-text-secondary whitespace-nowrap">
-                    {job.completedAt || <span className="text-text-disabled">—</span>}
+                    {job.completedAt || <span className="text-text-disabled">â€”</span>}
                   </td>
                   <td className="px-4">
                     {job.flagged ? (
@@ -73,7 +73,7 @@ export function JobQueuePage() {
                         {job.flagged}
                       </span>
                     ) : (
-                      <span className="type-body-xs text-text-disabled">—</span>
+                      <span className="type-body-xs text-text-disabled">â€”</span>
                     )}
                   </td>
                 </tr>

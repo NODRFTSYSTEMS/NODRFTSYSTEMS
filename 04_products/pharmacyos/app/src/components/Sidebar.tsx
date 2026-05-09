@@ -1,6 +1,7 @@
+import { useEffect } from 'react'
 import * as Tooltip from '@radix-ui/react-tooltip'
 import { CaretDown, MagnifyingGlass, SignOut } from '@phosphor-icons/react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import { ROLES, type Role } from '@/types/auth'
 import { type RoutePermissionKey } from '@/config/route-permissions'
 import { usePermissionsStore } from '@/stores/permissions'
@@ -148,8 +149,22 @@ function NavItemRow({ item }: { item: NavItemDef }) {
   )
 }
 
-export function Sidebar() {
+interface SidebarProps {
+  /** Whether the sidebar overlay is open on mobile (<md). */
+  mobileOpen?: boolean
+  /** Called when the sidebar should close (mobile only). */
+  onMobileClose?: () => void
+}
+
+export function Sidebar({ mobileOpen = false, onMobileClose }: SidebarProps) {
+  const location = useLocation()
   const actingRole = usePermissionsStore((s) => s.actingRole)
+
+  // Auto-close on mobile when the route changes (user tapped a nav link)
+  useEffect(() => {
+    if (mobileOpen) onMobileClose?.()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.pathname])
   const setActingRole = usePermissionsStore((s) => s.setActingRole)
   const canRoleAccess = usePermissionsStore((s) => s.canRoleAccess)
 
@@ -166,7 +181,14 @@ export function Sidebar() {
   return (
     <Tooltip.Provider>
       <aside
-        className="flex flex-col w-60 h-screen sticky top-0 bg-bg-sidebar shrink-0"
+        className={[
+          'flex flex-col h-screen bg-bg-sidebar shrink-0',
+          // Mobile: fixed overlay that slides in/out
+          'fixed inset-y-0 left-0 z-50 w-72 transition-transform duration-200 ease-in-out',
+          mobileOpen ? 'translate-x-0' : '-translate-x-full',
+          // Desktop (≥md): back to normal flow, always visible
+          'md:sticky md:top-0 md:w-60 md:translate-x-0',
+        ].join(' ')}
         aria-label="Main navigation"
       >
         {/* Logo zone — Section 4.1, 64px */}

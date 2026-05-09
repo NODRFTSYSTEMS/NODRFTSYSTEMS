@@ -1,4 +1,4 @@
-import { DownloadSimple, TrendUp, TrendDown } from '@phosphor-icons/react'
+﻿import { DownloadSimple, TrendUp, TrendDown } from '@phosphor-icons/react'
 import { PageHeader } from '@/components/PageHeader'
 import { Button } from '@/components/Button'
 import { StatusPill } from '@/components/StatusPill'
@@ -65,7 +65,7 @@ export function RevenueReportPage() {
                 <div key={m}>
                   <StatusPill variant={METHOD_VARIANT[m]}>{m}</StatusPill>
                   <p className="type-mono-metric text-text-primary leading-none mt-3">JMD {stats.revenue.toLocaleString()}</p>
-                  <p className="text-xs text-text-secondary mt-1">{stats.count} transactions · {pct}% of revenue</p>
+                  <p className="text-xs text-text-secondary mt-1">{stats.count} transactions Â· {pct}% of revenue</p>
                 </div>
               )
             })}
@@ -78,7 +78,7 @@ export function RevenueReportPage() {
             <p className="type-caption text-text-secondary">Recent Transactions</p>
           </div>
           <table className="w-full">
-            <caption className="sr-only">Data table</caption>
+            <caption className="sr-only">Revenue by period report</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                 <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">Tx #</th>

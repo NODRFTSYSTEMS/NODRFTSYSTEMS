@@ -1,4 +1,4 @@
-import { ShieldCheck, ShieldWarning, Desktop } from '@phosphor-icons/react'
+﻿import { ShieldCheck, ShieldWarning, Desktop } from '@phosphor-icons/react'
 import { PageHeader } from '@/components/PageHeader'
 import { Button } from '@/components/Button'
 import { StatusPill } from '@/components/StatusPill'
@@ -12,19 +12,19 @@ export function SecurityPage() {
     .filter((a) => /login|2fa|password|locked/i.test(a.action) || /sign/i.test(a.action))
     .slice(0, 6)
 
-  // Active sessions — synthesize from staff + last login
+  // Active sessions â€” synthesize from staff + last login
   const activeSessions = SAMPLE_STAFF
     .filter((u) => u.status === 'Active')
     .slice(0, 5)
     .map((u, i) => ({
       ...u,
-      device: i % 2 === 0 ? 'Windows · Chrome 142' : 'macOS · Safari 18',
+      device: i % 2 === 0 ? 'Windows Â· Chrome 142' : 'macOS Â· Safari 18',
       ip: '10.0.1.' + (i + 12),
     }))
 
   return (
     <div className="flex flex-col h-full">
-      <PageHeader title="Security" subtitle="Two-factor enforcement · active sessions · auth events" />
+      <PageHeader title="Security" subtitle="Two-factor enforcement Â· active sessions Â· auth events" />
       <section className="flex-1 p-6 overflow-y-auto flex flex-col gap-6">
         {/* Posture summary */}
         <div className="grid grid-cols-3 gap-4">
@@ -57,11 +57,11 @@ export function SecurityPage() {
             <div className="px-4 py-3 border-b border-border bg-rx-verified-bg/40 flex items-center gap-2">
               <ShieldWarning size={16} className="text-rx-verified-fg" />
               <p className="text-xs font-medium text-rx-verified-fg">
-                {without2fa.length} active users have not enrolled in 2FA — required by policy
+                {without2fa.length} active users have not enrolled in 2FA â€” required by policy
               </p>
             </div>
             <table className="w-full">
-            <caption className="sr-only">Data table</caption>
+            <caption className="sr-only">Staff two-factor authentication status</caption>
               <thead>
                 <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                   <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">User</th>
@@ -92,7 +92,7 @@ export function SecurityPage() {
             <h2 className="type-caption text-text-secondary">Active Sessions</h2>
           </div>
           <table className="w-full">
-            <caption className="sr-only">Data table</caption>
+            <caption className="sr-only">Active user sessions</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                 <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">User</th>
@@ -127,7 +127,7 @@ export function SecurityPage() {
             <p className="px-4 py-6 text-center text-sm text-text-secondary">No authentication events in the last 24 hours.</p>
           ) : (
             <table className="w-full">
-            <caption className="sr-only">Data table</caption>
+            <caption className="sr-only">Recent authentication events</caption>
               <thead>
                 <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                   <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">Time</th>

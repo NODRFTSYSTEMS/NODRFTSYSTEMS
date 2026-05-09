@@ -1,4 +1,4 @@
-import { Warning } from '@phosphor-icons/react'
+﻿import { Warning } from '@phosphor-icons/react'
 import { PageHeader } from '@/components/PageHeader'
 import {
   DASHBOARD_METRICS,
@@ -9,11 +9,11 @@ import {
 } from '@/data/sample'
 
 /**
- * DashboardPage — design handoff Section 3.4 + 4.12.
+ * DashboardPage â€” design handoff Section 3.4 + 4.12.
  *
  * 4 metric cards row + (3/5) prescription mini-kanban + (2/5) stock alerts + recent activity table.
  *
- * Data is sourced from src/data/sample.ts — replace with live Supabase queries (TanStack Query
+ * Data is sourced from src/data/sample.ts â€” replace with live Supabase queries (TanStack Query
  * hooks under src/hooks/) once G2 (Supabase provisioning) is closed.
  */
 
@@ -43,7 +43,7 @@ export function DashboardPage() {
 
   return (
     <div className="flex flex-col h-full">
-      <PageHeader title="Dashboard" subtitle="Winchester Global Pharmacy · Kingston" />
+      <PageHeader title="Dashboard" subtitle="Winchester Global Pharmacy Â· Kingston" />
 
       <div className="flex-1 p-6 flex flex-col gap-6 overflow-y-auto">
         {/* Metric cards */}
@@ -149,9 +149,9 @@ export function DashboardPage() {
                           {item.drug}
                         </p>
                         <p className="type-label text-text-secondary mt-0.5">
-                          {item.qtyOnHand} on hand · reorder at {item.reorderPoint}
+                          {item.qtyOnHand} on hand Â· reorder at {item.reorderPoint}
                           {isExpiringSoon && (
-                            <span className="text-warning"> · Expiry {item.expiryDate}</span>
+                            <span className="text-warning"> Â· Expiry {item.expiryDate}</span>
                           )}
                         </p>
                       </div>
@@ -172,7 +172,7 @@ export function DashboardPage() {
             <h2 className="type-caption text-text-secondary">Recent Activity</h2>
           </div>
           <table className="w-full">
-            <caption className="sr-only">Data table</caption>
+            <caption className="sr-only">Recent pharmacy activity</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                 {['Time', 'User', 'Role', 'Action', 'Target'].map((h) => (

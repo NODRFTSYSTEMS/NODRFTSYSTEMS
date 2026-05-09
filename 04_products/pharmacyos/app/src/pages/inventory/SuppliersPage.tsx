@@ -1,4 +1,4 @@
-import { Plus, Phone, Envelope } from '@phosphor-icons/react'
+﻿import { Plus, Phone, Envelope } from '@phosphor-icons/react'
 import { PageHeader } from '@/components/PageHeader'
 import { Button } from '@/components/Button'
 import { StatusPill } from '@/components/StatusPill'
@@ -10,7 +10,7 @@ export function SuppliersPage() {
     <div className="flex flex-col h-full">
       <PageHeader
         title="Suppliers"
-        subtitle={`${SAMPLE_SUPPLIERS.length} on file · ${active} active`}
+        subtitle={`${SAMPLE_SUPPLIERS.length} on file Â· ${active} active`}
         cta={
           <Button variant="primary" size="md">
             <Plus size={16} weight="bold" />
@@ -21,7 +21,7 @@ export function SuppliersPage() {
       <section className="flex-1 p-6 overflow-y-auto">
         <div className="bg-bg-surface rounded-card shadow-card overflow-hidden">
           <table className="w-full">
-            <caption className="sr-only">Data table</caption>
+            <caption className="sr-only">Pharmacy supplier directory</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                 <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">Supplier</th>

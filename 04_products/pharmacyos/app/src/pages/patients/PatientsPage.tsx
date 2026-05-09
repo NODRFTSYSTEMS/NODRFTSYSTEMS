@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+﻿import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Plus, MagnifyingGlass } from '@phosphor-icons/react'
 import { PageHeader } from '@/components/PageHeader'
@@ -35,7 +35,7 @@ export function PatientsPage() {
     <div className="flex flex-col h-full">
       <PageHeader
         title="Patients"
-        subtitle={`${SAMPLE_PATIENTS.length} on file · ${withAllergies} with documented allergies${query ? ` · ${filtered.length} matching` : ''}`}
+        subtitle={`${SAMPLE_PATIENTS.length} on file Â· ${withAllergies} with documented allergies${query ? ` Â· ${filtered.length} matching` : ''}`}
         cta={
           <Button variant="primary" size="md">
             <Plus size={16} weight="bold" />
@@ -50,7 +50,7 @@ export function PatientsPage() {
               aria-label="Search patients by name, NHF number, or phone"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search by name, NHF #, or phone…"
+              placeholder="Search by name, NHF #, or phoneâ€¦"
               className="w-full h-10 pl-9 pr-3 type-body-sm bg-bg-surface border border-border rounded-control focus:outline-none focus:border-primary focus:ring-[3px] focus:ring-primary/20 transition-shadow"
             />
           </div>
@@ -59,11 +59,11 @@ export function PatientsPage() {
       <section className="flex-1 p-6 overflow-y-auto">
         <div className="bg-bg-surface rounded-card shadow-card overflow-hidden">
           <table className="w-full">
-            <caption className="sr-only">Data table</caption>
+            <caption className="sr-only">Patient directory</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                 <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">Patient</th>
-                <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">DOB · Age</th>
+                <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">DOB Â· Age</th>
                 <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">NHF #</th>
                 <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">Phone</th>
                 <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">Allergies</th>
@@ -97,7 +97,7 @@ export function PatientsPage() {
                     </td>
                     <td className="px-4">
                       <span className="type-mono-data text-text-secondary">{p.dob}</span>
-                      <span className="type-body-xs text-text-secondary"> · {age(p.dob)}</span>
+                      <span className="type-body-xs text-text-secondary"> Â· {age(p.dob)}</span>
                     </td>
                     <td className="px-4 type-mono-data text-text-secondary">{p.nhfNumber}</td>
                     <td className="px-4 type-mono-data text-text-secondary">{p.phone}</td>

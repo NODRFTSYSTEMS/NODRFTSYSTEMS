@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+﻿import { useMemo, useState } from 'react'
 import { DownloadSimple, MagnifyingGlass } from '@phosphor-icons/react'
 import { PageHeader } from '@/components/PageHeader'
 import { Button } from '@/components/Button'
@@ -27,7 +27,7 @@ export function AuditLogPage() {
     <div className="flex flex-col h-full">
       <PageHeader
         title="Audit Log"
-        subtitle={`${SAMPLE_ACTIVITY.length} entries · all state-changing actions logged via database triggers${query || role !== 'All' ? ` · ${filtered.length} matching` : ''}`}
+        subtitle={`${SAMPLE_ACTIVITY.length} entries Â· all state-changing actions logged via database triggers${query || role !== 'All' ? ` Â· ${filtered.length} matching` : ''}`}
         cta={
           <Button variant="secondary" size="md">
             <DownloadSimple size={16} weight="bold" />
@@ -43,7 +43,7 @@ export function AuditLogPage() {
                 aria-label="Search audit log by action, user, or target"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search actions, users, or targets…"
+                placeholder="Search actions, users, or targetsâ€¦"
                 className="w-full h-10 pl-9 pr-3 type-body-sm bg-bg-surface border border-border rounded-control focus:outline-none focus:border-primary focus:ring-[3px] focus:ring-primary/20 transition-shadow"
               />
             </div>
@@ -67,7 +67,7 @@ export function AuditLogPage() {
       <section className="flex-1 p-6 overflow-y-auto">
         <div className="bg-bg-surface rounded-card shadow-card overflow-hidden">
           <table className="w-full">
-            <caption className="sr-only">Data table</caption>
+            <caption className="sr-only">System audit log</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                 <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">Time</th>

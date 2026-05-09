@@ -1,4 +1,4 @@
-import { Plus, MagnifyingGlass } from '@phosphor-icons/react'
+﻿import { Plus, MagnifyingGlass } from '@phosphor-icons/react'
 import { PageHeader } from '@/components/PageHeader'
 import { Button } from '@/components/Button'
 import { StatusPill } from '@/components/StatusPill'
@@ -10,7 +10,7 @@ export function POSProductsPage() {
     <div className="flex flex-col h-full">
       <PageHeader
         title="Retail Products"
-        subtitle={`${SAMPLE_POS_PRODUCTS.length} SKUs · ${lowStock} below 10 units`}
+        subtitle={`${SAMPLE_POS_PRODUCTS.length} SKUs Â· ${lowStock} below 10 units`}
         cta={
           <Button variant="primary" size="md">
             <Plus size={16} weight="bold" />
@@ -23,7 +23,7 @@ export function POSProductsPage() {
             <input
               type="search"
               aria-label="Search POS products by name, barcode, or category"
-              placeholder="Search by name, barcode, or category…"
+              placeholder="Search by name, barcode, or categoryâ€¦"
               className="w-full h-10 pl-9 pr-3 type-body-sm bg-bg-surface border border-border rounded-control focus:outline-none focus:border-primary focus:ring-[3px] focus:ring-primary/20"
             />
           </div>
@@ -32,7 +32,7 @@ export function POSProductsPage() {
       <section className="flex-1 p-6 overflow-y-auto">
         <div className="bg-bg-surface rounded-card shadow-card overflow-hidden">
           <table className="w-full">
-            <caption className="sr-only">Data table</caption>
+            <caption className="sr-only">POS product catalog</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                 <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">Product</th>
@@ -52,7 +52,7 @@ export function POSProductsPage() {
                   <td className="px-4 type-mono-data text-text-primary text-right">{p.priceJmd.toLocaleString()}</td>
                   <td className={`px-4 type-mono-data text-right ${p.stockQty < 10 ? 'text-warning' : 'text-text-primary'}`}>{p.stockQty}</td>
                   <td className="px-4">
-                    {p.requiresRx ? <StatusPill variant="info">Rx</StatusPill> : <span className="type-body-xs text-text-disabled">—</span>}
+                    {p.requiresRx ? <StatusPill variant="info">Rx</StatusPill> : <span className="type-body-xs text-text-disabled">â€”</span>}
                   </td>
                 </tr>
               ))}

@@ -1,4 +1,4 @@
-import { DownloadSimple } from '@phosphor-icons/react'
+﻿import { DownloadSimple } from '@phosphor-icons/react'
 import { PageHeader } from '@/components/PageHeader'
 import { Button } from '@/components/Button'
 import { StatusPill } from '@/components/StatusPill'
@@ -43,7 +43,7 @@ export function DispensingReportPage() {
           <Kpi title="Total Rx" value={total.toString()} />
           <Kpi title="Dispensed" value={dispensed.toString()} note="completed pickups" />
           <Kpi title="In Progress" value={inProgress.toString()} note="across received/verified/filled" />
-          <Kpi title="Fill Rate" value={`${fillRate}%`} note="dispensed ÷ total" />
+          <Kpi title="Fill Rate" value={`${fillRate}%`} note="dispensed Ã· total" />
         </div>
 
         {/* Status breakdown */}
@@ -70,7 +70,7 @@ export function DispensingReportPage() {
             <p className="type-caption text-text-secondary">By Prescriber</p>
           </div>
           <table className="w-full">
-            <caption className="sr-only">Data table</caption>
+            <caption className="sr-only">Dispensing activity report</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                 <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">Prescriber</th>

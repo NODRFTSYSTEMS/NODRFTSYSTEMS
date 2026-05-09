@@ -1,11 +1,11 @@
-import { DownloadSimple, Lock } from '@phosphor-icons/react'
+﻿import { DownloadSimple, Lock } from '@phosphor-icons/react'
 import { PageHeader } from '@/components/PageHeader'
 import { Button } from '@/components/Button'
 import { StatusPill } from '@/components/StatusPill'
 import { SAMPLE_SCHEDULE_LOG } from '@/data/sample'
 
 /**
- * Schedule Drug Log — Jamaica Pharmacy Act regulated record.
+ * Schedule Drug Log â€” Jamaica Pharmacy Act regulated record.
  * Append-only per DSS schema plan; no edit/delete affordances on UI.
  * Pharmacist sign-off required for every entry (verified column).
  */
@@ -15,7 +15,7 @@ export function ScheduleLogPage() {
     <div className="flex flex-col h-full">
       <PageHeader
         title="Schedule Drug Log"
-        subtitle={`Regulatory record · ${SAMPLE_SCHEDULE_LOG.length} entries · ${verified} pharmacist-verified · append-only`}
+        subtitle={`Regulatory record Â· ${SAMPLE_SCHEDULE_LOG.length} entries Â· ${verified} pharmacist-verified Â· append-only`}
         cta={
           <div className="flex items-center gap-2">
             <Button variant="secondary" size="md">
@@ -34,15 +34,15 @@ export function ScheduleLogPage() {
           <div className="px-4 py-3 border-b border-border bg-tag-schedule-bg/50 flex items-center gap-2">
             <Lock size={14} className="text-tag-schedule-fg" />
             <p className="type-body-xs font-medium text-tag-schedule-fg">
-              Pharmacy Act Regulated Record · entries cannot be modified or deleted
+              Pharmacy Act Regulated Record Â· entries cannot be modified or deleted
             </p>
           </div>
           <table className="w-full">
-            <caption className="sr-only">Data table</caption>
+            <caption className="sr-only">Controlled substance dispensing log</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                 <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">Log #</th>
-                <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">Date · Time</th>
+                <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">Date Â· Time</th>
                 <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">Drug</th>
                 <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">DIN</th>
                 <th scope="col" className="h-9 px-4 text-right type-caption text-text-secondary">Qty</th>

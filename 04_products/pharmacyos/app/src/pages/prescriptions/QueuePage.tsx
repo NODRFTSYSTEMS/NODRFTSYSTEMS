@@ -1,4 +1,5 @@
 import { Plus } from '@phosphor-icons/react'
+import { Link, useNavigate } from 'react-router-dom'
 import { PageHeader } from '@/components/PageHeader'
 import { Button } from '@/components/Button'
 import { StatusPill } from '@/components/StatusPill'
@@ -12,6 +13,7 @@ const RX_COLUMNS: { key: RxStatus; label: string; description: string }[] = [
 ]
 
 export function QueuePage() {
+  const navigate = useNavigate()
   const counts = RX_COLUMNS.reduce<Record<RxStatus, number>>((acc, c) => {
     acc[c.key] = SAMPLE_PRESCRIPTIONS.filter((r) => r.status === c.key).length
     return acc
@@ -23,7 +25,7 @@ export function QueuePage() {
         title="Prescription Queue"
         subtitle={`${SAMPLE_PRESCRIPTIONS.length} active prescriptions across 4 stages`}
         cta={
-          <Button variant="primary" size="md">
+          <Button variant="primary" size="md" onClick={() => navigate('/prescriptions/new')}>
             <Plus size={16} weight="bold" />
             New Rx
           </Button>
@@ -48,9 +50,10 @@ export function QueuePage() {
                     <p className="type-body-xs text-text-disabled italic text-center mt-4">No prescriptions</p>
                   )}
                   {items.map((rx) => (
-                    <article
+                    <Link
                       key={rx.id}
-                      className="rounded-control border border-border bg-bg-surface p-3 hover:shadow-card-hover hover:border-primary/30 transition-all cursor-pointer"
+                      to={`/prescriptions/${rx.id}`}
+                      className="block rounded-control border border-border bg-bg-surface p-3 hover:shadow-card-hover hover:border-primary/30 transition-all no-underline"
                     >
                       <div className="flex items-start justify-between gap-2 mb-1">
                         <p className="type-body-sm font-semibold text-text-primary leading-tight truncate">{rx.patient}</p>
@@ -67,7 +70,7 @@ export function QueuePage() {
                         {rx.isNhf && <StatusPill variant="nhf">NHF</StatusPill>}
                       </div>
                       <p className="type-mono-data text-text-disabled type-tiny mt-1">{rx.received}</p>
-                    </article>
+                    </Link>
                   ))}
                 </div>
               </div>

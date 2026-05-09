@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom'
+﻿import { Link, useParams } from 'react-router-dom'
 import { ArrowLeft, Package, Warning } from '@phosphor-icons/react'
 import { PageHeader } from '@/components/PageHeader'
 import { Button } from '@/components/Button'
@@ -11,7 +11,7 @@ const SOON = new Date('2026-08-07')
 
 export function DrugDetailPage() {
   const { id } = useParams<{ id: string }>()
-  // Match by stock id OR DIN — useful from Catalog (DIN-keyed) or Stock (id-keyed) pages.
+  // Match by stock id OR DIN â€” useful from Catalog (DIN-keyed) or Stock (id-keyed) pages.
   const drug = SAMPLE_STOCK.find((s) => s.id === id || s.din === id)
   if (!drug) return <Placeholder title="Drug not found" />
 
@@ -29,7 +29,7 @@ export function DrugDetailPage() {
     <div className="flex flex-col h-full">
       <PageHeader
         title={drug.drug}
-        subtitle={`DIN ${drug.din} · Lot ${drug.lot}`}
+        subtitle={`DIN ${drug.din} Â· Lot ${drug.lot}`}
         cta={
           <div className="flex items-center gap-2">
             <Button variant="secondary" size="md">Adjust Stock</Button>
@@ -86,7 +86,7 @@ export function DrugDetailPage() {
             <p className="px-4 py-6 text-center text-sm text-text-secondary">No recent prescriptions reference this drug.</p>
           ) : (
             <table className="w-full">
-            <caption className="sr-only">Data table</caption>
+            <caption className="sr-only">Drug batch and lot history</caption>
               <thead>
                 <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                   <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">Rx #</th>

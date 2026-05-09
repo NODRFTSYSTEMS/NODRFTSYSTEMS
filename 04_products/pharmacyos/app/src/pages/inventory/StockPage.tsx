@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+﻿import { useNavigate } from 'react-router-dom'
 import { Plus, Warning } from '@phosphor-icons/react'
 import { PageHeader } from '@/components/PageHeader'
 import { Button } from '@/components/Button'
@@ -33,7 +33,7 @@ export function StockPage() {
     <div className="flex flex-col h-full">
       <PageHeader
         title="Stock Overview"
-        subtitle={`${total} active SKUs · ${lowStock} below reorder · ${expiring} expiring · ${schedule} schedule drugs`}
+        subtitle={`${total} active SKUs Â· ${lowStock} below reorder Â· ${expiring} expiring Â· ${schedule} schedule drugs`}
         cta={
           <Button variant="primary" size="md">
             <Plus size={16} weight="bold" />
@@ -44,7 +44,7 @@ export function StockPage() {
       <section className="flex-1 p-6 overflow-y-auto">
         <div className="bg-bg-surface rounded-card shadow-card overflow-hidden">
           <table className="w-full">
-            <caption className="sr-only">Data table</caption>
+            <caption className="sr-only">Current stock levels</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                 <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">Drug</th>

@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+﻿import { useNavigate } from 'react-router-dom'
 import { Plus, Crown } from '@phosphor-icons/react'
 import { PageHeader } from '@/components/PageHeader'
 import { Button } from '@/components/Button'
@@ -20,7 +20,7 @@ export function LoyaltyPage() {
     <div className="flex flex-col h-full">
       <PageHeader
         title="Loyalty Members"
-        subtitle={`${SAMPLE_LOYALTY.length} enrolled · ${totalPoints.toLocaleString()} total points · ${platinum} Platinum`}
+        subtitle={`${SAMPLE_LOYALTY.length} enrolled Â· ${totalPoints.toLocaleString()} total points Â· ${platinum} Platinum`}
         cta={
           <Button variant="primary" size="md" onClick={() => navigate('/pos/loyalty/new')}>
             <Plus size={16} weight="bold" />
@@ -31,7 +31,7 @@ export function LoyaltyPage() {
       <section className="flex-1 p-6 overflow-y-auto">
         <div className="bg-bg-surface rounded-card shadow-card overflow-hidden">
           <table className="w-full">
-            <caption className="sr-only">Data table</caption>
+            <caption className="sr-only">Loyalty member list</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                 <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">Member</th>

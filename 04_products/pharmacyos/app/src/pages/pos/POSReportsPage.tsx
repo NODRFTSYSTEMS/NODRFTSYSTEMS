@@ -1,4 +1,4 @@
-import { DownloadSimple } from '@phosphor-icons/react'
+﻿import { DownloadSimple } from '@phosphor-icons/react'
 import { PageHeader } from '@/components/PageHeader'
 import { Button } from '@/components/Button'
 import { StatusPill } from '@/components/StatusPill'
@@ -17,7 +17,7 @@ export function POSReportsPage() {
     <div className="flex flex-col h-full">
       <PageHeader
         title="POS Reports"
-        subtitle={`${SAMPLE_TRANSACTIONS.length} transactions · ${itemsSold} items · JMD ${total.toLocaleString()} gross`}
+        subtitle={`${SAMPLE_TRANSACTIONS.length} transactions Â· ${itemsSold} items Â· JMD ${total.toLocaleString()} gross`}
         cta={
           <Button variant="secondary" size="md">
             <DownloadSimple size={16} weight="bold" />
@@ -28,7 +28,7 @@ export function POSReportsPage() {
       <section className="flex-1 p-6 overflow-y-auto">
         <div className="bg-bg-surface rounded-card shadow-card overflow-hidden">
           <table className="w-full">
-            <caption className="sr-only">Data table</caption>
+            <caption className="sr-only">POS daily sales transactions</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                 <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">Transaction #</th>

@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+﻿import { useNavigate } from 'react-router-dom'
 import { Plus } from '@phosphor-icons/react'
 import { PageHeader } from '@/components/PageHeader'
 import { Button } from '@/components/Button'
@@ -6,7 +6,7 @@ import { StatusPill } from '@/components/StatusPill'
 import { SAMPLE_STOCK } from '@/data/sample'
 
 /**
- * Drug catalog — distinct from Stock Overview: catalog is the SKU master
+ * Drug catalog â€” distinct from Stock Overview: catalog is the SKU master
  * (drug + DIN + supplier + unit cost), independent of current stock levels.
  * Real implementation pulls from `drugs` table via Supabase; sample fallback
  * uses SAMPLE_STOCK uniqued by DIN.
@@ -31,7 +31,7 @@ export function CatalogPage() {
       <section className="flex-1 p-6 overflow-y-auto">
         <div className="bg-bg-surface rounded-card shadow-card overflow-hidden">
           <table className="w-full">
-            <caption className="sr-only">Data table</caption>
+            <caption className="sr-only">Drug catalog</caption>
             <thead>
               <tr className="sticky top-0 z-10 bg-bg-subtle border-b border-border">
                 <th scope="col" className="h-9 px-4 text-left type-caption text-text-secondary">Drug Name</th>
@@ -53,7 +53,7 @@ export function CatalogPage() {
                   <td className="px-4 type-body-xs text-text-secondary">{item.supplier}</td>
                   <td className="px-4 type-mono-data text-text-primary text-right">{item.unitCostJmd.toLocaleString()}</td>
                   <td className="px-4">
-                    {item.isSchedule ? <StatusPill variant="schedule">SCHEDULED</StatusPill> : <span className="type-body-xs text-text-disabled">—</span>}
+                    {item.isSchedule ? <StatusPill variant="schedule">SCHEDULED</StatusPill> : <span className="type-body-xs text-text-disabled">â€”</span>}
                   </td>
                 </tr>
               ))}
