@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import * as Tooltip from '@radix-ui/react-tooltip'
 import { CaretDown, MagnifyingGlass, SignOut } from '@phosphor-icons/react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { ROLES, type Role } from '@/types/auth'
 import { type RoutePermissionKey } from '@/config/route-permissions'
 import { usePermissionsStore } from '@/stores/permissions'
@@ -163,15 +163,23 @@ interface SidebarProps {
 
 export function Sidebar({ mobileOpen = false, onMobileClose }: SidebarProps) {
   const location = useLocation()
+  const navigate = useNavigate()
   const actingRole = usePermissionsStore((s) => s.actingRole)
+  const setActingRole = usePermissionsStore((s) => s.setActingRole)
+  const canRoleAccess = usePermissionsStore((s) => s.canRoleAccess)
 
   // Auto-close on mobile when the route changes (user tapped a nav link)
   useEffect(() => {
     if (mobileOpen) onMobileClose?.()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname])
-  const setActingRole = usePermissionsStore((s) => s.setActingRole)
-  const canRoleAccess = usePermissionsStore((s) => s.canRoleAccess)
+
+  function handleRoleChange(newRole: Role) {
+    setActingRole(newRole)
+    // Always navigate to dashboard on role switch — this gives the new role's
+    // tailored view immediately and avoids landing on a blocked route silently.
+    navigate('/dashboard', { replace: true })
+  }
 
   // Filter nav by current role
   const visibleGroups = NAV_GROUPS
@@ -284,7 +292,7 @@ export function Sidebar({ mobileOpen = false, onMobileClose }: SidebarProps) {
                 <div className="mt-1 relative">
                   <select
                     value={actingRole}
-                    onChange={(e) => setActingRole(e.target.value as Role)}
+                    onChange={(e) => handleRoleChange(e.target.value as Role)}
                     aria-label="Switch acting role for demo-mode permissions preview"
                     className="w-full appearance-none h-8 pl-2 pr-7 type-body-sm bg-bg-sidebar text-white border border-white/10 rounded-control focus:outline-none focus:border-primary cursor-pointer"
                   >

@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react'
-import { createBrowserRouter, Navigate } from 'react-router-dom'
+import { createBrowserRouter, Navigate, useParams } from 'react-router-dom'
 import { ProtectedRoute } from '@/components/auth/ProtectedRoute'
 import { RoleGuard } from '@/components/auth/RoleGuard'
 import { RouteSkeleton } from '@/components/RouteSkeleton'
@@ -65,6 +65,15 @@ function lazyPage(Component: React.ComponentType) {
 }
 
 /**
+ * Patient sub-tab redirects — must use a component to interpolate the dynamic :id param.
+ * A plain <Navigate to="/patients/:id" /> would emit the literal string ":id".
+ */
+function PatientTabRedirect() {
+  const { id } = useParams<{ id: string }>()
+  return <Navigate to={`/patients/${id}`} replace />
+}
+
+/**
  * Single source of truth for routing.
  * Authority: ADR Decision 9 (createBrowserRouter + RouterProvider).
  * Route inventory and roles: pharmacyos-design-handoff-claude-design-2026-05-07.md Section 5.
@@ -91,15 +100,9 @@ export const router = createBrowserRouter([
       { path: '/dashboard', element: lazyPage(DashboardPage) },
       { path: '/profile', element: <RoleGuard roles={ROUTE_PERMISSIONS['/profile'].roles}>{lazyPage(ProfilePage)}</RoleGuard> },
 
-      // Patient tab redirects — content lives inside /patients/:id
-      {
-        path: '/patients/:id/insurance',
-        element: <Navigate to="/patients/:id" replace />,
-      },
-      {
-        path: '/patients/:id/jdpa',
-        element: <Navigate to="/patients/:id" replace />,
-      },
+      // Patient sub-tab redirects — uses PatientTabRedirect to interpolate :id correctly
+      { path: '/patients/:id/insurance', element: <PatientTabRedirect /> },
+      { path: '/patients/:id/jdpa', element: <PatientTabRedirect /> },
 
       // Inventory (7)
       {
