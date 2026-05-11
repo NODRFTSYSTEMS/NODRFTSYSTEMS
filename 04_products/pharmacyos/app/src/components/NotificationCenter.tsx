@@ -18,10 +18,11 @@ import { useNavigate } from 'react-router-dom'
 import { Bell, Warning, ShieldWarning, Info, X, CheckCircle } from '@phosphor-icons/react'
 import {
   SAMPLE_STAFF,
-  SAMPLE_STOCK,
   SAMPLE_SCHEDULE_LOG,
   SAMPLE_AI_JOBS,
+  type StockItem,
 } from '@/data/sample'
+import { useInventoryStore } from '@/stores/inventory'
 
 // ─── Alert types ──────────────────────────────────────────────────────────────
 
@@ -44,7 +45,13 @@ function daysDiff(isoDate: string): number {
   return Math.round((target.getTime() - TODAY.getTime()) / (1000 * 60 * 60 * 24))
 }
 
-function computeAlerts(): Alert[] {
+/**
+ * computeAlerts — accepts live stock from the Zustand inventory store.
+ * Swap-readiness: when Supabase wires up (G2), replace SAMPLE_STAFF /
+ * SAMPLE_SCHEDULE_LOG / SAMPLE_AI_JOBS with live query results; the
+ * function signature stays the same.
+ */
+function computeAlerts(stock: StockItem[]): Alert[] {
   const alerts: Alert[] = []
 
   // ── Critical: unverified schedule log entries ─────────────────────────────
@@ -101,13 +108,13 @@ function computeAlerts(): Alert[] {
     })
   }
 
-  // ── Warning: stock below reorder point ────────────────────────────────────
-  const lowStock = SAMPLE_STOCK.filter((s) => s.qtyOnHand <= s.reorderPoint)
+  // ── Warning: Rx stock below reorder point (live from inventory store) ──────
+  const lowStock = stock.filter((s) => s.qtyOnHand <= s.reorderPoint)
   if (lowStock.length > 0) {
     alerts.push({
       id: 'low-stock',
       severity: 'warning',
-      title: `${lowStock.length} stock item${lowStock.length === 1 ? '' : 's'} below reorder threshold`,
+      title: `${lowStock.length} Rx stock item${lowStock.length === 1 ? '' : 's'} below reorder threshold`,
       detail: lowStock.slice(0, 2).map((s) => `${s.drug} (${s.qtyOnHand} remaining)`).join(', ') +
         (lowStock.length > 2 ? ` + ${lowStock.length - 2} more` : ''),
       href: '/inventory/alerts',
@@ -181,7 +188,10 @@ export function NotificationCenter() {
   const buttonRef = useRef<HTMLButtonElement>(null)
   const navigate = useNavigate()
 
-  const alerts = computeAlerts()
+  // Live Rx stock — passes through to alert computation so counts update
+  // immediately when stock is received or a reorder is placed.
+  const stock = useInventoryStore((s) => s.stock)
+  const alerts = computeAlerts(stock)
   const criticalCount = alerts.filter((a) => a.severity === 'critical').length
   const warningCount = alerts.filter((a) => a.severity === 'warning').length
   const totalCount = alerts.length

@@ -1,11 +1,48 @@
-﻿import { PageHeader } from '@/components/PageHeader'
+﻿import { useNavigate } from 'react-router-dom'
+import { ArrowRight, ShoppingBag, Pill } from '@phosphor-icons/react'
+import { PageHeader } from '@/components/PageHeader'
 import { StatusPill } from '@/components/StatusPill'
 import { SAMPLE_POS_PRODUCTS } from '@/data/sample'
 
 export function POSInventoryPage() {
+  const navigate = useNavigate()
+  const lowCount = SAMPLE_POS_PRODUCTS.filter((p) => p.stockQty <= 10).length
+
   return (
     <div className="flex-1 p-6 space-y-6">
-      <PageHeader title="POS Inventory" />
+      <PageHeader
+        title="Retail POS Inventory"
+        subtitle={`${SAMPLE_POS_PRODUCTS.length} retail products · ${lowCount} below reorder`}
+      />
+
+      {/* Domain disambiguation — critical for operator clarity */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="flex items-start gap-3 px-4 py-3 rounded-card border border-primary/30 bg-primary/5">
+          <ShoppingBag size={16} className="text-primary shrink-0 mt-0.5" aria-hidden="true" />
+          <div className="flex-1 min-w-0">
+            <p className="type-label-strong text-primary">Retail POS Inventory (this page)</p>
+            <p className="type-label text-text-secondary mt-0.5">
+              OTC products, sundries, and retail items sold at the POS counter. Managed separately from prescription drugs.
+            </p>
+          </div>
+        </div>
+        <button
+          type="button"
+          onClick={() => navigate('/inventory')}
+          className="flex items-start gap-3 px-4 py-3 rounded-card border border-border bg-bg-subtle hover:bg-bg-surface hover:border-border transition-colors text-left group"
+        >
+          <Pill size={16} className="text-text-secondary shrink-0 mt-0.5 group-hover:text-text-primary" aria-hidden="true" />
+          <div className="flex-1 min-w-0">
+            <p className="type-label-strong text-text-secondary group-hover:text-text-primary flex items-center gap-1.5">
+              Rx Inventory (pharmacy drugs)
+              <ArrowRight size={12} className="shrink-0" aria-hidden="true" />
+            </p>
+            <p className="type-label text-text-disabled mt-0.5">
+              Prescription medications, DIN tracking, lot numbers, and expiry — managed under Rx Inventory.
+            </p>
+          </div>
+        </button>
+      </div>
 
       <div className="bg-bg-surface rounded-card shadow-card border border-border overflow-hidden">
         <div className="overflow-x-auto">

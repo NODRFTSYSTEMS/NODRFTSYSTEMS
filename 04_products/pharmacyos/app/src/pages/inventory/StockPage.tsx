@@ -1,5 +1,5 @@
 ﻿import { useNavigate } from 'react-router-dom'
-import { Plus, Warning } from '@phosphor-icons/react'
+import { Plus, Warning, ArrowRight, Pill, ShoppingBag } from '@phosphor-icons/react'
 import { PageHeader } from '@/components/PageHeader'
 import { Button } from '@/components/Button'
 import { StatusPill } from '@/components/StatusPill'
@@ -42,7 +42,36 @@ export function StockPage() {
           </Button>
         }
       />
-      <section className="flex-1 p-6 overflow-y-auto">
+      <section className="flex-1 p-6 overflow-y-auto space-y-4">
+        {/* Domain disambiguation */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="flex items-start gap-3 px-4 py-3 rounded-card border border-primary/30 bg-primary/5">
+            <Pill size={16} className="text-primary shrink-0 mt-0.5" aria-hidden="true" />
+            <div className="flex-1 min-w-0">
+              <p className="type-label-strong text-primary">Rx Inventory (this page)</p>
+              <p className="type-label text-text-secondary mt-0.5">
+                Prescription medications — DIN codes, lot numbers, expiry tracking, and schedule drug controls.
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={() => navigate('/pos/inventory')}
+            className="flex items-start gap-3 px-4 py-3 rounded-card border border-border bg-bg-subtle hover:bg-bg-surface hover:border-border transition-colors text-left group"
+          >
+            <ShoppingBag size={16} className="text-text-secondary shrink-0 mt-0.5 group-hover:text-text-primary" aria-hidden="true" />
+            <div className="flex-1 min-w-0">
+              <p className="type-label-strong text-text-secondary group-hover:text-text-primary flex items-center gap-1.5">
+                Retail POS Inventory
+                <ArrowRight size={12} className="shrink-0" aria-hidden="true" />
+              </p>
+              <p className="type-label text-text-disabled mt-0.5">
+                OTC products and retail sundries sold at the POS counter — tracked separately from Rx drugs.
+              </p>
+            </div>
+          </button>
+        </div>
+
         <div className="bg-bg-surface rounded-card shadow-card overflow-hidden">
           <table className="w-full">
             <caption className="sr-only">Current stock levels</caption>

@@ -4,8 +4,9 @@ import {
   MagnifyingGlass, Crosshair, UserCircle, Pill, Prescription,
   UsersThree, Robot,
 } from '@phosphor-icons/react'
-import { SAMPLE_PATIENTS, SAMPLE_STAFF, SAMPLE_STOCK } from '@/data/sample'
+import { SAMPLE_PATIENTS, SAMPLE_STAFF } from '@/data/sample'
 import { usePrescriptionStore } from '@/stores/prescriptions'
+import { useInventoryStore } from '@/stores/inventory'
 
 // ── Navigation commands ───────────────────────────────────────────────────────
 
@@ -18,12 +19,12 @@ interface NavItem {
 
 const NAV_COMMANDS: NavItem[] = [
   { kind: 'nav', label: 'Dashboard',                      path: '/dashboard',              keywords: 'dashboard home overview metrics' },
-  { kind: 'nav', label: 'Inventory — Stock',              path: '/inventory',              keywords: 'inventory stock drugs' },
-  { kind: 'nav', label: 'Inventory — Catalog',            path: '/inventory/catalog',      keywords: 'catalog drugs din' },
-  { kind: 'nav', label: 'Inventory — Receive',            path: '/inventory/receive',      keywords: 'receive stock incoming delivery' },
-  { kind: 'nav', label: 'Inventory — AI Scanner',         path: '/inventory/scanner',      keywords: 'ai scanner invoice ocr' },
-  { kind: 'nav', label: 'Inventory — Alerts',             path: '/inventory/alerts',       keywords: 'alerts low stock expiry' },
-  { kind: 'nav', label: 'Inventory — Suppliers',          path: '/inventory/suppliers',    keywords: 'suppliers vendors' },
+  { kind: 'nav', label: 'Rx Inventory — Stock',            path: '/inventory',              keywords: 'inventory stock drugs rx pharmacy' },
+  { kind: 'nav', label: 'Rx Inventory — Catalog',          path: '/inventory/catalog',      keywords: 'catalog drugs din' },
+  { kind: 'nav', label: 'Rx Inventory — Receive Stock',    path: '/inventory/receive',      keywords: 'receive stock incoming delivery' },
+  { kind: 'nav', label: 'Rx Inventory — AI Scanner',       path: '/inventory/scanner',      keywords: 'ai scanner invoice ocr' },
+  { kind: 'nav', label: 'Rx Inventory — Alerts',           path: '/inventory/alerts',       keywords: 'alerts low stock expiry' },
+  { kind: 'nav', label: 'Rx Inventory — Suppliers',        path: '/inventory/suppliers',    keywords: 'rx suppliers vendors' },
   { kind: 'nav', label: 'Prescriptions — Queue',          path: '/prescriptions',          keywords: 'prescriptions queue rx kanban' },
   { kind: 'nav', label: 'Prescriptions — New',            path: '/prescriptions/new',      keywords: 'new prescription rx' },
   { kind: 'nav', label: 'Prescriptions — AI Scanner',     path: '/prescriptions/scanner',  keywords: 'ai scanner prescription ocr' },
@@ -31,7 +32,9 @@ const NAV_COMMANDS: NavItem[] = [
   { kind: 'nav', label: 'Patients',                       path: '/patients',               keywords: 'patients search records' },
   { kind: 'nav', label: 'Patients — New',                 path: '/patients/new',           keywords: 'new patient registration' },
   { kind: 'nav', label: 'POS Terminal',                   path: '/pos',                    keywords: 'pos terminal sale checkout' },
-  { kind: 'nav', label: 'POS — Products',                 path: '/pos/products',           keywords: 'pos products retail' },
+  { kind: 'nav', label: 'POS — Retail Products',          path: '/pos/products',           keywords: 'pos products retail' },
+  { kind: 'nav', label: 'POS — Retail Inventory',         path: '/pos/inventory',          keywords: 'pos retail inventory stock otc' },
+  { kind: 'nav', label: 'POS — Retail Suppliers',         path: '/pos/suppliers',          keywords: 'pos retail suppliers vendors' },
   { kind: 'nav', label: 'POS — Loyalty',                  path: '/pos/loyalty',            keywords: 'loyalty points customers' },
   { kind: 'nav', label: 'POS — Loyalty Dashboard',        path: '/pos/loyalty/dashboard',  keywords: 'loyalty dashboard' },
   { kind: 'nav', label: 'POS — Reports',                  path: '/pos/reports',            keywords: 'pos reports sales' },
@@ -93,6 +96,8 @@ export function CommandPalette() {
   const listRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const prescriptions = usePrescriptionStore((s) => s.prescriptions)
+  // Live Rx stock — drug search reflects newly received items immediately
+  const rxStock = useInventoryStore((s) => s.stock)
 
   const groups = useMemo((): Group[] => {
     const q = query.trim().toLowerCase()
@@ -159,7 +164,7 @@ export function CommandPalette() {
         path: `/prescriptions/${rx.id}`,
       }))
 
-    const drugItems: DrugResult[] = SAMPLE_STOCK
+    const drugItems: DrugResult[] = rxStock
       .filter((s) =>
         s.drug.toLowerCase().includes(q) ||
         s.din.toLowerCase().includes(q) ||
@@ -181,7 +186,7 @@ export function CommandPalette() {
     if (rxItems.length > 0) result.push({ label: 'Prescriptions', items: rxItems })
     if (drugItems.length > 0) result.push({ label: 'Drugs', items: drugItems })
     return result
-  }, [query, prescriptions])
+  }, [query, prescriptions, rxStock])
 
   // Flat list for keyboard navigation
   const flatItems = useMemo(
