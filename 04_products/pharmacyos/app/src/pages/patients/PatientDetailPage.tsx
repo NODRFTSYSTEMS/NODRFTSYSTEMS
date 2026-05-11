@@ -1,11 +1,12 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import { ArrowLeft, ShieldCheck, DownloadSimple, Trash } from '@phosphor-icons/react'
 import { PageHeader } from '@/components/PageHeader'
 import { Button } from '@/components/Button'
 import { StatusPill } from '@/components/StatusPill'
 import { Tabs } from '@/components/Tabs'
 import { Placeholder } from '@/components/Placeholder'
-import { SAMPLE_PATIENTS, SAMPLE_PRESCRIPTIONS } from '@/data/sample'
+import { AgentResultCard } from '@/components/AgentResultCard'
+import { SAMPLE_PATIENTS, SAMPLE_PRESCRIPTIONS, SAMPLE_AI_JOBS } from '@/data/sample'
 
 const TODAY = new Date('2026-05-08')
 
@@ -19,11 +20,17 @@ function ageOf(dob: string) {
 
 export function PatientDetailPage() {
   const { id } = useParams<{ id: string }>()
+  const navigate = useNavigate()
   const patient = SAMPLE_PATIENTS.find((p) => p.id === id)
   if (!patient) return <Placeholder title="Patient not found" />
 
   const initials = patient.name.split(' ').map((n) => n[0]).join('').slice(0, 2)
   const meds = SAMPLE_PRESCRIPTIONS.filter((r) => r.patientId === patient.id)
+
+  // Patient risk job — look for the most recent risk flag for this patient
+  const riskJob = SAMPLE_AI_JOBS
+    .filter((j) => j.type === 'patient-risk' && j.linkedEntityId === patient.id)
+    .sort((a, b) => b.createdAt.localeCompare(a.createdAt))[0]
 
   return (
     <div className="flex flex-col h-full">
@@ -44,6 +51,17 @@ export function PatientDetailPage() {
           <ArrowLeft size={14} />
           Back to patients
         </Link>
+
+        {/* Patient risk agent card */}
+        {riskJob && (
+          <div className="mb-4">
+            <AgentResultCard
+              job={riskJob}
+              onAction={() => navigate('/ai/queue')}
+              actionLabel="View in AI Queue"
+            />
+          </div>
+        )}
 
         <div className="flex items-start gap-4 mb-6 p-4 bg-bg-surface rounded-card shadow-card">
           <div className="w-14 h-14 rounded-pill bg-primary/10 text-primary flex items-center justify-center text-base font-semibold shrink-0">
@@ -102,7 +120,9 @@ export function PatientDetailPage() {
                       )}
                       {meds.map((rx) => (
                         <tr key={rx.id} className="h-11 border-b border-border-subtle hover:bg-bg-subtle">
-                          <td className="px-4 type-mono-data text-text-primary">{rx.rxNumber}</td>
+                          <td className="px-4 type-mono-data">
+                            <Link to={`/prescriptions/${rx.id}`} className="text-primary hover:underline">{rx.rxNumber}</Link>
+                          </td>
                           <td className="px-4 type-body-xs text-text-primary">{rx.drugs.join(', ')}</td>
                           <td className="px-4 type-body-xs text-text-secondary">{rx.prescriber}</td>
                           <td className="px-4 type-mono-data text-text-secondary">{rx.received}</td>

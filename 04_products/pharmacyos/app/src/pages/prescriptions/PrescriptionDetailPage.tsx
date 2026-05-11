@@ -12,8 +12,10 @@ import { ConfirmDialog } from '@/components/ConfirmDialog'
 import { useToast } from '@/components/Toast'
 import { usePrescriptionStore } from '@/stores/prescriptions'
 import { usePermissionsStore } from '@/stores/permissions'
-import { SAMPLE_PATIENTS, SAMPLE_STAFF, type RxStatus, type UserRole } from '@/data/sample'
+import { SAMPLE_PATIENTS, SAMPLE_STAFF, SAMPLE_AI_JOBS, type RxStatus, type UserRole } from '@/data/sample'
 import { useOpenFDAInteractions } from '@/hooks/useOpenFDAInteractions'
+import { AgentResultCard } from '@/components/AgentResultCard'
+import { IntegrationPendingBadge } from '@/components/IntegrationPendingBadge'
 
 /** Prescriptions older than 6 months that haven't been dispensed are flagged expired. */
 const TODAY = new Date('2026-05-11')
@@ -68,6 +70,11 @@ export function PrescriptionDetailPage() {
   const interactionResults = useOpenFDAInteractions(rx?.drugs ?? [])
 
   if (!rx) return <Placeholder title="Prescription not found" />
+
+  // Drug-interaction agent job for this prescription (if available in sample data)
+  const interactionJob = SAMPLE_AI_JOBS.find(
+    (j) => j.type === 'drug-interaction' && j.linkedEntityId === rx.id,
+  )
 
   const patient = SAMPLE_PATIENTS.find((p) => p.id === rx.patientId)
   const currentIdx = STAGE_ORDER.indexOf(rx.status)
@@ -261,6 +268,29 @@ export function PrescriptionDetailPage() {
             ))}
           </ul>
         </div>
+
+        {/* Drug interaction agent result (if available for this Rx) */}
+        {interactionJob && (
+          <AgentResultCard
+            job={interactionJob}
+            compact
+            onAction={() => {}}
+            actionLabel="View in AI Queue"
+          />
+        )}
+
+        {/* NHF claim stub */}
+        {rx.isNhf && (
+          <div className="flex items-center gap-3 px-4 py-3 bg-bg-surface rounded-card shadow-card">
+            <div className="flex-1">
+              <p className="type-label-strong text-text-primary">NHF Eligible</p>
+              <p className="type-label text-text-secondary mt-0.5">
+                Estimated subsidy amount pending NHF API verification
+              </p>
+            </div>
+            <IntegrationPendingBadge service="NHF" description="Claim submission" variant="badge" />
+          </div>
+        )}
 
         {/* Drug interactions — sourced from OpenFDA label API */}
         <div className="bg-bg-surface rounded-card shadow-card overflow-hidden">

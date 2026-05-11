@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
-import { List } from '@phosphor-icons/react'
+import { List, Info, X } from '@phosphor-icons/react'
 import { Sidebar } from '@/components/Sidebar'
 import { SkipLink } from '@/components/SkipLink'
+
+const IS_DEMO_MODE = import.meta.env.VITE_DEMO_MODE === 'true'
 
 /**
  * Admin portal layout — sidebar (240px) + main content area.
@@ -12,6 +14,14 @@ import { SkipLink } from '@/components/SkipLink'
  */
 export function AdminPortalLayout() {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [demoBannerDismissed, setDemoBannerDismissed] = useState(
+    () => sessionStorage.getItem('demoBannerDismissed') === 'true',
+  )
+
+  function dismissDemoBanner() {
+    sessionStorage.setItem('demoBannerDismissed', 'true')
+    setDemoBannerDismissed(true)
+  }
 
   return (
     <div className="flex h-screen w-full overflow-hidden bg-bg-base">
@@ -46,6 +56,25 @@ export function AdminPortalLayout() {
             <p className="type-card-title text-white leading-tight">PharmacyOS</p>
           </div>
         </div>
+
+        {/* Demo Mode banner — shown when VITE_DEMO_MODE=true and not dismissed */}
+        {IS_DEMO_MODE && !demoBannerDismissed && (
+          <div className="shrink-0 flex items-center gap-2 px-4 py-2 bg-primary/10 border-b border-primary/20 text-xs text-text-secondary">
+            <Info size={14} className="text-primary shrink-0" aria-hidden="true" />
+            <span>
+              <span className="font-medium text-primary">Demo Mode</span>
+              {' '}— sample data only · Backend connections pending
+            </span>
+            <button
+              type="button"
+              onClick={dismissDemoBanner}
+              aria-label="Dismiss demo mode banner"
+              className="ml-auto text-text-disabled hover:text-text-secondary transition-colors"
+            >
+              <X size={14} />
+            </button>
+          </div>
+        )}
 
         <Outlet />
       </main>
