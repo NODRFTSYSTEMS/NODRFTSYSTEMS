@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import * as Tooltip from '@radix-ui/react-tooltip'
-import { CaretDown, MagnifyingGlass, SignOut } from '@phosphor-icons/react'
+import { CaretDown, MagnifyingGlass, SignOut, Gauge } from '@phosphor-icons/react'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { ROLES, type Role } from '@/types/auth'
 import { type RoutePermissionKey } from '@/config/route-permissions'
@@ -40,14 +40,14 @@ interface NavGroupDef {
 
 const NAV_GROUPS: NavGroupDef[] = [
   {
-    label: 'Inventory',
+    label: 'Rx Inventory',
     items: [
-      { label: 'Stock', path: '/inventory', description: 'Current stock levels, reorder alerts, and expiry tracking' },
-      { label: 'Catalog', path: '/inventory/catalog', description: 'Drug catalog with DIN codes and pricing' },
-      { label: 'Receive', path: '/inventory/receive', description: 'Log incoming deliveries and verify supplier invoices' },
+      { label: 'Rx Inventory', path: '/inventory', description: 'Current stock levels, reorder alerts, and expiry tracking' },
+      { label: 'Drug Catalog', path: '/inventory/catalog', description: 'Drug catalog with DIN codes and pricing' },
+      { label: 'Receive Stock', path: '/inventory/receive', description: 'Log incoming deliveries and verify supplier invoices' },
       { label: 'AI Scanner', path: '/inventory/scanner', description: 'Scan supplier invoices — Claude Vision auto-extracts line items' },
-      { label: 'Alerts', path: '/inventory/alerts', description: 'Low stock + expiring lots requiring action' },
-      { label: 'Suppliers', path: '/inventory/suppliers', description: 'Supplier contacts, pricing, and order history' },
+      { label: 'Alerts', path: '/inventory/alerts', description: 'Low stock and expiring lots requiring action' },
+      { label: 'Rx Suppliers', path: '/inventory/suppliers', description: 'Rx supplier contacts, pricing, and order history' },
     ],
   },
   {
@@ -71,8 +71,8 @@ const NAV_GROUPS: NavGroupDef[] = [
     items: [
       { label: 'Open Terminal', path: '/pos', description: 'Launch the point-of-sale terminal (fullscreen)' },
       { label: 'Products', path: '/pos/products', description: 'Retail products and pricing' },
-      { label: 'Inventory', path: '/pos/inventory', description: 'POS stock levels separate from pharmacy inventory' },
-      { label: 'Suppliers', path: '/pos/suppliers', description: 'Retail supplier directory' },
+      { label: 'POS Inventory', path: '/pos/inventory', description: 'Retail stock levels separate from pharmacy Rx inventory' },
+      { label: 'Retail Suppliers', path: '/pos/suppliers', description: 'Retail supplier directory — distinct from Rx suppliers' },
       { label: 'Reports', path: '/pos/reports', description: 'Daily sales, reconciliation, payment breakdown' },
       { label: 'Loyalty', path: '/pos/loyalty', description: 'Customer loyalty — points, tiers, redemptions' },
     ],
@@ -88,9 +88,9 @@ const NAV_GROUPS: NavGroupDef[] = [
     ],
   },
   {
-    label: 'AI',
+    label: 'Agent Management',
     items: [
-      { label: 'Job Queue', path: '/ai/queue', description: 'Active and completed AI extraction jobs' },
+      { label: 'Internal Agents', path: '/ai/queue', description: 'AI agent job queue — drug interactions, inventory intelligence, compliance monitoring, report synthesis' },
     ],
   },
   {
@@ -98,8 +98,9 @@ const NAV_GROUPS: NavGroupDef[] = [
     items: [
       { label: 'Users', path: '/admin/users', description: 'Manage staff accounts, roles, and access' },
       { label: 'Permissions', path: '/admin/permissions', description: 'Role-to-route access matrix — what each role can access' },
+      { label: 'AI Agents', path: '/ai/queue', description: 'Internal agent management — available to admin for oversight and control' },
       { label: 'Audit Log', path: '/admin/audit', description: 'System activity log — who did what and when' },
-      { label: 'Settings', path: '/admin/settings', description: 'System configuration, thresholds, integrations' },
+      { label: 'Settings', path: '/admin/settings', description: 'System configuration, thresholds, integrations, data management' },
       { label: 'Security', path: '/admin/security', description: 'Two-factor auth, session controls, security policies' },
     ],
   },
@@ -176,17 +177,21 @@ export function Sidebar({ mobileOpen = false, onMobileClose }: SidebarProps) {
 
   function handleRoleChange(newRole: Role) {
     setActingRole(newRole)
-    // Always navigate to dashboard on role switch — this gives the new role's
-    // tailored view immediately and avoids landing on a blocked route silently.
     navigate('/dashboard', { replace: true })
   }
 
-  // Filter nav by current role
+  // Filter nav by current role — deduplicate items sharing the same path per group
   const visibleGroups = NAV_GROUPS
-    .map((group) => ({
-      ...group,
-      items: group.items.filter((item) => canRoleAccess(actingRole, item.path)),
-    }))
+    .map((group) => {
+      const seenPaths = new Set<string>()
+      const items = group.items.filter((item) => {
+        if (!canRoleAccess(actingRole, item.path)) return false
+        if (seenPaths.has(item.path)) return false
+        seenPaths.add(item.path)
+        return true
+      })
+      return { ...group, items }
+    })
     .filter((group) => group.items.length > 0)
 
   const dashboardVisible = canRoleAccess(actingRole, '/dashboard')
@@ -204,8 +209,13 @@ export function Sidebar({ mobileOpen = false, onMobileClose }: SidebarProps) {
         ].join(' ')}
         aria-label="Main navigation"
       >
-        {/* Logo zone — Section 4.1, 64px */}
-        <div className="flex items-center gap-3 h-16 px-4 border-b border-white/10 shrink-0">
+        {/* Logo zone — click navigates to dashboard */}
+        <button
+          type="button"
+          onClick={() => navigate('/dashboard')}
+          aria-label="Go to dashboard"
+          className="flex items-center gap-3 h-16 px-4 border-b border-white/10 shrink-0 w-full text-left hover:bg-bg-sidebar-hover transition-colors"
+        >
           <div className="flex items-center justify-center w-8 h-8 rounded bg-primary/20 text-primary font-bold text-sm shrink-0">
             ℞
           </div>
@@ -215,7 +225,7 @@ export function Sidebar({ mobileOpen = false, onMobileClose }: SidebarProps) {
               Built by NoDrftSystems
             </p>
           </div>
-        </div>
+        </button>
 
         {/* Cmd+K search affordance */}
         <div className="px-3 pt-3 shrink-0">
@@ -234,57 +244,62 @@ export function Sidebar({ mobileOpen = false, onMobileClose }: SidebarProps) {
         </div>
 
         {/* Nav */}
-        <nav className="flex-1 overflow-y-auto py-3 px-2 space-y-4" aria-label="Primary">
-          {/* Dashboard (top-level, no group) */}
+        <nav className="flex-1 overflow-y-auto py-3 px-2" aria-label="Primary">
+          {/* Dashboard — top-level, visually distinct: bold, primary-tinted, extra spacing below */}
           {dashboardVisible && (
-            <Tooltip.Root delayDuration={600}>
-              <Tooltip.Trigger asChild>
-                <NavLink
-                  to="/dashboard"
-                  className={({ isActive }) =>
-                    [
-                      'block h-9 px-4 type-body-sm font-medium leading-9 rounded-control transition-colors relative select-none',
-                      isActive
-                        ? 'bg-bg-sidebar-hover text-white before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:h-5 before:w-[3px] before:rounded-r before:bg-primary'
-                        : 'text-text-on-dark hover:bg-bg-sidebar-hover',
-                    ].join(' ')
-                  }
-                >
-                  Dashboard
-                </NavLink>
-              </Tooltip.Trigger>
-              <Tooltip.Portal>
-                <Tooltip.Content
-                  side="right"
-                  sideOffset={16}
-                  className="z-50 max-w-[240px] rounded bg-text-primary px-3 py-2 shadow-dropdown"
-                >
-                  <p className="text-xs text-white leading-snug">
-                    Today's overview — metrics, alerts, prescription board
-                  </p>
-                  <Tooltip.Arrow className="fill-text-primary" />
-                </Tooltip.Content>
-              </Tooltip.Portal>
-            </Tooltip.Root>
+            <div className="mb-5">
+              <Tooltip.Root delayDuration={600}>
+                <Tooltip.Trigger asChild>
+                  <NavLink
+                    to="/dashboard"
+                    className={({ isActive }) =>
+                      [
+                        'flex items-center gap-2.5 h-9 px-4 font-bold text-sm leading-9 rounded-control transition-colors relative select-none',
+                        isActive
+                          ? 'bg-primary/20 text-primary before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:h-5 before:w-[3px] before:rounded-r before:bg-primary'
+                          : 'text-primary/80 hover:bg-bg-sidebar-hover hover:text-primary',
+                      ].join(' ')
+                    }
+                  >
+                    <Gauge size={15} aria-hidden="true" />
+                    Dashboard
+                  </NavLink>
+                </Tooltip.Trigger>
+                <Tooltip.Portal>
+                  <Tooltip.Content
+                    side="right"
+                    sideOffset={16}
+                    className="z-50 max-w-[240px] rounded bg-text-primary px-3 py-2 shadow-dropdown"
+                  >
+                    <p className="text-xs text-white leading-snug">
+                      Today's overview — metrics, alerts, prescription board
+                    </p>
+                    <Tooltip.Arrow className="fill-text-primary" />
+                  </Tooltip.Content>
+                </Tooltip.Portal>
+              </Tooltip.Root>
+              {/* Separator line between Dashboard and first group */}
+              <div className="mx-4 mt-2 border-t border-white/10" aria-hidden="true" />
+            </div>
           )}
 
           {/* Groups */}
-          {visibleGroups.map((group) => (
-            <div key={group.label}>
-              <p className="type-caption text-text-on-dark-dim px-4 mb-1">{group.label}</p>
-              <div className="flex flex-col gap-px">
-                {group.items.map((item) => (
-                  <NavItemRow key={item.path} item={item} />
-                ))}
+          <div className="space-y-4">
+            {visibleGroups.map((group) => (
+              <div key={group.label}>
+                <p className="type-caption text-text-on-dark-dim px-4 mb-1">{group.label}</p>
+                <div className="flex flex-col gap-px">
+                  {group.items.map((item) => (
+                    <NavItemRow key={`${group.label}:${item.path}`} item={item} />
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </nav>
 
-        {/* User account zone — Section 4.1, 64px sticky bottom */}
+        {/* User account zone */}
         <div className="border-t border-white/10 shrink-0">
-          {/* Acting-as role switcher — demo mode only (VITE_DEMO_MODE=true).
-              Hidden in production; replaced by read-only role display from real session. */}
           {IS_DEMO_MODE && (
             <div className="px-4 py-2 border-b border-white/5 bg-bg-sidebar-hover/40">
               <label className="block">

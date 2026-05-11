@@ -8,7 +8,7 @@ export function POSSuppliersPage() {
 
   return (
     <div className="flex-1 p-6 space-y-6">
-      <PageHeader title="POS Suppliers" subtitle={`${suppliers.length} on file`} />
+      <PageHeader title="Retail Suppliers" subtitle={`${suppliers.length} on file`} />
 
       <div className="bg-bg-surface rounded-card shadow-card border border-border overflow-hidden">
         <div className="overflow-x-auto">

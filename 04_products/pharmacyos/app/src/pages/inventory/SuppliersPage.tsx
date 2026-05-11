@@ -84,7 +84,7 @@ export function SuppliersPage() {
   return (
     <div className="flex flex-col h-full">
       <PageHeader
-        title="Suppliers"
+        title="Rx Suppliers"
         subtitle={`${suppliers.length} on file · ${active} active`}
         cta={
           !formOpen ? (

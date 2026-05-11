@@ -1,9 +1,11 @@
 import { useState } from 'react'
-import { Outlet } from 'react-router-dom'
-import { List, Info, X } from '@phosphor-icons/react'
+import { Outlet, useNavigate } from 'react-router-dom'
+import { List, Info, X, Sun, Moon } from '@phosphor-icons/react'
 import { Sidebar } from '@/components/Sidebar'
 import { SkipLink } from '@/components/SkipLink'
 import { NotificationCenter } from '@/components/NotificationCenter'
+import { OfflineBanner } from '@/components/OfflineBanner'
+import { useThemeStore } from '@/stores/theme'
 
 const IS_DEMO_MODE = import.meta.env.VITE_DEMO_MODE === 'true'
 
@@ -14,10 +16,12 @@ const IS_DEMO_MODE = import.meta.env.VITE_DEMO_MODE === 'true'
  * On mobile (<768px): Sidebar slides in as a fixed overlay with a backdrop.
  */
 export function AdminPortalLayout() {
+  const navigate = useNavigate()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [demoBannerDismissed, setDemoBannerDismissed] = useState(
     () => sessionStorage.getItem('demoBannerDismissed') === 'true',
   )
+  const { theme, toggle: toggleTheme } = useThemeStore()
 
   function dismissDemoBanner() {
     sessionStorage.setItem('demoBannerDismissed', 'true')
@@ -40,7 +44,7 @@ export function AdminPortalLayout() {
       <Sidebar mobileOpen={mobileOpen} onMobileClose={() => setMobileOpen(false)} />
 
       <main id="main-content" className="flex-1 flex flex-col overflow-y-auto min-w-0">
-        {/* Top bar — mobile: hamburger + logo; desktop: notification bell */}
+        {/* Top bar */}
         <div className="sticky top-0 z-30 flex items-center gap-3 h-14 px-4 bg-bg-sidebar border-b border-white/10 shrink-0">
           {/* Mobile: hamburger */}
           <button
@@ -51,22 +55,41 @@ export function AdminPortalLayout() {
           >
             <List size={20} aria-hidden="true" />
           </button>
-          {/* Mobile: logo mark */}
-          <div className="md:hidden flex items-center gap-2">
+          {/* Mobile: logo mark — click to go home */}
+          <button
+            type="button"
+            onClick={() => navigate('/dashboard')}
+            aria-label="Go to dashboard"
+            className="md:hidden flex items-center gap-2 hover:opacity-80 transition-opacity"
+          >
             <div className="flex items-center justify-center w-7 h-7 rounded bg-primary/20 text-primary font-bold text-xs">
               ℞
             </div>
             <p className="type-card-title text-white leading-tight">PharmacyOS</p>
-          </div>
+          </button>
           {/* Spacer */}
           <div className="flex-1" />
-          {/* Notification bell — visible on all breakpoints */}
+          {/* Theme toggle */}
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            className="flex items-center justify-center w-9 h-9 rounded-control text-white/60 hover:text-white hover:bg-white/10 transition-colors"
+          >
+            {theme === 'dark'
+              ? <Sun size={18} aria-hidden="true" />
+              : <Moon size={18} aria-hidden="true" />}
+          </button>
+          {/* Notification bell */}
           <div className="text-white [&_button]:text-white [&_button:hover]:text-white [&_button:hover]:bg-white/10">
             <NotificationCenter />
           </div>
         </div>
 
-        {/* Demo Mode banner — shown when VITE_DEMO_MODE=true and not dismissed */}
+        {/* Offline protocol banner */}
+        <OfflineBanner />
+
+        {/* Demo Mode banner */}
         {IS_DEMO_MODE && !demoBannerDismissed && (
           <div className="shrink-0 flex items-center gap-2 px-4 py-2 bg-primary/10 border-b border-primary/20 text-xs text-text-secondary">
             <Info size={14} className="text-primary shrink-0" aria-hidden="true" />

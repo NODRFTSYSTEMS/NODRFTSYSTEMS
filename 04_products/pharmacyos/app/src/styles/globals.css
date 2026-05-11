@@ -87,6 +87,36 @@
   --shadow-dropdown: 0 4px 16px rgba(0,0,0,0.12);
 }
 
+/*
+ * Dark mode token overrides — applied when <html class="dark">.
+ * Sidebar uses its own dark palette (--color-bg-sidebar stays near-black in both modes).
+ * All other surfaces flip to a navy/slate dark system.
+ */
+html.dark {
+  --color-bg-base: #0F172A;
+  --color-bg-surface: #1E293B;
+  --color-bg-subtle: #162032;
+  --color-bg-sidebar: #020617;
+  --color-bg-sidebar-hover: #0F172A;
+  --color-text-primary: #F1F5F9;
+  --color-text-secondary: #94A3B8;
+  --color-text-tertiary: #64748B;
+  --color-text-disabled: #334155;
+  --color-text-on-dark: #F1F5F9;
+  --color-text-on-dark-dim: #64748B;
+  --color-border: #334155;
+  --color-border-subtle: #1E293B;
+  --color-border-focus: #3B82F6;
+  /* Rx status — darken backgrounds for dark surfaces */
+  --color-rx-received-bg: #1E1B4B;
+  --color-rx-verified-bg: #1C1A0A;
+  --color-rx-filled-bg: #052E16;
+  --color-rx-dispensed-bg: #1E293B;
+  /* Tag backgrounds — darken for dark surfaces */
+  --color-tag-schedule-bg: #450A0A;
+  --color-tag-nhf-bg: #172554;
+}
+
 /* Base reset */
 *, *::before, *::after { box-sizing: border-box; }
 

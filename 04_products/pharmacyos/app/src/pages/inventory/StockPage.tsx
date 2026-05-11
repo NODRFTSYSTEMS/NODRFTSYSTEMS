@@ -33,7 +33,7 @@ export function StockPage() {
   return (
     <div className="flex flex-col h-full">
       <PageHeader
-        title="Stock Overview"
+        title="Rx Inventory"
         subtitle={`${total} active SKUs · ${lowStock} below reorder · ${expiring} expiring · ${schedule} schedule drugs`}
         cta={
           <Button variant="primary" size="md" onClick={() => navigate('/inventory/receive')}>

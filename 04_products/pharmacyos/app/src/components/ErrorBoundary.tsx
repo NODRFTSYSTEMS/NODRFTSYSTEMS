@@ -22,11 +22,21 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   override componentDidCatch(error: Error, info: ErrorInfo): void {
+    // Persist to localStorage for Admin → Settings → Data Management diagnostics.
+    try {
+      const existing: unknown[] = JSON.parse(localStorage.getItem('pharmacyos-error-log') ?? '[]')
+      const entry = {
+        ts: new Date().toISOString(),
+        message: error.message,
+        stack: error.stack?.slice(0, 600) ?? '',
+        component: info.componentStack?.slice(0, 400) ?? '',
+      }
+      localStorage.setItem('pharmacyos-error-log', JSON.stringify([entry, ...existing].slice(0, 50)))
+    } catch { /* never let logging crash the boundary */ }
+
     // Production hook — wire Sentry / log shipper here once available.
-    if (import.meta.env.DEV) {
-      // eslint-disable-next-line no-console
-      console.error('ErrorBoundary caught:', error, info)
-    }
+    // eslint-disable-next-line no-console
+    console.error('[PharmacyOS ErrorBoundary]', error, info)
   }
 
   reset = (): void => this.setState({ error: null })
