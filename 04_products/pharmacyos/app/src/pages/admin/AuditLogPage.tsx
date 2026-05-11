@@ -33,7 +33,7 @@ export function AuditLogPage() {
     <div className="flex flex-col h-full">
       <PageHeader
         title="Audit Log"
-        subtitle={`${SAMPLE_ACTIVITY.length} entries Â· all state-changing actions logged via database triggers${query || role !== 'All' ? ` Â· ${filtered.length} matching` : ''}`}
+        subtitle={`${SAMPLE_ACTIVITY.length} entries · all state-changing actions logged via database triggers${query || role !== 'All' ? ` · ${filtered.length} matching` : ''}`}
         cta={
           <Button variant="secondary" size="md" onClick={handleExport}>
             <DownloadSimple size={16} weight="bold" />
@@ -49,7 +49,7 @@ export function AuditLogPage() {
                 aria-label="Search audit log by action, user, or target"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search actions, users, or targetsâ€¦"
+                placeholder="Search actions, users, or targets…"
                 className="w-full h-10 pl-9 pr-3 type-body-sm bg-bg-surface border border-border rounded-control focus:outline-none focus:border-primary focus:ring-[3px] focus:ring-primary/20 transition-shadow"
               />
             </div>

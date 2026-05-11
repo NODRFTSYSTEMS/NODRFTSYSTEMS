@@ -5,6 +5,7 @@ import { Sidebar } from '@/components/Sidebar'
 import { SkipLink } from '@/components/SkipLink'
 import { NotificationCenter } from '@/components/NotificationCenter'
 import { OfflineBanner } from '@/components/OfflineBanner'
+import { CommandPalette } from '@/components/CommandPalette'
 import { useThemeStore } from '@/stores/theme'
 
 const IS_DEMO_MODE = import.meta.env.VITE_DEMO_MODE === 'true'
@@ -110,6 +111,10 @@ export function AdminPortalLayout() {
 
         <Outlet />
       </main>
+
+      {/* CommandPalette must be inside the router context (AdminPortalLayout
+          is rendered within RouterProvider) so useNavigate() works. */}
+      <CommandPalette />
     </div>
   )
 }

@@ -53,18 +53,30 @@ function DefaultErrorFallback({ error, reset }: { error: Error; reset: () => voi
   return (
     <div className="min-h-screen flex items-center justify-center bg-bg-base p-6">
       <div className="max-w-md w-full bg-bg-surface rounded-card shadow-card p-8 text-center">
-        <div className="w-12 h-12 rounded-pill bg-tag-schedule-bg text-tag-schedule-fg flex items-center justify-center mx-auto mb-4">
+        {/* PharmacyOS branding */}
+        <div className="flex items-center justify-center gap-2 mb-6">
+          <div className="flex items-center justify-center w-8 h-8 rounded bg-primary/20 text-primary font-bold text-sm">
+            ℞
+          </div>
+          <p className="type-card-title text-text-primary">PharmacyOS</p>
+        </div>
+
+        <div className="w-12 h-12 rounded-pill bg-error/10 text-error flex items-center justify-center mx-auto mb-4">
           <Warning size={24} weight="bold" />
         </div>
         <p className="type-section text-text-primary mb-2">Something went wrong</p>
-        <p className="text-sm text-text-secondary mb-6">
-          The application encountered an unexpected error. Try reloading the page; if the problem persists, contact support.
+        <p className="text-sm text-text-secondary mb-4">
+          The application encountered an unexpected error. This has been logged automatically.
+          Try reloading the page; if the problem persists, contact your system administrator.
         </p>
         {import.meta.env.DEV && (
           <pre className="bg-bg-subtle border border-border rounded-control p-3 text-xs text-left text-text-primary overflow-auto max-h-40 mb-4">
             {error.message}
           </pre>
         )}
+        <p className="type-label text-text-disabled mb-6">
+          Error details saved to Admin → Settings → Data Management → Error Log
+        </p>
         <div className="flex gap-2 justify-center">
           <Button variant="secondary" size="md" onClick={() => location.reload()}>
             Reload

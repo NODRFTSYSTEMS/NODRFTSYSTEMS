@@ -44,7 +44,7 @@ export function InventoryReportPage() {
           <Kpi title="Total SKUs" value={totalSkus.toString()} note="active drug catalog" />
           <Kpi title="Total Units" value={totalUnits.toLocaleString()} note="on hand across all lots" />
           <Kpi title="Inventory Value" value={`JMD ${inventoryValue.toLocaleString()}`} note="at unit cost" />
-          <Kpi title="Action Items" value={(expiringSoon.length + lowStock.length).toString()} note={`${lowStock.length} low Â· ${expiringSoon.length} expiring`} />
+          <Kpi title="Action Items" value={(expiringSoon.length + lowStock.length).toString()} note={`${lowStock.length} low · ${expiringSoon.length} expiring`} />
         </div>
 
         {/* Recent receives */}

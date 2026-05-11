@@ -22,7 +22,7 @@ export function ScheduleLogReportPage() {
     <div className="flex flex-col h-full">
       <PageHeader
         title="Schedule Log Report"
-        subtitle="Regulatory controlled-substance activity â€” Pharmacy Act compliance export"
+        subtitle="Regulatory controlled-substance activity — Pharmacy Act compliance export"
         cta={
           <div className="flex items-center gap-2">
             <select className="h-10 px-3 type-body-sm bg-bg-surface border border-border rounded-control">
@@ -41,7 +41,7 @@ export function ScheduleLogReportPage() {
         <div className="bg-tag-schedule-bg/40 border border-tag-schedule-fg/30 rounded-card p-3 flex items-center gap-2">
           <Lock size={14} className="text-tag-schedule-fg shrink-0" />
           <p className="text-xs text-tag-schedule-fg">
-            Regulatory record â€” exports are timestamped, signed, and submitted to the Pharmacy Council on request.
+            Regulatory record — exports are timestamped, signed, and submitted to the Pharmacy Council on request.
           </p>
         </div>
 

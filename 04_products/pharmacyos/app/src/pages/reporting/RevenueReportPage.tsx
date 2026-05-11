@@ -65,7 +65,7 @@ export function RevenueReportPage() {
                 <div key={m}>
                   <StatusPill variant={METHOD_VARIANT[m]}>{m}</StatusPill>
                   <p className="type-mono-metric text-text-primary leading-none mt-3">JMD {stats.revenue.toLocaleString()}</p>
-                  <p className="text-xs text-text-secondary mt-1">{stats.count} transactions Â· {pct}% of revenue</p>
+                  <p className="text-xs text-text-secondary mt-1">{stats.count} transactions · {pct}% of revenue</p>
                 </div>
               )
             })}

@@ -20,7 +20,7 @@ export function LoyaltyPage() {
     <div className="flex flex-col h-full">
       <PageHeader
         title="Loyalty Members"
-        subtitle={`${SAMPLE_LOYALTY.length} enrolled Â· ${totalPoints.toLocaleString()} total points Â· ${platinum} Platinum`}
+        subtitle={`${SAMPLE_LOYALTY.length} enrolled · ${totalPoints.toLocaleString()} total points · ${platinum} Platinum`}
         cta={
           <Button variant="primary" size="md" onClick={() => navigate('/pos/loyalty/new')}>
             <Plus size={16} weight="bold" />

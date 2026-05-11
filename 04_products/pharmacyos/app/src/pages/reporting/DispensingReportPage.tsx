@@ -43,7 +43,7 @@ export function DispensingReportPage() {
           <Kpi title="Total Rx" value={total.toString()} />
           <Kpi title="Dispensed" value={dispensed.toString()} note="completed pickups" />
           <Kpi title="In Progress" value={inProgress.toString()} note="across received/verified/filled" />
-          <Kpi title="Fill Rate" value={`${fillRate}%`} note="dispensed Ã· total" />
+          <Kpi title="Fill Rate" value={`${fillRate}%`} note="dispensed ÷ total" />
         </div>
 
         {/* Status breakdown */}

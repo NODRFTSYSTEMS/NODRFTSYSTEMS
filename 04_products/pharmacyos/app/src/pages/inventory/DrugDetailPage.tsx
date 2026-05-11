@@ -31,7 +31,7 @@ export function DrugDetailPage() {
     <div className="flex flex-col h-full">
       <PageHeader
         title={drug.drug}
-        subtitle={`DIN ${drug.din} Â· Lot ${drug.lot}`}
+        subtitle={`DIN ${drug.din} · Lot ${drug.lot}`}
         cta={
           <div className="flex items-center gap-2">
             <Button variant="secondary" size="md">Adjust Stock</Button>

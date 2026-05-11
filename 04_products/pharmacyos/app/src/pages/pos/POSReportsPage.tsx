@@ -17,7 +17,7 @@ export function POSReportsPage() {
     <div className="flex flex-col h-full">
       <PageHeader
         title="POS Reports"
-        subtitle={`${SAMPLE_TRANSACTIONS.length} transactions Â· ${itemsSold} items Â· JMD ${total.toLocaleString()} gross`}
+        subtitle={`${SAMPLE_TRANSACTIONS.length} transactions · ${itemsSold} items · JMD ${total.toLocaleString()} gross`}
         cta={
           <Button variant="secondary" size="md">
             <DownloadSimple size={16} weight="bold" />
