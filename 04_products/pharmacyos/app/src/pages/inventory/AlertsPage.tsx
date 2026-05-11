@@ -7,15 +7,13 @@ import { StatusPill } from '@/components/StatusPill'
 import { AgentResultCard } from '@/components/AgentResultCard'
 import { IntegrationPendingBadge } from '@/components/IntegrationPendingBadge'
 import { useToast } from '@/components/Toast'
-import { SAMPLE_STOCK, SAMPLE_AI_JOBS } from '@/data/sample'
+import { SAMPLE_AI_JOBS } from '@/data/sample'
+import { useInventoryStore } from '@/stores/inventory'
 
 function daysUntil(date: string) {
   const diff = new Date(date).getTime() - Date.now()
   return Math.ceil(diff / (1000 * 60 * 60 * 24))
 }
-
-const lowStock = SAMPLE_STOCK.filter((s) => s.qtyOnHand <= s.reorderPoint)
-const expiryAlerts = SAMPLE_STOCK.filter((s) => daysUntil(s.expiryDate) <= 90)
 
 // Latest inventory-intel job from sample data
 const latestIntelJob = SAMPLE_AI_JOBS
@@ -25,6 +23,9 @@ const latestIntelJob = SAMPLE_AI_JOBS
 export function AlertsPage() {
   const navigate = useNavigate()
   const toast = useToast()
+  const { stock } = useInventoryStore()
+  const lowStock = stock.filter((s) => s.qtyOnHand <= s.reorderPoint)
+  const expiryAlerts = stock.filter((s) => daysUntil(s.expiryDate) <= 90)
   const [showIntelCard, setShowIntelCard] = useState(false)
   const [runningAnalysis, setRunningAnalysis] = useState(false)
 
@@ -37,8 +38,8 @@ export function AlertsPage() {
     }, 800)
   }
 
-  function handleReorder(drug: string, supplier: string) {
-    navigate('/inventory/receive', { state: { prefill: { drug, supplier } } })
+  function handleReorder(drugId: string) {
+    navigate('/inventory/receive', { state: { drugId } })
   }
 
   return (
@@ -113,7 +114,7 @@ export function AlertsPage() {
                     <td className="px-4 py-2">
                       <button
                         type="button"
-                        onClick={() => handleReorder(item.drug, item.supplier)}
+                        onClick={() => handleReorder(item.id)}
                         className="inline-flex items-center gap-1 type-tiny text-primary hover:underline font-medium"
                         title={`Pre-fill receive record for ${item.drug}`}
                       >

@@ -1,26 +1,27 @@
-﻿import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Plus } from '@phosphor-icons/react'
 import { PageHeader } from '@/components/PageHeader'
 import { Button } from '@/components/Button'
 import { StatusPill } from '@/components/StatusPill'
-import { SAMPLE_STOCK } from '@/data/sample'
+import { useInventoryStore } from '@/stores/inventory'
 
 /**
- * Drug catalog â€” distinct from Stock Overview: catalog is the SKU master
+ * Drug catalog — distinct from Stock Overview: catalog is the SKU master
  * (drug + DIN + supplier + unit cost), independent of current stock levels.
  * Real implementation pulls from `drugs` table via Supabase; sample fallback
- * uses SAMPLE_STOCK uniqued by DIN.
+ * uses stock uniqued by DIN.
  */
-
-const CATALOG = Array.from(new Map(SAMPLE_STOCK.map((s) => [s.din, s])).values())
 
 export function CatalogPage() {
   const navigate = useNavigate()
+  const stock = useInventoryStore((s) => s.stock)
+  const catalog = Array.from(new Map(stock.map((s) => [s.din, s])).values())
+
   return (
     <div className="flex flex-col h-full">
       <PageHeader
         title="Drug Catalog"
-        subtitle={`${CATALOG.length} SKUs registered`}
+        subtitle={`${catalog.length} SKUs registered`}
         cta={
           <Button variant="primary" size="md">
             <Plus size={16} weight="bold" />
@@ -42,7 +43,7 @@ export function CatalogPage() {
               </tr>
             </thead>
             <tbody>
-              {CATALOG.map((item) => (
+              {catalog.map((item) => (
                 <tr
                   key={item.din}
                   onClick={() => navigate(`/inventory/catalog/${item.din}`)}
@@ -53,7 +54,9 @@ export function CatalogPage() {
                   <td className="px-4 type-body-xs text-text-secondary">{item.supplier}</td>
                   <td className="px-4 type-mono-data text-text-primary text-right">{item.unitCostJmd.toLocaleString()}</td>
                   <td className="px-4">
-                    {item.isSchedule ? <StatusPill variant="schedule">SCHEDULED</StatusPill> : <span className="type-body-xs text-text-disabled">â€”</span>}
+                    {item.isSchedule
+                      ? <StatusPill variant="schedule">SCHEDULED</StatusPill>
+                      : <span className="type-body-xs text-text-disabled">—</span>}
                   </td>
                 </tr>
               ))}

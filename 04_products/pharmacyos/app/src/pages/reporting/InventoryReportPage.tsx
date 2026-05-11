@@ -2,20 +2,22 @@
 import { PageHeader } from '@/components/PageHeader'
 import { Button } from '@/components/Button'
 import { StatusPill } from '@/components/StatusPill'
-import { SAMPLE_STOCK, SAMPLE_RECEIVES } from '@/data/sample'
+import { SAMPLE_RECEIVES } from '@/data/sample'
+import { useInventoryStore } from '@/stores/inventory'
 
 const TODAY = new Date('2026-05-08')
 const SOON = new Date('2026-08-07')
 
 export function InventoryReportPage() {
-  const totalSkus = SAMPLE_STOCK.length
-  const totalUnits = SAMPLE_STOCK.reduce((s, x) => s + x.qtyOnHand, 0)
-  const inventoryValue = SAMPLE_STOCK.reduce((s, x) => s + x.qtyOnHand * x.unitCostJmd, 0)
-  const expiringSoon = SAMPLE_STOCK.filter((s) => {
+  const stock = useInventoryStore((s) => s.stock)
+  const totalSkus = stock.length
+  const totalUnits = stock.reduce((s, x) => s + x.qtyOnHand, 0)
+  const inventoryValue = stock.reduce((s, x) => s + x.qtyOnHand * x.unitCostJmd, 0)
+  const expiringSoon = stock.filter((s) => {
     const e = new Date(s.expiryDate)
     return e >= TODAY && e < SOON
   })
-  const lowStock = SAMPLE_STOCK.filter((s) => s.qtyOnHand <= s.reorderPoint)
+  const lowStock = stock.filter((s) => s.qtyOnHand <= s.reorderPoint)
 
   return (
     <div className="flex flex-col h-full">
@@ -88,7 +90,7 @@ export function InventoryReportPage() {
         {/* Expiring + low-stock callouts */}
         <div className="grid grid-cols-2 gap-4">
           <Callout title="Expiring Within 90 Days" items={expiringSoon.map((s) => ({ name: s.drug, detail: `Expiry ${s.expiryDate}`, tag: 'warning' }))} />
-          <Callout title="Below Reorder Point" items={lowStock.map((s) => ({ name: s.drug, detail: `${s.qtyOnHand} on hand Â· reorder at ${s.reorderPoint}`, tag: 'error' }))} />
+          <Callout title="Below Reorder Point" items={lowStock.map((s) => ({ name: s.drug, detail: `${s.qtyOnHand} on hand · reorder at ${s.reorderPoint}`, tag: 'error' }))} />
         </div>
       </section>
     </div>

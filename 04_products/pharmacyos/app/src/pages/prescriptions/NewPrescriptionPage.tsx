@@ -7,11 +7,13 @@ import { Select } from '@/components/Select'
 import { Button } from '@/components/Button'
 import { StatusPill } from '@/components/StatusPill'
 import { useToast } from '@/components/Toast'
-import { SAMPLE_PATIENTS, SAMPLE_STOCK } from '@/data/sample'
+import { SAMPLE_PATIENTS } from '@/data/sample'
+import { useInventoryStore } from '@/stores/inventory'
 
 export function NewPrescriptionPage() {
   const navigate = useNavigate()
   const toast = useToast()
+  const stock = useInventoryStore((s) => s.stock)
 
   const [patientId, setPatientId] = useState('')
   const [prescriber, setPrescriber] = useState('')
@@ -24,7 +26,7 @@ export function NewPrescriptionPage() {
   const [submitAttempted, setSubmitAttempted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
 
-  const selectedDrug = SAMPLE_STOCK.find((s) => s.id === drugId)
+  const selectedDrug = stock.find((s) => s.id === drugId)
   const errFor = (value: string) => (submitAttempted && !value ? 'Required' : undefined)
   const canSubmit = patientId && prescriber && drugId && dosage && qty && dateIssued
 
@@ -77,7 +79,7 @@ export function NewPrescriptionPage() {
           {(p) => (
             <Select {...p} value={drugId} onChange={(e) => setDrugId(e.target.value)}>
               <option value="">Select drug…</option>
-              {SAMPLE_STOCK.map((s) => (
+              {stock.map((s) => (
                 <option key={s.id} value={s.id}>
                   {s.drug} — Qty: {s.qtyOnHand} {s.isSchedule ? '(Schedule)' : ''}
                 </option>

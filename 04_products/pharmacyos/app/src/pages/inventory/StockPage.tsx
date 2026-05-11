@@ -3,7 +3,7 @@ import { Plus, Warning } from '@phosphor-icons/react'
 import { PageHeader } from '@/components/PageHeader'
 import { Button } from '@/components/Button'
 import { StatusPill } from '@/components/StatusPill'
-import { SAMPLE_STOCK } from '@/data/sample'
+import { useInventoryStore } from '@/stores/inventory'
 
 const TODAY = new Date('2026-05-08')
 const SOON = new Date('2026-08-07') // 90-day expiry threshold
@@ -24,18 +24,19 @@ function stockStatus(qty: number, reorder: number) {
 
 export function StockPage() {
   const navigate = useNavigate()
-  const total = SAMPLE_STOCK.length
-  const lowStock = SAMPLE_STOCK.filter((s) => s.qtyOnHand <= s.reorderPoint).length
-  const expiring = SAMPLE_STOCK.filter((s) => expiryStatus(s.expiryDate)).length
-  const schedule = SAMPLE_STOCK.filter((s) => s.isSchedule).length
+  const { stock } = useInventoryStore()
+  const total = stock.length
+  const lowStock = stock.filter((s) => s.qtyOnHand <= s.reorderPoint).length
+  const expiring = stock.filter((s) => expiryStatus(s.expiryDate)).length
+  const schedule = stock.filter((s) => s.isSchedule).length
 
   return (
     <div className="flex flex-col h-full">
       <PageHeader
         title="Stock Overview"
-        subtitle={`${total} active SKUs Â· ${lowStock} below reorder Â· ${expiring} expiring Â· ${schedule} schedule drugs`}
+        subtitle={`${total} active SKUs · ${lowStock} below reorder · ${expiring} expiring · ${schedule} schedule drugs`}
         cta={
-          <Button variant="primary" size="md">
+          <Button variant="primary" size="md" onClick={() => navigate('/inventory/receive')}>
             <Plus size={16} weight="bold" />
             Receive Stock
           </Button>
@@ -58,7 +59,7 @@ export function StockPage() {
               </tr>
             </thead>
             <tbody>
-              {SAMPLE_STOCK.map((item) => {
+              {stock.map((item) => {
                 const stock = stockStatus(item.qtyOnHand, item.reorderPoint)
                 const expiry = expiryStatus(item.expiryDate)
                 return (

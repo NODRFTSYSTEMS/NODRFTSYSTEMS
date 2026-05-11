@@ -4,15 +4,17 @@ import { PageHeader } from '@/components/PageHeader'
 import { Button } from '@/components/Button'
 import { StatusPill } from '@/components/StatusPill'
 import { Placeholder } from '@/components/Placeholder'
-import { SAMPLE_STOCK, SAMPLE_PRESCRIPTIONS } from '@/data/sample'
+import { SAMPLE_PRESCRIPTIONS } from '@/data/sample'
+import { useInventoryStore } from '@/stores/inventory'
 
 const TODAY = new Date('2026-05-08')
 const SOON = new Date('2026-08-07')
 
 export function DrugDetailPage() {
   const { id } = useParams<{ id: string }>()
-  // Match by stock id OR DIN â€” useful from Catalog (DIN-keyed) or Stock (id-keyed) pages.
-  const drug = SAMPLE_STOCK.find((s) => s.id === id || s.din === id)
+  const stock = useInventoryStore((s) => s.stock)
+  // Match by stock id OR DIN — useful from Catalog (DIN-keyed) or Stock (id-keyed) pages.
+  const drug = stock.find((s) => s.id === id || s.din === id)
   if (!drug) return <Placeholder title="Drug not found" />
 
   const expiry = new Date(drug.expiryDate)

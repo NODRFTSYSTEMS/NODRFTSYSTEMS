@@ -1,12 +1,14 @@
-﻿import { PageHeader } from '@/components/PageHeader'
+import { PageHeader } from '@/components/PageHeader'
 import { StatusPill } from '@/components/StatusPill'
-import { SAMPLE_SUPPLIERS } from '@/data/sample'
+import { useInventoryStore } from '@/stores/inventory'
 import { Phone, Envelope } from '@phosphor-icons/react'
 
 export function POSSuppliersPage() {
+  const suppliers = useInventoryStore((s) => s.suppliers)
+
   return (
     <div className="flex-1 p-6 space-y-6">
-      <PageHeader title="POS Suppliers" />
+      <PageHeader title="POS Suppliers" subtitle={`${suppliers.length} on file`} />
 
       <div className="bg-bg-surface rounded-card shadow-card border border-border overflow-hidden">
         <div className="overflow-x-auto">
@@ -23,7 +25,7 @@ export function POSSuppliersPage() {
               </tr>
             </thead>
             <tbody>
-              {SAMPLE_SUPPLIERS.map((s) => (
+              {suppliers.map((s) => (
                 <tr key={s.id} className="border-b border-border-subtle hover:bg-bg-subtle">
                   <td className="px-4 py-2 type-body-sm font-medium text-text-primary">{s.name}</td>
                   <td className="px-4 py-2 type-body-sm text-text-primary">{s.contact}</td>
@@ -45,6 +47,13 @@ export function POSSuppliersPage() {
                   </td>
                 </tr>
               ))}
+              {suppliers.length === 0 && (
+                <tr>
+                  <td colSpan={6} className="px-4 py-8 text-center type-body-xs text-text-secondary">
+                    No suppliers on file — add them in Inventory → Suppliers
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

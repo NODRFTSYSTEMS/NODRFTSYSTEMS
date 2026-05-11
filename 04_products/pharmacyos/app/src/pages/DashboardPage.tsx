@@ -6,13 +6,13 @@ import {
   DASHBOARD_METRICS,
   SAMPLE_PRESCRIPTIONS,
   SAMPLE_ACTIVITY,
-  SAMPLE_STOCK,
   SAMPLE_AI_JOBS,
   type RxStatus,
 } from '@/data/sample'
 import { usePermissionsStore } from '@/stores/permissions'
 import { useStaffStore } from '@/stores/staff'
 import { usePrescriptionStore } from '@/stores/prescriptions'
+import { useInventoryStore } from '@/stores/inventory'
 import { daysUntil } from '@/utils/formatDate'
 
 /**
@@ -43,8 +43,9 @@ export function DashboardPage() {
   const prescriptions = usePrescriptionStore((s) => s.prescriptions)
   const staff = useStaffStore((s) => s.staff)
 
+  const inventoryStock = useInventoryStore((s) => s.stock)
   const activeRx = prescriptions.filter((r) => r.status !== 'Dispensed')
-  const stockAlerts = SAMPLE_STOCK.filter((s) => s.qtyOnHand <= s.reorderPoint)
+  const stockAlerts = inventoryStock.filter((s) => s.qtyOnHand <= s.reorderPoint)
 
   // Compliance flags for admin/manager dashboard card
   const complianceFlags = useMemo(() => {
