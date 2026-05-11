@@ -54,7 +54,7 @@ describe('CommandPalette', () => {
     await userEvent.keyboard('{Control>}k{/Control}')
     const input = screen.getByLabelText(/search commands/i)
     await userEvent.type(input, 'zzzznopematch')
-    expect(screen.getByText(/No commands match/i)).toBeInTheDocument()
+    expect(screen.getByText(/No results for/i)).toBeInTheDocument()
   })
 
   it('arrow-down navigates the option list', async () => {

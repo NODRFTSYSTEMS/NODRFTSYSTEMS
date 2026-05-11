@@ -1,47 +1,88 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { MagnifyingGlass, Crosshair } from '@phosphor-icons/react'
+import {
+  MagnifyingGlass, Crosshair, UserCircle, Pill, Prescription,
+  UsersThree, Robot,
+} from '@phosphor-icons/react'
+import { SAMPLE_PATIENTS, SAMPLE_STAFF, SAMPLE_STOCK } from '@/data/sample'
+import { usePrescriptionStore } from '@/stores/prescriptions'
 
-interface CommandItem {
+// ── Navigation commands ───────────────────────────────────────────────────────
+
+interface NavItem {
+  kind: 'nav'
   label: string
   path: string
   keywords: string
 }
 
-const COMMANDS: CommandItem[] = [
-  { label: 'Dashboard', path: '/dashboard', keywords: 'dashboard home overview metrics' },
-  { label: 'Inventory — Stock', path: '/inventory', keywords: 'inventory stock drugs' },
-  { label: 'Inventory — Catalog', path: '/inventory/catalog', keywords: 'catalog drugs din' },
-  { label: 'Inventory — Receive', path: '/inventory/receive', keywords: 'receive stock incoming delivery' },
-  { label: 'Inventory — AI Scanner', path: '/inventory/scanner', keywords: 'ai scanner invoice ocr' },
-  { label: 'Inventory — Alerts', path: '/inventory/alerts', keywords: 'alerts low stock expiry' },
-  { label: 'Inventory — Suppliers', path: '/inventory/suppliers', keywords: 'suppliers vendors contacts' },
-  { label: 'Prescriptions — Queue', path: '/prescriptions', keywords: 'prescriptions queue rx kanban' },
-  { label: 'Prescriptions — New', path: '/prescriptions/new', keywords: 'new prescription rx' },
-  { label: 'Prescriptions — AI Scanner', path: '/prescriptions/scanner', keywords: 'ai scanner prescription ocr' },
-  { label: 'Prescriptions — Schedule Log', path: '/prescriptions/schedule-log', keywords: 'schedule log controlled substance regulatory' },
-  { label: 'Patients', path: '/patients', keywords: 'patients search records' },
-  { label: 'Patients — New', path: '/patients/new', keywords: 'new patient registration' },
-  { label: 'POS Terminal', path: '/pos', keywords: 'pos terminal sale checkout' },
-  { label: 'POS — Products', path: '/pos/products', keywords: 'pos products retail' },
-  { label: 'POS — Inventory', path: '/pos/inventory', keywords: 'pos inventory stock' },
-  { label: 'POS — Suppliers', path: '/pos/suppliers', keywords: 'pos suppliers vendors' },
-  { label: 'POS — Reports', path: '/pos/reports', keywords: 'pos reports sales' },
-  { label: 'POS — Loyalty', path: '/pos/loyalty', keywords: 'loyalty points customers' },
-  { label: 'POS — Loyalty Dashboard', path: '/pos/loyalty/dashboard', keywords: 'loyalty dashboard metrics' },
-  { label: 'Reports — Hub', path: '/reports', keywords: 'reports hub analytics' },
-  { label: 'Reports — Inventory', path: '/reports/inventory', keywords: 'reports inventory stock' },
-  { label: 'Reports — Dispensing', path: '/reports/dispensing', keywords: 'reports dispensing fills' },
-  { label: 'Reports — Schedule Log', path: '/reports/schedule-log', keywords: 'reports schedule log regulatory' },
-  { label: 'Reports — Revenue', path: '/reports/revenue', keywords: 'reports revenue sales money' },
-  { label: 'AI — Job Queue', path: '/ai/queue', keywords: 'ai job queue extraction' },
-  { label: 'Admin — Users', path: '/admin/users', keywords: 'admin users staff accounts' },
-  { label: 'Admin — Permissions', path: '/admin/permissions', keywords: 'admin permissions roles access matrix rbac' },
-  { label: 'Admin — Audit Log', path: '/admin/audit', keywords: 'admin audit log activity' },
-  { label: 'Admin — Settings', path: '/admin/settings', keywords: 'admin settings configuration' },
-  { label: 'Admin — Security', path: '/admin/security', keywords: 'admin security 2fa sessions' },
-  { label: 'My Profile', path: '/profile', keywords: 'profile account password 2fa' },
+const NAV_COMMANDS: NavItem[] = [
+  { kind: 'nav', label: 'Dashboard',                      path: '/dashboard',              keywords: 'dashboard home overview metrics' },
+  { kind: 'nav', label: 'Inventory — Stock',              path: '/inventory',              keywords: 'inventory stock drugs' },
+  { kind: 'nav', label: 'Inventory — Catalog',            path: '/inventory/catalog',      keywords: 'catalog drugs din' },
+  { kind: 'nav', label: 'Inventory — Receive',            path: '/inventory/receive',      keywords: 'receive stock incoming delivery' },
+  { kind: 'nav', label: 'Inventory — AI Scanner',         path: '/inventory/scanner',      keywords: 'ai scanner invoice ocr' },
+  { kind: 'nav', label: 'Inventory — Alerts',             path: '/inventory/alerts',       keywords: 'alerts low stock expiry' },
+  { kind: 'nav', label: 'Inventory — Suppliers',          path: '/inventory/suppliers',    keywords: 'suppliers vendors' },
+  { kind: 'nav', label: 'Prescriptions — Queue',          path: '/prescriptions',          keywords: 'prescriptions queue rx kanban' },
+  { kind: 'nav', label: 'Prescriptions — New',            path: '/prescriptions/new',      keywords: 'new prescription rx' },
+  { kind: 'nav', label: 'Prescriptions — AI Scanner',     path: '/prescriptions/scanner',  keywords: 'ai scanner prescription ocr' },
+  { kind: 'nav', label: 'Prescriptions — Schedule Log',   path: '/prescriptions/schedule-log', keywords: 'schedule log controlled substance regulatory' },
+  { kind: 'nav', label: 'Patients',                       path: '/patients',               keywords: 'patients search records' },
+  { kind: 'nav', label: 'Patients — New',                 path: '/patients/new',           keywords: 'new patient registration' },
+  { kind: 'nav', label: 'POS Terminal',                   path: '/pos',                    keywords: 'pos terminal sale checkout' },
+  { kind: 'nav', label: 'POS — Products',                 path: '/pos/products',           keywords: 'pos products retail' },
+  { kind: 'nav', label: 'POS — Loyalty',                  path: '/pos/loyalty',            keywords: 'loyalty points customers' },
+  { kind: 'nav', label: 'POS — Loyalty Dashboard',        path: '/pos/loyalty/dashboard',  keywords: 'loyalty dashboard' },
+  { kind: 'nav', label: 'POS — Reports',                  path: '/pos/reports',            keywords: 'pos reports sales' },
+  { kind: 'nav', label: 'Reports — Hub',                  path: '/reports',                keywords: 'reports hub analytics' },
+  { kind: 'nav', label: 'Reports — Revenue',              path: '/reports/revenue',        keywords: 'reports revenue sales money' },
+  { kind: 'nav', label: 'Reports — Inventory',            path: '/reports/inventory',      keywords: 'reports inventory stock' },
+  { kind: 'nav', label: 'Reports — Dispensing',           path: '/reports/dispensing',     keywords: 'reports dispensing fills' },
+  { kind: 'nav', label: 'Reports — Schedule Log',         path: '/reports/schedule-log',   keywords: 'reports schedule log regulatory' },
+  { kind: 'nav', label: 'AI — Job Queue',                 path: '/ai/queue',               keywords: 'ai job queue extraction agent' },
+  { kind: 'nav', label: 'Admin — Users',                  path: '/admin/users',            keywords: 'admin users staff accounts' },
+  { kind: 'nav', label: 'Admin — Invite Staff',           path: '/admin/users/new',        keywords: 'admin new staff invite user' },
+  { kind: 'nav', label: 'Admin — Permissions',            path: '/admin/permissions',      keywords: 'admin permissions roles access matrix rbac' },
+  { kind: 'nav', label: 'Admin — Audit Log',              path: '/admin/audit',            keywords: 'admin audit log activity' },
+  { kind: 'nav', label: 'Admin — Settings',               path: '/admin/settings',         keywords: 'admin settings configuration' },
+  { kind: 'nav', label: 'Admin — Security',               path: '/admin/security',         keywords: 'admin security 2fa sessions' },
+  { kind: 'nav', label: 'My Profile',                     path: '/profile',                keywords: 'profile account password 2fa' },
 ]
+
+// ── Entity result types ───────────────────────────────────────────────────────
+
+interface StaffResult  { kind: 'staff';  id: string; name: string; role: string; status: string; path: string }
+interface PatientResult{ kind: 'patient';id: string; name: string; phone: string; path: string }
+interface RxResult     { kind: 'rx';     id: string; rxNumber: string; patient: string; status: string; path: string }
+interface DrugResult   { kind: 'drug';   id: string; name: string; qty: string; path: string }
+
+type ResultItem = NavItem | StaffResult | PatientResult | RxResult | DrugResult
+
+interface Group {
+  label: string
+  items: ResultItem[]
+}
+
+const GROUP_ICONS: Record<ResultItem['kind'], React.ReactNode> = {
+  nav:     <Crosshair size={14} className="text-text-secondary" />,
+  staff:   <UsersThree size={14} className="text-text-secondary" />,
+  patient: <UserCircle size={14} className="text-text-secondary" />,
+  rx:      <Prescription size={14} className="text-text-secondary" />,
+  drug:    <Pill size={14} className="text-text-secondary" />,
+}
+
+function itemLabel(item: ResultItem): string {
+  switch (item.kind) {
+    case 'nav':     return item.label
+    case 'staff':   return `${item.name} · ${item.role} · ${item.status}`
+    case 'patient': return `${item.name} · ${item.id} · ${item.phone}`
+    case 'rx':      return `${item.rxNumber} · ${item.patient} · ${item.status}`
+    case 'drug':    return `${item.name} · ${item.qty} in stock`
+  }
+}
+
+// ── Component ─────────────────────────────────────────────────────────────────
 
 export function CommandPalette() {
   const [open, setOpen] = useState(false)
@@ -49,21 +90,108 @@ export function CommandPalette() {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const navigate = useNavigate()
   const inputRef = useRef<HTMLInputElement>(null)
-  const listRef = useRef<HTMLUListElement>(null)
+  const listRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  const prescriptions = usePrescriptionStore((s) => s.prescriptions)
 
-  const filtered = useMemo(() => {
+  const groups = useMemo((): Group[] => {
     const q = query.trim().toLowerCase()
-    if (!q) return COMMANDS
-    return COMMANDS.filter(
-      (c) =>
-        c.label.toLowerCase().includes(q) || c.keywords.toLowerCase().includes(q),
-    )
-  }, [query])
 
-  useEffect(() => {
-    setSelectedIndex(0)
-  }, [query])
+    // Navigation
+    const navItems: NavItem[] = q
+      ? NAV_COMMANDS.filter((c) => c.label.toLowerCase().includes(q) || c.keywords.toLowerCase().includes(q))
+      : NAV_COMMANDS
+
+    if (!q) {
+      // No query — show navigation only
+      return [{ label: 'Navigation', items: navItems.slice(0, 10) }]
+    }
+
+    // Entity search — only when query is present
+    const staffItems: StaffResult[] = SAMPLE_STAFF
+      .filter((s) =>
+        s.name.toLowerCase().includes(q) ||
+        s.email.toLowerCase().includes(q) ||
+        s.role.toLowerCase().includes(q) ||
+        (s.employeeNumber ?? '').toLowerCase().includes(q) ||
+        (s.department ?? '').toLowerCase().includes(q),
+      )
+      .slice(0, 5)
+      .map((s) => ({
+        kind: 'staff' as const,
+        id: s.id,
+        name: s.name,
+        role: s.role,
+        status: s.status,
+        path: `/admin/users/${s.id}`,
+      }))
+
+    const patientItems: PatientResult[] = SAMPLE_PATIENTS
+      .filter((p) =>
+        p.name.toLowerCase().includes(q) ||
+        p.id.toLowerCase().includes(q) ||
+        p.phone.toLowerCase().includes(q) ||
+        p.nhfNumber.toLowerCase().includes(q),
+      )
+      .slice(0, 5)
+      .map((p) => ({
+        kind: 'patient' as const,
+        id: p.id,
+        name: p.name,
+        phone: p.phone,
+        path: `/patients/${p.id}`,
+      }))
+
+    const rxItems: RxResult[] = prescriptions
+      .filter((rx) =>
+        rx.rxNumber.toLowerCase().includes(q) ||
+        rx.patient.toLowerCase().includes(q) ||
+        rx.id.toLowerCase().includes(q) ||
+        rx.drugs.some((d) => d.toLowerCase().includes(q)),
+      )
+      .slice(0, 5)
+      .map((rx) => ({
+        kind: 'rx' as const,
+        id: rx.id,
+        rxNumber: rx.rxNumber,
+        patient: rx.patient,
+        status: rx.status,
+        path: `/prescriptions/${rx.id}`,
+      }))
+
+    const drugItems: DrugResult[] = SAMPLE_STOCK
+      .filter((s) =>
+        s.drug.toLowerCase().includes(q) ||
+        s.din.toLowerCase().includes(q) ||
+        s.id.toLowerCase().includes(q),
+      )
+      .slice(0, 5)
+      .map((s) => ({
+        kind: 'drug' as const,
+        id: s.id,
+        name: s.drug,
+        qty: String(s.qtyOnHand),
+        path: `/inventory/catalog/${s.id}`,
+      }))
+
+    const result: Group[] = []
+    if (navItems.length > 0) result.push({ label: 'Navigation', items: navItems.slice(0, 5) })
+    if (staffItems.length > 0) result.push({ label: 'Staff', items: staffItems })
+    if (patientItems.length > 0) result.push({ label: 'Patients', items: patientItems })
+    if (rxItems.length > 0) result.push({ label: 'Prescriptions', items: rxItems })
+    if (drugItems.length > 0) result.push({ label: 'Drugs', items: drugItems })
+    return result
+  }, [query, prescriptions])
+
+  // Flat list for keyboard navigation
+  const flatItems = useMemo(
+    () => groups.flatMap((g) => g.items),
+    [groups],
+  )
+
+  const totalCount = flatItems.length
+
+  useEffect(() => { setSelectedIndex(0) }, [query])
 
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
@@ -112,27 +240,32 @@ export function CommandPalette() {
     switch (e.key) {
       case 'ArrowDown':
         e.preventDefault()
-        setSelectedIndex((i) => (i + 1) % filtered.length)
+        setSelectedIndex((i) => (i + 1) % totalCount)
         break
       case 'ArrowUp':
         e.preventDefault()
-        setSelectedIndex((i) => (i - 1 + filtered.length) % filtered.length)
+        setSelectedIndex((i) => (i - 1 + totalCount) % totalCount)
         break
       case 'Enter':
         e.preventDefault()
-        if (filtered[selectedIndex]) {
-          execute(filtered[selectedIndex].path)
+        if (flatItems[selectedIndex]) {
+          execute(flatItems[selectedIndex].path)
         }
         break
     }
   }
 
+  // Scroll selected item into view
   useEffect(() => {
-    const el = listRef.current?.children[selectedIndex] as HTMLElement | undefined
+    if (!listRef.current) return
+    const el = listRef.current.querySelector(`[data-index="${selectedIndex}"]`) as HTMLElement | null
     el?.scrollIntoView({ block: 'nearest' })
   }, [selectedIndex])
 
   if (!open) return null
+
+  // Compute running index across all groups for selection tracking
+  let runningIdx = 0
 
   return (
     <div
@@ -143,10 +276,7 @@ export function CommandPalette() {
       aria-label="Command palette"
     >
       {/* Backdrop */}
-      <div
-        className="absolute inset-0 bg-black/40 backdrop-blur-sm"
-        onClick={() => setOpen(false)}
-      />
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setOpen(false)} />
 
       {/* Modal */}
       <div className="relative w-full max-w-lg bg-bg-surface rounded-card shadow-modal overflow-hidden mx-4">
@@ -159,61 +289,69 @@ export function CommandPalette() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Search commands…"
-            aria-label="Search commands"
+            placeholder="Search navigation, staff, patients, Rx, drugs..."
+            aria-label="Search commands and entities"
             className="flex-1 type-body-sm text-text-primary bg-transparent focus:outline-none placeholder:text-text-disabled"
           />
-          <kbd className="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded bg-bg-subtle border border-border type-tiny text-text-secondary">
-            ESC
-          </kbd>
+          <kbd className="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded bg-bg-subtle border border-border type-tiny text-text-secondary">ESC</kbd>
         </div>
 
-        {/* Results */}
-        {filtered.length > 0 ? (
-          <ul
-            ref={listRef}
-            className="max-h-[50vh] overflow-y-auto py-2"
-            role="listbox"
-            aria-label="Commands"
-          >
-            {filtered.map((item, i) => {
-              const active = i === selectedIndex
-              return (
-                <li key={item.path} role="option" aria-selected={active}>
-                  <button
-                    type="button"
-                    onClick={() => execute(item.path)}
-                    onMouseEnter={() => setSelectedIndex(i)}
-                    className={[
-                      'w-full text-left px-4 py-2.5 flex items-center gap-3 transition-colors',
-                      active ? 'bg-primary-50 text-primary' : 'text-text-primary hover:bg-bg-subtle',
-                    ].join(' ')}
-                  >
-                    <Crosshair size={16} className={active ? 'text-primary' : 'text-text-secondary'} />
-                    <span className="type-body-sm">{item.label}</span>
-                    {active && (
-                      <kbd className="ml-auto hidden sm:inline-flex items-center px-1.5 py-0.5 rounded bg-bg-subtle border border-border type-tiny text-text-secondary">
-                        ↵
-                      </kbd>
-                    )}
-                  </button>
-                </li>
-              )
-            })}
-          </ul>
-        ) : (
-          <div className="px-4 py-8 text-center text-text-secondary type-body-sm">
-            No commands match "{query}"
-          </div>
-        )}
+        {/* Grouped results */}
+        <div ref={listRef} className="max-h-[50vh] overflow-y-auto py-2">
+          {groups.length === 0 ? (
+            <div className="px-4 py-8 text-center text-text-secondary type-body-sm">
+              No results for "{query}"
+            </div>
+          ) : (
+            groups.map((group) => (
+              <div key={group.label}>
+                {/* Group header */}
+                <div className="px-4 py-1.5 flex items-center gap-1.5">
+                  {group.label === 'Staff' && <UsersThree size={11} className="text-text-disabled" />}
+                  {group.label === 'Patients' && <UserCircle size={11} className="text-text-disabled" />}
+                  {group.label === 'Prescriptions' && <Prescription size={11} className="text-text-disabled" />}
+                  {group.label === 'Drugs' && <Pill size={11} className="text-text-disabled" />}
+                  {group.label === 'Navigation' && <Crosshair size={11} className="text-text-disabled" />}
+                  <span className="type-tiny text-text-disabled uppercase tracking-wider">{group.label}</span>
+                </div>
+                <ul role="listbox" aria-label={group.label}>
+                  {group.items.map((item) => {
+                    const idx = runningIdx++
+                    const active = idx === selectedIndex
+                    return (
+                      <li key={`${item.kind}-${item.path}`} role="option" aria-selected={active}>
+                        <button
+                          type="button"
+                          data-index={idx}
+                          onClick={() => execute(item.path)}
+                          onMouseEnter={() => setSelectedIndex(idx)}
+                          className={[
+                            'w-full text-left px-4 py-2 flex items-center gap-3 transition-colors',
+                            active ? 'bg-primary/10 text-primary' : 'text-text-primary hover:bg-bg-subtle',
+                          ].join(' ')}
+                        >
+                          <span className="shrink-0">{GROUP_ICONS[item.kind]}</span>
+                          <span className="type-body-sm truncate">{itemLabel(item)}</span>
+                          {active && (
+                            <kbd className="ml-auto hidden sm:inline-flex items-center px-1.5 py-0.5 rounded bg-bg-subtle border border-border type-tiny text-text-secondary shrink-0">↵</kbd>
+                          )}
+                        </button>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </div>
+            ))
+          )}
+        </div>
 
         {/* Footer */}
         <div className="px-4 py-2 border-t border-border flex items-center justify-between type-tiny text-text-secondary">
-          <span>{filtered.length} command{filtered.length !== 1 ? 's' : ''}</span>
+          <span>{totalCount} result{totalCount !== 1 ? 's' : ''}</span>
           <span className="hidden sm:inline">
             <kbd className="px-1 rounded bg-bg-subtle border border-border">↑</kbd>{' '}
-            <kbd className="px-1 rounded bg-bg-subtle border border-border">↓</kbd> to navigate ·{' '}
-            <kbd className="px-1 rounded bg-bg-subtle border border-border">↵</kbd> to select
+            <kbd className="px-1 rounded bg-bg-subtle border border-border">↓</kbd> navigate ·{' '}
+            <kbd className="px-1 rounded bg-bg-subtle border border-border">↵</kbd> select
           </span>
         </div>
       </div>
