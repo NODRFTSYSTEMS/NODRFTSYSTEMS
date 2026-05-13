@@ -1,10 +1,12 @@
 # PharmacyOS — Master Handoff Document
-**Classification:** Internal — Client Confidential  
-**Version:** 1.0  
+**Classification:** Internal — NoDrftSystems Proprietary  
+**Version:** 1.2  
 **Date:** 2026-05-13  
-**Product:** PharmacyOS — Winchester Global Pharmacy Operations Platform  
+**Product:** PharmacyOS — NoDrftSystems Proprietary Pharmacy Operations Platform  
 **Produced by:** NoDrftSystems  
 **Status:** Development Build — Pre-Controlled Pilot. Not yet approved for live patient data or regulatory submission.
+
+> **v1.2 Change Summary (2026-05-13):** Commercial framing corrected — PharmacyOS is NoDrftSystems IP; Winchester Global is first licensee (not the client who commissioned a custom build). Blank screen root cause identified and fixed: `supabase.ts` no longer throws at module level; `ProtectedRoute` now catches auth errors instead of hanging in loading state. v1.1 change summary: security sprint complete, 6 new migrations applied, production RLS deployed, MFA live, RoleGuard built, AI Edge Function deployed, route count 22 → 26.
 
 ---
 
@@ -17,7 +19,7 @@
 5. [Repository Structure](#5-repository-structure)
 6. [Database Schema](#6-database-schema)
 7. [Migration Log](#7-migration-log)
-8. [Route Map — All 22 Implemented Routes](#8-route-map)
+8. [Route Map — All 26 Implemented Routes](#8-route-map)
 9. [Module-by-Module Feature Status](#9-module-by-module-feature-status)
 10. [Reports & Calculations](#10-reports--calculations)
 11. [Named Agents Active on This Build](#11-named-agents-active-on-this-build)
@@ -34,7 +36,9 @@
 
 ### What PharmacyOS Is
 
-PharmacyOS is a single-tenant, web-based pharmacy operations platform built for Winchester Global Pharmacy's Kingston, Jamaica location. It is the daily operational system for all pharmacy staff — covering retail POS, prescription dispensing, inventory management, controlled drug logging, patient records, and management reporting.
+PharmacyOS is a **NoDrftSystems proprietary product** — a single-tenant, web-based pharmacy operations platform. It is not a custom build commissioned by Winchester Global Pharmacy. It is NoDrftSystems IP being licensed to Winchester Global Pharmacy (Kingston, Jamaica) as the first deployment. License terms are to be confirmed in the pending SOW.
+
+PharmacyOS is the daily operational system for all pharmacy staff — covering retail POS, prescription dispensing, inventory management, controlled drug logging, patient records, and management reporting.
 
 This is a **staff-facing internal tool only**. Patients never log in. There are no public routes, no SEO surfaces, and no marketing content.
 
@@ -49,28 +53,29 @@ This is a **staff-facing internal tool only**. Patients never log in. There are 
 
 ### Scope — What Was Built (Phase 1 implemented so far)
 
-**22 routes implemented and functional** (out of 43 routes planned in Phase 1 scope):
+**26 routes implemented and functional** (out of 43 routes planned in Phase 1 scope):
 
-- Auth (login page + session guard)
+- Auth (login + MFA verify + MFA setup)
 - Dashboard
 - Retail POS terminal + transaction log + EOD closeout + EOD report + products + suppliers + loyalty + POS reports
-- Prescriptions queue + new prescription form + schedule drug log
+- Prescriptions queue + new prescription form + schedule drug log + prescription detail/state machine
 - Patients list + new patient form
 - Reports: Revenue + Dispensing + Inventory
 - Admin: Users (with role permissions matrix) + Audit Log + Settings
+- AI Queue (upload UI + review drawer — Edge Function deployed)
+- Error pages: 403 Forbidden + 404 Not Found
 
 ### Scope — Not Yet Built
 
-- Prescription queue detail view / kanban state machine (Verify → Fill → Dispense)
-- AI Rx Scanner (blocked on G3 — Claude Vision API confirmation)
-- AI Invoice Scanner (blocked on G3)
-- AI Job Queue page (shell only)
+- AI Rx Scanner confidence gate enforcement + live Realtime status updates
 - Patient profile page (full tabs: overview, medication history, insurance, JDPA)
-- JDPA consent capture + data export (blocked on G5 — legal review)
+- JDPA consent capture UI in registration form (blocked on G5 — legal review; column exists in DB)
+- JDPA data export / deletion flow (blocked on G5)
 - NHF claims / insurance submission (Phase 2)
-- 2FA (TOTP) authentication (login currently email+password only)
 - Security admin page (2FA management, session log, failed login log)
 - Full inventory module with receive stock, drug lots, expiry alerts
+- Global search
+- Schedule drug log PDF export
 - WhatsApp/SMS automations (Phase 2)
 
 ### Explicit Exclusions (not in scope at any phase)
@@ -87,11 +92,12 @@ This is a **staff-facing internal tool only**. Patients never log in. There are 
 
 | Item | Status |
 |---|---|
-| IP Ownership | NoDrftSystems proprietary product (reclassified 2026-05-08; was initially client-owned) |
-| First licensed deployment | Winchester Global Pharmacy |
+| IP Ownership | NoDrftSystems — 100% proprietary product (reclassified 2026-05-08; was initially structured as client-owned custom work) |
+| Product type | Licensed SaaS — not bespoke client work |
+| First licensee | Winchester Global Pharmacy — Kingston, Jamaica |
+| License terms | To be confirmed in pending SOW. Winchester does not own the codebase. |
 | Winchester commercial status | MSA amendment + new SOW required — both UNSIGNED as of this document |
 | Product repo visibility | Private — `github.com/NODRFTSYSTEMS/pharmacyos` |
-| Demo access | GitHub Pages static preview — see Section 3 |
 
 ---
 
@@ -101,25 +107,34 @@ This is a **staff-facing internal tool only**. Patients never log in. There are 
 |---|---|---|
 | **Product repo** | `https://github.com/NODRFTSYSTEMS/pharmacyos` | Private. `main` branch = current build |
 | **Monorepo path** | `04_products/pharmacyos/` | Inside NoDrftSystems master repo |
-| **Monorepo branch** | `claude/intelligent-davinci-64e683` (then merged to `main`) | |
-| **GitHub Pages demo** | `https://nodrftsystems.github.io/pharmacyos/` | Static preview — no live Supabase connection |
 | **Local dev server** | `http://localhost:5174/` | Run: `cd app && npm run dev` |
-| **Vercel** | Not yet successfully deployed | See Section 15 — Vercel issues |
-| **Supabase project** | Free tier — provisioned | Dashboard URL not recorded in docs |
-| **Supabase region** | Not recorded | Check Supabase dashboard |
+| **Vercel** | Not yet confirmed live | 9 commits ahead of `origin/main` — push and Vercel env var setup required (see Section 15 E8) |
+| **Supabase project** | `https://aeidooydivhnvwskypov.supabase.co` | Free tier — all 14 migrations applied |
+| **Supabase dashboard** | `https://supabase.com/dashboard/project/aeidooydivhnvwskypov` | |
+| **Edge Function** | `extract-document` | Deployed. Processes PRESCRIPTION and INVOICE documents via Claude Vision |
 
 ### Environment Variables Required
 
-The app reads from `app/.env.local` (not committed):
+The app reads from `app/.env.local` (not committed to git):
 
 ```
-VITE_SUPABASE_URL=https://[project-ref].supabase.co
-VITE_SUPABASE_ANON_KEY=[anon-key]
+VITE_SUPABASE_URL=https://aeidooydivhnvwskypov.supabase.co
+VITE_SUPABASE_ANON_KEY=sb_publishable_GuRFMJ19hSAV3_tClky_tw_BuihFdtf
 ```
 
-These are loaded by Vite as `import.meta.env.VITE_SUPABASE_URL` etc.
+**Critical:** If either variable is missing, `lib/supabase.ts` throws at module load time — before React mounts. The result is a completely blank screen with no error message. Both variables must be set in Vercel environment settings before any production deployment.
 
-For Vercel deployment, the same keys must be added as environment variables in the Vercel project settings.
+For Vercel deployment: add these same keys under **Project Settings → Environment Variables** in the Vercel dashboard.
+
+### Supabase Secrets (Edge Functions)
+
+The following secret is set in the Supabase project (not in `.env.local`):
+
+```
+ANTHROPIC_API_KEY  — set via supabase secrets set (used by extract-document Edge Function)
+```
+
+`SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` are auto-injected by Supabase at Edge Function runtime.
 
 ---
 
@@ -148,12 +163,26 @@ For Vercel deployment, the same keys must be added as environment variables in t
 | `@vitejs/plugin-react` | ^5.0.0 | React fast refresh |
 | `tailwindcss` | ^4.2.4 | Utility CSS |
 | `@tailwindcss/vite` | ^4.2.4 | Tailwind Vite plugin |
+| `vitest` | latest | Unit test runner |
 | `@types/react` | ^19.1.8 | React type definitions |
 | `@types/react-dom` | ^19.1.5 | ReactDOM type definitions |
 
 ### TypeScript Compatibility Note
 
 TypeScript 6.0 introduced a compatibility break with Supabase JS v2. The `supabase` client in `src/lib/supabase.ts` uses a `SupabaseClient<any>` cast workaround, and `tsconfig.app.json` sets `"ignoreDeprecations": "6.0"`. This is intentional and correct for TS 6.0. Do **not** downgrade TypeScript to 5.x — it will break the build.
+
+### Vite Build Configuration
+
+`vite.config.ts` has manual chunk splitting to keep bundle sizes manageable:
+
+```
+vendor-react    — react, react-dom, react-router, react-router-dom
+vendor-query    — @tanstack/react-query
+vendor-supabase — @supabase/supabase-js
+vendor-icons    — @phosphor-icons/react
+```
+
+`@radix-ui/react-tooltip` is intentionally NOT split into its own chunk — it imports React and must share the same React instance to avoid a circular chunk warning.
 
 ---
 
@@ -172,39 +201,68 @@ TypeScript 6.0 introduced a compatibility break with Supabase JS v2. The `supaba
 │
 ├── app/                                   ← Vite React app
 │   ├── src/
-│   │   ├── App.tsx                        ← Router definition (22 routes)
-│   │   ├── main.tsx                       ← Entry point
+│   │   ├── App.tsx                        ← Router definition (26 routes)
+│   │   ├── main.tsx                       ← Entry point + AppErrorBoundary
 │   │   ├── index.css                      ← Design system + print CSS
 │   │   ├── components/
 │   │   │   ├── Shell.tsx                  ← AppShell, Sidebar, PageHeader, MetricCard, Pill
-│   │   │   └── ProtectedRoute.tsx         ← Session guard
+│   │   │   ├── ProtectedRoute.tsx         ← Session guard + MFA check + idle timeout
+│   │   │   └── RoleGuard.tsx              ← Route-level RBAC (redirects to /403)
+│   │   ├── constants/
+│   │   │   └── audit-actions.ts           ← Centralized audit action string registry
+│   │   ├── hooks/
+│   │   │   ├── useCurrentUser.ts          ← Auth user + staff_profiles lookup
+│   │   │   └── usePermission.ts           ← Role × permission check (+ useAnyPermission)
 │   │   ├── lib/
-│   │   │   └── supabase.ts                ← Supabase client (TS6 cast)
+│   │   │   ├── supabase.ts                ← Supabase client (TS6 cast)
+│   │   │   └── date.ts                    ← Jamaica timezone utilities
 │   │   ├── types/
 │   │   │   └── database.ts                ← TypeScript types for all tables
+│   │   ├── test/
+│   │   │   ├── constants/audit-actions.test.ts
+│   │   │   └── lib/date.test.ts
+│   │   │   └── lib/schedule-balance.test.ts
 │   │   └── pages/
-│   │       ├── auth/Login.tsx
+│   │       ├── auth/
+│   │       │   ├── Login.tsx
+│   │       │   ├── VerifyMFA.tsx          ← MFA challenge (AAL1 → AAL2)
+│   │       │   └── SetupMFA.tsx           ← TOTP enrollment + recovery codes
+│   │       ├── errors/
+│   │       │   ├── Forbidden.tsx          ← 403 page
+│   │       │   └── NotFound.tsx           ← 404 page
 │   │       ├── Dashboard.tsx
 │   │       ├── pos/                       ← 8 POS pages
-│   │       ├── prescriptions/             ← 3 Rx pages
+│   │       ├── prescriptions/
+│   │       │   ├── Queue.tsx
+│   │       │   ├── NewPrescription.tsx
+│   │       │   ├── RxDetail.tsx           ← Prescription detail + workflow state machine
+│   │       │   └── ScheduleLog.tsx
 │   │       ├── patients/                  ← 2 patient pages
 │   │       ├── reports/                   ← 3 report pages
 │   │       ├── admin/                     ← 3 admin pages
-│   │       └── ai/Queue.tsx
+│   │       └── ai/Queue.tsx               ← Upload modal + review drawer
 │   ├── package.json
-│   ├── vite.config.ts
+│   ├── vite.config.ts                     ← Chunk splitting configured
 │   └── tsconfig.app.json
 │
 ├── supabase/
-│   └── migrations/                        ← 8 SQL migration files
-│       ├── 001_transactions_eod_extraction.sql
-│       ├── 002_retail_suppliers.sql
-│       ├── 003_extended_schema.sql
-│       ├── 004_stock_decrement.sql
-│       ├── 005_sample_data.sql
-│       ├── 006_security_fixes.sql
-│       ├── 007_extended_sample_data.sql
-│       └── 008_schedule_drug_log.sql
+│   ├── migrations/                        ← 14 SQL migration files (all applied)
+│   │   ├── 001_transactions_eod_extraction.sql
+│   │   ├── 002_retail_suppliers.sql
+│   │   ├── 003_extended_schema.sql
+│   │   ├── 004_stock_decrement.sql
+│   │   ├── 005_sample_data.sql
+│   │   ├── 006_security_fixes.sql
+│   │   ├── 007_extended_sample_data.sql
+│   │   ├── 008_schedule_drug_log.sql
+│   │   ├── 009_schedule_drug_log_audit_trigger.sql  ← NEW
+│   │   ├── 010_production_rls.sql                  ← NEW
+│   │   ├── 011_notifications.sql                   ← NEW
+│   │   ├── 012_jdpa_consent.sql                    ← NEW
+│   │   ├── 013_security_patch.sql                  ← NEW
+│   │   └── 014_storage_buckets.sql                 ← NEW
+│   └── functions/
+│       └── extract-document/index.ts               ← NEW — Claude Vision AI extraction
 │
 └── prototype/                             ← Reference only — not production code
 ```
@@ -213,7 +271,7 @@ TypeScript 6.0 introduced a compatibility break with Supabase JS v2. The `supaba
 
 ## 6. Database Schema
 
-All tables live in the Supabase PostgreSQL instance. RLS is enabled on all tables with **dev-permissive placeholder policies** (authenticated users have full access). These must be replaced with role-scoped policies before production deployment.
+All tables live in the Supabase PostgreSQL instance. As of migration 013, all tables have **production-scoped RLS policies** — dev-permissive placeholders have been fully replaced. The helper function `get_my_role()` (SECURITY DEFINER) powers all role-based policies.
 
 ### Core Enums
 
@@ -239,13 +297,20 @@ All tables live in the Supabase PostgreSQL instance. RLS is enabled on all table
 | `extraction_queue` | AI document extraction jobs | id, ref_number, document_type, storage_path, extraction_status, raw_extraction (JSONB), extracted_fields (JSONB), confidence_score, linked_prescription_id |
 | `retail_suppliers` | Product suppliers | id, name, contact_name, phone, email, notes, is_active |
 | `products` | Product catalog with stock | id, name, barcode (UNIQUE), category, unit_price, cost_price, stock_qty, reorder_level, supplier_id, is_active |
-| `patients` | Patient demographic records | id, first_name, last_name, date_of_birth, phone, address, allergies, notes, is_active |
+| `patients` | Patient demographic records | id, first_name, last_name, date_of_birth, phone, address, allergies, notes, jdpa_consent_at, is_active |
 | `prescriptions` | Prescription records with workflow state | id, ref_number, patient_id, patient_name, prescriber_name, prescriber_reg, drug_name, dosage, quantity, issue_date, status (enum), dispensed_by, extraction_queue_id |
 | `staff_profiles` | Staff display records (not Auth users) | id, email, full_name, role (enum), is_active |
 | `pharmacy_settings` | Key-value configuration store | key (PK), value, updated_at |
 | `loyalty_customers` | Loyalty program members | id, name, phone (UNIQUE), email, points_balance, tier (enum), joined_date |
 | `audit_log` | System event log — append only | id, actor_id, actor_name, action, table_name, record_id, details (JSONB), created_at |
 | `schedule_drug_log` | Controlled drug register (Dangerous Drugs Act) | id, entry_date, drug_name, strength, quantity_in, quantity_out, balance, patient_name, prescriber_name, prescriber_reg, rx_ref, pharmacist_id, pharmacist_name, notes |
+| `notifications` | In-app notification surface | id, user_id (nullable), role_target (nullable), type, title, body, href, is_read, created_at, expires_at |
+
+### Schema Notes
+
+**`patients.jdpa_consent_at`** — Added in migration 012. `NULL` = consent not yet recorded. `NOT NULL` = staff-confirmed consent timestamp. Partial index on `(id) WHERE jdpa_consent_at IS NULL AND is_active = true` for JDPA audit queries. LCA (Dorothy) legal review gate (G5) is still open.
+
+**`notifications`** — Supports two targeting modes: direct (user_id set, role_target null) and broadcast (role_target set, user_id null). Constraint `notifications_role_target_valid` enforces that role_target must be a valid staff role if not null.
 
 ### pharmacy_settings Keys
 
@@ -268,33 +333,50 @@ All tables live in the Supabase PostgreSQL instance. RLS is enabled on all table
 
 ## 7. Migration Log
 
-All migrations must be run in order in the Supabase SQL editor. Each is idempotent (uses `CREATE TABLE IF NOT EXISTS`).
+All 14 migrations have been applied to the live Supabase project (`aeidooydivhnvwskypov`). Each is idempotent (uses `CREATE TABLE IF NOT EXISTS`, `CREATE INDEX IF NOT EXISTS`, `DROP POLICY IF EXISTS`, `OR REPLACE` functions).
 
-| # | File | What It Creates | Run? |
+**Run order is mandatory** — migrations 009 onwards depend on tables/functions defined in prior migrations. Never skip or reorder.
+
+| # | File | What It Creates / Does | Status |
 |---|---|---|---|
-| 001 | `001_transactions_eod_extraction.sql` | `retail_transactions`, `retail_transaction_items`, `rx_transactions`, `eod_closeouts`, `extraction_queue`; enums; `generate_ref_number()` function | Required |
-| 002 | `002_retail_suppliers.sql` | `retail_suppliers` table | Required |
-| 003 | `003_extended_schema.sql` | `products`, `patients`, `prescriptions`, `staff_profiles`, `pharmacy_settings`, `loyalty_customers`, `audit_log`; enums; `touch_updated_at()` trigger function | Required |
-| 004 | `004_stock_decrement.sql` | `decrement_product_stock()` RPC function for atomic stock reduction | Required |
-| 005 | `005_sample_data.sql` | Basic sample data (products, basic records) | Optional for dev |
-| 006 | `006_security_fixes.sql` | Revokes anonymous `EXECUTE` grant on `decrement_product_stock` | Required |
-| 007 | `007_extended_sample_data.sql` | Extended sample data: 5 staff, loyalty customers, retail transactions, Rx transactions, EOD closeout, audit entries | Optional for dev |
-| 008 | `008_schedule_drug_log.sql` | `schedule_drug_log` table + RLS policy | Required |
+| 001 | `001_transactions_eod_extraction.sql` | `retail_transactions`, `retail_transaction_items`, `rx_transactions`, `eod_closeouts`, `extraction_queue`; enums; `generate_ref_number()` function | Applied |
+| 002 | `002_retail_suppliers.sql` | `retail_suppliers` table | Applied |
+| 003 | `003_extended_schema.sql` | `products`, `patients`, `prescriptions`, `staff_profiles`, `pharmacy_settings`, `loyalty_customers`, `audit_log`; enums; `touch_updated_at()` trigger | Applied |
+| 004 | `004_stock_decrement.sql` | `decrement_product_stock()` RPC function for atomic stock reduction | Applied |
+| 005 | `005_sample_data.sql` | Basic sample data (products, basic records) | Applied |
+| 006 | `006_security_fixes.sql` | Revokes anonymous `EXECUTE` grant on `decrement_product_stock` | Applied |
+| 007 | `007_extended_sample_data.sql` | Extended sample data: 5 staff, loyalty customers, retail transactions, Rx transactions, EOD closeout, audit entries | Applied |
+| 008 | `008_schedule_drug_log.sql` | `schedule_drug_log` table; RLS placeholder | Applied |
+| 009 | `009_schedule_drug_log_audit_trigger.sql` | `log_schedule_drug_change()` AFTER trigger on schedule_drug_log — writes audit_log entry on every INSERT/UPDATE/DELETE. Required for Dangerous Drugs Act | Applied |
+| 010 | `010_production_rls.sql` | `get_my_role()` SECURITY DEFINER helper; **drops all dev-permissive policies**; creates role-scoped RLS on all 14 tables | Applied |
+| 011 | `011_notifications.sql` | `notifications` table + RLS; depends on `get_my_role()` from 010 | Applied |
+| 012 | `012_jdpa_consent.sql` | Adds `jdpa_consent_at timestamptz` column to `patients`; partial index for JDPA audit queries | Applied |
+| 013 | `013_security_patch.sql` | Resolves 7 SCA findings: dev policy name mismatch (CRITICAL-00), role self-escalation (010-01 CRITICAL), audit fabricated actor_id (010-02 HIGH), staff PII exposure (010-03 HIGH), notification INSERT open (011-01 HIGH), notification column hijack (011-02 HIGH), JDPA consent audit trail (012-01 MEDIUM) | Applied |
+| 014 | `014_storage_buckets.sql` | Creates `documents` private storage bucket (10 MB, image/PDF); RLS on `storage.objects` (insert/select: any auth; delete: ADMIN only) | Applied |
 
-**Important — UUID format:** All UUIDs in custom SQL must use only hex characters (0–9, a–f). The `g` character is invalid. Using invalid UUIDs will cause a `22P02` error and roll back the entire batch.
+### Deferred Security Findings (not in 013)
 
-**Important — Supabase SQL editor batching:** The SQL editor runs all statements in a single transaction. One error rolls back everything. If inserts fail, fix the specific statement before re-running.
+These were logged by SCA (Omari) but deferred pending ARE/Founder decision:
+
+| ID | Severity | Description | Decision needed |
+|---|---|---|---|
+| 009-02 | LOW | TRUNCATE on schedule_drug_log produces no audit event | ARE/Founder: revoke TRUNCATE entirely, or add statement-level trigger |
+| 009-03 | LOW | `to_jsonb(NEW)/to_jsonb(OLD)` serializes all columns; PII risk | Confirm full column list, replace with explicit jsonb_build_object |
+| 010-07 | MEDIUM | TECHNICIAN SELECT on patients — may be unintentional PII exposure | Founder/ARE confirmation of TECHNICIAN patient access |
+| CROSS-01 | MEDIUM | `get_my_role()` subquery fires on every policy evaluation — performance cost | Cache role in JWT via Supabase auth hook; requires SAA review |
 
 ---
 
 ## 8. Route Map
 
-### Implemented (22 routes)
+### Implemented (26 routes)
 
 | Path | Component | Status |
 |---|---|---|
 | `/login` | `Login` | Functional — email+password auth |
-| `/dashboard` | `Dashboard` | Functional — metric cards, activity |
+| `/verify-mfa` | `VerifyMFA` | Functional — TOTP challenge; accessible with AAL1 session |
+| `/403` | `Forbidden` | Functional — access denied page with back navigation |
+| `/dashboard` | `Dashboard` | Functional — role-filtered metric cards + Rx queue |
 | `/pos` | `PosTerminal` | Functional — cart, barcode, payment, receipt modal |
 | `/pos/transactions` | `TransactionLog` | Functional — searchable, filterable |
 | `/pos/closeout` | `CloseOut` | Functional — submit EOD |
@@ -306,6 +388,7 @@ All migrations must be run in order in the Supabase SQL editor. Each is idempote
 | `/prescriptions` | `RxQueue` | Functional — prescription list with status filter |
 | `/prescriptions/new` | `NewPrescription` | Functional — new Rx form |
 | `/prescriptions/schedule-log` | `ScheduleLog` | Functional — full CRUD, compliance notice |
+| `/prescriptions/:id` | `RxDetail` | Functional — state machine (RECEIVED → VERIFYING → READY → DISPENSED), dispensing flow, audit trail |
 | `/patients` | `PatientList` | Functional — search, add, edit drawer |
 | `/patients/new` | `NewPatient` | Functional — demographics + allergies form |
 | `/reports/revenue` | `RevenueReport` | Functional — daily + payment breakdown, print |
@@ -314,22 +397,20 @@ All migrations must be run in order in the Supabase SQL editor. Each is idempote
 | `/admin/users` | `UsersAdmin` | Functional — staff CRUD + permissions matrix |
 | `/admin/audit` | `AuditLog` | Functional — expandable rows, badges, CSV export |
 | `/admin/settings` | `Settings` | Functional — 11 configurable fields |
-| `/ai/queue` | `AiQueue` | Shell — accept/reject UI only; no live AI integration |
+| `/ai/queue` | `AiQueue` | Functional — upload modal (drag-drop, doc type selector), review drawer, accept/reject |
+| `/profile/security` | `SetupMFA` | Functional — TOTP enrollment + QR code + recovery codes |
 
-### Not Yet Built (21 routes remaining to reach 43)
+**404 catch-all:** `<Route path="*" element={<NotFound />} />` inside the authenticated shell — renders branded 404 page for unknown paths.
 
-- Prescription detail / state machine (Verify → Fill → Dispense)
-- AI Rx Scanner upload + extraction view
-- AI Invoice Scanner upload + extraction view
-- Patient profile (full multi-tab view)
-- Patient JDPA consent + data export
-- Inventory: receive stock form
-- Inventory: drug catalog detail (lots, expiry)
-- Inventory: alerts page
-- Inventory: AI invoice scanner trigger
-- Admin: Security page (2FA, sessions, failed logins)
-- Admin: My profile
-- 2FA verification flow (login step 2)
+### Not Yet Built (17 routes remaining)
+
+- AI Rx Scanner — standalone scan + extraction view (`/prescriptions/scan`)
+- AI Invoice Scanner — standalone upload + extraction view
+- Patient profile page (`/patients/:id`) — full multi-tab view
+- JDPA consent + data export flow (blocked G5)
+- Inventory: receive stock, drug lot detail, expiry alerts
+- Admin: Security page (active sessions, failed login log)
+- Additional reports (NHF claims, schedule drug export with compliant format)
 
 ---
 
@@ -342,9 +423,14 @@ All migrations must be run in order in the Supabase SQL editor. Each is idempote
 | Email + password login | Working |
 | Session persistence (Supabase Auth) | Working |
 | Protected route guard | Working — redirects to `/login` if no session |
-| 2FA (TOTP) | Not built |
-| Role-based route enforcement | Not built — `ProtectedRoute` checks session existence only |
+| Idle session timeout | Working — 20-minute idle timeout with 2-minute warning banner |
+| 2FA (TOTP) setup page | Working — `SetupMFA.tsx` at `/profile/security` |
+| 2FA verification page | Working — `VerifyMFA.tsx` at `/verify-mfa` |
+| MFA enforcement in ProtectedRoute | Working — checks `aal.nextLevel === 'aal2'`; redirects to `/verify-mfa` if MFA enrolled but not yet verified |
+| MFA toggle in Supabase dashboard | Enabled — Authentication → Sign In/Up → Multi-Factor Authentication |
+| Role-based route enforcement | Working — `RoleGuard` wraps all non-dashboard routes; redirects to `/403` if permission missing |
 | Account lockout after failed attempts | Not built |
+| Security admin page | Not built |
 
 ### Retail POS
 
@@ -369,9 +455,9 @@ All migrations must be run in order in the Supabase SQL editor. Each is idempote
 |---|---|
 | New prescription form | Working — creates `prescriptions` record |
 | Prescription queue list | Working — filter by status |
-| Schedule Drug Log (controlled document) | Working — full CRUD; balance tracked per entry |
-| Prescription detail / dispense workflow | Not built |
-| AI Rx Scanner | Not built — blocked on G3 |
+| Prescription detail / state machine | Working — `RxDetail.tsx`; RECEIVED → VERIFYING → READY → DISPENSED; creates rx_transactions on dispense; writes to audit_log |
+| Schedule Drug Log (controlled document) | Working — full CRUD; balance tracked per entry; audit trigger fires on all DML |
+| AI Rx Scanner | Partial — upload UI and Edge Function deployed; confidence gate enforcement and Realtime status updates not yet wired |
 
 ### Patients
 
@@ -380,8 +466,10 @@ All migrations must be run in order in the Supabase SQL editor. Each is idempote
 | Patient list with search | Working |
 | Add new patient | Working |
 | Edit patient (slide-in drawer) | Working |
+| JDPA consent column | Working — `jdpa_consent_at` column in DB with audit trigger; UI capture pending G5 |
 | Patient profile page | Not built |
-| JDPA consent capture | Not built — blocked on G5 |
+| JDPA consent capture in registration UI | Not built — blocked G5 |
+| JDPA data export/deletion flow | Not built — blocked G5 |
 
 ### Reports
 
@@ -390,7 +478,7 @@ All migrations must be run in order in the Supabase SQL editor. Each is idempote
 | Revenue report (daily + by payment method) | Working — CSV export, print, totals |
 | Dispensing report (Rx records) | Working — CSV export, print, totals |
 | Inventory report (stock levels + value) | Working — CSV export, print, totals |
-| Schedule drug log export | Not built (log exists; PDF/CSV export not built) |
+| Schedule drug log export | Not built (log exists; PDF/CSV export pending G6 format sign-off) |
 | NHF claims report | Not built (Phase 2) |
 
 ### Admin
@@ -402,6 +490,18 @@ All migrations must be run in order in the Supabase SQL editor. Each is idempote
 | Audit log (read-only, expandable, badges) | Working — CSV export |
 | Settings (11 configurable fields) | Working — upsert to `pharmacy_settings` |
 | Security page (2FA, sessions) | Not built |
+
+### AI Queue
+
+| Feature | Status |
+|---|---|
+| Review drawer (accept/reject, confidence display, linked Rx creation) | Working |
+| Upload modal (drag-drop, document type selector, storage upload) | Working — uploads to `documents` bucket, inserts to `extraction_queue` |
+| Edge Function `extract-document` | Deployed — processes PRESCRIPTION (claude-haiku-4-5, escalates to claude-sonnet-4-6) and INVOICE (claude-haiku-4-5) |
+| Auto-trigger Edge Function on upload | Working — called from upload mutation after `extraction_queue` INSERT |
+| Confidence gate enforcement (< 85% → REVIEW_REQUIRED) | Not yet enforced in frontend logic |
+| Realtime status subscription | Not yet wired |
+| `ANTHROPIC_API_KEY` Supabase secret | Set |
 
 ---
 
@@ -417,10 +517,10 @@ All migrations must be run in order in the Supabase SQL editor. Each is idempote
 | Total Rx Revenue | `SUM(rx_transactions.patient_copay)` |
 | Total NHF Subsidy | `SUM(rx_transactions.nhf_subsidy)` — not included in total |
 | Grand Total Revenue | Total Retail + Total Rx |
-| Daily Breakdown | Grouped by `created_at.slice(0,10)` — retail + rx + nhf + combined total per day |
+| Daily Breakdown | Grouped by Jamaica-timezone date — retail + rx + nhf + combined total per day |
 | Payment Method Breakdown | Grouped by `payment_method` — count + total per method |
 
-**Date filter:** Applied as `created_at >= FROM T00:00:00` and `<= TO T23:59:59`
+**Date filter:** Applied using `toJamaicaBounds(from, to)` — Jamaica UTC-5 offset applied to avoid midnight off-by-one errors.
 
 ### Dispensing Report
 
@@ -469,7 +569,7 @@ FORMAT: PREFIX-YYYYMMDD-NNNNN
 EXAMPLE: TXN-20260513-00001
 ```
 
-Prefixes in use: `TXN` (retail), `RX` (Rx transactions), `EXT` (extraction queue).
+Prefixes in use: `TXN` (retail), `RX` (Rx transactions), `EXT` (extraction queue), `RXP` (prescriptions).
 
 ### Loyalty Points
 
@@ -494,10 +594,11 @@ All agents follow NoDrftSystems AI governance. All have Caribbean names per the 
 | FIS (Kiara) | `fis_frontend_implementation` | UI components, React, Tailwind, all page implementations |
 | BLS | `bls_backend_logic` | Supabase queries, mutations, server-side logic |
 | DSS | `dss_database_schema` | Schema design, migrations, indexing |
-| SCA (Omari) | `sca_security_compliance` | RLS review, auth, PII audit — required before production |
+| SCA (Omari) | `sca_security_compliance` | RLS review completed (findings 009-02, 009-03, 010-07, CROSS-01 deferred) |
 | SAA (Samara) | `saa_solution_architecture` | Tech stack decision (ADR produced; awaiting ARE + Founder sign-off) |
-| TVA (Leandra) | `tva_test_verification` | TypeScript checks, test suite |
-| IDS | `ids_integration_debugging` | AI scanner wiring, integration debugging |
+| TVA (Leandra) | `tva_test_verification` | TypeScript checks, Vitest test suite (3 test files) |
+| IDS | `ids_integration_debugging` | AI scanner wiring, migration runtime error resolution |
+| ASIS | `asis_agent_systems_integration` | Edge Function architecture, AI integration patterns |
 | QAS (Imani) | `qas_supervisor` | Independent QA — reserved for Gate 5 |
 | ARE | `are_reliability_engineer` | Technical authority — sign-off required at Gate 6 |
 | LCA (Dorothy) | `lca_legal_compliance` | JDPA review — blocked on G5 |
@@ -511,34 +612,68 @@ All agents follow NoDrftSystems AI governance. All have Caribbean names per the 
 
 | Function | Signature | Purpose |
 |---|---|---|
-| `generate_ref_number` | `(prefix TEXT) → TEXT` | Generates sequential reference numbers (TXN-YYYYMMDD-NNNNN) |
+| `generate_ref_number` | `(prefix TEXT) → TEXT` | Generates sequential reference numbers (PREFIX-YYYYMMDD-NNNNN) |
 | `touch_updated_at` | trigger function | Auto-sets `updated_at = now()` on UPDATE |
 | `decrement_product_stock` | `(product_id UUID, qty INT) → void` | Atomic stock decrement — used by POS terminal |
+| `get_my_role` | `() → TEXT` STABLE SECURITY DEFINER | Returns the current auth user's role from staff_profiles. Powers all production RLS policies. Created in migration 010 |
+| `log_schedule_drug_change` | trigger function SECURITY DEFINER | AFTER INSERT/UPDATE/DELETE on schedule_drug_log — writes audit_log entry. Required for Dangerous Drugs Act |
+| `enforce_notification_readonly_cols` | trigger function | BEFORE UPDATE on notifications — blocks changes to all columns except `is_read` |
+| `log_patient_consent_change` | trigger function SECURITY DEFINER | AFTER UPDATE on patients — writes audit_log entry when `jdpa_consent_at` changes. Required for JDPA 2020 |
 
 ### RLS Policies — Current State
 
-**All tables have dev-permissive policies.** These allow any authenticated user full CRUD access. This is a development placeholder only.
+**All tables have production-scoped RLS policies** as of migration 013. Dev-permissive placeholders (`USING (true)`) are fully replaced.
 
-```sql
--- Example (all tables follow this pattern):
-CREATE POLICY "dev_xxx_all" ON table_name FOR ALL USING (true) WITH CHECK (true);
-```
+| Table | Select | Insert | Update | Delete |
+|---|---|---|---|---|
+| `retail_transactions` | All roles | ADMIN, MANAGER, CASHIER, TECHNICIAN | ADMIN, MANAGER | No DELETE (use voided=true) |
+| `retail_transaction_items` | All roles | ADMIN, MANAGER, CASHIER, TECHNICIAN | — | — |
+| `rx_transactions` | ADMIN, MANAGER, PHARMACIST, TECHNICIAN | ADMIN, PHARMACIST, TECHNICIAN | No UPDATE | No DELETE |
+| `eod_closeouts` | ADMIN, MANAGER, CASHIER | ADMIN, MANAGER, CASHIER | ADMIN, MANAGER | — |
+| `extraction_queue` | ADMIN, MANAGER, PHARMACIST, TECHNICIAN | ADMIN, PHARMACIST, TECHNICIAN | ADMIN, PHARMACIST, TECHNICIAN | — |
+| `products` | All roles | ADMIN, MANAGER, TECHNICIAN | ADMIN, MANAGER, PHARMACIST, TECHNICIAN | — |
+| `patients` | ADMIN, PHARMACIST, TECHNICIAN | ADMIN, PHARMACIST | ADMIN, PHARMACIST | ADMIN only |
+| `prescriptions` | ADMIN, MANAGER, PHARMACIST, TECHNICIAN | ADMIN, PHARMACIST, TECHNICIAN | ADMIN, PHARMACIST, TECHNICIAN | — |
+| `staff_profiles` | Own row OR ADMIN/MANAGER | ADMIN, MANAGER | ADMIN (any row) OR own row with role locked | — |
+| `pharmacy_settings` | All roles | ADMIN, MANAGER | ADMIN, MANAGER | — |
+| `loyalty_customers` | ADMIN, MANAGER, CASHIER, TECHNICIAN | ADMIN, MANAGER, CASHIER | ADMIN, MANAGER, CASHIER, TECHNICIAN | — |
+| `retail_suppliers` | ADMIN, MANAGER, TECHNICIAN | ADMIN, MANAGER | ADMIN, MANAGER | — |
+| `audit_log` | ADMIN, MANAGER | Own actor_id or NULL only | No UPDATE | No DELETE |
+| `schedule_drug_log` | ADMIN, PHARMACIST | ADMIN, PHARMACIST | ADMIN only | ADMIN only |
+| `notifications` | Own user_id OR matching role_target | Own user_id (no role_target) OR ADMIN/MANAGER/PHARMACIST/TECHNICIAN (broadcast) | Own/role target — is_read only | Own user_id (personal) or ADMIN/MANAGER (broadcast) |
 
-**Before controlled pilot:** SCA must replace all `USING (true)` policies with role-scoped policies based on `auth.uid()` and staff role lookups.
+**staff_profiles self-update:** A non-ADMIN user can update their own row but the `role` column is locked to its current value. A CASHIER cannot escalate to ADMIN via UPDATE.
 
 ### Supabase Storage
 
-- Storage buckets: Not yet configured
-- Used for: AI scanner — prescription image uploads and invoice image uploads
-- Status: Needed when AI scanner is built (blocked on G3)
+| Bucket | Visibility | Max Size | Allowed MIME Types |
+|---|---|---|---|
+| `documents` | Private (signed URLs) | 10 MB | image/jpeg, image/jpg, image/png, image/gif, image/webp, application/pdf |
+
+Upload path convention: `documents/{YYYY}/{MM}/{timestamp}_{sanitized_filename}`
+
+### Edge Functions
+
+| Function | Runtime | Model | Purpose |
+|---|---|---|---|
+| `extract-document` | Deno | claude-haiku-4-5 (primary) / claude-sonnet-4-6 (fallback) | AI extraction from uploaded PRESCRIPTION and INVOICE images/PDFs. Updates `extraction_queue` with `extracted_fields`, `confidence_score`, and `extraction_status`. |
 
 ### Authentication
 
 - Provider: Supabase Auth (email + password)
-- 2FA: Not yet configured
+- MFA: TOTP enabled in dashboard (Authentication → Sign In/Up → Multi-Factor Authentication)
+- `ProtectedRoute` state machine: `loading → authed / mfa-required / unauthed`
+  - `mfa-required`: user has enrolled MFA and current AAL is AAL1 → redirects to `/verify-mfa`
+  - `unauthed`: no session → redirects to `/login`
 - Test users: Must be created manually in Supabase dashboard — the app does not seed auth users
 - Session: Managed by `@supabase/supabase-js` — stored in localStorage
-- `ProtectedRoute` checks `supabase.auth.getSession()` — redirects to `/login` if null
+- Idle timeout: 20 minutes with 2-minute warning banner
+
+### Known `get_my_role()` Behaviour
+
+`get_my_role()` is SECURITY DEFINER — it reads `staff_profiles` using the function owner's privileges, bypassing RLS. This ensures the role lookup works even though `staff_profiles` SELECT is now scoped to own row or ADMIN/MANAGER. The first login of a newly created user resolves correctly because of this.
+
+**Critical:** `useCurrentUser` in the frontend looks up staff profile by `email`. The email in `staff_profiles.email` must exactly match the email of the Supabase Auth user. If there is no matching `staff_profiles` record, the user will default to `CASHIER` role and `'Unknown User'` display name. This is intentional — create the staff profile via Admin → Users after creating the auth user.
 
 ---
 
@@ -551,13 +686,23 @@ CREATE POLICY "dev_xxx_all" ON table_name FOR ALL USING (true) WITH CHECK (true)
 - [x] TanStack Query v5 provider setup
 - [x] React Router v7 all-routes configuration
 - [x] AppShell (sidebar, mobile topbar, viewport-locked layout)
-- [x] ProtectedRoute session guard
-- [x] Supabase project provisioned (Free tier)
-- [x] All 8 migrations created and ready to run
+- [x] AppErrorBoundary — catches React render errors; shows branded recovery screen
+- [x] ProtectedRoute — session guard + MFA AAL check + idle timeout + warning banner
+- [x] RoleGuard — route-level RBAC; redirects to `/403` if permission missing
+- [x] 403 Forbidden page
+- [x] 404 Not Found page
+- [x] Vite manual chunk splitting (4 vendor bundles)
+- [x] Supabase project provisioned and all 14 migrations applied
+- [x] Supabase MFA (TOTP) enabled in dashboard
+- [x] `documents` storage bucket created and RLS configured
+- [x] Edge Function `extract-document` deployed
+- [x] `ANTHROPIC_API_KEY` Supabase secret set
 
 ### Pages — Functional
 - [x] Login page (email + password)
-- [x] Dashboard (metric cards, revenue summary)
+- [x] VerifyMFA page (TOTP challenge)
+- [x] SetupMFA page (TOTP enrollment + QR + recovery codes)
+- [x] Dashboard (role-filtered metric cards; revenue visible to reports_view roles; Rx queue visible to rx_dispense roles)
 - [x] POS Terminal (cart, barcode, payment, receipt, loyalty, stock decrement)
 - [x] POS Transaction Log (search, filter, void)
 - [x] EOD Closeout (submit with float + payment breakdown)
@@ -568,6 +713,7 @@ CREATE POLICY "dev_xxx_all" ON table_name FOR ALL USING (true) WITH CHECK (true)
 - [x] POS Reports (daily/monthly summaries)
 - [x] Prescription Queue (list, status filter)
 - [x] New Prescription form
+- [x] Prescription Detail — RxDetail state machine (RECEIVED → VERIFYING → READY → DISPENSED)
 - [x] Schedule Drug Log (full CRUD, compliance notice, drug filter)
 - [x] Patient List (search, add, edit drawer)
 - [x] New Patient form
@@ -577,70 +723,74 @@ CREATE POLICY "dev_xxx_all" ON table_name FOR ALL USING (true) WITH CHECK (true)
 - [x] Users Admin (staff CRUD + 13×5 role permissions matrix)
 - [x] Audit Log (expandable rows, color badges, CSV export)
 - [x] Settings (11 fields across 4 sections)
+- [x] AI Queue (upload modal + drag-drop + review drawer + accept/reject)
+
+### Security & Compliance
+- [x] Production RLS deployed on all 14 tables (migration 010)
+- [x] Security patch — 7 SCA findings resolved (migration 013)
+- [x] Role self-escalation prevented via staff_profiles WITH CHECK
+- [x] Audit log INSERT scoped to own actor_id
+- [x] staff_profiles SELECT scoped to own row or ADMIN/MANAGER
+- [x] Notification INSERT split into personal/broadcast with role validation
+- [x] Notification column immutability enforced by trigger
+- [x] JDPA consent audit trail (log_patient_consent_change trigger)
+- [x] Controlled drug audit trigger (log_schedule_drug_change — all INSERT/UPDATE/DELETE)
+- [x] Anon EXECUTE revoked from decrement_product_stock (migration 006)
 
 ### Quality
 - [x] TypeScript 0 errors (`tsc --noEmit` passing)
 - [x] Print CSS (`@media print`, `.print-only`, `.no-print`)
-- [x] Migration 006 security fix (revoked anon EXECUTE on `decrement_product_stock`)
-- [x] Viewport-locked layout (no full-page scroll — only main content area scrolls)
+- [x] Viewport-locked layout (only main content area scrolls)
+- [x] Vitest configured — 3 test files: audit-actions, date utilities, schedule balance
+- [x] Jamaica timezone consistency — all date operations use `America/Jamaica` offset
 
 ### Git
-- [x] Monorepo committed at `99e0cb5` (latest)
-- [x] Product repo synced via `git subtree split` to `github.com/NODRFTSYSTEMS/pharmacyos`
+- [x] All work committed (9 commits ahead of `origin/main`)
+- [ ] **Push to `origin/main` pending** — see Section 15 E8
 
 ---
 
 ## 14. What Is Next
 
-Listed in recommended build order. Items marked **[BLOCKED]** cannot proceed without resolving the referenced gap.
+Listed in recommended order. Items marked **[BLOCKED]** cannot proceed without resolving the referenced gap.
 
-### Priority 1 — Unlock Vercel Deployment
+### Priority 1 — Push & Deploy (immediate)
 
-- [ ] Add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` to Vercel environment variables
-- [ ] Confirm Vercel deployment succeeds on latest push
-- [ ] Verify TypeScript 6 build passes on Vercel (see known issue in Section 15)
+- [ ] Run GitHub Disclosure Gate pre-commit sweep
+- [ ] `git push pharmacyos-origin main` or equivalent subtree push to `github.com/NODRFTSYSTEMS/pharmacyos`
+- [ ] Add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` to Vercel environment variables (Project Settings → Environment Variables)
+- [ ] Confirm Vercel auto-deploys and build passes
+- [ ] Verify app loads at Vercel URL and redirects to `/login`
 
-### Priority 2 — Prescription Workflow (core clinical function)
+### Priority 2 — Blank Screen Diagnosis (if Vercel still blank after Priority 1)
 
-- [ ] Prescription detail page (route `/prescriptions/:id`)
-  - Status transitions: RECEIVED → VERIFYING → READY → DISPENSED
-  - Dispensing creates `rx_transactions` record
-  - Dispensed status triggers schedule drug log entry
-  - Pharmacist confirmation required at DISPENSED step
-- [ ] Prescription Queue kanban view (drag or button-based)
+- [ ] Confirm `.env` vars are set in Vercel (both `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`)
+- [ ] Check Vercel build logs for any `tsc` or Vite errors
+- [ ] If env vars are set and build passes but app is blank: check browser console for module-level throw from `lib/supabase.ts`
+- [ ] If first login works locally: confirm auth user email exactly matches `staff_profiles.email` (case-sensitive)
 
-### Priority 3 — Patient Profile
+### Priority 3 — AI Queue Completion
 
-- [ ] Patient profile page (`/patients/:id`) with tabs:
-  - Overview (demographics, allergies)
-  - Medication history (linked prescriptions + Rx transactions)
-  - Insurance card (photo upload)
-  - JDPA tab (consent status, data export request, deletion request)
-- [ ] **[BLOCKED G5]** JDPA consent capture at registration
+- [ ] Enforce confidence gate: if `confidence_score < 0.85`, set `extraction_status = 'REVIEW_REQUIRED'` (currently set to ACCEPTED by default in Edge Function output path)
+- [ ] Wire Supabase Realtime subscription on `extraction_queue` so Queue page auto-refreshes when Edge Function completes
+- [ ] Test full upload → extraction → review → accept/reject flow end-to-end
+
+### Priority 4 — Patient Profile
+
+- [ ] Patient profile page (`/patients/:id`) with tabs: Overview, Medication History, Insurance, JDPA
+- [ ] **[BLOCKED G5]** JDPA consent capture in registration UI
 - [ ] **[BLOCKED G5]** JDPA data export/deletion flow
 
-### Priority 4 — Auth Hardening
+### Priority 5 — Security Deferred Findings
 
-- [ ] 2FA (TOTP) setup + verification flow
-- [ ] Role-based route enforcement (extend `ProtectedRoute` to check staff role)
-- [ ] Account lockout after 5 failed 2FA attempts
-- [ ] Security admin page (active sessions, failed login log)
-- [ ] SCA RLS policy replacement (all tables — required before pilot)
+- [ ] **009-02:** Decision from ARE/Founder on TRUNCATE for clinical tables — revoke or add trigger
+- [ ] **010-07:** Confirm whether TECHNICIAN SELECT on patients is intentional
+- [ ] **CROSS-01:** Cache `get_my_role()` in JWT via Supabase auth hook (performance — deferred to post-pilot sprint)
 
-### Priority 5 — AI Integration **[BLOCKED G3]**
+### Priority 6 — Schedule Drug Log Export
 
-- [ ] Confirm Claude Vision API access + model endpoint
-- [ ] Supabase Edge Function: AI Rx extraction job
-- [ ] Supabase Edge Function: AI Invoice extraction job
-- [ ] AI Rx Scanner page (`/prescriptions/scan`)
-- [ ] AI Invoice Scanner page (inventory module)
-- [ ] AI Queue page — live job status tracking
-- [ ] Confidence scoring UI (amber flags < 85%)
-
-### Priority 6 — POS Payments **[BLOCKED G4]**
-
-- [ ] Lynk payment API integration (requires client-supplied credentials)
-- [ ] Lynk payment confirmation flow in POS terminal
+- [ ] **[BLOCKED G6]** PDF export in pharmacist-approved regulatory format
+- [ ] CSV export per drug per period
 
 ### Priority 7 — Inventory (extended)
 
@@ -649,11 +799,10 @@ Listed in recommended build order. Items marked **[BLOCKED]** cannot proceed wit
 - [ ] Inventory alerts page (low stock + expiry)
 - [ ] Stock lot tracking schema + migration
 
-### Priority 8 — Schedule Drug Log Export
+### Priority 8 — POS Payments **[BLOCKED G4]**
 
-- [ ] PDF export of schedule drug log (required for regulatory submission)
-- [ ] CSV export per drug per period
-- [ ] **[BLOCKED G6]** Format must be pharmacist-approved before final build
+- [ ] Lynk payment API integration (requires client-supplied credentials)
+- [ ] Lynk payment confirmation flow in POS terminal
 
 ### Priority 9 — MSA + SOW **[BLOCKED G7, G8]**
 
@@ -671,10 +820,9 @@ Listed in recommended build order. Items marked **[BLOCKED]** cannot proceed wit
 | Field | Detail |
 |---|---|
 | Error | Vercel dashboard shows "No Production Deployment — Your Production Domain is not serving traffic" |
-| Root cause | `package.json` pinned `"typescript": "~5.8.3"`. Vercel installed TS 5.8 at build time. `"ignoreDeprecations": "6.0"` in `tsconfig.app.json` is invalid in TS 5.8 → `tsc -b` exits non-zero → Vite build fails |
+| Root cause | `package.json` pinned `"typescript": "~5.8.3"`. Vercel installed TS 5.8. `"ignoreDeprecations": "6.0"` in `tsconfig.app.json` is invalid in TS 5.8 → `tsc -b` exits non-zero → Vite build fails |
 | Fix applied | Changed `package.json` to `"typescript": "^6.0.0"` |
-| Status | Fix committed. Vercel re-deployment not yet confirmed |
-| Next action | Push to product repo (`main`) and verify Vercel auto-deploys successfully |
+| Status | Fix committed. Vercel re-deployment not yet confirmed — push to remote required first (see E8) |
 
 ### E2 — SSH Force Push Failure
 
@@ -682,7 +830,7 @@ Listed in recommended build order. Items marked **[BLOCKED]** cannot proceed wit
 |---|---|
 | Error | `git push git@github.com:NODRFTSYSTEMS/pharmacyos.git` → SSH host key verification failed |
 | Root cause | SSH key not registered / host key changed |
-| Fix applied | Used HTTPS: `git push https://github.com/NODRFTSYSTEMS/pharmacyos.git pharmacyos-split:main --force` |
+| Fix applied | Use HTTPS: `git push https://github.com/NODRFTSYSTEMS/pharmacyos.git pharmacyos-split:main --force` |
 | Status | Resolved — HTTPS push is the working method |
 
 ### E3 — Invalid UUID in Sample Data (g7000000)
@@ -690,16 +838,15 @@ Listed in recommended build order. Items marked **[BLOCKED]** cannot proceed wit
 | Field | Detail |
 |---|---|
 | Error | `ERROR: 22P02: invalid input syntax for type uuid: 'g7000000-0000-0000-0000-000000000001'` |
-| Root cause | UUID `g7000000` uses `g` — not a valid hex character. PostgreSQL UUIDs must use 0–9, a–f only |
-| Impact | Supabase SQL editor runs all statements in one transaction → entire batch rolled back |
-| Fix applied | Replaced all `g7000000` prefixes with `a0000000` in migration 007 EOD closeout record |
-| Status | Resolved — corrected SQL in `007_extended_sample_data.sql` |
+| Root cause | UUID prefix `g7000000` uses `g` — not a valid hex character. PostgreSQL UUIDs must use 0–9, a–f only |
+| Fix applied | Replaced with `e7000000` prefix in migration 007 EOD closeout record |
+| Status | Resolved |
 
 ### E4 — `manager_approved_at` Type Cast Error
 
 | Field | Detail |
 |---|---|
-| Error | `::text` cast on a `timestamptz` column |
+| Error | `column manager_approved_at is of type timestamptz but expression is of type text` |
 | Root cause | Sample data SQL used `(CURRENT_TIMESTAMP - INTERVAL '20 hours')::text` but column is `timestamptz` |
 | Fix applied | Removed `::text` cast |
 | Status | Resolved |
@@ -708,11 +855,11 @@ Listed in recommended build order. Items marked **[BLOCKED]** cannot proceed wit
 
 | Field | Detail |
 |---|---|
-| Error | Console: "Maximum update depth exceeded. This can happen when a component calls setState inside useEffect..." |
-| Root cause | A `useEffect` in one of the pages (likely with a missing or incorrect dependency array) causing setState on every render |
-| Impact | Cosmetic — does not crash the app; logged in browser console repeatedly |
-| Status | Not yet diagnosed or fixed |
-| Next action | Identify which component triggers it by checking `useEffect` hooks without dependency arrays or with object/array dependencies that recreate on each render |
+| Error | Console: "Maximum update depth exceeded. This can happen when a component calls setState inside useEffect…" |
+| Root cause | Not yet diagnosed — likely a `useEffect` with a missing or incorrect dependency array in one of the POS or Rx pages |
+| Impact | Cosmetic — does not crash the app |
+| Status | Not yet fixed |
+| Next action | Isolate by disabling pages one at a time; check `useEffect` hooks with object/array dependencies that recreate on each render |
 
 ### E6 — Supabase-JS v2 / TypeScript 6 Incompatibility
 
@@ -727,8 +874,27 @@ Listed in recommended build order. Items marked **[BLOCKED]** cannot proceed wit
 | Field | Detail |
 |---|---|
 | Error | `ERROR: 42601: syntax error at or near "supabase"` |
-| Root cause | User accidentally typed the migration filename `supabase/migrations/007_extended_sample_data.sql` into the SQL editor instead of pasting the SQL content |
-| Resolution | User education — paste SQL content only, not the file path |
+| Root cause | User typed the migration filename into the SQL editor instead of pasting the SQL content |
+| Resolution | Paste SQL content only — not the file path |
+| Status | Resolved (user education) |
+
+### E8 — App Shows Blank Screen
+
+| Field | Detail |
+|---|---|
+| Symptom | "Loading — nothing comes up" when visiting app at localhost:5174 or Vercel |
+| Root cause 1 (FIXED) | **`supabase.ts` module-level throw.** If `VITE_SUPABASE_URL` or `VITE_SUPABASE_ANON_KEY` are missing, the old code threw `new Error(...)` at module evaluation time — before React mounts. `AppErrorBoundary` cannot catch module-level throws. Result: completely blank screen. Fix: replaced `throw` with `console.error` + placeholder fallback values so React can mount and redirect to `/login`. |
+| Root cause 2 (FIXED) | **`ProtectedRoute` silently swallows auth errors.** `void resolveAuthState()` means any thrown exception leaves `state = 'loading'` forever. Loading spinner is near-white (#F5F7FA) with a tiny 32px spinner — appears blank. Fix: `resolveAuthState` now wrapped in try/catch; all errors call `setState('unauthed')` so user is redirected to `/login`. |
+| Remaining action | 1. Push 9 commits to remote. 2. Set `VITE_SUPABASE_URL` + `VITE_SUPABASE_ANON_KEY` in Vercel env vars. 3. Confirm Vercel build. 4. Create auth user in Supabase + matching staff_profiles record with same email. |
+| Status | Code fixes applied — push to remote pending |
+
+### E9 — Migration Runtime Errors (resolved during session)
+
+| Field | Detail |
+|---|---|
+| Errors | `policy "dev_sdl_all" already exists` (migration 008); `operator does not exist: text = uuid` in `rls_audit_insert` and `log_patient_consent_change` (migration 013); EOD closeout `ON CONFLICT (id)` wrong constraint target (migration 007) |
+| Fixes applied | Added `DROP POLICY IF EXISTS` before recreation in 008; added `::text` cast to `auth.uid()` in two places in 013; changed to `ON CONFLICT DO NOTHING` in 007 |
+| Status | All resolved — migrations 007, 008, 013 corrected and re-applied |
 
 ---
 
@@ -737,10 +903,10 @@ Listed in recommended build order. Items marked **[BLOCKED]** cannot proceed wit
 | # | Gap | What It Blocks | Owner | Status |
 |---|---|---|---|---|
 | G1 | ADR sign-off (ARE + Founder) | Gate 1A formally closed | ARE + Founder | PRODUCED — awaiting sign-off |
-| G2 | Supabase provisioning | Production database | PIS + Founder | CLOSED (Free tier provisioned) |
-| G3 | Claude Vision API access | AI Rx Scanner, AI Invoice Scanner, AI Queue live functionality | Founder / Anthropic | OPEN |
+| G2 | Supabase provisioning | Production database | PIS + Founder | CLOSED — Free tier provisioned; all 14 migrations applied |
+| G3 | Claude Vision API access + Edge Function deployment | AI Rx Scanner live; AI Invoice Scanner; AI Queue full functionality | Founder / Anthropic | PARTIALLY UNBLOCKED — `extract-document` Edge Function deployed; `ANTHROPIC_API_KEY` set; upload UI built. Remaining: confidence gate enforcement, Realtime wiring, end-to-end test |
 | G4 | Lynk payment API credentials | Lynk checkout in POS | Client (Winchester) | OPEN |
-| G5 | JDPA compliance review (SCA + LCA) | Patient consent capture, data export, JDPA tab in patient profile | SCA (Omari) + LCA (Dorothy) | OPEN |
+| G5 | JDPA compliance review (SCA + LCA) | Patient consent capture UI, data export, JDPA tab in patient profile | SCA (Omari) + LCA (Dorothy) | OPEN — DB column + audit trigger in place; UI capture and legal review pending |
 | G6 | Schedule drug log format — pharmacist sign-off | PDF export of schedule drug log in regulatory format | Client pharmacist | OPEN |
 | G7 | MSA amendment signed by Winchester | All commercial deployment, invoicing | Founder + Winchester | OPEN |
 | G8 | New PharmacyOS SOW signed | All commercial deployment, invoicing | Founder + Winchester | OPEN (depends on G7) |
@@ -754,7 +920,7 @@ Listed in recommended build order. Items marked **[BLOCKED]** cannot proceed wit
 
 There are no seeded auth users. Supabase Auth must be used directly:
 
-1. Log into Supabase dashboard
+1. Log into Supabase dashboard → `https://supabase.com/dashboard/project/aeidooydivhnvwskypov`
 2. Go to **Authentication → Users**
 3. Click **Add User → Create New User**
 4. Enter email and password
@@ -762,30 +928,60 @@ There are no seeded auth users. Supabase Auth must be used directly:
 
 ### Connecting Staff Profile to Auth User
 
-After creating a Supabase Auth user, the corresponding staff profile must exist in the `staff_profiles` table for the user to appear in the Users admin page. The two are linked by email only — there is no hard foreign key.
+After creating a Supabase Auth user, a matching record must exist in `staff_profiles` with the **same email address** (case-sensitive). `useCurrentUser` queries `staff_profiles` by email — if no match, the user gets `role: 'CASHIER'` and `name: 'Unknown User'`.
 
-Either:
-- Use the **Admin → Users** page to add the staff profile after first login, OR
-- Insert directly via Supabase Table Editor
+Add the staff profile via **Admin → Users** after first login, or insert directly via the Supabase Table Editor:
+
+```sql
+INSERT INTO public.staff_profiles (id, email, full_name, role, is_active)
+VALUES (
+  auth.uid(),                       -- or the user's UUID from Authentication → Users
+  'staff@example.com',              -- must match Auth user email exactly
+  'Dr. Jane Smith',
+  'PHARMACIST',                     -- ADMIN, MANAGER, PHARMACIST, CASHIER, or TECHNICIAN
+  true
+);
+```
+
+**Important:** `staff_profiles.id` does not need to match `auth.uid()` — the lookup is by email. But it is best practice to keep them aligned.
+
+### MFA First Setup
+
+Staff members who want to enroll 2FA should:
+
+1. Log in with email + password
+2. Navigate to `/profile/security`
+3. Follow the QR code enrollment flow in `SetupMFA.tsx`
+4. Save recovery codes
+
+On next login, they will be redirected to `/verify-mfa` for TOTP challenge.
 
 ### Session Behaviour
 
 - Sessions persist across browser refreshes (stored in localStorage by supabase-js)
+- Idle timeout: 20 minutes with a 2-minute warning banner
 - Sign out available via sidebar "Sign Out" button — calls `supabase.auth.signOut()`
-- No session timeout configured currently
 
 ### Sample Data Note
 
 Migration 007 (`007_extended_sample_data.sql`) seeds:
-- 5 staff profiles (names: Dr. Patricia Williams, James Brown, Sandra Clarke, Michael Thompson, Karen Lewis)
+- 5 staff profiles — Dr. Patricia Williams (PHARMACIST), James Brown (CASHIER), Sandra Clarke (TECHNICIAN), Michael Thompson (MANAGER), Karen Lewis (ADMIN)
 - 5 loyalty customers
 - 9 retail transactions
 - 4 Rx transactions
 - 1 EOD closeout record
 - 5 audit log entries
 
-This sample data does not create auth users — only `staff_profiles` records.
+This sample data does not create auth users — only `staff_profiles` records. To log in as one of these staff members, create a Supabase Auth user with the matching email:
+
+| Staff Name | Email in staff_profiles |
+|---|---|
+| Dr. Patricia Williams | `grace.bennett@winchesterglobal.com` |
+| James Brown | `james.brown@winchesterglobal.com` |
+| Sandra Clarke | `sandra.clarke@winchesterglobal.com` |
+| Michael Thompson | `michael.thompson@winchesterglobal.com` |
+| Karen Lewis | `karen.lewis@winchesterglobal.com` |
 
 ---
 
-*Document produced by NoDrftSystems AI Production Cell. All findings are based on verified build artifacts as of 2026-05-13. No external facts, regulatory certifications, or commercial claims are made. Compliance assessments require SCA + LCA review before any pilot use.*
+*Document produced by NoDrftSystems AI Production Cell. All findings are based on verified build artifacts as of 2026-05-13 (v1.1 update). No external facts, regulatory certifications, or commercial claims are made. Compliance assessments require SCA + LCA review before any pilot use.*
