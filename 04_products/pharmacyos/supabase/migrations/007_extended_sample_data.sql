@@ -244,7 +244,7 @@ INSERT INTO eod_closeouts (
   notes, created_at
 ) VALUES
   (
-    'g7000000-0000-0000-0000-000000000001',
+    'e7000000-0000-0000-0000-000000000001',
     CURRENT_DATE - 1, 'FULL_DAY', 'c3000000-0000-0000-0000-000000000005',
     20000.00,
     -- retail: TXN-001 cash 2070 + TXN-003 cash 1092.50 + TXN-005 cash 782 = 3944.50
@@ -258,11 +258,11 @@ INSERT INTO eod_closeouts (
     -24.50,
     5, 2, 1,
     'APPROVED', 'c3000000-0000-0000-0000-000000000005',
-    (CURRENT_TIMESTAMP - INTERVAL '20 hours')::text,
+    (CURRENT_TIMESTAMP - INTERVAL '20 hours'),
     'Minor cash variance — $24.50 short. Reviewed and approved.',
     CURRENT_TIMESTAMP - INTERVAL '1 day 30 minutes'
   )
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT DO NOTHING;
 
 -- ── Audit Log ─────────────────────────────────────────────────
 
@@ -270,7 +270,7 @@ INSERT INTO audit_log (actor_id, actor_name, action, table_name, record_id, deta
 VALUES
   (
     'c3000000-0000-0000-0000-000000000005', 'Grace Bennett',
-    'EOD_APPROVED', 'eod_closeouts', 'g7000000-0000-0000-0000-000000000001',
+    'EOD_APPROVED', 'eod_closeouts', 'e7000000-0000-0000-0000-000000000001',
     '{"shift":"FULL_DAY","date":"yesterday","variance":-24.50}'
   ),
   (

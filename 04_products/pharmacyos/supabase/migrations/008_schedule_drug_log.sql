@@ -27,4 +27,5 @@ CREATE INDEX IF NOT EXISTS idx_sdl_entry_date ON schedule_drug_log (entry_date D
 CREATE INDEX IF NOT EXISTS idx_sdl_drug       ON schedule_drug_log (drug_name);
 
 ALTER TABLE schedule_drug_log ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "dev_sdl_all" ON schedule_drug_log;
 CREATE POLICY "dev_sdl_all" ON schedule_drug_log FOR ALL USING (true) WITH CHECK (true);

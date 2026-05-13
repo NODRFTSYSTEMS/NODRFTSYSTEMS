@@ -89,8 +89,8 @@ DROP POLICY IF EXISTS "rls_audit_insert" ON public.audit_log;
 CREATE POLICY "rls_audit_insert" ON public.audit_log
   FOR INSERT TO authenticated
   WITH CHECK (
-    actor_id = auth.uid()   -- can only write records attributed to yourself
-    OR actor_id IS NULL     -- system/trigger writes with no explicit actor
+    actor_id = auth.uid()::text   -- can only write records attributed to yourself
+    OR actor_id IS NULL           -- system/trigger writes with no explicit actor
   );
 
 -- Note: trigger-based inserts (migration 009) use SECURITY DEFINER and bypass
@@ -261,7 +261,7 @@ BEGIN
       record_id,
       details
     ) VALUES (
-      auth.uid(),
+      auth.uid()::text,
       COALESCE(
         (SELECT full_name FROM public.staff_profiles WHERE id = auth.uid()),
         'system'
