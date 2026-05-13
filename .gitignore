@@ -74,3 +74,11 @@ __pycache__/
 # (or simply preserved as-is); master only tracks 99_archive/README.md
 99_archive/*/
 
+
+# Environment variables — never commit credentials
+.env
+.env.local
+.env.*.local
+04_products/**/.env
+04_products/**/.env.local
+04_products/**/.env.*.local
