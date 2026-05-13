@@ -1,6 +1,3 @@
 {
-  "buildCommand": "cd app && npm install --legacy-peer-deps && npm run build",
-  "outputDirectory": "app/dist",
-  "framework": "vite",
-  "installCommand": "echo skip-root-install"
+  "installCommand": "npm install --legacy-peer-deps"
 }
