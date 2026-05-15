@@ -43,8 +43,10 @@ CREATE POLICY "stock_movements_insert" ON stock_movements
   WITH CHECK (true);
 
 -- ── Updated decrement_product_stock ──────────────────────────────────────────
--- Backward-compatible: existing 2-param RPC calls from PosTerminal continue to
--- work. New params default to NULL. Attribution data is stored when provided.
+-- Drop the 2-param overload from migration 004 before replacing it with the
+-- 6-param version. The new defaults keep existing callers working.
+
+DROP FUNCTION IF EXISTS public.decrement_product_stock(uuid, integer);
 
 CREATE OR REPLACE FUNCTION public.decrement_product_stock(
   p_product_id    uuid,
@@ -81,5 +83,5 @@ BEGIN
 END;
 $$;
 
-GRANT EXECUTE ON FUNCTION public.decrement_product_stock TO authenticated;
-GRANT EXECUTE ON FUNCTION public.decrement_product_stock TO anon;
+GRANT EXECUTE ON FUNCTION public.decrement_product_stock(uuid, integer, uuid, text, uuid, text) TO authenticated;
+GRANT EXECUTE ON FUNCTION public.decrement_product_stock(uuid, integer, uuid, text, uuid, text) TO anon;
