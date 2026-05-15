@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useQuery } from '@tanstack/react-query'
 import { Link, useLocation, useNavigate } from 'react-router'
 import {
   House, Pill as PillIcon, ShoppingBag, Users, ChartBar, Robot,
@@ -7,7 +8,7 @@ import {
 } from '@phosphor-icons/react'
 import { supabase } from '../lib/supabase'
 import { useCurrentUser } from '../hooks/useCurrentUser'
-import { useAnyPermission } from '../hooks/usePermission'
+import { useAnyPermission, usePermission } from '../hooks/usePermission'
 import { usePharmacyName } from '../hooks/usePharmacyName'
 import { NAV_PERMISSIONS } from '../config/route-permissions'
 import { GlobalSearch } from './GlobalSearch'
@@ -24,9 +25,9 @@ interface NavItem {
 const NAV: NavItem[] = [
   { label: 'Dashboard',    href: '/dashboard',      icon: House },
   { label: 'Prescriptions', icon: PillIcon, children: [
-    { label: 'Queue',         href: '/prescriptions' },
-    { label: 'New Rx',        href: '/prescriptions/new' },
-    { label: 'Schedule Log',  href: '/prescriptions/schedule-log' },
+    { label: 'Queue',              href: '/prescriptions' },
+    { label: 'New Prescription',   href: '/prescriptions/new' },
+    { label: 'Schedule Log',       href: '/prescriptions/schedule-log' },
   ]},
   { label: 'Retail POS', icon: ShoppingBag, children: [
     { label: 'Terminal',      href: '/pos' },
@@ -48,7 +49,7 @@ const NAV: NavItem[] = [
   ]},
   { label: 'Staff',       icon: Clock, children: [
     { label: 'My Timecard',   href: '/staff/timecard' },
-    { label: 'Timecards',     href: '/staff/timecards' },
+    { label: 'Manage Timecards', href: '/staff/timecards' },
   ]},
   { label: 'Reports',     icon: ChartBar, children: [
     { label: 'Revenue',       href: '/reports/revenue' },
@@ -56,10 +57,11 @@ const NAV: NavItem[] = [
     { label: 'Inventory',     href: '/reports/inventory' },
     { label: 'Timecards',     href: '/reports/timecards' },
   ]},
-  { label: 'AI Queue',    href: '/ai/queue',  icon: Robot },
+  { label: 'Document Review', href: '/ai/queue', icon: Robot },
   { label: 'Admin',       icon: Gear, children: [
     { label: 'Users',         href: '/admin/users' },
     { label: 'Audit Log',     href: '/admin/audit' },
+    { label: 'Security',      href: '/admin/security' },
     { label: 'Settings',      href: '/admin/settings' },
   ]},
 ]
@@ -67,28 +69,58 @@ const NAV: NavItem[] = [
 // ── Role-filtered nav hook ─────────────────────────────────────────────────────
 // Dashboard always shows (session-only). All other groups are filtered by
 // NAV_PERMISSIONS: a group is visible only if the user has ≥1 required permission.
+// Child items within a group may also be filtered by individual permissions
+// (e.g. "Manage Timecards" requires timecard_manage; "My Timecard" is session-only).
 function useFilteredNav(): NavItem[] {
-  const showPrescriptions = useAnyPermission(NAV_PERMISSIONS['Prescriptions'])
-  const showPOS           = useAnyPermission(NAV_PERMISSIONS['Retail POS'])
-  const showPatients      = useAnyPermission(NAV_PERMISSIONS['Patients'])
-  const showInventory     = useAnyPermission(NAV_PERMISSIONS['Inventory'])
-  const showStaff         = true  // My Timecard is session-only; all staff see Staff group
-  const showReports       = useAnyPermission(NAV_PERMISSIONS['Reports'])
-  const showAiQueue       = useAnyPermission(NAV_PERMISSIONS['AI Queue'])
-  const showAdmin         = useAnyPermission(NAV_PERMISSIONS['Admin'])
+  const showPrescriptions   = useAnyPermission(NAV_PERMISSIONS['Prescriptions'])
+  const showPOS             = useAnyPermission(NAV_PERMISSIONS['Retail POS'])
+  const showPatients        = useAnyPermission(NAV_PERMISSIONS['Patients'])
+  const showInventory       = useAnyPermission(NAV_PERMISSIONS['Inventory'])
+  const showReports         = useAnyPermission(NAV_PERMISSIONS['Reports'])
+  const showDocumentReview  = useAnyPermission(NAV_PERMISSIONS['AI Queue'])
+  const showAdmin           = useAnyPermission(NAV_PERMISSIONS['Admin'])
+  const canManageTimecards  = usePermission('timecard_manage')
+  const canManageStaff      = usePermission('staff_manage')
+  const canManageSettings   = usePermission('settings_manage')
 
-  return NAV.filter(item => {
-    if (item.label === 'Dashboard')     return true
-    if (item.label === 'Prescriptions') return showPrescriptions
-    if (item.label === 'Retail POS')    return showPOS
-    if (item.label === 'Patients')      return showPatients
-    if (item.label === 'Inventory')     return showInventory
-    if (item.label === 'Staff')         return showStaff
-    if (item.label === 'Reports')       return showReports
-    if (item.label === 'AI Queue')      return showAiQueue
-    if (item.label === 'Admin')         return showAdmin
-    return false
-  })
+  return NAV
+    .filter(item => {
+      if (item.label === 'Dashboard')       return true
+      if (item.label === 'Prescriptions')   return showPrescriptions
+      if (item.label === 'Retail POS')      return showPOS
+      if (item.label === 'Patients')        return showPatients
+      if (item.label === 'Inventory')       return showInventory
+      if (item.label === 'Staff')           return true  // My Timecard is session-only; all staff see Staff group
+      if (item.label === 'Reports')         return showReports
+      if (item.label === 'Document Review') return showDocumentReview
+      if (item.label === 'Admin')           return showAdmin
+      return false
+    })
+    .map(item => {
+      // Filter children that require specific permissions
+      if (item.label === 'Staff' && item.children) {
+        return {
+          ...item,
+          children: item.children.filter(c =>
+            c.label !== 'Manage Timecards' || canManageTimecards
+          ),
+        }
+      }
+      // Admin child filtering: Users and Security require staff_manage;
+      // Settings requires settings_manage. Audit Log is visible to all
+      // admin-group members (audit_view is sufficient for group visibility).
+      if (item.label === 'Admin' && item.children) {
+        return {
+          ...item,
+          children: item.children.filter(c => {
+            if (c.label === 'Users' || c.label === 'Security') return canManageStaff
+            if (c.label === 'Settings') return canManageSettings
+            return true  // Audit Log — visible to all with any Admin permission
+          }),
+        }
+      }
+      return item
+    })
 }
 
 function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
@@ -280,6 +312,27 @@ export function Pill({ label, variant }: PillProps) {
   return <span className={`pill pill-${variant}`}>{label}</span>
 }
 
+// ── EmptyRow ───────────────────────────────────────────────────────────────────
+// Standard empty-state row for data tables. Prevents blank-table ambiguity.
+// Usage: <EmptyRow colSpan={6} message="No transactions found for this period." />
+interface EmptyRowProps {
+  colSpan: number
+  message?: string
+}
+
+export function EmptyRow({ colSpan, message = 'No records found.' }: EmptyRowProps) {
+  return (
+    <tr>
+      <td
+        colSpan={colSpan}
+        className="px-4 py-10 text-center text-sm text-gray-400"
+      >
+        {message}
+      </td>
+    </tr>
+  )
+}
+
 interface AppShellProps { children: React.ReactNode }
 
 export function AppShell({ children }: AppShellProps) {
@@ -350,7 +403,7 @@ export function AppShell({ children }: AppShellProps) {
 
 export function ClosableAlert({
   message, variant = 'yellow',
-}: { message: string; variant?: 'yellow' | 'red' | 'green' | 'blue' }) {
+}: { message: React.ReactNode; variant?: 'yellow' | 'red' | 'green' | 'blue' }) {
   const [open, setOpen] = useState(true)
   if (!open) return null
   const map = {
@@ -387,6 +440,24 @@ interface PrintHeaderProps {
 
 export function PrintHeader({ reportTitle, period, generatedBy }: PrintHeaderProps) {
   const pharmacyName = usePharmacyName()
+  const { data: pharmacyAddress } = useQuery({
+    queryKey: ['pharmacy-address'],
+    queryFn: async () => {
+      const { data } = await supabase.from('pharmacy_settings').select('value').eq('key', 'pharmacy_address').maybeSingle()
+      return data?.value ?? null
+    },
+    staleTime: 300_000,
+    retry: false,
+  })
+  const { data: oicRegNo } = useQuery({
+    queryKey: ['pharmacy-oic-reg-no'],
+    queryFn: async () => {
+      const { data } = await supabase.from('pharmacy_settings').select('value').eq('key', 'oic_reg_no').maybeSingle()
+      return data?.value ?? null
+    },
+    staleTime: 300_000,
+    retry: false,
+  })
   const now = new Date().toLocaleString('en-JM', { timeZone: 'America/Jamaica' })
 
   return (
@@ -394,8 +465,8 @@ export function PrintHeader({ reportTitle, period, generatedBy }: PrintHeaderPro
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="font-bold text-base text-gray-900">{pharmacyName}</p>
-          <p className="text-xs text-gray-600">Kingston, Jamaica</p>
-          <p className="text-xs text-gray-500 mt-0.5">OIC Registration: [See pharmacy_settings]</p>
+          {pharmacyAddress && <p className="text-xs text-gray-600">{pharmacyAddress}</p>}
+          {oicRegNo && <p className="text-xs text-gray-500 mt-0.5">OIC Registration: {oicRegNo}</p>}
         </div>
         <div className="text-right">
           <p className="font-semibold text-sm text-gray-800">{reportTitle}</p>

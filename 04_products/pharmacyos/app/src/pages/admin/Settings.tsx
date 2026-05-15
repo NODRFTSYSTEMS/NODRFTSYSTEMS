@@ -7,6 +7,7 @@ import {
   Receipt,
 } from '@phosphor-icons/react';
 import { supabase } from '../../lib/supabase';
+import { AUDIT_ACTIONS } from '../../constants/audit-actions';
 import { PageHeader } from '../../components/Shell';
 
 interface PharmacySetting {
@@ -109,6 +110,19 @@ export function Settings() {
         .from('pharmacy_settings')
         .upsert(upserts, { onConflict: 'key' });
       if (error) throw error;
+
+      // Audit trail — record which keys were updated
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        await supabase.from('audit_log').insert({
+          actor_id:   user.id,
+          actor_name: user.email ?? 'unknown',
+          action:     AUDIT_ACTIONS.SETTINGS_UPDATE,
+          table_name: 'pharmacy_settings',
+          record_id:  null,
+          details:    { updated_keys: SETTING_KEYS },
+        });
+      }
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['pharmacy_settings'] });
@@ -359,7 +373,7 @@ export function Settings() {
                   value={form.loyalty_rate}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleField('loyalty_rate', e.target.value)}
                 />
-                <span className="text-sm text-gray-500 shrink-0">pts / $1</span>
+                <span className="text-sm text-gray-500 shrink-0">pts / J$1</span>
               </div>
               <p className="mt-1 text-xs text-gray-400">Points earned per dollar spent</p>
             </div>
@@ -383,7 +397,7 @@ export function Settings() {
               rows={3}
               className="input w-full max-w-lg resize-none"
               style={{ height: 'auto', paddingTop: '8px', paddingBottom: '8px' }}
-              placeholder="e.g. Thank you for choosing Winchester Global Pharmacy. Your health is our priority."
+              placeholder="e.g. Thank you for your visit."
               value={form.receipt_footer}
               onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleField('receipt_footer', e.target.value)}
             />
