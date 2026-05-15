@@ -5,7 +5,7 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "home": "Home",
-    "capabilities": "Website Packages",
+    "capabilities": "Pricing",
     "engagements": "Selected Engagements",
     "insights": "Insights",
     "about": "About",
@@ -18,7 +18,7 @@
     "tagline": "AI-integrated digital systems. Every output reviewed. Every handoff built to hold.",
     "workLabel": "Work",
     "companyLabel": "Company",
-    "capabilities": "Website Packages",
+    "capabilities": "Pricing",
     "engagements": "Selected Engagements",
     "insights": "Insights",
     "about": "About",
@@ -31,7 +31,7 @@
   "common": {
     "skipToContent": "Skip to content",
     "startEngagement": "Start an Engagement",
-    "explorePackages": "Explore Packages"
+    "explorePackages": "Explore Pricing"
   },
   "meta": {
     "home": {
@@ -39,8 +39,8 @@
       "description": "AI-integrated digital systems. Scoped precisely. Delivered without drift."
     },
     "capabilities": {
-      "title": "Capabilities — NoDrftSystems",
-      "description": "Eight defined scopes from Website Audit to Ecosystem Build. Explicit boundaries on every package — what's in, what's out, what you own at the end."
+      "title": "Pricing — NoDrftSystems",
+      "description": "Operating systems, websites, brand identity, and content for businesses — clear scope, defined deliverables, starting prices shown."
     },
     "engagements": {
       "title": "Selected Engagements — NoDrftSystems",
@@ -52,7 +52,7 @@
     },
     "about": {
       "title": "About — NoDrftSystems",
-      "description": "NoDrftSystems is a precision digital studio building AI-integrated, human-governed digital systems and platforms — from conversion websites to full-stack operating systems — under a Zero Drift standard."
+      "description": "NoDrftSystems builds and licenses AI-integrated business operating systems — and the digital infrastructure that supports them. Websites, brand, and content for organizations that need delivery discipline and systems that stay correct after handoff."
     },
     "start": {
       "title": "Start an Engagement — NoDrftSystems",
@@ -81,20 +81,20 @@
   },
   "home": {
     "markerLabel": "ZERO DRIFT · AI-INTEGRATED · HUMAN-GOVERNED",
-    "headline1": "Digital systems built to perform.",
+    "headline1": "We build operating systems for businesses.",
     "headline2": "Governed to stay correct.",
-    "lead": "AI-integrated digital systems. Scoped precisely. Delivered without drift.",
+    "lead": "Business operating systems. Websites. Brand. Content. AI-integrated production, human-governed delivery.",
     "whyLabel": "Why this matters",
     "whyHeadline": "Your digital presence is evaluated before you are.",
     "whyBody": "This is especially true for firms that don't rely on marketing—firms that grow through relationships, referrals, and reputation. The website isn't the sales strategy. But when it contradicts the firm's actual quality, it costs deals.",
     "whyBody2": "The same principle applies to operating systems, platforms, and applications. When the system you depend on runs on infrastructure you don't own, architecture you can't modify, or code that requires a former contractor to maintain — it costs you differently. But the cost is just as real.",
     "strengthsLabel": "Why NoDrftSystems",
-    "strength1Title": "AI-Integrated Production",
-    "strength1Body": "A multi-agent architecture produces, reviews, and quality-gates every deliverable. Human authority authorizes every release. The result is agency-quality output without the agency overhead — and a paper trail at every stage.",
-    "strength2Title": "Zero Drift by Design",
-    "strength2Body": "Scope is locked before build begins. Every addition requires a formal change order. No scope creep, no invoice surprises, no ambiguity about what was promised. The name exists for a reason.",
+    "strength1Title": "Operating Systems for Business",
+    "strength1Body": "Prebuilt, deployable OS platforms for regulated and operationally complex industries — POS, inventory, staff management, compliance, and more — deployed faster than a custom build, built to run long after the build team is gone.",
+    "strength2Title": "AI-Integrated Production",
+    "strength2Body": "AI tools accelerate every stage of production. Human authority governs every release. The result is consistent, accountable output across simultaneous engagements — without proportional overhead.",
     "strength3Title": "Full-Stack Capability",
-    "strength3Body": "From a single-page conversion site to a multi-surface platform with authentication, data integration, and AI features — the same delivery standard applies at every tier.",
+    "strength3Body": "From a logo to a website to a business operating system — the same delivery standard applies at every scope. One relationship, one accountability structure, one handoff that holds.",
     "strength4Title": "Bilingual Native",
     "strength4Body": "English and Spanish are not optional add-ons. Bilingual delivery is built into the production architecture — transcreation, parity review, and cultural accuracy are standard, not premium.",
     "strength5Title": "Selective by Principle",
@@ -115,6 +115,6 @@
     "ctaHeadline": "Tell us what you're building.",
     "ctaBody": "We'll tell you whether we can help.",
     "ctaButton": "Start an Engagement",
-    "ctaSecondary": "Explore Packages"
+    "ctaSecondary": "Explore Pricing"
   }
 }
