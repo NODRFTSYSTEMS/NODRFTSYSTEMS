@@ -32,7 +32,28 @@ This ledger records every piece of verification evidence produced during the Pha
 | — | Gate 4 | Schedule drug log format approval | PENDING | Client pharmacist | Required before logging UI is built |
 | — | Gate 5 | QAS independent review | PENDING | QAS (Imani) | Scope, evidence, drift check |
 | — | Gate 6 | ARE technical review | PENDING | ARE | Required before production deployment |
-| — | Gate 6 | Founder authorization | PENDING | Founder | Required before any client access or production deployment |
+| 2026-05-15 | Gate 5 | QAS independent review | COMPLETE — 6 defects D-01–D-06, all remediated | QAS (Imani) | D-03 and D-04 CRITICAL security findings; all fixed same session |
+| 2026-05-15 | Gate 6 | ARE technical review | GRANTED | ARE | All 6 defects verified; D-07 MEDIUM logged for next sprint; npm audit dev-only CVEs noted |
+| 2026-05-15 | Gate 6 | Founder authorization | GRANTED — Decision Log 2026-05-15-001 | Founder | Staging deploy authorized; production is separate gate |
+| 2026-05-15 | Deploy | Migrations 022 + 023 applied | COMPLETE | Founder (supabase db push) | Applied to project aeidooydivhnvwskypov |
+| 2026-05-15 | Deploy | GitHub Pages staging deploy | COMPLETE | Founder | Sprint build pushed to gh-pages branch — NODRFTSYSTEMS/pharmacyos |
+| 2026-05-15 | Deploy | main branch merge | COMPLETE | Founder | claude/strange-varahamihira-f9d312 merged + pushed to origin/main |
+
+---
+
+## Tracked Defects — Next Sprint
+
+| ID | Severity | File | Description | Owner |
+|----|----------|------|-------------|-------|
+| D-07 | MEDIUM | `app/src/pages/admin/Users.tsx` | AUDITOR role absent from Add/Edit Staff drawer `<select>`. Role exists in TypeScript types and permissions matrix but cannot be assigned via UI — requires direct database entry. Add `<option value="AUDITOR">Auditor</option>` to the role selector. | QAS (Imani) / next sprint |
+
+---
+
+## Dependency Maintenance Backlog (TMA — Tobias)
+
+| Date Logged | Severity | Advisory | Affected Packages | Fix | Status |
+|-------------|----------|----------|-------------------|-----|--------|
+| 2026-05-15 | Moderate (×6) | GHSA-67mh-4wv8-2f99 | esbuild, vite, vitest, vite-node | Upgrade vitest to 4.x (breaking change) | OPEN — dev toolchain only, not in production build artifact; address at next maintenance window |
 
 ---
 
