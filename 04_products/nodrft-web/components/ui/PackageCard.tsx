@@ -18,18 +18,15 @@ export function PackageCard({ pkg, locale, startHref, alt = false }: PackageCard
       style={{ scrollMarginTop: "var(--nav-height)" }}
     >
       <div className="nd-wrap">
-        <span className={`nd-pkg-tier ${pkg.tier}`}>
-          {pick(pkg.tierLabel, locale)}
-        </span>
-
         <div className="nd-pkg-header">
           <div>
             <h2 id={`${pkg.id}-heading`} className="nd-h2" style={{ marginBottom: "4px" }}>
               {pick(pkg.name, locale)}
             </h2>
+            <span className="nd-pkg-price">{pick(pkg.price, locale)}</span>
           </div>
           <a href={startHref} className="nd-price">
-            {locale === "en" ? "Get pricing →" : "Consultar precio →"}
+            {locale === "en" ? "Start an Engagement →" : "Iniciar un Proyecto →"}
           </a>
         </div>
 

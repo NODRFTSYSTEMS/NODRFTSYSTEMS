@@ -1257,8 +1257,22 @@ textarea:focus:not(:focus-visible) {
   margin-bottom: var(--space-3);
 }
 .nd-price:hover { color: var(--accent-hover); }
+.nd-pkg-price {
+  font-family: var(--nd-font-mono, monospace);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  display: inline-block;
+}
 .nd-pkg-subtext { color: var(--text-md); font-style: italic; }
 .nd-pkg-card { display: flex; flex-direction: column; justify-content: space-between; }
+.nd-advisory-quote {
+  margin: 0;
+  padding: var(--space-5) var(--space-6);
+  border-left: 3px solid var(--accent);
+  background: var(--bg-elevated);
+}
 
 .nd-inc, .nd-exc {
   font-size: 13px;

@@ -5,7 +5,7 @@
     "openMenu": "Abrir menú",
     "closeMenu": "Cerrar menú",
     "home": "Inicio",
-    "capabilities": "Paquetes Web",
+    "capabilities": "Precios",
     "engagements": "Proyectos Seleccionados",
     "insights": "Perspectivas",
     "about": "Nosotros",
@@ -18,7 +18,7 @@
     "tagline": "Sistemas digitales con IA integrada. Cada resultado revisado. Cada traspaso construido para durar.",
     "workLabel": "Trabajo",
     "companyLabel": "Empresa",
-    "capabilities": "Paquetes Web",
+    "capabilities": "Precios",
     "engagements": "Proyectos Seleccionados",
     "insights": "Perspectivas",
     "about": "Nosotros",
@@ -31,7 +31,7 @@
   "common": {
     "skipToContent": "Saltar al contenido",
     "startEngagement": "Iniciar un Proyecto",
-    "explorePackages": "Explorar Paquetes"
+    "explorePackages": "Explorar Precios"
   },
   "meta": {
     "home": {
@@ -39,8 +39,8 @@
       "description": "Sistemas digitales con IA integrada. Definidos con precisión. Entregados sin desviación."
     },
     "capabilities": {
-      "title": "Capacidades — NoDrftSystems",
-      "description": "Ocho alcances definidos desde Auditoría Web hasta Construcción de Ecosistema. Límites explícitos en cada paquete — qué incluye, qué no, y qué usted posee al final."
+      "title": "Precios — NoDrftSystems",
+      "description": "Sistemas operativos, sitios web, identidad de marca y contenido para negocios — alcance claro, entregables definidos, precios iniciales visibles."
     },
     "engagements": {
       "title": "Proyectos Seleccionados — NoDrftSystems",
@@ -52,7 +52,7 @@
     },
     "about": {
       "title": "Nosotros — NoDrftSystems",
-      "description": "NoDrftSystems es un estudio digital de precisión que construye sistemas digitales con IA integrada y gobernanza humana — desde sitios de conversión hasta sistemas operativos de pila completa — bajo un estándar de Cero Desviación."
+      "description": "NoDrftSystems construye y licencia sistemas operativos empresariales con IA integrada — y la infraestructura digital que los respalda. Sitios web, marca y contenido para organizaciones que necesitan disciplina de entrega y sistemas que se mantengan correctos después del traspaso."
     },
     "start": {
       "title": "Iniciar Proyecto — NoDrftSystems",
@@ -81,20 +81,20 @@
   },
   "home": {
     "markerLabel": "CERO DESVIACIÓN · IA INTEGRADA · GOBERNADO POR HUMANOS",
-    "headline1": "Sistemas digitales construidos para rendir.",
+    "headline1": "Construimos sistemas operativos para negocios.",
     "headline2": "Gobernados para mantenerse correctos.",
-    "lead": "Sistemas digitales con IA integrada. Definidos con precisión. Entregados sin desviación.",
+    "lead": "Sistemas operativos para negocios. Sitios web. Marca. Contenido. Producción con IA integrada, entrega gobernada por humanos.",
     "whyLabel": "Por qué esto importa",
     "whyHeadline": "Su presencia digital se evalúa antes que usted.",
     "whyBody": "Esto es especialmente cierto para las empresas que no dependen del marketing, las que crecen a través de relaciones y referencias. El sitio web no es la estrategia de ventas. Pero cuando contradice la calidad real de la empresa, cuesta acuerdos.",
     "whyBody2": "El mismo principio aplica a los sistemas operativos, plataformas y aplicaciones. Cuando el sistema del que depende funciona sobre infraestructura que no controla, arquitectura que no puede modificar, o código que requiere a un contratista anterior para mantener — le cuesta de manera diferente. Pero el costo es igual de real.",
     "strengthsLabel": "Por qué NoDrftSystems",
-    "strength1Title": "Producción con IA Integrada",
-    "strength1Body": "Una arquitectura multi-agente produce, revisa y controla la calidad de cada entregable. La autoridad humana autoriza cada lanzamiento. El resultado es una producción de calidad de agencia sin los costos de agencia — con un registro documental en cada etapa.",
-    "strength2Title": "Cero Desviación por Diseño",
-    "strength2Body": "El alcance se cierra antes de comenzar la construcción. Cada adición requiere una orden de cambio formal. Sin expansión de alcance, sin sorpresas en facturas, sin ambigüedad sobre lo prometido. El nombre existe por una razón.",
+    "strength1Title": "Sistemas Operativos para Negocios",
+    "strength1Body": "Plataformas OS preintegradas y desplegables para industrias reguladas y operacionalmente complejas — POS, inventario, gestión de personal, cumplimiento normativo y más — desplegadas más rápido que una construcción personalizada, diseñadas para funcionar mucho después de que el equipo de construcción haya concluido.",
+    "strength2Title": "Producción con IA Integrada",
+    "strength2Body": "Las herramientas de IA aceleran cada etapa de la producción. La autoridad humana gobierna cada lanzamiento. El resultado es una producción consistente y responsable en proyectos simultáneos — sin sobrecarga proporcional.",
     "strength3Title": "Capacidad de Pila Completa",
-    "strength3Body": "Desde un sitio de conversión de una sola página hasta una plataforma multi-superficie con autenticación, integración de datos y funciones de IA — el mismo estándar de entrega aplica en cada nivel.",
+    "strength3Body": "Desde un logotipo hasta un sitio web y un sistema operativo empresarial — el mismo estándar de entrega aplica en cada alcance. Una relación, una estructura de responsabilidad, un traspaso que perdura.",
     "strength4Title": "Bilingüe Nativo",
     "strength4Body": "El inglés y el español no son complementos opcionales. La entrega bilingüe está integrada en la arquitectura de producción — transcreación, revisión de paridad y precisión cultural son estándar, no premium.",
     "strength5Title": "Selectivos por Principio",
@@ -115,6 +115,6 @@
     "ctaHeadline": "Cuéntenos qué está construyendo.",
     "ctaBody": "Le diremos si podemos ayudar.",
     "ctaButton": "Iniciar un Proyecto",
-    "ctaSecondary": "Explorar Paquetes"
+    "ctaSecondary": "Explorar Precios"
   }
 }

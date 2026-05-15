@@ -101,6 +101,7 @@ const FIT = {
       "Teams with a clear owner — one person who can say yes, hold the scope, and move without a committee",
       "Founders and operators who have been burned by a previous build — and need a delivery model with real accountability, not a new round of promises",
       "Companies building platforms and tools that need to work five years from now, not just at launch",
+      "Organizations in regulated industries — pharmacy, healthcare, financial services, and retail — that need a production-ready operating platform without building one from scratch.",
     ],
     note: "Not every project is accepted. Fit matters to the quality of the outcome. We evaluate scope clarity, timeline, decision structure, and budget reality before proposing. When it’s a strong fit, the engagement gets full commitment.",
   },
@@ -111,6 +112,7 @@ const FIT = {
       "Equipos con un responsable claro — una persona que puede decir sí, mantener el alcance y avanzar sin comités",
       "Fundadores y operadores que han sufrido las consecuencias de una construcción anterior — y necesitan un modelo de entrega con responsabilidad real, no una nueva ronda de promesas",
       "Empresas que construyen plataformas y herramientas que necesitan funcionar en cinco años, no solo al lanzamiento",
+      "Organizaciones en industrias reguladas — farmacia, salud, servicios financieros y comercio minorista — que necesitan una plataforma operativa lista para producción sin tener que construirla desde cero.",
     ],
     note: "No todos los proyectos son aceptados. El ajuste importa para la calidad del resultado. Evaluamos la claridad del alcance, el cronograma, la estructura de decisiones y la realidad del presupuesto antes de proponer. Cuando es un ajuste sólido, el compromiso es total.",
   },
@@ -137,16 +139,16 @@ const PROCESS = {
 
 const ENTRY_PKGS = {
   en: [
-    { name: "Discovery Sprint", body: "Defines scope and execution path before any build begins.", sub: "The right first step when requirements aren’t fully defined.", timeline: "1 week" },
-    { name: "Conversion Landing Page Sprint", body: "One focused page built to convert one offer, audience, or campaign objective.", sub: "One offer, one page, clear conversion path.", timeline: "10 business days" },
-    { name: "Static Business Site", body: "A multi-page brochure-style site for stable content, clear positioning, and low maintenance.", sub: "No CMS overhead and no editorial workflow by default.", timeline: "10–12 business days" },
-    { name: "Business Launch Site", body: "A complete CMS-backed business website structured to stay correct after handoff.", sub: "For teams that need client-editable content, not just a locked brochure build.", timeline: "15 business days" },
+    { name: "Logo & Brand Identity", body: "Logo, color, typography, and brand standards — the foundation every site and platform is built on.", sub: "From a single logo to a full brand identity system.", timeline: "From $400" },
+    { name: "Business Website", body: "Single conversion page to full authority site — scoped before build begins.", sub: "From a landing page to a 15-page authority build. Scope drives price.", timeline: "From $750" },
+    { name: "Content & Social", body: "Blog, email, and social content produced under editorial review.", sub: "Monthly retainers. Volume and platform mix confirmed at onboarding.", timeline: "From $750/month" },
+    { name: "Business Operating Systems", body: "POS, timecards, inventory, scheduling, and full OS platforms — built for how your business actually runs.", sub: "Deployable systems for regulated and operationally complex businesses. Scoped on inquiry.", timeline: "Inquiry" },
   ],
   es: [
-    { name: "Discovery Sprint", body: "Define el alcance y el camino de ejecución antes de construir.", sub: "El primer paso correcto cuando los requisitos aún no están definidos.", timeline: "1 semana" },
-    { name: "Sprint de Landing Page de Conversión", body: "Una página enfocada en convertir una oferta, audiencia u objetivo de campaña.", sub: "Una oferta, una página, camino de conversión claro.", timeline: "10 días hábiles" },
-    { name: "Sitio Empresarial Estático", body: "Un sitio multipágina tipo brochure para contenido estable, posicionamiento claro y bajo mantenimiento.", sub: "Sin sobrecarga de CMS y sin flujo editorial por defecto.", timeline: "10–12 días hábiles" },
-    { name: "Sitio de Lanzamiento Empresarial", body: "Un sitio empresarial con CMS estructurado para mantenerse correcto después del traspaso.", sub: "Para equipos que necesitan contenido editable, no solo un brochure bloqueado.", timeline: "15 días hábiles" },
+    { name: "Logotipo e Identidad de Marca", body: "Logotipo, color, tipografía y estándares de marca — la base sobre la que se construye todo sitio y plataforma.", sub: "Desde un solo logotipo hasta un sistema de identidad de marca completo.", timeline: "Desde $400" },
+    { name: "Sitio Web Empresarial", body: "Desde una página de conversión hasta un sitio de autoridad completo — definido antes de construir.", sub: "Desde una landing page hasta un sitio de 15 páginas. El alcance determina el precio.", timeline: "Desde $750" },
+    { name: "Contenido y Redes Sociales", body: "Blog, email y contenido para redes sociales producido bajo revisión editorial.", sub: "Retainers mensuales. Volumen y plataformas confirmados al inicio.", timeline: "Desde $750/mes" },
+    { name: "Sistemas Operativos para Negocios", body: "POS, tarjetas de tiempo, inventario, citas y plataformas OS completas — construidos para como funciona su negocio.", sub: "Sistemas desplegables para negocios regulados y operacionalmente complejos. Precio por consulta.", timeline: "Consulta" },
   ],
 };
 
@@ -155,7 +157,7 @@ const WORK_ON_RECORD = {
     label: "Work on record",
     items: [
       "Restructured the digital presence of a 30-person professional services firm — from a static site to a structured authority build with bilingual delivery and self-qualifying intake flow.",
-      "Delivered a gated PropTech application with authentication, data integration, and admin controls — scoped and executed under strict access requirements.",
+      "Deployed a regulated business operating system for an independent pharmacy — prescription workflow, dispensing, compliance layer, and AI-assisted processing. First licensed deployment of a proprietary NoDrftSystems OS product.",
     ],
     disclaimer: "Client names not disclosed. Outcomes framed qualitatively.",
     link: "View all selected engagements →",
@@ -164,7 +166,7 @@ const WORK_ON_RECORD = {
     label: "Trabajo realizado",
     items: [
       "Reestructuración de la presencia digital de una firma de servicios profesionales de 30 personas — de un sitio estático a una plataforma de autoridad con entrega bilingüe y flujo de intake auto-calificante.",
-      "Entrega de una aplicación PropTech con autenticación, integración de datos y controles de administración — definida y ejecutada bajo requisitos estrictos de acceso.",
+      "Despliegue de un sistema operativo empresarial regulado para una farmacia independiente — flujo de prescripciones, dispensación, capa de cumplimiento normativo y procesamiento asistido por IA. Primer despliegue licenciado de un producto OS propietario de NoDrftSystems.",
     ],
     disclaimer: "Nombres de clientes no revelados. Resultados enmarcados cualitativamente.",
     link: "Ver todos los proyectos seleccionados →",
@@ -288,15 +290,15 @@ export default async function HomePage({ params }: Props) {
         <div className="nd-wrap">
           <FadeUp>
             <span className="nd-label nd-label-block">
-              {loc === "en" ? "Entry packages" : "Paquetes de entrada"}
+              {loc === "en" ? "Services" : "Servicios"}
             </span>
             <h2 id="packages-heading" className="nd-h2 nd-h2-mb4">
-              {loc === "en" ? "Start with the right scope." : "Comience con el alcance correcto."}
+              {loc === "en" ? "Operating systems. Websites. Brand. Content." : "Sistemas operativos. Sitios web. Marca. Contenido."}
             </h2>
             <p className="nd-p nd-mb8">
               {loc === "en"
-                ? "Most projects fit a defined package. If scope is unclear, start with a Discovery Sprint so the build is defined before you commit to building it."
-                : "La mayoría de los proyectos encaja en un paquete definido. Si el alcance no está claro, comience con un Discovery Sprint."}
+                ? "Four service areas — all produced under the same delivery standard. Scope is defined before work begins. Handoff is structured so you own the result."
+                : "Cuatro áreas de servicio — todas producidas bajo el mismo estándar de entrega. El alcance se define antes de comenzar. El traspaso está estructurado para que usted sea propietario del resultado."}
             </p>
           </FadeUp>
           <div className="nd-grid-auto nd-pkg-grid">
@@ -329,8 +331,8 @@ export default async function HomePage({ params }: Props) {
                 {loc === "en"
                   ? " or visit the "
                   : " o visite la página de "}
-                <Link href={`/${locale}/capabilities`}>{loc === "en" ? "Website Packages" : "Paquetes Web"}</Link>
-                {loc === "en" ? " page for the full decision framework." : " para el marco de decisión completo."}
+                <Link href={`/${locale}/capabilities`}>{loc === "en" ? "Pricing" : "Precios"}</Link>
+                {loc === "en" ? " page for the full service catalog and starting prices." : " para el catálogo completo de servicios y precios iniciales."}
               </p>
             </div>
           </FadeUp>
