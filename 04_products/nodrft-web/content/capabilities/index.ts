@@ -41,7 +41,7 @@ export const packages: PackageRecord[] = [
       en: "The right first step when the core question is go or no-go.",
       es: "El primer paso correcto cuando la pregunta central es avanzar o no.",
     },
-    price: { en: "$750", es: "$750" },
+    price: { en: "Starting at $750", es: "Desde $750" },
     includes: [
       { en: "Business model clarification", es: "Clarificación del modelo de negocio" },
       { en: "Offer structure and positioning review", es: "Revisión de estructura y posicionamiento de la oferta" },
@@ -73,7 +73,7 @@ export const packages: PackageRecord[] = [
       en: "Required prerequisite for most Platform Starter and above engagements.",
       es: "Prerrequisito requerido para la mayoría de proyectos de Plataforma o superior.",
     },
-    price: { en: "$1,500", es: "$1,500" },
+    price: { en: "Starting at $1,500", es: "Desde $1,500" },
     includes: [
       { en: "Full 17-section FACT-STRICT evaluation", es: "Evaluación completa de 17 secciones FACT-STRICT" },
       { en: "Market, financial, risk, and competitive analysis", es: "Análisis de mercado, financiero, de riesgos y competitivo" },
@@ -99,7 +99,7 @@ export const packages: PackageRecord[] = [
       en: "Includes full Standard Sprint evaluation plus scenario modeling.",
       es: "Incluye la evaluación completa del Sprint Estándar más modelado de escenarios.",
     },
-    price: { en: "$2,500", es: "$2,500" },
+    price: { en: "Starting at $2,500", es: "Desde $2,500" },
     includes: [
       { en: "Full Standard Sprint evaluation", es: "Evaluación completa del Sprint Estándar" },
       { en: "Scenario modeling — multiple revenue paths, alternative market segments", es: "Modelado de escenarios — múltiples rutas de ingresos, segmentos alternativos de mercado" },
@@ -141,6 +141,31 @@ export const packages: PackageRecord[] = [
   // ─── Brand & Identity ────────────────────────────────────────────────────────
 
   {
+    id: "brand-collateral",
+    category: "brand",
+    name: { en: "Marketing Collateral", es: "Colateral de Marketing" },
+    summary: {
+      en: "Business cards, letterhead, email signatures, or social profile kits — priced per item. Brand guidelines must be on file.",
+      es: "Tarjetas de presentación, membrete, firmas de email o kits de perfil para redes sociales — precio por ítem. Las guías de marca deben estar en archivo.",
+    },
+    subtext: {
+      en: "Add multiple items to a single engagement for a combined scope.",
+      es: "Agregue varios ítems a un solo proyecto para un alcance combinado.",
+    },
+    price: { en: "Starting at $200/item", es: "Desde $200 por ítem" },
+    includes: [
+      { en: "Business card — print-ready files", es: "Tarjeta de presentación — archivos listos para imprimir" },
+      { en: "Letterhead template", es: "Plantilla de membrete" },
+      { en: "Email signature (HTML + image)", es: "Firma de email (HTML + imagen)" },
+      { en: "Social profile kit (cover + profile images)", es: "Kit de perfil para redes sociales (portada + imágenes de perfil)" },
+    ],
+    excludes: [
+      { en: "Copywriting for collateral items", es: "Redacción para ítems de colateral" },
+    ],
+    timeline: { en: "2–3 business days per item", es: "2–3 días hábiles por ítem" },
+  },
+
+  {
     id: "brand-logo-standard",
     category: "brand",
     name: { en: "Logo Design — Standard", es: "Diseño de Logotipo — Estándar" },
@@ -152,7 +177,7 @@ export const packages: PackageRecord[] = [
       en: "Upgrade to Logo Premium for 3 concepts and social variants.",
       es: "Mejore al Logotipo Premium para 3 conceptos y variantes para redes sociales.",
     },
-    price: { en: "$400", es: "$400" },
+    price: { en: "Starting at $400", es: "Desde $400" },
     includes: [
       { en: "1 concept direction", es: "1 dirección de concepto" },
       { en: "2 revision rounds", es: "2 rondas de revisión" },
@@ -163,6 +188,32 @@ export const packages: PackageRecord[] = [
       { en: "Color palette development", es: "Desarrollo de paleta de colores" },
       { en: "Typography selection", es: "Selección tipográfica" },
       { en: "Social variants (profile, cover, favicon)", es: "Variantes para redes sociales (perfil, portada, favicon)" },
+    ],
+    timeline: { en: "2–3 business days", es: "2–3 días hábiles" },
+  },
+
+  {
+    id: "brand-guidelines",
+    category: "brand",
+    name: { en: "Brand Guidelines Document", es: "Documento de Guías de Marca" },
+    summary: {
+      en: "A standalone guidelines document for an existing logo — color codes, typography usage, clearspace rules, and do/do-not examples.",
+      es: "Un documento de guías independiente para un logotipo existente — códigos de color, uso tipográfico, reglas de espacio libre y ejemplos de uso correcto e incorrecto.",
+    },
+    subtext: {
+      en: "Requires finalized logo files on file before scope begins.",
+      es: "Requiere archivos de logotipo finalizados antes de iniciar el alcance.",
+    },
+    price: { en: "Starting at $800", es: "Desde $800" },
+    includes: [
+      { en: "Color codes (hex, RGB, CMYK)", es: "Códigos de color (hex, RGB, CMYK)" },
+      { en: "Typography usage rules", es: "Reglas de uso tipográfico" },
+      { en: "Logo clearspace and size minimums", es: "Espacio libre del logotipo y tamaños mínimos" },
+      { en: "Do/do-not usage examples", es: "Ejemplos de uso correcto e incorrecto" },
+    ],
+    excludes: [
+      { en: "Logo redesign or revision", es: "Rediseño o revisión de logotipo" },
+      { en: "Stationery templates", es: "Plantillas de papelería" },
     ],
     timeline: { en: "2–3 business days", es: "2–3 días hábiles" },
   },
@@ -179,7 +230,7 @@ export const packages: PackageRecord[] = [
       en: "Included in the Brand Identity System and Identity Starter bundle.",
       es: "Incluido en el Sistema de Identidad de Marca y el paquete Identity Starter.",
     },
-    price: { en: "$1,200", es: "$1,200" },
+    price: { en: "Starting at $1,200", es: "Desde $1,200" },
     includes: [
       { en: "3 concept directions", es: "3 direcciones de concepto" },
       { en: "3 revision rounds", es: "3 rondas de revisión" },
@@ -191,6 +242,30 @@ export const packages: PackageRecord[] = [
       { en: "Stationery templates", es: "Plantillas de papelería" },
     ],
     timeline: { en: "3–5 business days", es: "3–5 días hábiles" },
+  },
+
+  {
+    id: "brand-refresh",
+    category: "brand",
+    name: { en: "Brand Refresh", es: "Actualización de Marca" },
+    summary: {
+      en: "An existing brand updated — not redesigned from scratch. Updated logo, refreshed color and typography, and revised guidelines document.",
+      es: "Una marca existente actualizada — no rediseñada desde cero. Logotipo actualizado, color y tipografía renovados, y documento de guías revisado.",
+    },
+    subtext: {
+      en: "If the direction changes fundamentally, scope routes to Brand Identity System.",
+      es: "Si la dirección cambia fundamentalmente, el alcance se redirige al Sistema de Identidad de Marca.",
+    },
+    price: { en: "Starting at $1,500", es: "Desde $1,500" },
+    includes: [
+      { en: "Updated logo file (refined, not redesigned)", es: "Archivo de logotipo actualizado (refinado, no rediseñado)" },
+      { en: "Refreshed color palette and typography", es: "Paleta de colores y tipografía renovadas" },
+      { en: "Updated brand guidelines document", es: "Documento de guías de marca actualizado" },
+    ],
+    excludes: [
+      { en: "Full brand redesign from scratch", es: "Rediseño completo de marca desde cero" },
+    ],
+    timeline: { en: "5–7 business days", es: "5–7 días hábiles" },
   },
 
   {
@@ -225,81 +300,6 @@ export const packages: PackageRecord[] = [
     },
   },
 
-  {
-    id: "brand-refresh",
-    category: "brand",
-    name: { en: "Brand Refresh", es: "Actualización de Marca" },
-    summary: {
-      en: "An existing brand updated — not redesigned from scratch. Updated logo, refreshed color and typography, and revised guidelines document.",
-      es: "Una marca existente actualizada — no rediseñada desde cero. Logotipo actualizado, color y tipografía renovados, y documento de guías revisado.",
-    },
-    subtext: {
-      en: "If the direction changes fundamentally, scope routes to Brand Identity System.",
-      es: "Si la dirección cambia fundamentalmente, el alcance se redirige al Sistema de Identidad de Marca.",
-    },
-    price: { en: "Starting at $1,500", es: "Desde $1,500" },
-    includes: [
-      { en: "Updated logo file (refined, not redesigned)", es: "Archivo de logotipo actualizado (refinado, no rediseñado)" },
-      { en: "Refreshed color palette and typography", es: "Paleta de colores y tipografía renovadas" },
-      { en: "Updated brand guidelines document", es: "Documento de guías de marca actualizado" },
-    ],
-    excludes: [
-      { en: "Full brand redesign from scratch", es: "Rediseño completo de marca desde cero" },
-    ],
-    timeline: { en: "5–7 business days", es: "5–7 días hábiles" },
-  },
-
-  {
-    id: "brand-guidelines",
-    category: "brand",
-    name: { en: "Brand Guidelines Document", es: "Documento de Guías de Marca" },
-    summary: {
-      en: "A standalone guidelines document for an existing logo — color codes, typography usage, clearspace rules, and do/do-not examples.",
-      es: "Un documento de guías independiente para un logotipo existente — códigos de color, uso tipográfico, reglas de espacio libre y ejemplos de uso correcto e incorrecto.",
-    },
-    subtext: {
-      en: "Requires finalized logo files on file before scope begins.",
-      es: "Requiere archivos de logotipo finalizados antes de iniciar el alcance.",
-    },
-    price: { en: "$800", es: "$800" },
-    includes: [
-      { en: "Color codes (hex, RGB, CMYK)", es: "Códigos de color (hex, RGB, CMYK)" },
-      { en: "Typography usage rules", es: "Reglas de uso tipográfico" },
-      { en: "Logo clearspace and size minimums", es: "Espacio libre del logotipo y tamaños mínimos" },
-      { en: "Do/do-not usage examples", es: "Ejemplos de uso correcto e incorrecto" },
-    ],
-    excludes: [
-      { en: "Logo redesign or revision", es: "Rediseño o revisión de logotipo" },
-      { en: "Stationery templates", es: "Plantillas de papelería" },
-    ],
-    timeline: { en: "2–3 business days", es: "2–3 días hábiles" },
-  },
-
-  {
-    id: "brand-collateral",
-    category: "brand",
-    name: { en: "Marketing Collateral", es: "Colateral de Marketing" },
-    summary: {
-      en: "Business cards, letterhead, email signatures, or social profile kits — priced per item. Brand guidelines must be on file.",
-      es: "Tarjetas de presentación, membrete, firmas de email o kits de perfil para redes sociales — precio por ítem. Las guías de marca deben estar en archivo.",
-    },
-    subtext: {
-      en: "Add multiple items to a single engagement for a combined scope.",
-      es: "Agregue varios ítems a un solo proyecto para un alcance combinado.",
-    },
-    price: { en: "Starting at $200/item", es: "Desde $200 por ítem" },
-    includes: [
-      { en: "Business card — print-ready files", es: "Tarjeta de presentación — archivos listos para imprimir" },
-      { en: "Letterhead template", es: "Plantilla de membrete" },
-      { en: "Email signature (HTML + image)", es: "Firma de email (HTML + imagen)" },
-      { en: "Social profile kit (cover + profile images)", es: "Kit de perfil para redes sociales (portada + imágenes de perfil)" },
-    ],
-    excludes: [
-      { en: "Copywriting for collateral items", es: "Redacción para ítems de colateral" },
-    ],
-    timeline: { en: "2–3 business days per item", es: "2–3 días hábiles por ítem" },
-  },
-
   // ─── Websites ────────────────────────────────────────────────────────────────
 
   {
@@ -314,7 +314,7 @@ export const packages: PackageRecord[] = [
       en: "For businesses that need a live presence immediately — not a full site.",
       es: "Para negocios que necesitan una presencia activa de inmediato — no un sitio completo.",
     },
-    price: { en: "$750", es: "$750" },
+    price: { en: "Starting at $750", es: "Desde $750" },
     includes: [
       { en: "1 page, mobile layout", es: "1 página, diseño móvil" },
       { en: "Basic copy structure and single CTA", es: "Estructura básica de copy y CTA único" },
@@ -341,7 +341,7 @@ export const packages: PackageRecord[] = [
       en: "Domain connection, analytics, and Search Console setup are available as the Deployment add-on.",
       es: "La conexión de dominio, analítica y configuración de Search Console están disponibles como el complemento de Despliegue.",
     },
-    price: { en: "$1,500", es: "$1,500" },
+    price: { en: "Starting at $1,500", es: "Desde $1,500" },
     includes: [
       { en: "Up to 5 static pages", es: "Hasta 5 páginas estáticas" },
       { en: "Service copy structure", es: "Estructura de copy de servicios" },
@@ -369,7 +369,7 @@ export const packages: PackageRecord[] = [
       en: "The complete launch package for a local business — ready to be found from day one.",
       es: "El paquete de lanzamiento completo para un negocio local — listo para ser encontrado desde el primer día.",
     },
-    price: { en: "$1,900", es: "$1,900" },
+    price: { en: "Starting at $1,900", es: "Desde $1,900" },
     includes: [
       { en: "Everything in Local Business Starter", es: "Todo lo del Inicio de Negocio Local" },
       { en: "Domain connection and DNS configuration", es: "Conexión de dominio y configuración de DNS" },
@@ -398,7 +398,7 @@ export const packages: PackageRecord[] = [
       en: "For businesses that need a credible multi-page presence without CMS overhead.",
       es: "Para negocios que necesitan una presencia multipágina creíble sin la sobrecarga de un CMS.",
     },
-    price: { en: "$2,500", es: "$2,500" },
+    price: { en: "Starting at $2,500", es: "Desde $2,500" },
     includes: [
       { en: "Up to 7 pages", es: "Hasta 7 páginas" },
       { en: "Copy structure and service architecture", es: "Estructura de copy y arquitectura de servicios" },
@@ -427,7 +427,7 @@ export const packages: PackageRecord[] = [
       en: "Included in the Brand Foundation, Market Ready, and Launch Stack bundles.",
       es: "Incluido en los paquetes Brand Foundation, Market Ready y Launch Stack.",
     },
-    price: { en: "$3,500", es: "$3,500" },
+    price: { en: "Starting at $3,500", es: "Desde $3,500" },
     includes: [
       { en: "Up to 10 pages", es: "Hasta 10 páginas" },
       { en: "CMS (client-editable content after handoff)", es: "CMS (contenido editable por el cliente tras el traspaso)" },
@@ -847,7 +847,7 @@ export const packages: PackageRecord[] = [
       en: "Month-to-month after the first month. An approved brief is required before writing begins.",
       es: "Mes a mes después del primer mes. Se requiere un brief aprobado antes de comenzar a escribir.",
     },
-    price: { en: "$750/month", es: "$750/mes" },
+    price: { en: "Starting at $750/month", es: "Desde $750/mes" },
     includes: [
       { en: "Up to 2 blog posts or content pieces per month", es: "Hasta 2 publicaciones de blog o piezas de contenido por mes" },
       { en: "Basic on-page SEO per piece", es: "SEO on-page básico por pieza" },
@@ -857,32 +857,6 @@ export const packages: PackageRecord[] = [
       { en: "Social media posts or graphics", es: "Publicaciones en redes sociales o gráficos" },
       { en: "Video production", es: "Producción de video" },
       { en: "Graphic design (beyond basic formatting)", es: "Diseño gráfico (más allá del formato básico)" },
-    ],
-    timeline: { en: "Ongoing — monthly", es: "Continuo — mensual" },
-  },
-
-  {
-    id: "content-standard",
-    category: "content",
-    name: { en: "Content Standard", es: "Contenido Estándar" },
-    summary: {
-      en: "Up to 4 content pieces per month with SEO keyword tracking and an editorial calendar.",
-      es: "Hasta 4 piezas de contenido por mes con seguimiento de palabras clave SEO y calendario editorial.",
-    },
-    subtext: {
-      en: "3-month minimum. Brand guidelines must be on file before month 1.",
-      es: "Mínimo 3 meses. Las guías de marca deben estar en archivo antes del mes 1.",
-    },
-    price: { en: "$1,500/month", es: "$1,500/mes" },
-    includes: [
-      { en: "Up to 4 content pieces per month", es: "Hasta 4 piezas de contenido por mes" },
-      { en: "SEO keyword tracking report", es: "Informe de seguimiento de palabras clave SEO" },
-      { en: "Editorial calendar planned and delivered in advance", es: "Calendario editorial planificado y entregado con anticipación" },
-      { en: "Client approval round before publication", es: "Ronda de aprobación del cliente antes de publicar" },
-    ],
-    excludes: [
-      { en: "Social media posts or graphics", es: "Publicaciones en redes sociales o gráficos" },
-      { en: "Video production", es: "Producción de video" },
     ],
     timeline: { en: "Ongoing — monthly", es: "Continuo — mensual" },
   },
@@ -899,7 +873,7 @@ export const packages: PackageRecord[] = [
       en: "Platform ad spend is always client-managed and client-paid directly to the platform — not included in production pricing.",
       es: "El gasto en publicidad en plataformas siempre es gestionado y pagado directamente por el cliente a la plataforma — no incluido en el precio de producción.",
     },
-    price: { en: "$995/month", es: "$995/mes" },
+    price: { en: "Starting at $995/month", es: "Desde $995/mes" },
     includes: [
       { en: "8 posts/month — Instagram + TikTok", es: "8 publicaciones/mes — Instagram + TikTok" },
       { en: "Monthly content calendar planned in advance", es: "Calendario de contenido mensual planificado con anticipación" },
@@ -910,6 +884,32 @@ export const packages: PackageRecord[] = [
     excludes: [
       { en: "Platform ad spend and boosting (client-paid directly)", es: "Gasto en publicidad y promoción en plataformas (pagado directamente por el cliente)" },
       { en: "On-site video filming (scripts and direction included; camera work is separate)", es: "Filmación de video en sitio (guiones y dirección incluidos; trabajo de cámara es separado)" },
+    ],
+    timeline: { en: "Ongoing — monthly", es: "Continuo — mensual" },
+  },
+
+  {
+    id: "content-standard",
+    category: "content",
+    name: { en: "Content Standard", es: "Contenido Estándar" },
+    summary: {
+      en: "Up to 4 content pieces per month with SEO keyword tracking and an editorial calendar.",
+      es: "Hasta 4 piezas de contenido por mes con seguimiento de palabras clave SEO y calendario editorial.",
+    },
+    subtext: {
+      en: "3-month minimum. Brand guidelines must be on file before month 1.",
+      es: "Mínimo 3 meses. Las guías de marca deben estar en archivo antes del mes 1.",
+    },
+    price: { en: "Starting at $1,500/month", es: "Desde $1,500/mes" },
+    includes: [
+      { en: "Up to 4 content pieces per month", es: "Hasta 4 piezas de contenido por mes" },
+      { en: "SEO keyword tracking report", es: "Informe de seguimiento de palabras clave SEO" },
+      { en: "Editorial calendar planned and delivered in advance", es: "Calendario editorial planificado y entregado con anticipación" },
+      { en: "Client approval round before publication", es: "Ronda de aprobación del cliente antes de publicar" },
+    ],
+    excludes: [
+      { en: "Social media posts or graphics", es: "Publicaciones en redes sociales o gráficos" },
+      { en: "Video production", es: "Producción de video" },
     ],
     timeline: { en: "Ongoing — monthly", es: "Continuo — mensual" },
   },
@@ -926,7 +926,7 @@ export const packages: PackageRecord[] = [
       en: "Platform ad spend is always client-managed and client-paid directly to the platform — not included in production pricing.",
       es: "El gasto en publicidad en plataformas siempre es gestionado y pagado directamente por el cliente a la plataforma — no incluido en el precio de producción.",
     },
-    price: { en: "$1,750/month", es: "$1,750/mes" },
+    price: { en: "Starting at $1,750/month", es: "Desde $1,750/mes" },
     includes: [
       { en: "16 posts/month — Instagram, TikTok, Facebook", es: "16 publicaciones/mes — Instagram, TikTok, Facebook" },
       { en: "Monthly content calendar planned in advance", es: "Calendario de contenido mensual planificado con anticipación" },
@@ -953,7 +953,7 @@ export const packages: PackageRecord[] = [
       en: "Platform ad spend is always client-managed and client-paid directly to the platform — not included in production pricing.",
       es: "El gasto en publicidad en plataformas siempre es gestionado y pagado directamente por el cliente a la plataforma — no incluido en el precio de producción.",
     },
-    price: { en: "$2,950/month", es: "$2,950/mes" },
+    price: { en: "Starting at $2,950/month", es: "Desde $2,950/mes" },
     includes: [
       { en: "24–30 posts/month — Instagram, TikTok, Facebook", es: "24–30 publicaciones/mes — Instagram, TikTok, Facebook" },
       { en: "Monthly content calendar planned in advance", es: "Calendario de contenido mensual planificado con anticipación" },
@@ -982,7 +982,7 @@ export const packages: PackageRecord[] = [
       en: "Month-to-month after the first month.",
       es: "Mes a mes después del primer mes.",
     },
-    price: { en: "$500/month", es: "$500/mes" },
+    price: { en: "Starting at $500/month", es: "Desde $500/mes" },
     includes: [
       { en: "Basic site updates and small content changes", es: "Actualizaciones básicas del sitio y pequeños cambios de contenido" },
       { en: "Uptime monitoring", es: "Monitoreo de disponibilidad" },
@@ -1008,7 +1008,7 @@ export const packages: PackageRecord[] = [
       en: "3-month minimum.",
       es: "Mínimo 3 meses.",
     },
-    price: { en: "$1,500/month", es: "$1,500/mes" },
+    price: { en: "Starting at $1,500/month", es: "Desde $1,500/mes" },
     includes: [
       { en: "Updates and content support", es: "Actualizaciones y soporte de contenido" },
       { en: "SEO signal checks", es: "Verificaciones de señales SEO" },
@@ -1034,7 +1034,7 @@ export const packages: PackageRecord[] = [
       en: "3-month minimum. For businesses with workflows, automations, or active digital operations.",
       es: "Mínimo 3 meses. Para negocios con flujos de trabajo, automatizaciones u operaciones digitales activas.",
     },
-    price: { en: "$3,500/month", es: "$3,500/mes" },
+    price: { en: "Starting at $3,500/month", es: "Desde $3,500/mes" },
     includes: [
       { en: "Strategy sessions and QA passes", es: "Sesiones de estrategia y revisiones QA" },
       { en: "Automation support and priority implementation", es: "Soporte de automatización e implementación prioritaria" },
@@ -1060,7 +1060,7 @@ export const packages: PackageRecord[] = [
       en: "3-month minimum. On-call coordination included.",
       es: "Mínimo 3 meses. Coordinación de guardia incluida.",
     },
-    price: { en: "$7,500/month", es: "$7,500/mes" },
+    price: { en: "Starting at $7,500/month", es: "Desde $7,500/mes" },
     includes: [
       { en: "Priority roadmap management and systems work", es: "Gestión prioritaria de hoja de ruta y trabajo de sistemas" },
       { en: "QA passes and advanced reporting", es: "Revisiones QA e informes avanzados" },
@@ -1206,7 +1206,7 @@ export const compareRows = [
     id: "ba-quick",
     name: { en: "BA Quick Sprint", es: "Sprint Rápido de BA" },
     best: { en: "Simple business, one offer — rapid feasibility signal", es: "Negocio simple, una oferta — señal rápida de viabilidad" },
-    price: { en: "$750", es: "$750" },
+    price: { en: "Starting at $750", es: "Desde $750" },
     time: { en: "1–2 business days", es: "1–2 días hábiles" },
     notFor: { en: "Build output — this defines it", es: "Resultado de construcción — esto lo define" },
   },
@@ -1214,7 +1214,7 @@ export const compareRows = [
     id: "brand-logo-standard",
     name: { en: "Logo Design — Standard", es: "Diseño de Logotipo Estándar" },
     best: { en: "Professional logo, fast", es: "Logotipo profesional, rápido" },
-    price: { en: "$400", es: "$400" },
+    price: { en: "Starting at $400", es: "Desde $400" },
     time: { en: "2–3 business days", es: "2–3 días hábiles" },
     notFor: { en: "Full brand system", es: "Sistema de marca completo" },
   },
@@ -1222,7 +1222,7 @@ export const compareRows = [
     id: "web-quick",
     name: { en: "Quick Web Presence", es: "Presencia Web Rápida" },
     best: { en: "Live presence needed immediately — one page", es: "Presencia activa inmediata — una página" },
-    price: { en: "$750", es: "$750" },
+    price: { en: "Starting at $750", es: "Desde $750" },
     time: { en: "2–3 business days", es: "2–3 días hábiles" },
     notFor: { en: "Multi-page site, CMS, analytics", es: "Sitio multipágina, CMS, analítica" },
   },
@@ -1230,7 +1230,7 @@ export const compareRows = [
     id: "web-authority-standard",
     name: { en: "Authority Website Standard", es: "Sitio de Autoridad Estándar" },
     best: { en: "Complete business website with CMS and conversion architecture", es: "Sitio empresarial completo con CMS y arquitectura de conversión" },
-    price: { en: "$3,500", es: "$3,500" },
+    price: { en: "Starting at $3,500", es: "Desde $3,500" },
     time: { en: "10–14 business days", es: "10–14 días hábiles" },
     notFor: { en: "Bilingual, advanced integrations, case studies", es: "Bilingüe, integraciones avanzadas, casos de estudio" },
   },
@@ -1238,7 +1238,7 @@ export const compareRows = [
     id: "social-foundation",
     name: { en: "Social: Content Foundation", es: "Social: Base de Contenido" },
     best: { en: "Consistent social presence — 8 posts/month", es: "Presencia social consistente — 8 publicaciones/mes" },
-    price: { en: "$995/month", es: "$995/mes" },
+    price: { en: "Starting at $995/month", es: "Desde $995/mes" },
     time: { en: "Ongoing", es: "Continuo" },
     notFor: { en: "Ad spend management (client-managed)", es: "Gestión de gasto publicitario (gestionado por el cliente)" },
   },
@@ -1246,7 +1246,7 @@ export const compareRows = [
     id: "retainer-care",
     name: { en: "Care Retainer", es: "Retainer de Cuidado" },
     best: { en: "Light ongoing support for small local businesses", es: "Soporte continuo ligero para pequeños negocios locales" },
-    price: { en: "$500/month", es: "$500/mes" },
+    price: { en: "Starting at $500/month", es: "Desde $500/mes" },
     time: { en: "Month-to-month", es: "Mes a mes" },
     notFor: { en: "New feature development", es: "Desarrollo de nuevas funciones" },
   },
