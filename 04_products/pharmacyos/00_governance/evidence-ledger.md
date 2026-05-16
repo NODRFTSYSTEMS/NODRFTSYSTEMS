@@ -92,3 +92,11 @@ Prototype is for design validation and stakeholder review only. Production imple
 | G5 | JDPA compliance review not started | SCA + LCA | OPEN |
 | G6 | Schedule drug log format not pharmacist-approved | Client pharmacist | OPEN |
 | G10 | Launch-verified medication visual source library absent | Client pharmacist + Founder | OPEN - migration 025 creates DEMO_ONLY visual placeholders for route/layout readiness. Image URLs must come from verified stock photos, supplier/manufacturer references, or another approved source before any record is marked VERIFIED |
+
+---
+
+## Build Evidence - Operational Resilience Enhancements
+
+| Date | Gate | Evidence | Status | Owner | Notes |
+|---|---|---|---|---|---|
+| 2026-05-16 | Gate 3 | Connection status, dashboard updates, theme toggle, AI role settings, internal error capture, and daily inconsistency report controls added to PharmacyOS | IN REVIEW | Codex / PMA + SEA + FIS | Migration 029 installs persistence and report RPC. Edge Function `daily-inconsistency-report` exposes scheduler/manual invocation. Production scheduler binding remains a deployment dependency. |
