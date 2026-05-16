@@ -19,8 +19,8 @@ export function PackageCard({ pkg, locale, startHref, alt = false }: PackageCard
     >
       <div className="nd-wrap">
         <div className="nd-pkg-header">
-          <div>
-            <h2 id={`${pkg.id}-heading`} className="nd-h2" style={{ marginBottom: "4px" }}>
+          <div style={{ minWidth: 0, flex: 1 }}>
+            <h2 id={`${pkg.id}-heading`} className="nd-h2" style={{ marginBottom: "4px", overflowWrap: "break-word" }}>
               {pick(pkg.name, locale)}
             </h2>
             <span className="nd-pkg-price">{pick(pkg.price, locale)}</span>

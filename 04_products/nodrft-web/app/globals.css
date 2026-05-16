@@ -1251,10 +1251,10 @@ textarea:focus:not(:focus-visible) {
   font-weight: 500;
   color: var(--accent);
   text-decoration: none;
-  white-space: nowrap;
   display: inline-flex;
   align-items: center;
   margin-bottom: var(--space-3);
+  flex-shrink: 0;
 }
 .nd-price:hover { color: var(--accent-hover); }
 .nd-pkg-price {
