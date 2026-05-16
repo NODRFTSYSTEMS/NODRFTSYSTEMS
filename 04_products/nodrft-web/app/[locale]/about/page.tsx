@@ -36,7 +36,6 @@ const COPY = {
     standardHeading: "Built to solve a specific failure mode.",
     standardP1: "NoDrftSystems builds and licenses AI-integrated business operating systems — and the digital infrastructure that supports them. Websites, brand systems, and content production are available to all clients. They are not the company’s flagship category. The primary product line is proprietary OS platforms and business management systems built for regulated and operationally complex industries.",
     standardP2: "The operating standard that governs every engagement: scope is defined before work begins, quality is validated before anything ships, and handoff is structured so the client owns the result without requiring continued access to the builder. These aren’t commitments made in a proposal—they are conditions of engagement.",
-    standardP3: "The operating standard that governs every engagement: scope is defined before work begins, quality is validated before anything ships, and handoff is structured so the client owns the result without depending on continued builder access.",
     scopeLabel: "Scope",
     scopeHeading: "What we build",
     scopeBody: "AI-integrated business operating systems and management tools for regulated and operationally complex industries — POS, inventory, staff management, scheduling, HR, and full OS platforms. Websites, brand, and content for organizations that need delivery discipline and systems that stay correct after handoff.",
@@ -73,7 +72,6 @@ const COPY = {
     standardHeading: "Construida para resolver un modo de fallo específico.",
     standardP1: "NoDrftSystems construye y licencia sistemas operativos empresariales con IA integrada — y la infraestructura digital que los respalda. Los sitios web, sistemas de marca y producción de contenido están disponibles para todos los clientes. No son la categoría principal de la empresa. La línea de productos principal son plataformas OS propietarias y sistemas de gestión empresarial construidos para industrias reguladas y operacionalmente complejas.",
     standardP2: "El estándar operativo que rige cada compromiso: el alcance se define antes de que comience el trabajo, la calidad se valida antes de que se publique cualquier cosa, y el traspaso se estructura para que el cliente sea propietario del resultado sin requerir acceso continuo al constructor. Estos no son compromisos hechos en una propuesta: son condiciones del compromiso.",
-    standardP3: "El estándar operativo que rige cada compromiso: el alcance se define antes de comenzar el trabajo, la calidad se valida antes de publicar, y el traspaso se estructura para que el cliente sea propietario del resultado sin depender del acceso continuo al equipo de construcción.",
     scopeLabel: "Alcance",
     scopeHeading: "Qué construimos",
     scopeBody: "Sistemas operativos empresariales con IA integrada y herramientas de gestión para industrias reguladas y operacionalmente complejas — POS, inventario, gestión de personal, citas, RR. HH. y plataformas OS completas. Sitios web, marca y contenido para organizaciones que necesitan disciplina de entrega y sistemas que se mantengan correctos después del traspaso.",
@@ -137,8 +135,7 @@ export default async function AboutPage({ params }: Props) {
           </FadeUp>
           <FadeUp delay={0.07}>
             <p className="nd-p" style={{ marginBottom: "var(--space-6)" }}>{copy.standardP1}</p>
-            <p className="nd-p" style={{ marginBottom: "var(--space-6)" }}>{copy.standardP2}</p>
-            <p className="nd-p">{copy.standardP3}</p>
+            <p className="nd-p">{copy.standardP2}</p>
           </FadeUp>
         </div>
       </section>
