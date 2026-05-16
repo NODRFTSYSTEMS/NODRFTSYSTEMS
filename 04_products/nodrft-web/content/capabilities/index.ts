@@ -44,8 +44,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $750", es: "Desde $750" },
     bestFor: {
-      en: "Businesses with one offer or idea that need a clear go/no-go signal before spending money on design or development.",
-      es: "Negocios con una oferta o idea que necesitan una señal clara de avanzar o no antes de gastar en diseño o desarrollo.",
+      en: "You have an offer or an idea. Before you spend a dollar on design or development, this sprint tells you whether it holds up — and what to fix if it doesn't.",
+      es: "Tiene una oferta o una idea. Antes de gastar en diseño o desarrollo, este sprint le indica si es viable — y qué corregir si no lo es.",
     },
     includes: [
       { en: "Business model clarification", es: "Clarificación del modelo de negocio" },
@@ -80,8 +80,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $1,500", es: "Desde $1,500" },
     bestFor: {
-      en: "Businesses ready to invest in a build and wanting rigorous go/hold analysis — market, financial, risk, and competitive — before committing.",
-      es: "Negocios listos para invertir en una construcción y que quieren un análisis riguroso de avanzar o pausar — mercado, finanzas, riesgos y competencia — antes de comprometerse.",
+      en: "You have a concept and a budget. Before design begins, this evaluation tells you whether the direction is sound — market, financial, risk, competitive — and what to change if it isn't.",
+      es: "Tiene un concepto y un presupuesto. Antes de comenzar el diseño, esta evaluación le dice si la dirección es sólida — mercado, finanzas, riesgos, competencia — y qué cambiar si no lo es.",
     },
     includes: [
       { en: "Full 17-section FACT-STRICT evaluation", es: "Evaluación completa de 17 secciones FACT-STRICT" },
@@ -110,8 +110,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $2,500", es: "Desde $2,500" },
     bestFor: {
-      en: "Businesses with multiple revenue paths, complex service logic, or two adjacent markets to compare before building.",
-      es: "Negocios con múltiples rutas de ingresos, lógica de servicio compleja o dos mercados adyacentes a comparar antes de construir.",
+      en: "Multiple revenue paths. Competing market opportunities. Automation logic you haven't fully mapped. This sprint resolves all of it — before anything is built.",
+      es: "Múltiples rutas de ingresos. Oportunidades de mercado en competencia. Lógica de automatización sin mapear del todo. Este sprint lo resuelve todo — antes de construir nada.",
     },
     includes: [
       { en: "Full Standard Sprint evaluation", es: "Evaluación completa del Sprint Estándar" },
@@ -140,8 +140,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $3,500", es: "Desde $3,500" },
     bestFor: {
-      en: "Teams building MCP systems, AI agent workflows, or complex platforms that need a governed technical blueprint before a line of code is written.",
-      es: "Equipos que construyen sistemas MCP, flujos de agentes IA o plataformas complejas que necesitan un plano técnico gobernado antes de escribir una línea de código.",
+      en: "MCP systems, agent workflows, and complex platforms require a governance blueprint before the first line of code. This is where that work happens.",
+      es: "Los sistemas MCP, flujos de agentes y plataformas complejas requieren un plano de gobernanza antes de la primera línea de código. Aquí es donde se realiza ese trabajo.",
     },
     includes: [
       { en: "MCP architecture and agent workflow design", es: "Arquitectura MCP y diseño de flujo de agentes" },
@@ -171,8 +171,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $200/item", es: "Desde $200 por ítem" },
     bestFor: {
-      en: "Businesses with an existing brand that need professional print and digital assets without starting a new brand project.",
-      es: "Negocios con una marca existente que necesitan activos profesionales impresos y digitales sin iniciar un nuevo proyecto de marca.",
+      en: "Your brand is finalized. You need business cards, letterhead, or social kits that match it — professionally produced, without reopening a full brand project.",
+      es: "Su marca está finalizada. Necesita tarjetas, membrete o kits para redes sociales que la reflejen — producidos profesionalmente, sin reabrir un proyecto completo de marca.",
     },
     includes: [
       { en: "Business card — print-ready files", es: "Tarjeta de presentación — archivos listos para imprimir" },
@@ -200,8 +200,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $400", es: "Desde $400" },
     bestFor: {
-      en: "New businesses that need a professional logo delivered fast — one clear direction, no full brand system required.",
-      es: "Nuevos negocios que necesitan un logotipo profesional rápido — una dirección clara, sin necesidad de un sistema de marca completo.",
+      en: "You need a professional mark. One direction, developed to final files. No brand system required — just a logo that holds up.",
+      es: "Necesita una marca profesional. Una dirección, desarrollada hasta los archivos finales. Sin sistema de marca — solo un logotipo que funcione.",
     },
     includes: [
       { en: "1 concept direction", es: "1 dirección de concepto" },
@@ -231,8 +231,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $800", es: "Desde $800" },
     bestFor: {
-      en: "Businesses with an existing logo but no documentation — so designers, printers, and vendors use the brand consistently.",
-      es: "Negocios con un logotipo existente pero sin documentación, para que diseñadores, impresores y proveedores usen la marca de forma consistente.",
+      en: "A logo without documentation is a liability. Every vendor, designer, and printer will use it differently. This stops that.",
+      es: "Un logotipo sin documentación es una fuente de inconsistencia. Cada proveedor, diseñador e impresor lo usará a su manera. Esto lo evita.",
     },
     includes: [
       { en: "Color codes (hex, RGB, CMYK)", es: "Códigos de color (hex, RGB, CMYK)" },
@@ -261,8 +261,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $1,200", es: "Desde $1,200" },
     bestFor: {
-      en: "Businesses that want to compare multiple creative directions before committing to a final mark — and want social-ready variants from day one.",
-      es: "Negocios que quieren comparar múltiples direcciones creativas antes de comprometerse con una marca final, y que quieren variantes para redes sociales desde el primer día.",
+      en: "Three directions. You pick the strongest. Full file set with social variants included. If you're committing to a mark, see the options first.",
+      es: "Tres direcciones. Usted elige la más sólida. Archivos completos con variantes para redes sociales incluidas. Si va a comprometerse con una marca, primero vea las opciones.",
     },
     includes: [
       { en: "3 concept directions", es: "3 direcciones de concepto" },
@@ -291,8 +291,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $1,500", es: "Desde $1,500" },
     bestFor: {
-      en: "Established businesses whose brand has become dated but whose direction hasn't changed — same identity, updated execution.",
-      es: "Negocios establecidos cuya marca se ha vuelto desactualizada pero cuya dirección no ha cambiado — misma identidad, ejecución actualizada.",
+      en: "The brand still works. It just looks five years old. Updated execution, same identity — nothing redesigned from scratch.",
+      es: "La marca todavía funciona. Solo parece de hace cinco años. Ejecución actualizada, misma identidad — nada rediseñado desde cero.",
     },
     includes: [
       { en: "Updated logo file (refined, not redesigned)", es: "Archivo de logotipo actualizado (refinado, no rediseñado)" },
@@ -319,8 +319,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $2,800", es: "Desde $2,800" },
     bestFor: {
-      en: "Businesses building a brand from scratch before a website, platform, or product launch — everything in one coordinated engagement.",
-      es: "Negocios que construyen una marca desde cero antes de un sitio web, plataforma o lanzamiento de producto — todo en un proyecto coordinado.",
+      en: "Building a brand properly before a website, platform, or product launch — logo, color, typography, guidelines, stationery — all in one coordinated engagement.",
+      es: "Construir una marca correctamente antes de un sitio web, plataforma o lanzamiento de producto — logotipo, color, tipografía, guías, papelería — todo en un proyecto coordinado.",
     },
     includes: [
       { en: "Logo Design — Premium (3 concepts, 3 revisions, full file set)", es: "Diseño de Logotipo Premium (3 conceptos, 3 revisiones, archivos completos)" },
@@ -357,8 +357,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $750", es: "Desde $750" },
     bestFor: {
-      en: "Businesses that need a live professional page immediately — a name, a service, a contact — not a full site.",
-      es: "Negocios que necesitan una página profesional activa de inmediato — nombre, servicio, contacto — no un sitio completo.",
+      en: "You need something live. One page, mobile layout, a CTA. Not a full site — a professional presence while you build toward one.",
+      es: "Necesita algo en línea de inmediato. Una página, diseño móvil, un CTA. No un sitio completo — una presencia profesional mientras construye el definitivo.",
     },
     includes: [
       { en: "1 page, mobile layout", es: "1 página, diseño móvil" },
@@ -388,8 +388,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $1,500", es: "Desde $1,500" },
     bestFor: {
-      en: "Local service businesses that need a clean multi-page site with service structure and local SEO — ready to be found.",
-      es: "Negocios de servicios locales que necesitan un sitio multipágina limpio con estructura de servicios y SEO local — listos para ser encontrados.",
+      en: "A local service business that needs a real online presence — service pages, local SEO basics, WhatsApp and call CTAs — built and structured correctly.",
+      es: "Un negocio de servicios local que necesita una presencia en línea real — páginas de servicios, SEO local básico, CTAs de WhatsApp y llamada — construida y estructurada correctamente.",
     },
     includes: [
       { en: "Up to 5 static pages", es: "Hasta 5 páginas estáticas" },
@@ -420,8 +420,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $1,900", es: "Desde $1,900" },
     bestFor: {
-      en: "Local businesses that want to go live without managing domain connection, analytics, and QA themselves.",
-      es: "Negocios locales que quieren lanzar sin gestionar la conexión de dominio, analítica y QA por su cuenta.",
+      en: "The Local Starter, delivered complete — domain connected, analytics live, Search Console configured, QA passed. You hand it off ready.",
+      es: "El Inicio de Negocio Local, entregado completo — dominio conectado, analítica activa, Search Console configurado, QA aprobado. Lo entrega listo.",
     },
     includes: [
       { en: "Everything in Local Business Starter", es: "Todo lo del Inicio de Negocio Local" },
@@ -453,8 +453,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $2,500", es: "Desde $2,500" },
     bestFor: {
-      en: "Professional service firms, consultants, and B2B businesses that need structured authority positioning without CMS overhead.",
-      es: "Firmas de servicios profesionales, consultores y negocios B2B que necesitan posicionamiento de autoridad estructurado sin la sobrecarga de un CMS.",
+      en: "A professional services firm, consultant, or B2B business that needs a credible multi-page presence — structured, positioned, searchable — without CMS overhead.",
+      es: "Una firma de servicios profesionales, consultor o negocio B2B que necesita una presencia multipágina creíble — estructurada, posicionada, indexable — sin la sobrecarga de un CMS.",
     },
     includes: [
       { en: "Up to 7 pages", es: "Hasta 7 páginas" },
@@ -486,8 +486,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $3,500", es: "Desde $3,500" },
     bestFor: {
-      en: "Established businesses ready for a full-featured site — CMS, conversion architecture, schema markup, and a QA pass before handoff.",
-      es: "Negocios establecidos listos para un sitio completo — CMS, arquitectura de conversión, schema markup y revisión de QA antes del traspaso.",
+      en: "The full-featured site. CMS, conversion architecture, schema markup, full QA. If you're building once and building it right, this is the standard.",
+      es: "El sitio con todas las funciones. CMS, arquitectura de conversión, schema markup, QA completo. Si va a construir una sola vez y hacerlo bien, este es el estándar.",
     },
     includes: [
       { en: "Up to 10 pages", es: "Hasta 10 páginas" },
@@ -518,8 +518,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $5,500", es: "Desde $5,500" },
     bestFor: {
-      en: "Businesses that need bilingual delivery, case studies, intake flow, analytics, and a full QA pass — the complete authority build.",
-      es: "Negocios que necesitan entrega bilingüe, casos de estudio, flujo de intake, analítica y revisión de QA completa — la construcción de autoridad completa.",
+      en: "Bilingual delivery, case studies, intake flow, analytics, and a full QA pass. For a business that takes its digital authority seriously.",
+      es: "Entrega bilingüe, casos de estudio, flujo de intake, analítica y QA completo. Para un negocio que toma en serio su autoridad digital.",
     },
     includes: [
       { en: "Up to 15 pages", es: "Hasta 15 páginas" },
@@ -559,8 +559,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $1,500", es: "Desde $1,500" },
     bestFor: {
-      en: "Businesses with manual, repetitive steps between tools they already use — data entry, notifications, routing — that should be automated.",
-      es: "Negocios con pasos manuales y repetitivos entre herramientas que ya usan — ingreso de datos, notificaciones, enrutamiento — que deberían automatizarse.",
+      en: "You're doing manually what your tools could already handle. Repetitive data entry, routing, notifications between systems — this sprint builds the automation so you stop doing it.",
+      es: "Está haciendo manualmente lo que sus herramientas ya podrían gestionar. Ingreso de datos repetitivo, enrutamiento, notificaciones entre sistemas — este sprint construye la automatización para que deje de hacerlo.",
     },
     includes: [
       { en: "1–3 bounded workflows", es: "1–3 flujos de trabajo acotados" },
@@ -589,8 +589,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $1,500", es: "Desde $1,500" },
     bestFor: {
-      en: "Businesses that licensed a CRM but never configured it correctly — or need one built for how they actually work, with training.",
-      es: "Negocios que licenciaron un CRM pero nunca lo configuraron correctamente, o que necesitan uno construido para cómo trabajan realmente, con capacitación.",
+      en: "You have a CRM subscription. Your team isn't using it the way it was meant to work — or at all. This gets it configured for the actual workflow, with training built in.",
+      es: "Tiene una suscripción a un CRM. Su equipo no lo usa como fue diseñado — o no lo usa en absoluto. Esto lo configura para el flujo de trabajo real, con capacitación incluida.",
     },
     includes: [
       { en: "Data model and field configuration", es: "Modelo de datos y configuración de campos" },
@@ -619,8 +619,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $2,200", es: "Desde $2,200" },
     bestFor: {
-      en: "Businesses with data spread across multiple tools that need one unified reporting view, by role, without building a full platform.",
-      es: "Negocios con datos distribuidos en múltiples herramientas que necesitan una vista unificada de informes, por rol, sin construir una plataforma completa.",
+      en: "Your data is already there — across spreadsheets, a CRM, or a database. This builds the unified view so each role sees exactly what they need, without building a full platform around it.",
+      es: "Sus datos ya existen — en hojas de cálculo, un CRM o una base de datos. Esto construye la vista unificada para que cada rol vea exactamente lo que necesita, sin construir una plataforma completa.",
     },
     includes: [
       { en: "Reporting dashboard with data connections", es: "Panel de informes con conexiones de datos" },
@@ -648,8 +648,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $8,500 — scoped on inquiry", es: "Desde $8,500 — precio por consulta" },
     bestFor: {
-      en: "Businesses with a defined platform concept — scoped after a BA Sprint — that are ready to build: auth, database, dashboard, and admin surface.",
-      es: "Negocios con un concepto de plataforma definido — con alcance tras un Sprint BA — listos para construir: autenticación, base de datos, panel y superficie de administración.",
+      en: "You've completed a BA Sprint. The architecture is defined, the scope is confirmed. This is the build — auth, database, dashboard, admin surface, and QA — on a verified foundation.",
+      es: "Completó un Sprint BA. La arquitectura está definida, el alcance confirmado. Este es el desarrollo — autenticación, base de datos, panel, superficie de administración y QA — sobre una base verificada.",
     },
     includes: [
       { en: "Authentication layer and access controls", es: "Capa de autenticación y controles de acceso" },
@@ -682,8 +682,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Inquiry", es: "Consulta" },
     bestFor: {
-      en: "Retail, restaurants, and service businesses that need a managed point-of-sale — transactions, reporting, and end-of-day reconciliation — without building one from scratch.",
-      es: "Comercio minorista, restaurantes y negocios de servicios que necesitan un punto de venta gestionado — transacciones, informes y conciliación de cierre — sin construirlo desde cero.",
+      en: "You need a POS that handles how your business actually runs — transactions, reporting, end-of-day reconciliation — deployed faster than a custom build and built to last.",
+      es: "Necesita un POS que funcione como su negocio realmente opera — transacciones, informes, conciliación de cierre — desplegado más rápido que una construcción personalizada y diseñado para durar.",
     },
     includes: [
       { en: "Product catalog management", es: "Gestión de catálogo de productos" },
@@ -717,8 +717,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Inquiry", es: "Consulta" },
     bestFor: {
-      en: "Businesses with hourly or shift employees where scheduling, time tracking, and payroll export is still done manually.",
-      es: "Negocios con empleados por hora o turno donde la programación, el registro de tiempo y la exportación de nómina aún se hacen manualmente.",
+      en: "Shifts are managed in a spreadsheet. Timecards are tracked on paper. Payroll data has to be manually assembled every period. This replaces all of that with a managed system.",
+      es: "Los turnos se gestionan en una hoja de cálculo. Las tarjetas de tiempo se registran en papel. Los datos de nómina se ensamblan manualmente cada período. Esto reemplaza todo eso con un sistema gestionado.",
     },
     includes: [
       { en: "Clock in/out with shift management", es: "Entrada/salida con gestión de turnos" },
@@ -752,8 +752,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Inquiry", es: "Consulta" },
     bestFor: {
-      en: "Clinics, salons, and service businesses that need client booking, reminders, and no-show handling — built for how they actually operate.",
-      es: "Clínicas, salones y negocios de servicios que necesitan reservas de clientes, recordatorios y manejo de ausencias — construidos para cómo operan realmente.",
+      en: "Clients book by phone or text. The calendar lives in someone's head. No-shows have no paper trail. A proper booking system eliminates the friction — and the gaps.",
+      es: "Los clientes reservan por teléfono o mensaje. El calendario vive en la cabeza de alguien. Las ausencias no dejan registro. Un sistema de reservas adecuado elimina la fricción — y los vacíos.",
     },
     includes: [
       { en: "Client self-booking portal", es: "Portal de reservas en línea para clientes" },
@@ -786,8 +786,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Inquiry", es: "Consulta" },
     bestFor: {
-      en: "Hardware, retail, and distribution businesses that need real-time stock visibility, reorder triggers, and a full audit trail.",
-      es: "Negocios de ferretería, retail y distribución que necesitan visibilidad de inventario en tiempo real, activadores de reorden y un registro de auditoría completo.",
+      en: "You don't actually know your stock levels until someone walks the floor. Reorders happen by intuition. This is the system that changes that — real-time visibility, tracked to the item.",
+      es: "No sabe realmente sus niveles de inventario hasta que alguien recorre el piso. Los reabastecimientos ocurren por intuición. Este es el sistema que cambia eso — visibilidad en tiempo real, rastreada por ítem.",
     },
     includes: [
       { en: "Product catalog and stock level tracking", es: "Catálogo de productos y seguimiento de niveles de inventario" },
@@ -821,8 +821,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Inquiry", es: "Consulta" },
     bestFor: {
-      en: "Businesses with structured onboarding, policy acknowledgment requirements, or distributed staff that need a central HR record system.",
-      es: "Negocios con onboarding estructurado, requisitos de reconocimiento de políticas o personal distribuido que necesitan un sistema central de RR. HH.",
+      en: "New hires get a folder of PDFs. Policy acknowledgment happens over email. There's no central record of any of it. This is the system that holds it all — properly, by role.",
+      es: "Los nuevos empleados reciben una carpeta de PDFs. El reconocimiento de políticas ocurre por email. No hay registro central de nada. Este es el sistema que lo contiene todo — correctamente, por rol.",
     },
     includes: [
       { en: "Document upload and acknowledgment tracking", es: "Carga de documentos y seguimiento de reconocimiento" },
@@ -858,8 +858,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Inquiry", es: "Consulta" },
     bestFor: {
-      en: "Businesses in an industry where a NoDrftSystems OS already exists — the fastest path to a production-ready, governed operating platform.",
-      es: "Negocios en una industria donde ya existe un OS de NoDrftSystems — el camino más rápido hacia una plataforma operativa gobernada y lista para producción.",
+      en: "A prebuilt NoDrftSystems OS already exists for your industry. You don't need a custom build — you need deployment, configuration, and training. This is the fastest path to production.",
+      es: "Ya existe un OS de NoDrftSystems preintegrado para su industria. No necesita una construcción personalizada — necesita despliegue, configuración y capacitación. Este es el camino más rápido a producción.",
     },
     includes: [
       { en: "Platform access (annual license)", es: "Acceso a la plataforma (licencia anual)" },
@@ -892,8 +892,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Inquiry", es: "Consulta" },
     bestFor: {
-      en: "Businesses that fit a prebuilt OS at 70–90% and need configuration adjustments to match their specific workflow — without a full custom build.",
-      es: "Negocios que encajan en un OS preintegrado al 70–90% y necesitan ajustes de configuración para su flujo de trabajo específico — sin una construcción personalizada completa.",
+      en: "The standard OS is close. Most of it maps directly to your workflow. The 10–30% that doesn't can be adjusted without a full custom build — that's what configuration covers.",
+      es: "El OS estándar está cerca. La mayoría se mapea directamente a su flujo de trabajo. El 10–30% que no encaja puede ajustarse sin una construcción personalizada completa — eso es lo que cubre la configuración.",
     },
     includes: [
       { en: "Everything in Licensed OS Deployment", es: "Todo lo del Despliegue OS Licenciado" },
@@ -926,8 +926,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Inquiry", es: "Consulta" },
     bestFor: {
-      en: "Businesses in a regulated industry with no existing OS product — and the scope, readiness, and commitment to commission one as a first licensed operator.",
-      es: "Negocios en una industria regulada sin producto OS existente — con el alcance, disposición y compromiso para encargarlo como primer operador licenciado.",
+      en: "No NoDrftSystems OS exists for your industry yet. You can commission one — and become the first licensed operator on the platform your industry will run on.",
+      es: "Aún no existe un OS de NoDrftSystems para su industria. Puede encargarlo — y convertirse en el primer operador licenciado de la plataforma en la que operará su industria.",
     },
     includes: [
       { en: "Full architecture design and build", es: "Diseño y construcción de arquitectura completa" },
@@ -962,8 +962,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $750/month", es: "Desde $750/mes" },
     bestFor: {
-      en: "Businesses that need consistent published content without the internal bandwidth to write, edit, and manage it.",
-      es: "Negocios que necesitan contenido publicado de forma consistente sin el ancho de banda interno para escribirlo, editarlo y gestionarlo.",
+      en: "You know consistent content matters. You just never have time to write it. Two pieces a month, planned and reviewed — published without the internal overhead.",
+      es: "Sabe que el contenido consistente importa. Simplemente nunca tiene tiempo para escribirlo. Dos piezas al mes, planificadas y revisadas — publicadas sin la carga interna.",
     },
     includes: [
       { en: "Up to 2 blog posts or content pieces per month", es: "Hasta 2 publicaciones de blog o piezas de contenido por mes" },
@@ -992,8 +992,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $995/month", es: "Desde $995/mes" },
     bestFor: {
-      en: "Businesses building a social presence from scratch — or restarting one that went dormant — with 8 planned posts a month across two platforms.",
-      es: "Negocios que construyen una presencia social desde cero, o que reactivan una inactiva, con 8 publicaciones planificadas al mes en dos plataformas.",
+      en: "The accounts exist. The posting doesn't happen consistently, or at all. Eight planned posts a month across Instagram and TikTok — calendar, graphics, captions — delivered for your approval.",
+      es: "Las cuentas existen. Las publicaciones no ocurren de manera consistente, o no ocurren. Ocho publicaciones planificadas al mes en Instagram y TikTok — calendario, gráficos, pies de foto — entregadas para su aprobación.",
     },
     includes: [
       { en: "8 posts/month — Instagram + TikTok", es: "8 publicaciones/mes — Instagram + TikTok" },
@@ -1023,8 +1023,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $1,500/month", es: "Desde $1,500/mes" },
     bestFor: {
-      en: "Businesses that want a managed editorial calendar with keyword tracking — consistent, planned content output, not ad-hoc articles.",
-      es: "Negocios que quieren un calendario editorial gestionado con seguimiento de palabras clave — producción de contenido consistente y planificada, no artículos ocasionales.",
+      en: "Content without a calendar is just reactive. Four pieces a month, keyword-tracked, on a planned editorial schedule — consistent output that compounds over time.",
+      es: "El contenido sin un calendario es solo reactivo. Cuatro piezas al mes, con seguimiento de palabras clave, en un calendario editorial planificado — producción consistente que se acumula con el tiempo.",
     },
     includes: [
       { en: "Up to 4 content pieces per month", es: "Hasta 4 piezas de contenido por mes" },
@@ -1053,8 +1053,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $1,750/month", es: "Desde $1,750/mes" },
     bestFor: {
-      en: "Businesses that need consistent presence across three platforms without the overhead of an internal content team.",
-      es: "Negocios que necesitan presencia consistente en tres plataformas sin la sobrecarga de un equipo interno de contenido.",
+      en: "Three platforms, sixteen posts a month. Calendar planned. Graphics matched to brand. Captions written and reviewed. You approve before anything goes out.",
+      es: "Tres plataformas, dieciséis publicaciones al mes. Calendario planificado. Gráficos adaptados a la marca. Textos escritos y revisados. Usted aprueba antes de que salga nada.",
     },
     includes: [
       { en: "16 posts/month — Instagram, TikTok, Facebook", es: "16 publicaciones/mes — Instagram, TikTok, Facebook" },
@@ -1084,8 +1084,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $2,950/month", es: "Desde $2,950/mes" },
     bestFor: {
-      en: "Businesses that need high-frequency social production — daily output, three platforms — without building a content team.",
-      es: "Negocios que necesitan producción social de alta frecuencia — publicación diaria, tres plataformas — sin construir un equipo de contenido.",
+      en: "Near-daily output across Instagram, TikTok, and Facebook. Full calendar, full graphics, full captions. The output of an internal content team — without the hiring, management, or overhead.",
+      es: "Publicación casi diaria en Instagram, TikTok y Facebook. Calendario completo, gráficos completos, pies de foto completos. El resultado de un equipo interno de contenido — sin la contratación, gestión ni sobrecarga.",
     },
     includes: [
       { en: "24–30 posts/month — Instagram, TikTok, Facebook", es: "24–30 publicaciones/mes — Instagram, TikTok, Facebook" },
@@ -1117,8 +1117,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $500/month", es: "Desde $500/mes" },
     bestFor: {
-      en: "Small local businesses that launched a site and want it to stay current, secure, and monitored without a project-by-project relationship.",
-      es: "Pequeños negocios locales que lanzaron un sitio y quieren mantenerlo actualizado, seguro y monitoreado sin una relación proyecto a proyecto.",
+      en: "You launched the site. It needs to stay current, monitored, and secure — without submitting a new project request every time something small needs updating.",
+      es: "Lanzó el sitio. Necesita mantenerse actualizado, monitoreado y seguro — sin enviar una solicitud de proyecto nuevo cada vez que algo pequeño necesita actualizarse.",
     },
     includes: [
       { en: "Basic site updates and small content changes", es: "Actualizaciones básicas del sitio y pequeños cambios de contenido" },
@@ -1147,8 +1147,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $1,500/month", es: "Desde $1,500/mes" },
     bestFor: {
-      en: "Active businesses that want regular improvements and priority access — not a reactive project relationship every time something needs updating.",
-      es: "Negocios activos que quieren mejoras regulares y acceso prioritario — no una relación reactiva de proyecto cada vez que algo necesita actualizarse.",
+      en: "Your digital presence is active and you want it improving consistently — not just maintained. Regular work, priority access, and an account that's always a step ahead.",
+      es: "Su presencia digital está activa y quiere que mejore de manera consistente — no solo que se mantenga. Trabajo regular, acceso prioritario y una cuenta siempre un paso adelante.",
     },
     includes: [
       { en: "Updates and content support", es: "Actualizaciones y soporte de contenido" },
@@ -1177,8 +1177,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $3,500/month", es: "Desde $3,500/mes" },
     bestFor: {
-      en: "Businesses with active automations, dashboards, or workflows that need strategic oversight, ongoing QA, and priority implementation.",
-      es: "Negocios con automatizaciones activas, paneles o flujos de trabajo que necesitan supervisión estratégica, QA continuo e implementación prioritaria.",
+      en: "You're running automations, dashboards, and live workflows. They need ongoing attention — strategy, QA, and the capacity to execute changes without spinning up a new project each time.",
+      es: "Está ejecutando automatizaciones, paneles y flujos de trabajo activos. Necesitan atención continua — estrategia, QA y la capacidad de ejecutar cambios sin iniciar un proyecto nuevo cada vez.",
     },
     includes: [
       { en: "Strategy sessions and QA passes", es: "Sesiones de estrategia y revisiones QA" },
@@ -1207,8 +1207,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $7,500/month", es: "Desde $7,500/mes" },
     bestFor: {
-      en: "Complex clients managing a full digital stack that need dedicated ongoing capacity for roadmap management, systems work, and QA.",
-      es: "Clientes complejos que gestionan un stack digital completo y necesitan capacidad dedicada continua para gestión de hoja de ruta, trabajo de sistemas y QA.",
+      en: "A full digital stack. Multiple systems. An active roadmap. You need dedicated capacity that knows your infrastructure — not a contractor who re-learns the context every engagement.",
+      es: "Un stack digital completo. Múltiples sistemas. Una hoja de ruta activa. Necesita capacidad dedicada que conozca su infraestructura — no un contratista que reaprender el contexto en cada proyecto.",
     },
     includes: [
       { en: "Priority roadmap management and systems work", es: "Gestión prioritaria de hoja de ruta y trabajo de sistemas" },
@@ -1236,8 +1236,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "Starting at $1,500/month (OS clients)", es: "Desde $1,500/mes (clientes OS)" },
     bestFor: {
-      en: "All NoDrftSystems OS licensed deployments — required as a condition of every regulated vertical OS license.",
-      es: "Todos los despliegues licenciados de OS de NoDrftSystems — requerido como condición de toda licencia OS de vertical regulada.",
+      en: "Every NoDrftSystems OS deployment in a regulated vertical runs under this retainer. Ongoing QA, compliance review, security audits, and role-permission drift detection — required by license.",
+      es: "Cada despliegue OS de NoDrftSystems en una vertical regulada opera bajo este retainer. QA continuo, revisión de cumplimiento, auditorías de seguridad y detección de desviación de permisos — requerido por licencia.",
     },
     includes: [
       { en: "Monthly regulated workflow QA pass", es: "Revisión QA mensual de flujos de trabajo regulados" },
@@ -1268,8 +1268,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "$1,800", es: "$1,800" },
     bestFor: {
-      en: "New businesses or freelancers that need a complete visual identity fast — professional logo and brand standards, nothing else.",
-      es: "Nuevos negocios o freelancers que necesitan una identidad visual completa rápido — logotipo profesional y estándares de marca, nada más.",
+      en: "No logo. No brand standards. You need to show up professionally — fast. Logo and guidelines in one package, without reopening the question of what else to bundle.",
+      es: "Sin logotipo. Sin estándares de marca. Necesita proyectar profesionalismo — rápido. Logotipo y guías en un paquete, sin reabrir la pregunta de qué más incluir.",
     },
     includes: [
       { en: "Logo Design — Premium (3 concepts, 3 revisions, full file set + social variants)", es: "Diseño de Logotipo Premium (3 conceptos, 3 revisiones, archivos completos + variantes para redes sociales)" },
@@ -1296,8 +1296,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "$7,500", es: "$7,500" },
     bestFor: {
-      en: "Established businesses building their first serious digital presence — brand and website in one coordinated engagement.",
-      es: "Negocios establecidos que construyen su primera presencia digital seria — marca y sitio web en un proyecto coordinado.",
+      en: "The business is real. The digital presence isn't. Brand identity and a full website — same engagement, same delivery standard, one handoff that holds.",
+      es: "El negocio es real. La presencia digital no. Identidad de marca y un sitio web completo — mismo proyecto, mismo estándar de entrega, un traspaso que se mantiene.",
     },
     includes: [
       { en: "Brand Identity System (Logo Premium, color palette, typography, guidelines, stationery)", es: "Sistema de Identidad de Marca (Logotipo Premium, paleta de colores, tipografía, guías, papelería)" },
@@ -1324,8 +1324,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "$9,000", es: "$9,000" },
     bestFor: {
-      en: "Businesses that need to be found, not just look good — brand, website, and local search visibility delivered in one engagement.",
-      es: "Negocios que necesitan ser encontrados, no solo verse bien — marca, sitio web y visibilidad en búsqueda local entregados en un proyecto.",
+      en: "Brand and website alone won't generate inbound. This adds the local SEO layer — schema, NAP, keyword structure — so clients looking for what you do can actually find you.",
+      es: "La marca y el sitio web por sí solos no generarán tráfico entrante. Esto agrega la capa de SEO local — schema, consistencia NAP, estructura de palabras clave — para que los clientes que buscan lo que hace puedan encontrarlo.",
     },
     includes: [
       { en: "Everything in Brand Foundation", es: "Todo lo del Brand Foundation" },
@@ -1353,8 +1353,8 @@ export const packages: PackageRecord[] = [
     },
     price: { en: "$13,500", es: "$13,500" },
     bestFor: {
-      en: "New businesses or product launches that need everything — strategy, brand, website, and social activation — in one sequenced engagement.",
-      es: "Nuevos negocios o lanzamientos de producto que necesitan todo — estrategia, marca, sitio web y activación social — en un proyecto secuenciado.",
+      en: "You're launching. You need the evaluation, the brand, the website, and 90 days of social content — sequenced correctly, delivered under one engagement. This is that.",
+      es: "Está lanzando. Necesita la evaluación, la marca, el sitio web y 90 días de contenido social — secuenciados correctamente, entregados en un solo proyecto. Esto es eso.",
     },
     includes: [
       { en: "BA Standard Sprint (full 17-section evaluation + go/hold recommendation)", es: "Sprint Estándar de BA (evaluación completa de 17 secciones + recomendación de avanzar o pausar)" },
