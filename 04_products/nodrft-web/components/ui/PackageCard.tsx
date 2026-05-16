@@ -33,6 +33,14 @@ export function PackageCard({ pkg, locale, startHref, alt = false }: PackageCard
         <p className="nd-p" style={{ marginBottom: "8px" }}>
           {pick(pkg.summary, locale)}
         </p>
+        {pkg.bestFor && (
+          <p className="nd-pkg-best-for" style={{ marginBottom: "8px" }}>
+            <span className="nd-pkg-best-for__label">
+              {locale === "en" ? "Best for: " : "Ideal para: "}
+            </span>
+            {pick(pkg.bestFor, locale)}
+          </p>
+        )}
         <p className="nd-p-xs nd-pkg-subtext" style={{ marginBottom: "24px" }}>
           {pick(pkg.subtext, locale)}
         </p>

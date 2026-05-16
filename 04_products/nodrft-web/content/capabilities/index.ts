@@ -18,6 +18,7 @@ export type PackageRecord = {
   summary: BilingualText;
   subtext: BilingualText;
   price: BilingualText;
+  bestFor?: BilingualText;
   includes: BilingualText[];
   excludes: BilingualText[];
   timeline: BilingualText;
@@ -42,6 +43,10 @@ export const packages: PackageRecord[] = [
       es: "El primer paso correcto cuando la pregunta central es avanzar o no.",
     },
     price: { en: "Starting at $750", es: "Desde $750" },
+    bestFor: {
+      en: "Businesses with one offer or idea that need a clear go/no-go signal before spending money on design or development.",
+      es: "Negocios con una oferta o idea que necesitan una señal clara de avanzar o no antes de gastar en diseño o desarrollo.",
+    },
     includes: [
       { en: "Business model clarification", es: "Clarificación del modelo de negocio" },
       { en: "Offer structure and positioning review", es: "Revisión de estructura y posicionamiento de la oferta" },
@@ -74,6 +79,10 @@ export const packages: PackageRecord[] = [
       es: "Prerrequisito requerido para la mayoría de proyectos de Plataforma o superior.",
     },
     price: { en: "Starting at $1,500", es: "Desde $1,500" },
+    bestFor: {
+      en: "Businesses ready to invest in a build and wanting rigorous go/hold analysis — market, financial, risk, and competitive — before committing.",
+      es: "Negocios listos para invertir en una construcción y que quieren un análisis riguroso de avanzar o pausar — mercado, finanzas, riesgos y competencia — antes de comprometerse.",
+    },
     includes: [
       { en: "Full 17-section FACT-STRICT evaluation", es: "Evaluación completa de 17 secciones FACT-STRICT" },
       { en: "Market, financial, risk, and competitive analysis", es: "Análisis de mercado, financiero, de riesgos y competitivo" },
@@ -100,6 +109,10 @@ export const packages: PackageRecord[] = [
       es: "Incluye la evaluación completa del Sprint Estándar más modelado de escenarios.",
     },
     price: { en: "Starting at $2,500", es: "Desde $2,500" },
+    bestFor: {
+      en: "Businesses with multiple revenue paths, complex service logic, or two adjacent markets to compare before building.",
+      es: "Negocios con múltiples rutas de ingresos, lógica de servicio compleja o dos mercados adyacentes a comparar antes de construir.",
+    },
     includes: [
       { en: "Full Standard Sprint evaluation", es: "Evaluación completa del Sprint Estándar" },
       { en: "Scenario modeling — multiple revenue paths, alternative market segments", es: "Modelado de escenarios — múltiples rutas de ingresos, segmentos alternativos de mercado" },
@@ -126,6 +139,10 @@ export const packages: PackageRecord[] = [
       es: "Requerido antes de cualquier sistema MCP/agente o construcción de plataforma compleja.",
     },
     price: { en: "Starting at $3,500", es: "Desde $3,500" },
+    bestFor: {
+      en: "Teams building MCP systems, AI agent workflows, or complex platforms that need a governed technical blueprint before a line of code is written.",
+      es: "Equipos que construyen sistemas MCP, flujos de agentes IA o plataformas complejas que necesitan un plano técnico gobernado antes de escribir una línea de código.",
+    },
     includes: [
       { en: "MCP architecture and agent workflow design", es: "Arquitectura MCP y diseño de flujo de agentes" },
       { en: "Permissions framework and QA gate specification", es: "Marco de permisos y especificación de compuertas de QA" },
@@ -153,6 +170,10 @@ export const packages: PackageRecord[] = [
       es: "Agregue varios ítems a un solo proyecto para un alcance combinado.",
     },
     price: { en: "Starting at $200/item", es: "Desde $200 por ítem" },
+    bestFor: {
+      en: "Businesses with an existing brand that need professional print and digital assets without starting a new brand project.",
+      es: "Negocios con una marca existente que necesitan activos profesionales impresos y digitales sin iniciar un nuevo proyecto de marca.",
+    },
     includes: [
       { en: "Business card — print-ready files", es: "Tarjeta de presentación — archivos listos para imprimir" },
       { en: "Letterhead template", es: "Plantilla de membrete" },
@@ -178,6 +199,10 @@ export const packages: PackageRecord[] = [
       es: "Mejore al Logotipo Premium para 3 conceptos y variantes para redes sociales.",
     },
     price: { en: "Starting at $400", es: "Desde $400" },
+    bestFor: {
+      en: "New businesses that need a professional logo delivered fast — one clear direction, no full brand system required.",
+      es: "Nuevos negocios que necesitan un logotipo profesional rápido — una dirección clara, sin necesidad de un sistema de marca completo.",
+    },
     includes: [
       { en: "1 concept direction", es: "1 dirección de concepto" },
       { en: "2 revision rounds", es: "2 rondas de revisión" },
@@ -205,6 +230,10 @@ export const packages: PackageRecord[] = [
       es: "Requiere archivos de logotipo finalizados antes de iniciar el alcance.",
     },
     price: { en: "Starting at $800", es: "Desde $800" },
+    bestFor: {
+      en: "Businesses with an existing logo but no documentation — so designers, printers, and vendors use the brand consistently.",
+      es: "Negocios con un logotipo existente pero sin documentación, para que diseñadores, impresores y proveedores usen la marca de forma consistente.",
+    },
     includes: [
       { en: "Color codes (hex, RGB, CMYK)", es: "Códigos de color (hex, RGB, CMYK)" },
       { en: "Typography usage rules", es: "Reglas de uso tipográfico" },
@@ -231,6 +260,10 @@ export const packages: PackageRecord[] = [
       es: "Incluido en el Sistema de Identidad de Marca y el paquete Identity Starter.",
     },
     price: { en: "Starting at $1,200", es: "Desde $1,200" },
+    bestFor: {
+      en: "Businesses that want to compare multiple creative directions before committing to a final mark — and want social-ready variants from day one.",
+      es: "Negocios que quieren comparar múltiples direcciones creativas antes de comprometerse con una marca final, y que quieren variantes para redes sociales desde el primer día.",
+    },
     includes: [
       { en: "3 concept directions", es: "3 direcciones de concepto" },
       { en: "3 revision rounds", es: "3 rondas de revisión" },
@@ -257,6 +290,10 @@ export const packages: PackageRecord[] = [
       es: "Si la dirección cambia fundamentalmente, el alcance se redirige al Sistema de Identidad de Marca.",
     },
     price: { en: "Starting at $1,500", es: "Desde $1,500" },
+    bestFor: {
+      en: "Established businesses whose brand has become dated but whose direction hasn't changed — same identity, updated execution.",
+      es: "Negocios establecidos cuya marca se ha vuelto desactualizada pero cuya dirección no ha cambiado — misma identidad, ejecución actualizada.",
+    },
     includes: [
       { en: "Updated logo file (refined, not redesigned)", es: "Archivo de logotipo actualizado (refinado, no rediseñado)" },
       { en: "Refreshed color palette and typography", es: "Paleta de colores y tipografía renovadas" },
@@ -281,6 +318,10 @@ export const packages: PackageRecord[] = [
       es: "Requerido antes de cualquier construcción de sitio web o plataforma. Incluido en los paquetes Brand Foundation y Market Ready.",
     },
     price: { en: "Starting at $2,800", es: "Desde $2,800" },
+    bestFor: {
+      en: "Businesses building a brand from scratch before a website, platform, or product launch — everything in one coordinated engagement.",
+      es: "Negocios que construyen una marca desde cero antes de un sitio web, plataforma o lanzamiento de producto — todo en un proyecto coordinado.",
+    },
     includes: [
       { en: "Logo Design — Premium (3 concepts, 3 revisions, full file set)", es: "Diseño de Logotipo Premium (3 conceptos, 3 revisiones, archivos completos)" },
       { en: "Color palette with hex, RGB, and CMYK codes", es: "Paleta de colores con códigos hex, RGB y CMYK" },
@@ -315,6 +356,10 @@ export const packages: PackageRecord[] = [
       es: "Para negocios que necesitan una presencia activa de inmediato — no un sitio completo.",
     },
     price: { en: "Starting at $750", es: "Desde $750" },
+    bestFor: {
+      en: "Businesses that need a live professional page immediately — a name, a service, a contact — not a full site.",
+      es: "Negocios que necesitan una página profesional activa de inmediato — nombre, servicio, contacto — no un sitio completo.",
+    },
     includes: [
       { en: "1 page, mobile layout", es: "1 página, diseño móvil" },
       { en: "Basic copy structure and single CTA", es: "Estructura básica de copy y CTA único" },
@@ -342,6 +387,10 @@ export const packages: PackageRecord[] = [
       es: "La conexión de dominio, analítica y configuración de Search Console están disponibles como el complemento de Despliegue.",
     },
     price: { en: "Starting at $1,500", es: "Desde $1,500" },
+    bestFor: {
+      en: "Local service businesses that need a clean multi-page site with service structure and local SEO — ready to be found.",
+      es: "Negocios de servicios locales que necesitan un sitio multipágina limpio con estructura de servicios y SEO local — listos para ser encontrados.",
+    },
     includes: [
       { en: "Up to 5 static pages", es: "Hasta 5 páginas estáticas" },
       { en: "Service copy structure", es: "Estructura de copy de servicios" },
@@ -370,6 +419,10 @@ export const packages: PackageRecord[] = [
       es: "El paquete de lanzamiento completo para un negocio local — listo para ser encontrado desde el primer día.",
     },
     price: { en: "Starting at $1,900", es: "Desde $1,900" },
+    bestFor: {
+      en: "Local businesses that want to go live without managing domain connection, analytics, and QA themselves.",
+      es: "Negocios locales que quieren lanzar sin gestionar la conexión de dominio, analítica y QA por su cuenta.",
+    },
     includes: [
       { en: "Everything in Local Business Starter", es: "Todo lo del Inicio de Negocio Local" },
       { en: "Domain connection and DNS configuration", es: "Conexión de dominio y configuración de DNS" },
@@ -399,6 +452,10 @@ export const packages: PackageRecord[] = [
       es: "Para negocios que necesitan una presencia multipágina creíble sin la sobrecarga de un CMS.",
     },
     price: { en: "Starting at $2,500", es: "Desde $2,500" },
+    bestFor: {
+      en: "Professional service firms, consultants, and B2B businesses that need structured authority positioning without CMS overhead.",
+      es: "Firmas de servicios profesionales, consultores y negocios B2B que necesitan posicionamiento de autoridad estructurado sin la sobrecarga de un CMS.",
+    },
     includes: [
       { en: "Up to 7 pages", es: "Hasta 7 páginas" },
       { en: "Copy structure and service architecture", es: "Estructura de copy y arquitectura de servicios" },
@@ -428,6 +485,10 @@ export const packages: PackageRecord[] = [
       es: "Incluido en los paquetes Brand Foundation, Market Ready y Launch Stack.",
     },
     price: { en: "Starting at $3,500", es: "Desde $3,500" },
+    bestFor: {
+      en: "Established businesses ready for a full-featured site — CMS, conversion architecture, schema markup, and a QA pass before handoff.",
+      es: "Negocios establecidos listos para un sitio completo — CMS, arquitectura de conversión, schema markup y revisión de QA antes del traspaso.",
+    },
     includes: [
       { en: "Up to 10 pages", es: "Hasta 10 páginas" },
       { en: "CMS (client-editable content after handoff)", es: "CMS (contenido editable por el cliente tras el traspaso)" },
@@ -456,6 +517,10 @@ export const packages: PackageRecord[] = [
       es: "La construcción de autoridad completa. Requiere un brief de descubrimiento o Sprint Estándar de BA.",
     },
     price: { en: "Starting at $5,500", es: "Desde $5,500" },
+    bestFor: {
+      en: "Businesses that need bilingual delivery, case studies, intake flow, analytics, and a full QA pass — the complete authority build.",
+      es: "Negocios que necesitan entrega bilingüe, casos de estudio, flujo de intake, analítica y revisión de QA completa — la construcción de autoridad completa.",
+    },
     includes: [
       { en: "Up to 15 pages", es: "Hasta 15 páginas" },
       { en: "Bilingual structure EN/ES", es: "Estructura bilingüe EN/ES" },
@@ -493,6 +558,10 @@ export const packages: PackageRecord[] = [
       es: "Para equipos con un proceso definido y repetible que actualmente es manual.",
     },
     price: { en: "Starting at $1,500", es: "Desde $1,500" },
+    bestFor: {
+      en: "Businesses with manual, repetitive steps between tools they already use — data entry, notifications, routing — that should be automated.",
+      es: "Negocios con pasos manuales y repetitivos entre herramientas que ya usan — ingreso de datos, notificaciones, enrutamiento — que deberían automatizarse.",
+    },
     includes: [
       { en: "1–3 bounded workflows", es: "1–3 flujos de trabajo acotados" },
       { en: "Trigger logic and action routing", es: "Lógica de activación y enrutamiento de acciones" },
@@ -519,6 +588,10 @@ export const packages: PackageRecord[] = [
       es: "Incluye una sesión de capacitación grabada de 1 hora para su equipo.",
     },
     price: { en: "Starting at $1,500", es: "Desde $1,500" },
+    bestFor: {
+      en: "Businesses that licensed a CRM but never configured it correctly — or need one built for how they actually work, with training.",
+      es: "Negocios que licenciaron un CRM pero nunca lo configuraron correctamente, o que necesitan uno construido para cómo trabajan realmente, con capacitación.",
+    },
     includes: [
       { en: "Data model and field configuration", es: "Modelo de datos y configuración de campos" },
       { en: "Views, filters, and automation rules", es: "Vistas, filtros y reglas de automatización" },
@@ -545,6 +618,10 @@ export const packages: PackageRecord[] = [
       es: "Requiere una fuente de datos existente (base de datos, hoja de cálculo o CRM) antes de iniciar el alcance.",
     },
     price: { en: "Starting at $2,200", es: "Desde $2,200" },
+    bestFor: {
+      en: "Businesses with data spread across multiple tools that need one unified reporting view, by role, without building a full platform.",
+      es: "Negocios con datos distribuidos en múltiples herramientas que necesitan una vista unificada de informes, por rol, sin construir una plataforma completa.",
+    },
     includes: [
       { en: "Reporting dashboard with data connections", es: "Panel de informes con conexiones de datos" },
       { en: "Role-scoped views", es: "Vistas por rol" },
@@ -570,6 +647,10 @@ export const packages: PackageRecord[] = [
       es: "Requiere Sprint Estándar de BA o brief de alcance aprobado por el Fundador antes de iniciar.",
     },
     price: { en: "Starting at $8,500 — scoped on inquiry", es: "Desde $8,500 — precio por consulta" },
+    bestFor: {
+      en: "Businesses with a defined platform concept — scoped after a BA Sprint — that are ready to build: auth, database, dashboard, and admin surface.",
+      es: "Negocios con un concepto de plataforma definido — con alcance tras un Sprint BA — listos para construir: autenticación, base de datos, panel y superficie de administración.",
+    },
     includes: [
       { en: "Authentication layer and access controls", es: "Capa de autenticación y controles de acceso" },
       { en: "Database design and API routes", es: "Diseño de base de datos y rutas API" },
@@ -600,6 +681,10 @@ export const packages: PackageRecord[] = [
       es: "Disponible como despliegue licenciado o construcción personalizada. Todos los proyectos comienzan con un sprint de alcance.",
     },
     price: { en: "Inquiry", es: "Consulta" },
+    bestFor: {
+      en: "Retail, restaurants, and service businesses that need a managed point-of-sale — transactions, reporting, and end-of-day reconciliation — without building one from scratch.",
+      es: "Comercio minorista, restaurantes y negocios de servicios que necesitan un punto de venta gestionado — transacciones, informes y conciliación de cierre — sin construirlo desde cero.",
+    },
     includes: [
       { en: "Product catalog management", es: "Gestión de catálogo de productos" },
       { en: "Transaction processing (cash, card, mobile)", es: "Procesamiento de transacciones (efectivo, tarjeta, móvil)" },
@@ -631,6 +716,10 @@ export const packages: PackageRecord[] = [
       es: "Disponible como despliegue licenciado o construcción personalizada. Todos los proyectos comienzan con un sprint de alcance.",
     },
     price: { en: "Inquiry", es: "Consulta" },
+    bestFor: {
+      en: "Businesses with hourly or shift employees where scheduling, time tracking, and payroll export is still done manually.",
+      es: "Negocios con empleados por hora o turno donde la programación, el registro de tiempo y la exportación de nómina aún se hacen manualmente.",
+    },
     includes: [
       { en: "Clock in/out with shift management", es: "Entrada/salida con gestión de turnos" },
       { en: "Timecard approval workflow", es: "Flujo de aprobación de tarjetas de tiempo" },
@@ -662,6 +751,10 @@ export const packages: PackageRecord[] = [
       es: "Disponible como despliegue licenciado o construcción personalizada. Todos los proyectos comienzan con un sprint de alcance.",
     },
     price: { en: "Inquiry", es: "Consulta" },
+    bestFor: {
+      en: "Clinics, salons, and service businesses that need client booking, reminders, and no-show handling — built for how they actually operate.",
+      es: "Clínicas, salones y negocios de servicios que necesitan reservas de clientes, recordatorios y manejo de ausencias — construidos para cómo operan realmente.",
+    },
     includes: [
       { en: "Client self-booking portal", es: "Portal de reservas en línea para clientes" },
       { en: "Staff calendar management", es: "Gestión de calendario del personal" },
@@ -692,6 +785,10 @@ export const packages: PackageRecord[] = [
       es: "Disponible como despliegue licenciado o construcción personalizada. Todos los proyectos comienzan con un sprint de alcance.",
     },
     price: { en: "Inquiry", es: "Consulta" },
+    bestFor: {
+      en: "Hardware, retail, and distribution businesses that need real-time stock visibility, reorder triggers, and a full audit trail.",
+      es: "Negocios de ferretería, retail y distribución que necesitan visibilidad de inventario en tiempo real, activadores de reorden y un registro de auditoría completo.",
+    },
     includes: [
       { en: "Product catalog and stock level tracking", es: "Catálogo de productos y seguimiento de niveles de inventario" },
       { en: "Reorder triggers and low-stock alerts", es: "Activadores de reorden y alertas de bajo inventario" },
@@ -723,6 +820,10 @@ export const packages: PackageRecord[] = [
       es: "Disponible como despliegue licenciado o construcción personalizada. Todos los proyectos comienzan con un sprint de alcance.",
     },
     price: { en: "Inquiry", es: "Consulta" },
+    bestFor: {
+      en: "Businesses with structured onboarding, policy acknowledgment requirements, or distributed staff that need a central HR record system.",
+      es: "Negocios con onboarding estructurado, requisitos de reconocimiento de políticas o personal distribuido que necesitan un sistema central de RR. HH.",
+    },
     includes: [
       { en: "Document upload and acknowledgment tracking", es: "Carga de documentos y seguimiento de reconocimiento" },
       { en: "Policy management", es: "Gestión de políticas" },
@@ -756,6 +857,10 @@ export const packages: PackageRecord[] = [
       es: "Incluye acceso a la plataforma, soporte de despliegue, incorporación y el Retainer de Aseguramiento de Sistemas requerido.",
     },
     price: { en: "Inquiry", es: "Consulta" },
+    bestFor: {
+      en: "Businesses in an industry where a NoDrftSystems OS already exists — the fastest path to a production-ready, governed operating platform.",
+      es: "Negocios en una industria donde ya existe un OS de NoDrftSystems — el camino más rápido hacia una plataforma operativa gobernada y lista para producción.",
+    },
     includes: [
       { en: "Platform access (annual license)", es: "Acceso a la plataforma (licencia anual)" },
       { en: "Deployment and configuration support", es: "Soporte de despliegue y configuración" },
@@ -786,6 +891,10 @@ export const packages: PackageRecord[] = [
       es: "Cuando el OS estándar está cerca pero no es exacto — la configuración cierra la brecha sin una construcción personalizada.",
     },
     price: { en: "Inquiry", es: "Consulta" },
+    bestFor: {
+      en: "Businesses that fit a prebuilt OS at 70–90% and need configuration adjustments to match their specific workflow — without a full custom build.",
+      es: "Negocios que encajan en un OS preintegrado al 70–90% y necesitan ajustes de configuración para su flujo de trabajo específico — sin una construcción personalizada completa.",
+    },
     includes: [
       { en: "Everything in Licensed OS Deployment", es: "Todo lo del Despliegue OS Licenciado" },
       { en: "Workflow adjustments to fit operational requirements", es: "Ajustes de flujo de trabajo para adaptarse a los requisitos operativos" },
@@ -816,6 +925,10 @@ export const packages: PackageRecord[] = [
       es: "Requiere Intensivo de Arquitectura de BA. IP por defecto: NoDrftSystems retiene toda la propiedad intelectual.",
     },
     price: { en: "Inquiry", es: "Consulta" },
+    bestFor: {
+      en: "Businesses in a regulated industry with no existing OS product — and the scope, readiness, and commitment to commission one as a first licensed operator.",
+      es: "Negocios en una industria regulada sin producto OS existente — con el alcance, disposición y compromiso para encargarlo como primer operador licenciado.",
+    },
     includes: [
       { en: "Full architecture design and build", es: "Diseño y construcción de arquitectura completa" },
       { en: "Industry-specific compliance layer", es: "Capa de cumplimiento específica de la industria" },
@@ -848,6 +961,10 @@ export const packages: PackageRecord[] = [
       es: "Mes a mes después del primer mes. Se requiere un brief aprobado antes de comenzar a escribir.",
     },
     price: { en: "Starting at $750/month", es: "Desde $750/mes" },
+    bestFor: {
+      en: "Businesses that need consistent published content without the internal bandwidth to write, edit, and manage it.",
+      es: "Negocios que necesitan contenido publicado de forma consistente sin el ancho de banda interno para escribirlo, editarlo y gestionarlo.",
+    },
     includes: [
       { en: "Up to 2 blog posts or content pieces per month", es: "Hasta 2 publicaciones de blog o piezas de contenido por mes" },
       { en: "Basic on-page SEO per piece", es: "SEO on-page básico por pieza" },
@@ -874,6 +991,10 @@ export const packages: PackageRecord[] = [
       es: "El gasto en publicidad en plataformas siempre es gestionado y pagado directamente por el cliente a la plataforma — no incluido en el precio de producción.",
     },
     price: { en: "Starting at $995/month", es: "Desde $995/mes" },
+    bestFor: {
+      en: "Businesses building a social presence from scratch — or restarting one that went dormant — with 8 planned posts a month across two platforms.",
+      es: "Negocios que construyen una presencia social desde cero, o que reactivan una inactiva, con 8 publicaciones planificadas al mes en dos plataformas.",
+    },
     includes: [
       { en: "8 posts/month — Instagram + TikTok", es: "8 publicaciones/mes — Instagram + TikTok" },
       { en: "Monthly content calendar planned in advance", es: "Calendario de contenido mensual planificado con anticipación" },
@@ -901,6 +1022,10 @@ export const packages: PackageRecord[] = [
       es: "Mínimo 3 meses. Las guías de marca deben estar en archivo antes del mes 1.",
     },
     price: { en: "Starting at $1,500/month", es: "Desde $1,500/mes" },
+    bestFor: {
+      en: "Businesses that want a managed editorial calendar with keyword tracking — consistent, planned content output, not ad-hoc articles.",
+      es: "Negocios que quieren un calendario editorial gestionado con seguimiento de palabras clave — producción de contenido consistente y planificada, no artículos ocasionales.",
+    },
     includes: [
       { en: "Up to 4 content pieces per month", es: "Hasta 4 piezas de contenido por mes" },
       { en: "SEO keyword tracking report", es: "Informe de seguimiento de palabras clave SEO" },
@@ -927,6 +1052,10 @@ export const packages: PackageRecord[] = [
       es: "El gasto en publicidad en plataformas siempre es gestionado y pagado directamente por el cliente a la plataforma — no incluido en el precio de producción.",
     },
     price: { en: "Starting at $1,750/month", es: "Desde $1,750/mes" },
+    bestFor: {
+      en: "Businesses that need consistent presence across three platforms without the overhead of an internal content team.",
+      es: "Negocios que necesitan presencia consistente en tres plataformas sin la sobrecarga de un equipo interno de contenido.",
+    },
     includes: [
       { en: "16 posts/month — Instagram, TikTok, Facebook", es: "16 publicaciones/mes — Instagram, TikTok, Facebook" },
       { en: "Monthly content calendar planned in advance", es: "Calendario de contenido mensual planificado con anticipación" },
@@ -954,6 +1083,10 @@ export const packages: PackageRecord[] = [
       es: "El gasto en publicidad en plataformas siempre es gestionado y pagado directamente por el cliente a la plataforma — no incluido en el precio de producción.",
     },
     price: { en: "Starting at $2,950/month", es: "Desde $2,950/mes" },
+    bestFor: {
+      en: "Businesses that need high-frequency social production — daily output, three platforms — without building a content team.",
+      es: "Negocios que necesitan producción social de alta frecuencia — publicación diaria, tres plataformas — sin construir un equipo de contenido.",
+    },
     includes: [
       { en: "24–30 posts/month — Instagram, TikTok, Facebook", es: "24–30 publicaciones/mes — Instagram, TikTok, Facebook" },
       { en: "Monthly content calendar planned in advance", es: "Calendario de contenido mensual planificado con anticipación" },
@@ -983,6 +1116,10 @@ export const packages: PackageRecord[] = [
       es: "Mes a mes después del primer mes.",
     },
     price: { en: "Starting at $500/month", es: "Desde $500/mes" },
+    bestFor: {
+      en: "Small local businesses that launched a site and want it to stay current, secure, and monitored without a project-by-project relationship.",
+      es: "Pequeños negocios locales que lanzaron un sitio y quieren mantenerlo actualizado, seguro y monitoreado sin una relación proyecto a proyecto.",
+    },
     includes: [
       { en: "Basic site updates and small content changes", es: "Actualizaciones básicas del sitio y pequeños cambios de contenido" },
       { en: "Uptime monitoring", es: "Monitoreo de disponibilidad" },
@@ -1009,6 +1146,10 @@ export const packages: PackageRecord[] = [
       es: "Mínimo 3 meses.",
     },
     price: { en: "Starting at $1,500/month", es: "Desde $1,500/mes" },
+    bestFor: {
+      en: "Active businesses that want regular improvements and priority access — not a reactive project relationship every time something needs updating.",
+      es: "Negocios activos que quieren mejoras regulares y acceso prioritario — no una relación reactiva de proyecto cada vez que algo necesita actualizarse.",
+    },
     includes: [
       { en: "Updates and content support", es: "Actualizaciones y soporte de contenido" },
       { en: "SEO signal checks", es: "Verificaciones de señales SEO" },
@@ -1035,6 +1176,10 @@ export const packages: PackageRecord[] = [
       es: "Mínimo 3 meses. Para negocios con flujos de trabajo, automatizaciones u operaciones digitales activas.",
     },
     price: { en: "Starting at $3,500/month", es: "Desde $3,500/mes" },
+    bestFor: {
+      en: "Businesses with active automations, dashboards, or workflows that need strategic oversight, ongoing QA, and priority implementation.",
+      es: "Negocios con automatizaciones activas, paneles o flujos de trabajo que necesitan supervisión estratégica, QA continuo e implementación prioritaria.",
+    },
     includes: [
       { en: "Strategy sessions and QA passes", es: "Sesiones de estrategia y revisiones QA" },
       { en: "Automation support and priority implementation", es: "Soporte de automatización e implementación prioritaria" },
@@ -1061,6 +1206,10 @@ export const packages: PackageRecord[] = [
       es: "Mínimo 3 meses. Coordinación de guardia incluida.",
     },
     price: { en: "Starting at $7,500/month", es: "Desde $7,500/mes" },
+    bestFor: {
+      en: "Complex clients managing a full digital stack that need dedicated ongoing capacity for roadmap management, systems work, and QA.",
+      es: "Clientes complejos que gestionan un stack digital completo y necesitan capacidad dedicada continua para gestión de hoja de ruta, trabajo de sistemas y QA.",
+    },
     includes: [
       { en: "Priority roadmap management and systems work", es: "Gestión prioritaria de hoja de ruta y trabajo de sistemas" },
       { en: "QA passes and advanced reporting", es: "Revisiones QA e informes avanzados" },
@@ -1086,6 +1235,10 @@ export const packages: PackageRecord[] = [
       es: "Mínimo 6 meses. Requerido como condición de todas las licencias PharmacyOS y OS de verticales reguladas.",
     },
     price: { en: "Starting at $1,500/month (OS clients)", es: "Desde $1,500/mes (clientes OS)" },
+    bestFor: {
+      en: "All NoDrftSystems OS licensed deployments — required as a condition of every regulated vertical OS license.",
+      es: "Todos los despliegues licenciados de OS de NoDrftSystems — requerido como condición de toda licencia OS de vertical regulada.",
+    },
     includes: [
       { en: "Monthly regulated workflow QA pass", es: "Revisión QA mensual de flujos de trabajo regulados" },
       { en: "Quarterly compliance review", es: "Revisión trimestral de cumplimiento" },
@@ -1114,6 +1267,10 @@ export const packages: PackageRecord[] = [
       es: "El camino más rápido de no tener marca a una identidad visual completa.",
     },
     price: { en: "$1,800", es: "$1,800" },
+    bestFor: {
+      en: "New businesses or freelancers that need a complete visual identity fast — professional logo and brand standards, nothing else.",
+      es: "Nuevos negocios o freelancers que necesitan una identidad visual completa rápido — logotipo profesional y estándares de marca, nada más.",
+    },
     includes: [
       { en: "Logo Design — Premium (3 concepts, 3 revisions, full file set + social variants)", es: "Diseño de Logotipo Premium (3 conceptos, 3 revisiones, archivos completos + variantes para redes sociales)" },
       { en: "Brand Guidelines Document (color codes, typography, clearspace rules)", es: "Documento de Guías de Marca (códigos de color, tipografía, reglas de espacio libre)" },
@@ -1138,6 +1295,10 @@ export const packages: PackageRecord[] = [
       es: "El punto de partida más común para negocios establecidos que construyen su primera presencia digital seria.",
     },
     price: { en: "$7,500", es: "$7,500" },
+    bestFor: {
+      en: "Established businesses building their first serious digital presence — brand and website in one coordinated engagement.",
+      es: "Negocios establecidos que construyen su primera presencia digital seria — marca y sitio web en un proyecto coordinado.",
+    },
     includes: [
       { en: "Brand Identity System (Logo Premium, color palette, typography, guidelines, stationery)", es: "Sistema de Identidad de Marca (Logotipo Premium, paleta de colores, tipografía, guías, papelería)" },
       { en: "Authority Website Standard (up to 10 pages, CMS, schema markup, full QA)", es: "Sitio de Autoridad Estándar (hasta 10 páginas, CMS, schema markup, QA completo)" },
@@ -1162,6 +1323,10 @@ export const packages: PackageRecord[] = [
       es: "Para negocios que necesitan ser encontrados, no solo verse bien.",
     },
     price: { en: "$9,000", es: "$9,000" },
+    bestFor: {
+      en: "Businesses that need to be found, not just look good — brand, website, and local search visibility delivered in one engagement.",
+      es: "Negocios que necesitan ser encontrados, no solo verse bien — marca, sitio web y visibilidad en búsqueda local entregados en un proyecto.",
+    },
     includes: [
       { en: "Everything in Brand Foundation", es: "Todo lo del Brand Foundation" },
       { en: "SEO Metadata Pass (title tags, meta descriptions, OG tags — up to 10 pages)", es: "Revisión de Metadatos SEO (títulos, meta descripciones, etiquetas OG — hasta 10 páginas)" },
@@ -1187,6 +1352,10 @@ export const packages: PackageRecord[] = [
       es: "El paquete completo de salida al mercado para un nuevo negocio o lanzamiento de producto.",
     },
     price: { en: "$13,500", es: "$13,500" },
+    bestFor: {
+      en: "New businesses or product launches that need everything — strategy, brand, website, and social activation — in one sequenced engagement.",
+      es: "Nuevos negocios o lanzamientos de producto que necesitan todo — estrategia, marca, sitio web y activación social — en un proyecto secuenciado.",
+    },
     includes: [
       { en: "BA Standard Sprint (full 17-section evaluation + go/hold recommendation)", es: "Sprint Estándar de BA (evaluación completa de 17 secciones + recomendación de avanzar o pausar)" },
       { en: "Brand Identity System", es: "Sistema de Identidad de Marca" },

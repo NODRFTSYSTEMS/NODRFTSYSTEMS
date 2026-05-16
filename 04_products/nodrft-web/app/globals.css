@@ -1265,6 +1265,20 @@ textarea:focus:not(:focus-visible) {
   color: var(--accent);
   display: inline-block;
 }
+.nd-pkg-best-for {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text);
+}
+.nd-pkg-best-for__label {
+  font-weight: 600;
+  color: var(--accent);
+  font-family: var(--nd-font-mono, monospace);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-size: 11px;
+  margin-right: 4px;
+}
 .nd-pkg-subtext { color: var(--text-md); font-style: italic; }
 .nd-pkg-card { display: flex; flex-direction: column; justify-content: space-between; }
 .nd-advisory-quote {
