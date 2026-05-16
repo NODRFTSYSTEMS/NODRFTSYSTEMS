@@ -1,0 +1,5 @@
+-- Migration 027 — Reserved (no schema change)
+-- This number was intentionally skipped during the 2026-05-16 staff portrait
+-- sprint to avoid a numbering collision with the worktree branch
+-- (claude/strange-varahamihira-f9d312) which had already used 027 for
+-- earn_loyalty_points. No schema change at this migration number.

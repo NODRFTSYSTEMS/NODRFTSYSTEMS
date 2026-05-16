@@ -38,6 +38,12 @@ This ledger records every piece of verification evidence produced during the Pha
 | 2026-05-15 | Deploy | Migrations 022 + 023 applied | COMPLETE | Founder (supabase db push) | Applied to project aeidooydivhnvwskypov |
 | 2026-05-15 | Deploy | GitHub Pages staging deploy | COMPLETE | Founder | Sprint build pushed to gh-pages branch — NODRFTSYSTEMS/pharmacyos |
 | 2026-05-15 | Deploy | main branch merge | COMPLETE | Founder | claude/strange-varahamihira-f9d312 merged + pushed to origin/main |
+| 2026-05-16 | Gate 3 | Medication/product visual workflow | COMPLETE - demo visual scaffolding + product image slots + Rx/catalog/POS/stock UI placements | Codex / FIS + BLS surface | Added migrations 025-026, prescription visual-reference UI, and product-owned `image_url`/`image_alt` support. Demo placeholders are active for workflow layout; launch images remain blocked pending pharmacist/source validation. |
+| 2026-05-16 | Gate 4 | TypeScript check | PASS | TVA / Codex | `npm run typecheck` passed. |
+| 2026-05-16 | Gate 4 | Production build | PASS | TVA / Codex | `npm run build` passed after `npm install` restored missing declared `@vitejs/plugin-legacy`; sandbox required escalation for Vite/esbuild config access. |
+| 2026-05-16 | Gate 4 | Unit test suite | PASS - 57 tests | TVA / Codex | `npm run test:run` passed; sandbox required escalation for Vitest/esbuild config access. |
+| 2026-05-16 | Gate 4 | Local route smoke check | PASS | TVA / Codex | Vite dev server returned HTTP 200 for `/prescriptions`, `/pos/products`, `/pos/terminal`, and `/inventory/movements`; rendered browser automation unavailable in current tool surface. |
+| 2026-05-16 | Gate 3 | Staff demo portrait workflow | COMPLETE - generated fictional staff portraits + staff avatar fields + shell/admin/security placements | Codex / FIS + BLS surface | Added five demo-only generated portraits for seeded staff, migration 028 staff avatar metadata, and UI rendering in staff identity surfaces. Launch use requires client-approved or verified replacement images before any portrait is marked VERIFIED. |
 
 ---
 
@@ -85,3 +91,4 @@ Prototype is for design validation and stakeholder review only. Production imple
 | G4 | Lynk payment API credentials absent | Client | OPEN |
 | G5 | JDPA compliance review not started | SCA + LCA | OPEN |
 | G6 | Schedule drug log format not pharmacist-approved | Client pharmacist | OPEN |
+| G10 | Launch-verified medication visual source library absent | Client pharmacist + Founder | OPEN - migration 025 creates DEMO_ONLY visual placeholders for route/layout readiness. Image URLs must come from verified stock photos, supplier/manufacturer references, or another approved source before any record is marked VERIFIED |
