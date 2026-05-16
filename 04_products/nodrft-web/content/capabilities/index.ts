@@ -1294,7 +1294,7 @@ export const packages: PackageRecord[] = [
       en: "The most common starting point for established businesses building their first serious digital presence.",
       es: "El punto de partida más común para negocios establecidos que construyen su primera presencia digital seria.",
     },
-    price: { en: "$7,500", es: "$7,500" },
+    price: { en: "$4,500", es: "$4,500" },
     bestFor: {
       en: "The business is real. The digital presence isn't. Brand identity and a full website — same engagement, same delivery standard, one handoff that holds.",
       es: "El negocio es real. La presencia digital no. Identidad de marca y un sitio web completo — mismo proyecto, mismo estándar de entrega, un traspaso que se mantiene.",
@@ -1322,7 +1322,7 @@ export const packages: PackageRecord[] = [
       en: "For businesses that need to be found, not just look good.",
       es: "Para negocios que necesitan ser encontrados, no solo verse bien.",
     },
-    price: { en: "$9,000", es: "$9,000" },
+    price: { en: "$5,500", es: "$5,500" },
     bestFor: {
       en: "Brand and website alone won't generate inbound. This adds the local SEO layer — schema, NAP, keyword structure — so clients looking for what you do can actually find you.",
       es: "La marca y el sitio web por sí solos no generarán tráfico entrante. Esto agrega la capa de SEO local — schema, consistencia NAP, estructura de palabras clave — para que los clientes que buscan lo que hace puedan encontrarlo.",
@@ -1351,7 +1351,7 @@ export const packages: PackageRecord[] = [
       en: "The complete go-to-market package for a new business or product launch.",
       es: "El paquete completo de salida al mercado para un nuevo negocio o lanzamiento de producto.",
     },
-    price: { en: "$13,500", es: "$13,500" },
+    price: { en: "$8,500", es: "$8,500" },
     bestFor: {
       en: "You're launching. You need the evaluation, the brand, the website, and 90 days of social content — sequenced correctly, delivered under one engagement. This is that.",
       es: "Está lanzando. Necesita la evaluación, la marca, el sitio web y 90 días de contenido social — secuenciados correctamente, entregados en un solo proyecto. Esto es eso.",
