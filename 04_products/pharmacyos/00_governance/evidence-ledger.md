@@ -44,6 +44,10 @@ This ledger records every piece of verification evidence produced during the Pha
 | 2026-05-16 | Gate 4 | Unit test suite | PASS - 57 tests | TVA / Codex | `npm run test:run` passed; sandbox required escalation for Vitest/esbuild config access. |
 | 2026-05-16 | Gate 4 | Local route smoke check | PASS | TVA / Codex | Vite dev server returned HTTP 200 for `/prescriptions`, `/pos/products`, `/pos/terminal`, and `/inventory/movements`; rendered browser automation unavailable in current tool surface. |
 | 2026-05-16 | Gate 3 | Staff demo portrait workflow | COMPLETE - generated fictional staff portraits + staff avatar fields + shell/admin/security placements | Codex / FIS + BLS surface | Added five demo-only generated portraits for seeded staff, migration 028 staff avatar metadata, and UI rendering in staff identity surfaces. Launch use requires client-approved or verified replacement images before any portrait is marked VERIFIED. |
+| 2026-05-16 | Gate 4 | Audit gap remediation — E-1 through E-5 | COMPLETE | Codex / SEA | Queue.tsx Rx status advance, CloseOut.tsx EOD submit, UsersAdmin.tsx staff CRUD + permissions, PatientProfile.tsx JDPA export guard |
+| 2026-05-16 | Gate 4 | Loyalty POS integration + patient link | COMPLETE | Codex / SEA | PosTerminal loyalty customer lookup + points-earn flow; loyalty_customers.patient_id FK (migration 031); Admin loyalty rate settings; PatientProfile loyalty card |
+| 2026-05-16 | Gate 4 | HR module — Leave Requests + Certifications | COMPLETE | Codex / SEA | staff_leaves + staff_certifications tables (migration 032); LeaveRequests.tsx + Certifications.tsx pages; Shell nav integration; 6 HR audit actions registered; 57/57 tests pass; TS clean; build pass |
+| 2026-05-16 | Gate 4 | Migration 032 — gct_rate key fix | COMPLETE | Codex / SEA | pharmacy_settings tax_rate → gct_rate correction; POS terminal now reads live GCT rate instead of hardcoded 15% fallback |
 
 ---
 
