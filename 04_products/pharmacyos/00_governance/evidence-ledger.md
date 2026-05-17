@@ -49,9 +49,9 @@ This ledger records every piece of verification evidence produced during the Pha
 
 ## Tracked Defects — Next Sprint
 
-| ID | Severity | File | Description | Owner |
-|----|----------|------|-------------|-------|
-| D-07 | MEDIUM | `app/src/pages/admin/Users.tsx` | AUDITOR role absent from Add/Edit Staff drawer `<select>`. Role exists in TypeScript types and permissions matrix but cannot be assigned via UI — requires direct database entry. Add `<option value="AUDITOR">Auditor</option>` to the role selector. | QAS (Imani) / next sprint |
+| ID | Severity | File | Description | Status | Owner |
+|----|----------|------|-------------|--------|-------|
+| D-07 | MEDIUM | `app/src/pages/admin/Users.tsx` | AUDITOR role absent from Add/Edit Staff drawer `<select>`. | CLOSED — AUDITOR present at line 280 of Users.tsx; verified 2026-05-16 | QAS (Imani) |
 
 ---
 
@@ -100,3 +100,5 @@ Prototype is for design validation and stakeholder review only. Production imple
 | Date | Gate | Evidence | Status | Owner | Notes |
 |---|---|---|---|---|---|
 | 2026-05-16 | Gate 3 | Connection status, dashboard updates, theme toggle, AI role settings, internal error capture, and daily inconsistency report controls added to PharmacyOS | IN REVIEW | Codex / PMA + SEA + FIS | Migration 029 installs persistence and report RPC. Edge Function `daily-inconsistency-report` exposes scheduler/manual invocation. Production scheduler binding remains a deployment dependency. |
+| 2026-05-16 | Gate 4 | Audit gap remediation — E-1 through E-5 | COMPLETE | Codex / SEA | Queue.tsx Rx status advance + dispense; CloseOut.tsx EOD submit + discrepancy; Users.tsx staff CRUD (create/update/deactivate) + permissions matrix save; PatientProfile.tsx JDPA export consent guard (function-level + button disabled). TypeScript: 0 errors. Tests: 57/57. Build: pass. |
+| 2026-05-16 | Gate 4 | Audit gap remediation — second-round sweep (NewPatient, NewPrescription, Loyalty, Settings) | COMPLETE | Codex / SEA | NewPatient.tsx: corrected wrong-column audit writes (entity_type/entity_id schema was invalid — replaced with canonical actor_id/actor_name/table_name/record_id/details); added PATIENT_JDPA_CONSENT write. NewPrescription.tsx: added RX_CREATE audit write with correct schema + insert now captures returned UUID. Loyalty.tsx: added LOYALTY_CUSTOMER_CREATE + LOYALTY_CUSTOMER_UPDATE writes. Settings.tsx: added SETTINGS_UPDATE writes to createDashboardUpdate, updateAiRole, toggleAiRole mutations. TypeScript: 0 errors. Tests: 57/57. Build: pass. |
