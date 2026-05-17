@@ -111,7 +111,7 @@ Deno.serve(async (req: Request) => {
     const aiModel       = aiSettings?.model      ?? 'claude-haiku-4-5-20251001'
     const aiEnabled     = aiSettings?.enabled    ?? true
     const aiTemperature = Number(aiSettings?.temperature ?? 0.20)
-    const aiMaxTokens   = aiSettings?.max_tokens ?? 512
+    const aiMaxTokens   = aiSettings?.max_tokens ?? 1024  // increased from 512 — 5 compliance bullets need room
 
     if (!aiEnabled) {
       return new Response(JSON.stringify({ error: 'Audit log summarization AI is currently disabled.' }), {
@@ -173,10 +173,12 @@ Please summarise the key activity and any compliance concerns for this period.`
 
     const anthropic = new Anthropic({ apiKey: anthropicKey })
     const response = await anthropic.messages.create({
-      model: aiModel,
-      max_tokens: aiMaxTokens,
+      model:       aiModel,
+      max_tokens:  aiMaxTokens,
       temperature: aiTemperature,
-      system: SYSTEM_PROMPT,
+      // cache_control on system prompt — static compliance analyst role instructions
+      // are cached for 5 min; avoids re-processing ~300 tokens on every summarize call
+      system: [{ type: 'text', text: SYSTEM_PROMPT, cache_control: { type: 'ephemeral' } }],
       messages: [{ role: 'user', content: userPrompt }],
     })
 

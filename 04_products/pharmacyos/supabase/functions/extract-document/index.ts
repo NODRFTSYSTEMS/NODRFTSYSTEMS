@@ -189,13 +189,15 @@ Deno.serve(async (req: Request) => {
     const systemPrompt = isRx ? RX_SYSTEM_PROMPT : INVOICE_SYSTEM_PROMPT
     const anthropic = new Anthropic({ apiKey: anthropicKey })
 
-    // Use Haiku first; if confidence < 0.7, escalate to Sonnet
+    // Use Haiku first; escalate to Sonnet on API error OR low confidence (< 0.70)
+    // cache_control on both system prompts — static extraction schemas are large (~300 tokens)
+    // and identical across every call. Caching them saves meaningful input cost at volume.
     const runExtraction = async (model: string) => {
       const response = await anthropic.messages.create({
         model,
-        max_tokens: aiMaxTokens,
+        max_tokens:  aiMaxTokens,
         temperature: aiTemperature,
-        system: systemPrompt,
+        system: [{ type: 'text', text: systemPrompt, cache_control: { type: 'ephemeral' } }],
         messages: [{
           role: 'user',
           content: [
@@ -219,13 +221,45 @@ Deno.serve(async (req: Request) => {
       return content.text
     }
 
+    // Attempt extraction with primary model (Haiku by default)
     let rawText: string
     let usedModel = aiModel
+    let haikusResult: string | null = null
+
     try {
-      rawText = await runExtraction(aiModel)
-    } catch (e) {
+      haikusResult = await runExtraction(aiModel)
+    } catch {
+      // Primary model API error → escalate immediately to Sonnet
       rawText = await runExtraction('claude-sonnet-4-6')
       usedModel = 'claude-sonnet-4-6'
+      haikusResult = null
+    }
+
+    if (haikusResult !== null) {
+      // Check confidence before committing to Haiku output
+      // If low confidence, escalate to Sonnet for a better extraction
+      let haikusConfidence = 0.5  // conservative default if parse fails
+      try {
+        const jsonMatch = haikusResult.match(/\{[\s\S]*\}/)
+        if (jsonMatch) {
+          const parsed = JSON.parse(jsonMatch[0]) as Record<string, unknown>
+          if (typeof parsed.confidence === 'number') haikusConfidence = parsed.confidence
+        }
+      } catch { /* parse error — will be re-handled below, use default 0.5 */ }
+
+      if (haikusConfidence < 0.70) {
+        // Low confidence from Haiku → run Sonnet for better accuracy
+        try {
+          rawText = await runExtraction('claude-sonnet-4-6')
+          usedModel = 'claude-sonnet-4-6'
+        } catch {
+          // Sonnet also failed — fall back to Haiku's result
+          rawText = haikusResult
+          usedModel = aiModel
+        }
+      } else {
+        rawText = haikusResult
+      }
     }
 
     // 6. Parse the JSON from Claude response

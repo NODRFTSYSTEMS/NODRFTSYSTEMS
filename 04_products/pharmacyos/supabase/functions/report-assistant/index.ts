@@ -77,7 +77,7 @@ Deno.serve(async (req: Request) => {
     const aiModel       = aiSettings?.model      ?? 'claude-haiku-4-5-20251001'
     const aiEnabled     = aiSettings?.enabled    ?? true
     const aiTemperature = Number(aiSettings?.temperature ?? 0.20)
-    const aiMaxTokens   = aiSettings?.max_tokens ?? 256
+    const aiMaxTokens   = aiSettings?.max_tokens ?? 512   // increased from 256 — 2-4 sentences needs headroom
 
     if (!aiEnabled) {
       return new Response(JSON.stringify({ error: 'Report assistant AI is currently disabled.' }), {
@@ -95,10 +95,12 @@ ${data_summary}
 Question: ${question.trim()}`
 
     const response = await anthropic.messages.create({
-      model: aiModel,
-      max_tokens: aiMaxTokens,
+      model:       aiModel,
+      max_tokens:  aiMaxTokens,
       temperature: aiTemperature,
-      system: SYSTEM_PROMPT,
+      // cache_control on system prompt — avoids re-processing the static analyst role instructions
+      // on every report question (TTL 5 min; saves ~200 input tokens per call)
+      system: [{ type: 'text', text: SYSTEM_PROMPT, cache_control: { type: 'ephemeral' } }],
       messages: [{ role: 'user', content: userPrompt }],
     })
 
