@@ -104,6 +104,24 @@ Deno.serve(async (req: Request) => {
 
     const db = await getSupabaseClient()
 
+    // Load AI role settings (fallback to hardcoded defaults if row missing)
+    const { data: aiSettings } = await db
+      .from('ai_role_settings')
+      .select('model, enabled, temperature, max_tokens')
+      .eq('role_key', 'document_extraction')
+      .maybeSingle()
+
+    const aiModel       = aiSettings?.model      ?? 'claude-haiku-4-5'
+    const aiEnabled     = aiSettings?.enabled    ?? true
+    const aiTemperature = Number(aiSettings?.temperature ?? 0.10)
+    const aiMaxTokens   = aiSettings?.max_tokens ?? 2048
+
+    if (!aiEnabled) {
+      return new Response(JSON.stringify({ error: 'Document extraction AI is currently disabled.' }), {
+        status: 503, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      })
+    }
+
     // 1. Fetch the queue entry
     const { data: entry, error: fetchErr } = await db
       .from('extraction_queue')
@@ -175,7 +193,8 @@ Deno.serve(async (req: Request) => {
     const runExtraction = async (model: string) => {
       const response = await anthropic.messages.create({
         model,
-        max_tokens: 2048,
+        max_tokens: aiMaxTokens,
+        temperature: aiTemperature,
         system: systemPrompt,
         messages: [{
           role: 'user',
@@ -201,9 +220,9 @@ Deno.serve(async (req: Request) => {
     }
 
     let rawText: string
-    let usedModel = 'claude-haiku-4-5'
+    let usedModel = aiModel
     try {
-      rawText = await runExtraction('claude-haiku-4-5')
+      rawText = await runExtraction(aiModel)
     } catch (e) {
       rawText = await runExtraction('claude-sonnet-4-6')
       usedModel = 'claude-sonnet-4-6'

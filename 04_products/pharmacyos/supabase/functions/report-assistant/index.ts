@@ -29,6 +29,26 @@ interface RequestBody {
 
 // @ts-ignore — Deno globals in Edge Function context
 const anthropicKey = Deno.env.get('ANTHROPIC_API_KEY')
+// @ts-ignore
+const supabaseUrl = Deno.env.get('SUPABASE_URL') ?? ''
+// @ts-ignore
+const serviceKey  = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
+
+async function getAiSettings(roleKey: string) {
+  if (!supabaseUrl || !serviceKey) return null
+  try {
+    const { createClient } = await import('npm:@supabase/supabase-js')
+    const db = createClient(supabaseUrl, serviceKey)
+    const { data } = await db
+      .from('ai_role_settings')
+      .select('model, enabled, temperature, max_tokens')
+      .eq('role_key', roleKey)
+      .maybeSingle()
+    return data
+  } catch {
+    return null
+  }
+}
 
 // @ts-ignore — Deno serve
 Deno.serve(async (req: Request) => {
@@ -53,6 +73,18 @@ Deno.serve(async (req: Request) => {
       )
     }
 
+    const aiSettings    = await getAiSettings('report_assistant')
+    const aiModel       = aiSettings?.model      ?? 'claude-haiku-4-5-20251001'
+    const aiEnabled     = aiSettings?.enabled    ?? true
+    const aiTemperature = Number(aiSettings?.temperature ?? 0.20)
+    const aiMaxTokens   = aiSettings?.max_tokens ?? 256
+
+    if (!aiEnabled) {
+      return new Response(JSON.stringify({ error: 'Report assistant AI is currently disabled.' }), {
+        status: 503, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      })
+    }
+
     const anthropic = new Anthropic({ apiKey: anthropicKey })
 
     const userPrompt = `Report type: ${report_type}
@@ -63,8 +95,9 @@ ${data_summary}
 Question: ${question.trim()}`
 
     const response = await anthropic.messages.create({
-      model: 'claude-haiku-4-5-20251001',
-      max_tokens: 256,
+      model: aiModel,
+      max_tokens: aiMaxTokens,
+      temperature: aiTemperature,
       system: SYSTEM_PROMPT,
       messages: [{ role: 'user', content: userPrompt }],
     })

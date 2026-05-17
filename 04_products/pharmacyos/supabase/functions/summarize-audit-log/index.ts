@@ -101,6 +101,24 @@ Deno.serve(async (req: Request) => {
 
     const db = await getSupabaseClient()
 
+    // Load AI role settings (fallback to hardcoded defaults if row missing)
+    const { data: aiSettings } = await db
+      .from('ai_role_settings')
+      .select('model, enabled, temperature, max_tokens')
+      .eq('role_key', 'audit_summarizer')
+      .maybeSingle()
+
+    const aiModel       = aiSettings?.model      ?? 'claude-haiku-4-5-20251001'
+    const aiEnabled     = aiSettings?.enabled    ?? true
+    const aiTemperature = Number(aiSettings?.temperature ?? 0.20)
+    const aiMaxTokens   = aiSettings?.max_tokens ?? 512
+
+    if (!aiEnabled) {
+      return new Response(JSON.stringify({ error: 'Audit log summarization AI is currently disabled.' }), {
+        status: 503, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      })
+    }
+
     // Fetch audit entries for the period (max 200 — enough for a meaningful summary)
     const { data, error } = await db
       .from('audit_log')
@@ -155,8 +173,9 @@ Please summarise the key activity and any compliance concerns for this period.`
 
     const anthropic = new Anthropic({ apiKey: anthropicKey })
     const response = await anthropic.messages.create({
-      model: 'claude-haiku-4-5-20251001',
-      max_tokens: 512,
+      model: aiModel,
+      max_tokens: aiMaxTokens,
+      temperature: aiTemperature,
       system: SYSTEM_PROMPT,
       messages: [{ role: 'user', content: userPrompt }],
     })
