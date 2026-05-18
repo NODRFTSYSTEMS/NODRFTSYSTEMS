@@ -104,6 +104,56 @@ Deno.serve(async (req: Request) => {
 
     const db = await getSupabaseClient()
 
+    // ── Caller Role Validation (JDPA 2020) ────────────────────────────────────
+    // Extract caller identity from Authorization header (Bearer token)
+    // Only PHARMACIST and TECHNICIAN roles can invoke AI extraction
+    const authHeader = req.headers.get('Authorization')
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return new Response(JSON.stringify({ error: 'Missing or invalid Authorization header' }), {
+        status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      })
+    }
+
+    const token = authHeader.substring(7)
+    const { data: { user }, error: authError } = await db.auth.getUser(token)
+
+    if (authError || !user) {
+      return new Response(JSON.stringify({ error: 'Authentication failed' }), {
+        status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      })
+    }
+
+    // Validate caller role
+    const callerRole = user.user_metadata?.role as string | undefined
+    const permittedRoles = ['PHARMACIST', 'TECHNICIAN']
+
+    if (!callerRole || !permittedRoles.includes(callerRole)) {
+      // ── Audit logging for denied extraction (JDPA 2020) ──
+      await db
+        .from('audit_log')
+        .insert({
+          actor_id: user.id,
+          actor_name: user.user_metadata?.name ?? user.email ?? 'unknown',
+          action: 'ai_extraction_denied_insufficient_role',
+          table_name: 'extraction_queue',
+          record_id: queue_entry_id,
+          details: {
+            caller_role: callerRole ?? 'unknown',
+            required_roles: permittedRoles,
+          },
+          created_at: new Date().toISOString(),
+        })
+        .then(({ error: auditError }) => {
+          if (auditError) {
+            console.error('[extract-document] Failed to log access denial:', auditError.message)
+          }
+        })
+
+      return new Response(JSON.stringify({ error: 'Insufficient permissions for document extraction. Only PHARMACIST and TECHNICIAN roles are permitted.' }), {
+        status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      })
+    }
+
     // Load AI role settings (fallback to hardcoded defaults if row missing)
     const { data: aiSettings } = await db
       .from('ai_role_settings')
@@ -275,7 +325,38 @@ Deno.serve(async (req: Request) => {
     }
 
     const confidence: number = typeof extractedFields.confidence === 'number' ? extractedFields.confidence : 0.5
-    const needsReview = parseErr !== null || confidence < 0.7
+    let needsReview = parseErr !== null || confidence < 0.7
+
+    // 6.5 — JDPA Consent Validation (prescriptions only) ───────────────────────
+    // Before proceeding with AI extraction, validate that the patient has provided JDPA consent
+    // This prevents processing of patient data without explicit authorization
+    let jdpaBlockedReason: string | null = null
+
+    if (isRx && extractedFields.patient_name) {
+      const patientName = String(extractedFields.patient_name).trim()
+      const patientDob = extractedFields.patient_dob ? String(extractedFields.patient_dob).trim() : null
+
+      // Query for patient by name + DOB (if available) to validate JDPA consent
+      const { data: patientRecords } = await db
+        .from('patients')
+        .select('id, first_name, last_name, date_of_birth, jdpa_consent_at')
+        .ilike('first_name', `%${patientName.split(' ')[0]}%`)
+
+      // Find exact match if DOB available; otherwise flag for review
+      let hasJdpaConsent = false
+      if (patientRecords && patientRecords.length > 0) {
+        const matchedPatient = patientDob
+          ? patientRecords.find(p => p.date_of_birth === patientDob && p.jdpa_consent_at !== null)
+          : null
+
+        hasJdpaConsent = !!matchedPatient?.jdpa_consent_at
+      }
+
+      if (!hasJdpaConsent) {
+        jdpaBlockedReason = 'Patient has not provided JDPA consent for data processing'
+        needsReview = true
+      }
+    }
 
     // 7. Build update payload with extracted fields mapped to columns
     type UpdatePayload = {
@@ -322,9 +403,37 @@ Deno.serve(async (req: Request) => {
     }
 
     if (needsReview) {
-      update.review_notes = parseErr
-        ? `JSON parse error — manual review required. Model: ${usedModel}`
-        : `Low confidence (${(confidence * 100).toFixed(0)}%) — pharmacist review required. Model: ${usedModel}`
+      if (jdpaBlockedReason) {
+        update.review_notes = `JDPA COMPLIANCE: ${jdpaBlockedReason}`
+      } else if (parseErr) {
+        update.review_notes = `JSON parse error — manual review required. Model: ${usedModel}`
+      } else {
+        update.review_notes = `Low confidence (${(confidence * 100).toFixed(0)}%) — pharmacist review required. Model: ${usedModel}`
+      }
+    }
+
+    // ── Audit logging for blocked extractions (JDPA 2020) ──
+    if (jdpaBlockedReason) {
+      await db
+        .from('audit_log')
+        .insert({
+          actor_id: null,  // System/automatic action
+          actor_name: 'system:extract-document',
+          action: 'ai_extraction_blocked_no_consent',
+          table_name: 'extraction_queue',
+          record_id: queue_entry_id,
+          details: {
+            document_type: entry.document_type,
+            patient_name: extractedFields.patient_name,
+            reason: jdpaBlockedReason,
+          },
+          created_at: new Date().toISOString(),
+        })
+        .then(({ error: auditError }) => {
+          if (auditError) {
+            console.error('[extract-document] Failed to log JDPA consent block:', auditError.message)
+          }
+        })
     }
 
     await db.from('extraction_queue').update(update).eq('id', queue_entry_id)
