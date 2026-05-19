@@ -42,7 +42,7 @@ export default async function LocaleLayout({
           id="theme-init"
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
-            __html: `(function(){var s=localStorage.getItem('ndrf-theme');document.documentElement.setAttribute('data-theme',s||'light');})();`,
+            __html: `(function(){var s=localStorage.getItem('ndrf-theme');document.documentElement.setAttribute('data-theme',s||'dark');})();`,
           }}
         />
         <NextIntlClientProvider messages={messages} locale={locale}>

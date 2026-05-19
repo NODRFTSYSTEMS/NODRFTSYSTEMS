@@ -96,24 +96,25 @@
 }
 
 /* --------------------------------------------------------------------------
-   Light theme — warm mineral palette
+   Light theme — Iron palette (cool slate gray)
+   Shifted from warm cream to cool industrial gray per v3 design template
    -------------------------------------------------------------------------- */
 [data-theme="light"] {
-  --bg:           #F2F1EC;
-  --bg-alt:       #E8E6DF;
+  --bg:           #f4f5f7;
+  --bg-alt:       #ebedf1;
   --bg-elevated:  #FFFFFF;
 
-  --ink:          #1A1A18;
-  --text:         #36362F;
-  --text-md:      #56564E;
-  --text-lt:      #6E6E64;
-  --text-subtle:  #8A8A7E;
+  --ink:          #0b1220;
+  --text:         #1c2433;
+  --text-md:      #5b6577;
+  --text-lt:      #7a8494;
+  --text-subtle:  #9ba3b0;
   --white:        #FFFFFF;
 
-  --border:        #C8C5BA;
-  --border-light:  #DDD9CF;
-  --border-subtle: #E8E5DC;
-  --geo-line:      var(--border-subtle);
+  --border:        rgba(11,18,32,.18);
+  --border-light:  rgba(11,18,32,.09);
+  --border-subtle: rgba(11,18,32,.05);
+  --geo-line:      rgba(11,18,32,.06);
 
   --accent:        #2B5854;
   --accent-hover:  #1D3F3C;
@@ -133,12 +134,12 @@
   --error:         #9B2020;
   --error-soft:    rgba(155, 32, 32, 0.08);
 
-  --shadow-sm: 0 1px 2px rgba(26, 26, 24, 0.04);
-  --shadow-md: 0 4px 12px rgba(26, 26, 24, 0.08);
-  --shadow-lg: 0 8px 24px rgba(26, 26, 24, 0.10);
+  --shadow-sm: 0 1px 2px rgba(11,18,32, 0.04);
+  --shadow-md: 0 4px 12px rgba(11,18,32, 0.08);
+  --shadow-lg: 0 8px 24px rgba(11,18,32, 0.12);
 
-  --nav-bg: rgba(242, 241, 236, 0.92);
-  --nav-bg-scrolled: rgba(242, 241, 236, 0.97);
+  --nav-bg: rgba(244, 245, 247, 0.92);
+  --nav-bg-scrolled: rgba(244, 245, 247, 0.97);
 }
 
 /* --------------------------------------------------------------------------
@@ -147,19 +148,19 @@
    -------------------------------------------------------------------------- */
 @media (prefers-color-scheme: light) {
   :root:not([data-theme]) {
-    --bg:           #F2F1EC;
-    --bg-alt:       #E8E6DF;
+    --bg:           #f4f5f7;
+    --bg-alt:       #ebedf1;
     --bg-elevated:  #FFFFFF;
-    --ink:          #1A1A18;
-    --text:         #36362F;
-    --text-md:      #56564E;
-    --text-lt:      #6E6E64;
-    --text-subtle:  #8A8A7E;
+    --ink:          #0b1220;
+    --text:         #1c2433;
+    --text-md:      #5b6577;
+    --text-lt:      #7a8494;
+    --text-subtle:  #9ba3b0;
     --white:        #FFFFFF;
-    --border:        #C8C5BA;
-    --border-light:  #DDD9CF;
-    --border-subtle: #E8E5DC;
-    --geo-line:      var(--border-subtle);
+    --border:        rgba(11,18,32,.18);
+    --border-light:  rgba(11,18,32,.09);
+    --border-subtle: rgba(11,18,32,.05);
+    --geo-line:      rgba(11,18,32,.06);
     --accent:        #2B5854;
     --accent-hover:  #1D3F3C;
     --accent-active: #153330;
@@ -170,11 +171,11 @@
     --copper:        #9C5B28;
     --copper-hover:  #7D4920;
     --copper-subtle: rgba(156, 91, 40, 0.08);
-    --shadow-sm: 0 1px 2px rgba(26, 26, 24, 0.04);
-    --shadow-md: 0 4px 12px rgba(26, 26, 24, 0.08);
-    --shadow-lg: 0 8px 24px rgba(26, 26, 24, 0.10);
-    --nav-bg: rgba(242, 241, 236, 0.92);
-    --nav-bg-scrolled: rgba(242, 241, 236, 0.97);
+    --shadow-sm: 0 1px 2px rgba(11,18,32, 0.04);
+    --shadow-md: 0 4px 12px rgba(11,18,32, 0.08);
+    --shadow-lg: 0 8px 24px rgba(11,18,32, 0.12);
+    --nav-bg: rgba(244, 245, 247, 0.92);
+    --nav-bg-scrolled: rgba(244, 245, 247, 0.97);
   }
 }
 
@@ -343,11 +344,6 @@ textarea:focus:not(:focus-visible) {
 }
 .nd-section.alt {
   background-color: var(--bg-alt);
-  background-image:
-    linear-gradient(to right, var(--geo-line) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--geo-line) 1px, transparent 1px);
-  background-size: 60px 60px;
-  background-attachment: fixed;
 }
 .nd-section--tight {
   padding: var(--space-12) var(--space-8);
@@ -1960,15 +1956,17 @@ textarea:focus:not(:focus-visible) {
   --nd-font-serif: var(--font-serif, 'Instrument Serif', 'Iowan Old Style', Georgia, serif);
 }
 
-/* Design token aliases — bridge v3 template names to existing system */
+/* Design token aliases — bridge v3 template names to existing system
+   --rule / --rule-strong use explicit rgba so the backdrop grid is always visible.
+   Dark: white-tinted lines on dark bg. Light: dark-tinted lines on cool gray bg. */
 :root,
 [data-theme="dark"] {
   --surface:      var(--bg-elevated);
   --bg-tint:      var(--bg-alt);
   --ink-2:        var(--text);
   --muted:        var(--text-md);
-  --rule:         var(--border-light);
-  --rule-strong:  var(--border);
+  --rule:         rgba(255,255,255,.09);
+  --rule-strong:  rgba(255,255,255,.18);
   --signal:       var(--success);
   --danger:       var(--error);
   --accent-ink:   var(--accent-light);
@@ -1978,8 +1976,8 @@ textarea:focus:not(:focus-visible) {
   --bg-tint:      var(--bg-alt);
   --ink-2:        var(--text);
   --muted:        var(--text-md);
-  --rule:         var(--border-light);
-  --rule-strong:  var(--border);
+  --rule:         rgba(11,18,32,.08);
+  --rule-strong:  rgba(11,18,32,.16);
   --signal:       var(--success);
   --danger:       var(--error);
   --accent-ink:   var(--accent);
@@ -1990,8 +1988,8 @@ textarea:focus:not(:focus-visible) {
     --bg-tint:      var(--bg-alt);
     --ink-2:        var(--text);
     --muted:        var(--text-md);
-    --rule:         var(--border-light);
-    --rule-strong:  var(--border);
+    --rule:         rgba(11,18,32,.08);
+    --rule-strong:  rgba(11,18,32,.16);
     --signal:       var(--success);
     --danger:       var(--error);
     --accent-ink:   var(--accent);
@@ -2032,6 +2030,8 @@ textarea:focus:not(:focus-visible) {
 
 /* --------------------------------------------------------------------------
    Digital Backdrop — fixed-layer animated grid
+   Uses explicit rgba values per theme so the grid is always visible.
+   Dark: white lines. Light: dark-ink lines.
    -------------------------------------------------------------------------- */
 .nd-dbg {
   position: fixed;
@@ -2040,44 +2040,72 @@ textarea:focus:not(:focus-visible) {
   z-index: 0;
   overflow: hidden;
 }
+
+/* Dark default grid */
 .nd-dbg__grid {
   position: absolute;
   inset: -1px;
   background-image:
-    linear-gradient(var(--rule) 1px, transparent 1px),
-    linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px);
   background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse at 50% 0%, black 25%, transparent 75%);
-  -webkit-mask-image: radial-gradient(ellipse at 50% 0%, black 25%, transparent 75%);
-  opacity: 0.65;
+  mask-image: radial-gradient(ellipse at 50% 0%, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 0%, black 30%, transparent 80%);
+  opacity: 0.85;
 }
+/* Light mode grid — cool-ink lines */
+[data-theme="light"] .nd-dbg__grid {
+  background-image:
+    linear-gradient(rgba(11,18,32,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(11,18,32,.07) 1px, transparent 1px);
+  opacity: 0.80;
+}
+
+/* Dark default dots */
 .nd-dbg__dots {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle, var(--rule-strong) 1px, transparent 1.5px);
+  background-image: radial-gradient(circle, rgba(255,255,255,.12) 1px, transparent 1.5px);
   background-size: 32px 32px;
   background-position: 16px 16px;
   mask-image: radial-gradient(ellipse at 50% 30%, black 0%, transparent 70%);
   -webkit-mask-image: radial-gradient(ellipse at 50% 30%, black 0%, transparent 70%);
-  opacity: 0.45;
+  opacity: 0.6;
 }
+/* Light mode dots */
+[data-theme="light"] .nd-dbg__dots {
+  background-image: radial-gradient(circle, rgba(11,18,32,.10) 1px, transparent 1.5px);
+  opacity: 0.55;
+}
+
+/* Scan glow — accent-colored sweep */
 .nd-dbg__scan {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent 0%, color-mix(in oklab, var(--accent) 22%, transparent) 50%, transparent 100%);
-  width: 40%;
-  filter: blur(40px);
-  animation: nd-scan-x 18s linear infinite;
-  opacity: 0.4;
+  background: linear-gradient(90deg, transparent 0%, var(--accent) 50%, transparent 100%);
+  width: 35%;
+  filter: blur(60px);
+  animation: nd-scan-x 20s linear infinite;
+  opacity: 0.12;
   mix-blend-mode: plus-lighter;
 }
+/* Light mode scan — lower opacity, no plus-lighter */
+[data-theme="light"] .nd-dbg__scan {
+  opacity: 0.08;
+  mix-blend-mode: multiply;
+}
+
+/* Noise blobs — accent color pools at corners */
 .nd-dbg__noise {
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(circle at 30% 20%, color-mix(in oklab, var(--accent) 14%, transparent), transparent 40%),
-    radial-gradient(circle at 80% 70%, color-mix(in oklab, var(--accent) 10%, transparent), transparent 45%);
-  opacity: 0.4;
+    radial-gradient(circle at 15% 15%, var(--accent), transparent 35%),
+    radial-gradient(circle at 85% 75%, var(--accent), transparent 40%);
+  opacity: 0.07;
+}
+[data-theme="light"] .nd-dbg__noise {
+  opacity: 0.04;
 }
 
 /* --------------------------------------------------------------------------
