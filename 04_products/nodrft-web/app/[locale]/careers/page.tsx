@@ -31,8 +31,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const COPY = {
   en: {
     label: "Specialists",
-    heading: "The roster is small on purpose.",
-    lead: "NoDrftSystems is a lean, delivery-focused studio. When a project requires a specific skill, we bring in a specialist who meets the quality and governance standard — not a generalist who approximates it.",
+    heading: "Built around delivery precision.",
+    lead: "NoDrftSystems is a full-service delivery firm. Every engagement draws on specialists who meet the governance and quality standard — not generalists who approximate it.",
     whatLabel: "What we look for",
     what: [
       {
@@ -70,8 +70,8 @@ const COPY = {
   },
   es: {
     label: "Especialistas",
-    heading: "Trabajamos con especialistas, no generalistas.",
-    lead: "NoDrftSystems es un estudio compacto y orientado a la entrega. Cuando un proyecto requiere una habilidad específica, incorporamos a un especialista que cumple el estándar de calidad y gobernanza — no a un generalista que lo aproxima.",
+    heading: "Construida en torno a la precisión de entrega.",
+    lead: "NoDrftSystems es una firma de entrega de servicio completo. Cada proyecto recurre a especialistas que cumplen el estándar de gobernanza y calidad — no generalistas que lo aproximan.",
     whatLabel: "Qué buscamos",
     what: [
       {

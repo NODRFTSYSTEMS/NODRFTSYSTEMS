@@ -177,14 +177,14 @@ const METRICS_EN = [
   { value: "06", label: "Industries Served" },
   { value: "04", label: "Review Gates" },
   { value: "100%", label: "Bilingual" },
-  { value: "01", label: "Principal" },
+  { value: "07", label: "QA Passes" },
 ];
 const METRICS_ES = [
   { value: "14", label: "Sistemas Desplegados" },
   { value: "06", label: "Industrias Atendidas" },
   { value: "04", label: "Compuertas de Revisión" },
   { value: "100%", label: "Bilingüe" },
-  { value: "01", label: "Principal" },
+  { value: "07", label: "Compuertas QA" },
 ];
 
 function MetricsStrip({ locale }: MetricsStripProps) {

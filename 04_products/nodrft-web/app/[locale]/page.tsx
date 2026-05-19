@@ -73,7 +73,7 @@ const VALUE_ROWS = {
     ["Bilingual",         "Translation as an afterthought add-on",    "EN · ES built into the production architecture as standard."],
     ["AI",                "Marketing claim. Execution is manual.",    "AI tools run inside a governed production system. Every output reviewed."],
     ["Operating systems", "Not available",                            "Prebuilt, deployable OS for regulated and complex industries."],
-    ["Accountability",    "Account manager relays decisions",         "One principal. Named authority on every release."],
+    ["Accountability",    "Account manager relays decisions",         "Named authority on every release. Full accountability from brief to go-live."],
     ["Handoff",           "Dependency continues post-launch",         "You own the result. Build team can leave; system keeps running."],
   ],
   es: [
@@ -83,7 +83,7 @@ const VALUE_ROWS = {
     ["Bilingüe",            "Traducción como complemento tardío",          "EN · ES integrado en la arquitectura de producción."],
     ["IA",                  "Afirmación de marketing. Ejecución manual.",  "IA dentro de un sistema de producción gobernado. Todo revisado."],
     ["Sistemas operativos", "No disponible",                               "OS preconfigurado y desplegable para industrias reguladas."],
-    ["Responsabilidad",     "El gerente de cuenta transmite decisiones",   "Un principal. Autoridad nombrada en cada versión."],
+    ["Responsabilidad",     "El gerente de cuenta transmite decisiones",   "Autoridad nombrada en cada versión. Responsabilidad total desde el brief hasta el lanzamiento."],
     ["Traspaso",            "La dependencia continúa después del lanzamiento","Usted es dueño del resultado. El equipo puede irse; el sistema sigue."],
   ],
 };
@@ -92,7 +92,7 @@ const PIPELINE_STAGES = {
   en: [
     { k: "Intake",        sub: "Discovery brief",        ai: false, body: "Owner-direct intake. Fit is evaluated before any proposal is made." },
     { k: "AI Production", sub: "Research · draft · code", ai: true,  body: "AI agents accelerate research, drafting, scaffolding, and code generation under structured prompts." },
-    { k: "Review Gate",   sub: "Principal sign-off",      ai: false, body: "Every output crosses a human authority. No release without a name attached." },
+    { k: "Review Gate",   sub: "Authority sign-off",      ai: false, body: "Every output crosses a human authority. No release without a name attached." },
     { k: "AI Production", sub: "Build · QA · docs",       ai: true,  body: "AI executes the bounded build. Tests and documentation produced in lockstep with code." },
     { k: "Review Gate",   sub: "Bilingual parity",        ai: false, body: "EN · ES transcreation review is structural — not bolted on. Cultural accuracy validated." },
     { k: "Handoff",       sub: "You own the result",      ai: false, body: "Repository, docs, ownership, and next-step recommendation. System runs after the build team is gone." },
@@ -100,7 +100,7 @@ const PIPELINE_STAGES = {
   es: [
     { k: "Intake",           sub: "Brief de descubrimiento",   ai: false, body: "Intake directo con el responsable. El ajuste se evalúa antes de hacer cualquier propuesta." },
     { k: "Producción IA",    sub: "Investigación · borrador",  ai: true,  body: "Agentes de IA aceleran investigación, redacción, scaffolding y generación de código bajo prompts estructurados." },
-    { k: "Compuerta",        sub: "Aprobación del principal",  ai: false, body: "Cada entrega cruza una autoridad humana. Ninguna versión se publica sin un nombre asociado." },
+    { k: "Compuerta",        sub: "Aprobación de autoridad",   ai: false, body: "Cada entrega cruza una autoridad humana. Ninguna versión se publica sin un nombre asociado." },
     { k: "Producción IA",    sub: "Build · QA · docs",         ai: true,  body: "La IA ejecuta el build acotado. Pruebas y documentación producidas al ritmo del código." },
     { k: "Compuerta",        sub: "Paridad bilingüe",          ai: false, body: "Revisión de transcreación EN · ES estructural — no añadida. Precisión cultural validada." },
     { k: "Traspaso",         sub: "Usted es propietario",      ai: false, body: "Repositorio, docs, propiedad y recomendación. El sistema funciona después que el equipo se va." },
@@ -109,16 +109,16 @@ const PIPELINE_STAGES = {
 
 const ENTRY_PKGS = {
   en: [
-    { name: "Logo & Brand Identity",      body: "Logo, color, typography, and brand standards — the foundation every site and platform is built on.", sub: "From a single logo to a full brand identity system.", timeline: "From $400" },
-    { name: "Business Website",           body: "Single conversion page to full authority site — scoped before build begins.", sub: "From a landing page to a 15-page authority build. Scope drives price.", timeline: "From $750" },
-    { name: "Content & Social",           body: "Blog, email, and social content produced under editorial review.", sub: "Monthly retainers. Volume and platform mix confirmed at onboarding.", timeline: "From $750/month" },
-    { name: "Business Operating Systems", body: "POS, timecards, inventory, scheduling, and full OS platforms — built for how your business actually runs.", sub: "Deployable systems for regulated and operationally complex businesses. Scoped on inquiry.", timeline: "Inquiry" },
+    { name: "Logo & Brand Identity",      body: "The credential behind every first impression. Logo, color, typography, and brand standards before a single screen is built.", sub: "From a single logo to a full brand identity system.", timeline: "From $400" },
+    { name: "Business Website",           body: "From a single conversion page to a 15-page authority build. Scoped and structured before a line of code is written.", sub: "Scope drives price. Every build begins with a defined brief.", timeline: "From $750" },
+    { name: "Content & Social",           body: "Monthly content under editorial review — blog, email, and social that reflects the quality of the work, not just the workload.", sub: "Monthly retainers. Volume and platform confirmed at onboarding.", timeline: "From $750/month" },
+    { name: "Business Operating Systems", body: "Operational software that runs POS, timecards, inventory, scheduling, and compliance — deployed, not demoed.", sub: "Scoped on inquiry. Deployable systems for businesses that need infrastructure, not workarounds.", timeline: "Inquiry" },
   ],
   es: [
-    { name: "Logotipo e Identidad",        body: "Logotipo, color, tipografía y estándares de marca — la base de todo sitio y plataforma.", sub: "Desde un logotipo hasta un sistema de identidad completo.", timeline: "Desde $400" },
-    { name: "Sitio Web Empresarial",       body: "Desde una página de conversión hasta un sitio de autoridad — definido antes de construir.", sub: "Desde una landing page hasta un sitio de 15 páginas. El alcance determina el precio.", timeline: "Desde $750" },
-    { name: "Contenido y Redes Sociales",  body: "Blog, email y contenido para redes sociales bajo revisión editorial.", sub: "Retainers mensuales. Volumen y plataformas confirmados al inicio.", timeline: "Desde $750/mes" },
-    { name: "Sistemas Operativos",         body: "POS, tarjetas de tiempo, inventario, citas y plataformas OS — construidos para como funciona su negocio.", sub: "Sistemas desplegables para negocios regulados. Precio por consulta.", timeline: "Consulta" },
+    { name: "Logotipo e Identidad",        body: "La credencial detrás de cada primera impresión. Logotipo, color, tipografía y estándares de marca antes de que se construya una sola pantalla.", sub: "Desde un logotipo hasta un sistema de identidad completo.", timeline: "Desde $400" },
+    { name: "Sitio Web Empresarial",       body: "Desde una página de conversión hasta un sitio de autoridad de 15 páginas. Definido y estructurado antes de escribir una línea de código.", sub: "El alcance determina el precio. Todo build comienza con un brief definido.", timeline: "Desde $750" },
+    { name: "Contenido y Redes Sociales",  body: "Contenido mensual bajo revisión editorial — blog, email y redes sociales que reflejan la calidad del trabajo, no solo el volumen.", sub: "Retainers mensuales. Volumen y plataforma confirmados al inicio.", timeline: "Desde $750/mes" },
+    { name: "Sistemas Operativos",         body: "Software operativo que gestiona POS, tarjetas de tiempo, inventario, citas y cumplimiento normativo — desplegado, no solo demostrado.", sub: "Por consulta. Sistemas desplegables para negocios que necesitan infraestructura, no rodeos.", timeline: "Consulta" },
   ],
 };
 
@@ -140,27 +140,6 @@ const WORK_ON_RECORD = {
     ],
     disclaimer: "Nombres de clientes no revelados. Resultados enmarcados cualitativamente.",
     link: "Ver todos los proyectos seleccionados →",
-  },
-};
-
-const PRINCIPAL_NOTE = {
-  en: {
-    eyebrow: "From the desk of",
-    quote: "Most studios optimize for billable hours. We optimize for what's still standing five years from now. That changes what we accept, what we charge, and how we sign our releases.",
-    body1: "AI lets a small studio operate at the velocity of a large one. Discipline is what keeps it from running off the road. So we built a delivery model where every output crosses a human authority before it ships — and where the client owns the result, not us.",
-    body2: "If you've been burned by an underscoped build, or you can feel your digital presence quietly working against you, we'd like to hear about it before we decide we can help.",
-    sig: "— ND",
-    byline: "Brooklyn · 2026",
-    title: "Founder · NoDrftSystems",
-  },
-  es: {
-    eyebrow: "De la mesa del",
-    quote: "La mayoría de los estudios optimizan para horas facturables. Nosotros optimizamos para lo que seguirá en pie cinco años después. Eso cambia lo que aceptamos, lo que cobramos y cómo firmamos nuestras entregas.",
-    body1: "La IA permite que un estudio pequeño opere a la velocidad de uno grande. La disciplina es lo que evita que se salga del camino. Por eso construimos un modelo de entrega donde cada resultado cruza una autoridad humana antes de publicarse — y donde el cliente es propietario del resultado, no nosotros.",
-    body2: "Si ha sufrido las consecuencias de una construcción mal definida, o puede sentir que su presencia digital trabaja silenciosamente en su contra, nos gustaría escucharle antes de decidir si podemos ayudar.",
-    sig: "— ND",
-    byline: "Brooklyn · 2026",
-    title: "Fundador · NoDrftSystems",
   },
 };
 
@@ -338,7 +317,6 @@ export default async function HomePage({ params }: Props) {
   const pipelineStages = PIPELINE_STAGES[loc];
   const entryPkgs    = ENTRY_PKGS[loc];
   const workRecord   = WORK_ON_RECORD[loc];
-  const principalNote = PRINCIPAL_NOTE[loc];
   const fit          = FIT[loc];
 
   const isEs = loc === "es";
@@ -617,53 +595,6 @@ export default async function HomePage({ params }: Props) {
               <Link href={`/${locale}/engagements`}>{workRecord.link}</Link>
             </p>
           </FadeUp>
-        </div>
-      </section>
-
-      {/* ── Principal's Note ──────────────────────────────────── */}
-      <section className="nd-section" aria-labelledby="principal-heading" style={{ background: "var(--bg-tint)", borderTop: "1px solid var(--rule-strong)", borderBottom: "1px solid var(--rule-strong)" }}>
-        <div className="nd-wrap">
-          <div className="nd-principal-grid">
-            <FadeUp>
-              <div>
-                <span className="nd-eyebrow" id="principal-heading" style={{ display: "flex" }}>
-                  {principalNote.eyebrow}
-                </span>
-                <div style={{ marginTop: "24px", display: "flex", flexDirection: "column", gap: "14px" }}>
-                  <div className="nd-principal-portrait" aria-hidden="true">
-                    [ portrait ]
-                  </div>
-                  <div>
-                    <div style={{ fontSize: "15px", color: "var(--ink)", fontWeight: 500, letterSpacing: "-0.01em" }}>
-                      {isEs ? "El Principal" : "The Principal"}
-                    </div>
-                    <div style={{ fontFamily: "var(--nd-font-mono, monospace)", fontSize: "11px", color: "var(--muted)", letterSpacing: "0.04em" }}>
-                      {principalNote.title}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </FadeUp>
-
-            <FadeUp delay={0.08}>
-              <article style={{ display: "flex", flexDirection: "column", gap: "var(--space-5)" }}>
-                <p className="nd-principal-quote">
-                  <span className="nd-principal-quotemark" aria-hidden="true">"</span>
-                  {principalNote.quote}
-                </p>
-                <p className="nd-p" style={{ maxWidth: "60ch", color: "var(--ink-2)" }}>
-                  {principalNote.body1}
-                </p>
-                <p className="nd-p" style={{ maxWidth: "60ch", color: "var(--ink-2)" }}>
-                  {principalNote.body2}
-                </p>
-                <div className="nd-principal-sig" aria-label="signature">
-                  {principalNote.sig}
-                </div>
-                <div className="nd-principal-byline">{principalNote.byline}</div>
-              </article>
-            </FadeUp>
-          </div>
         </div>
       </section>
 
