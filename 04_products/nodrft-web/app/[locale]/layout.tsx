@@ -2,11 +2,12 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import { inter, jetbrainsMono, syne } from "@/lib/fonts";
+import { inter, jetbrainsMono, syne, instrumentSerif } from "@/lib/fonts";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { AnimatedLayout } from "@/components/layout/AnimatedLayout";
+import { DigitalBackdrop } from "@/components/motion/DigitalBackdrop";
 import Script from "next/script";
 import type { Metadata } from "next";
 
@@ -33,7 +34,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${inter.variable} ${jetbrainsMono.variable} ${syne.variable}`}
+      className={`${inter.variable} ${jetbrainsMono.variable} ${syne.variable} ${instrumentSerif.variable}`}
       suppressHydrationWarning
     >
       <body>
@@ -45,6 +46,7 @@ export default async function LocaleLayout({
           }}
         />
         <NextIntlClientProvider messages={messages} locale={locale}>
+          <DigitalBackdrop />
           <SkipLink label={locale === "es" ? "Saltar al contenido" : "Skip to content"} />
           <Nav />
           <main id="main-content" tabIndex={-1}>

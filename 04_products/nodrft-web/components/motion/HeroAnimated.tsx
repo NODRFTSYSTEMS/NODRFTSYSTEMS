@@ -29,23 +29,175 @@ const blockVariant = {
   },
 };
 
-function WordLine({ text }: { text: string }) {
+function WordLine({ text, serif }: { text: string; serif?: boolean }) {
+  const words = text.split(" ");
   return (
     <>
-      {text.split(" ").map((word, i, arr) => (
+      {words.map((word, i, arr) => (
         <motion.span
           key={i}
           variants={wordVariant}
-          // display and marginRight are Framer Motion animation-enabling requirements:
-          // motion.span must be inline-block to receive y-axis transforms, and word
-          // spacing cannot be handled via CSS gap on an inline flow. No utility class
-          // or design token covers this specific per-word stagger layout need.
-          style={{ display: "inline-block", marginRight: i < arr.length - 1 ? "0.3em" : 0 }}
+          style={{
+            display: "inline-block",
+            marginRight: i < arr.length - 1 ? "0.3em" : 0,
+            // Apply serif italic to last word of second line for design accent
+            ...(serif && i === arr.length - 1
+              ? {
+                  fontFamily: "var(--nd-font-serif, 'Instrument Serif', Georgia, serif)",
+                  fontStyle: "italic",
+                  fontWeight: 400,
+                  letterSpacing: "-0.02em",
+                }
+              : {}),
+          }}
         >
           {word}
         </motion.span>
       ))}
     </>
+  );
+}
+
+/**
+ * SystemSchematic — 9-node pipeline SVG that represents the AI-integrated
+ * delivery architecture. Decorative only — aria-hidden.
+ */
+function SystemSchematic() {
+  // 9 nodes in 3 rows: [Intake, AI, Review] × [Brand, Web, Platform]
+  const nodes = [
+    { cx: 60,  cy: 60,  label: "Intake" },
+    { cx: 210, cy: 60,  label: "AI" },
+    { cx: 360, cy: 60,  label: "Review" },
+    { cx: 60,  cy: 180, label: "Brand" },
+    { cx: 210, cy: 180, label: "Build" },
+    { cx: 360, cy: 180, label: "QA" },
+    { cx: 60,  cy: 300, label: "OS" },
+    { cx: 210, cy: 300, label: "Deploy" },
+    { cx: 360, cy: 300, label: "Handoff" },
+  ];
+
+  const paths = [
+    "M60 60 L210 60",  "M210 60 L360 60",
+    "M60 180 L210 180","M210 180 L360 180",
+    "M60 300 L210 300","M210 300 L360 300",
+    "M60 60 L60 180",  "M210 60 L210 180","M360 60 L360 180",
+    "M60 180 L60 300", "M210 180 L210 300","M360 180 L360 300",
+    // Cross-links (dashed)
+    "M60 60 L210 180", "M210 180 L360 60",
+    "M60 180 L210 300","M210 60 L360 180",
+  ];
+
+  return (
+    <svg
+      className="nd-schematic"
+      viewBox="0 0 420 360"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      {/* Base grid paths */}
+      {paths.slice(0, 12).map((d, i) => (
+        <path
+          key={i}
+          d={d}
+          stroke="var(--accent)"
+          strokeWidth="1"
+          strokeDasharray="4 4"
+          opacity="0.6"
+          style={{
+            strokeDashoffset: 0,
+            animation: `nd-drift-line ${8 + i * 1.2}s linear infinite`,
+          }}
+        />
+      ))}
+
+      {/* Cross-links */}
+      {paths.slice(12).map((d, i) => (
+        <path
+          key={`x${i}`}
+          d={d}
+          stroke="var(--accent)"
+          strokeWidth="0.5"
+          strokeDasharray="2 6"
+          opacity="0.3"
+        />
+      ))}
+
+      {/* Node pings */}
+      {nodes.map((n, i) => (
+        <g key={i}>
+          {/* Ping ring */}
+          <circle
+            cx={n.cx}
+            cy={n.cy}
+            r="10"
+            stroke="var(--accent)"
+            strokeWidth="1"
+            fill="none"
+            opacity="0"
+            style={{
+              animation: `nd-ping-pulse 3s ease-out ${i * 0.35}s infinite`,
+            }}
+          />
+          {/* Core dot */}
+          <circle
+            cx={n.cx}
+            cy={n.cy}
+            r="4"
+            fill="var(--accent)"
+            opacity="0.7"
+            style={{
+              animation: `nd-node-blink 4s ease-in-out ${i * 0.4}s infinite`,
+            }}
+          />
+          {/* Label */}
+          <text
+            x={n.cx}
+            y={n.cy + 18}
+            textAnchor="middle"
+            fontSize="9"
+            fill="var(--muted, var(--text-md))"
+            letterSpacing="0.08em"
+            style={{ fontFamily: "var(--nd-font-mono, monospace)", textTransform: "uppercase" }}
+          >
+            {n.label}
+          </text>
+        </g>
+      ))}
+    </svg>
+  );
+}
+
+interface MetricsStripProps {
+  locale: string;
+}
+
+const METRICS_EN = [
+  { value: "14", label: "Systems Deployed" },
+  { value: "06", label: "Industries Served" },
+  { value: "04", label: "Review Gates" },
+  { value: "100%", label: "Bilingual" },
+  { value: "01", label: "Principal" },
+];
+const METRICS_ES = [
+  { value: "14", label: "Sistemas Desplegados" },
+  { value: "06", label: "Industrias Atendidas" },
+  { value: "04", label: "Compuertas de Revisión" },
+  { value: "100%", label: "Bilingüe" },
+  { value: "01", label: "Principal" },
+];
+
+function MetricsStrip({ locale }: MetricsStripProps) {
+  const metrics = locale === "es" ? METRICS_ES : METRICS_EN;
+  return (
+    <div className="nd-metrics-strip" aria-label={locale === "es" ? "Métricas clave" : "Key metrics"}>
+      {metrics.map((m) => (
+        <div key={m.label} className="nd-metric">
+          <span className="nd-metric__value">{m.value}</span>
+          <span className="nd-metric__label">{m.label}</span>
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -75,109 +227,48 @@ export function HeroAnimated({
     return {
       initial: axis === "x" ? { scaleX: 0 } : { scaleY: 0 },
       animate: axis === "x" ? { scaleX: 1 } : { scaleY: 1 },
-      // Capped at 0.4s per 400ms animation duration limit
       transition: { duration: 0.4, ease: BRAND_EASE, delay },
-    };
-  }
-
-  function pathProps(delay: number) {
-    if (prefersReduced) return {};
-    return {
-      initial: { pathLength: 0 },
-      animate: { pathLength: 1 },
-      // Capped at 0.4s per 400ms animation duration limit
-      transition: { duration: 0.4, ease: BRAND_EASE, delay },
-    };
-  }
-
-  function fadeProps(delay: number) {
-    if (prefersReduced) return {};
-    return {
-      initial: { opacity: 0 },
-      animate: { opacity: 1 },
-      transition: { duration: 0.4, delay },
     };
   }
 
   return (
     <>
-      {/* Structural grid lines — aria-hidden, decorative only */}
+      {/* Structural grid lines — decorative */}
       <div className="nd-hero__grid" aria-hidden="true">
         <motion.div
           className="nd-hero__grid-line nd-hero__grid-line--h"
-          // top: "30%" is a decorative positional value; no design token or utility
-          // class maps to this specific percentage. transformOrigin is animation-enabling.
           style={{ top: "30%", transformOrigin: "left center" }}
           {...lineProps(0.05, "x")}
         />
         <motion.div
           className="nd-hero__grid-line nd-hero__grid-line--h"
-          // top: "65%" — same justification as above
           style={{ top: "65%", transformOrigin: "left center" }}
           {...lineProps(0.2, "x")}
         />
         <motion.div
           className="nd-hero__grid-line nd-hero__grid-line--v"
-          // left: "33%" — decorative grid position; transformOrigin is animation-enabling
           style={{ left: "33%", transformOrigin: "center top" }}
           {...lineProps(0.1, "y")}
         />
         <motion.div
           className="nd-hero__grid-line nd-hero__grid-line--v"
-          // left: "66%" — same justification as above
           style={{ left: "66%", transformOrigin: "center top" }}
           {...lineProps(0.25, "y")}
         />
       </div>
 
-      {/* Diamond SVG — path draw-on, decorative */}
-      <svg
-        className="nd-hero__accent"
-        viewBox="0 0 120 120"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
-        <motion.path
-          d="M60 4 L116 60 L60 116 L4 60 Z"
-          stroke="var(--accent)"
-          strokeWidth="1.5"
-          fill="none"
-          {...pathProps(0.15)}
-        />
-        <motion.path
-          d="M60 18 L102 60 L60 102 L18 60 Z"
-          stroke="var(--accent)"
-          strokeWidth="0.75"
-          fill="none"
-          opacity={0.5}
-          {...pathProps(0.3)}
-        />
-        <motion.path
-          d="M60 4 L60 116"
-          stroke="var(--border)"
-          strokeWidth="0.5"
-          {...fadeProps(0.35)}
-        />
-        <motion.path
-          d="M4 60 L116 60"
-          stroke="var(--border)"
-          strokeWidth="0.5"
-          {...fadeProps(0.38)}
-        />
-      </svg>
+      {/* System schematic — right-side decorative SVG */}
+      <SystemSchematic />
 
-      {/* Hero copy — word stagger on headline, block fade on lead + CTAs */}
+      {/* Hero copy */}
       <div className="nd-wrap">
         <motion.div
           initial={prefersReduced ? {} : "hidden"}
           animate={prefersReduced ? {} : "visible"}
           variants={containerVariant}
         >
-          <motion.div
-            className="nd-hero-label-wrap"
-            variants={blockVariant}
-          >
+          {/* Eyebrow / label */}
+          <motion.div className="nd-hero-label-wrap" variants={blockVariant}>
             <motion.div
               className="nd-hero-copper-bar"
               initial={prefersReduced ? {} : { scaleX: 0 }}
@@ -187,30 +278,26 @@ export function HeroAnimated({
             <p className="nd-label">{label}</p>
           </motion.div>
 
-          <h1
-            id="hero-heading"
-            className="nd-h1 nd-mb6"
-          >
-            {/* "block" is a Tailwind display utility — needed to force each line
-                to occupy its own row within the inline word-stagger flow. */}
+          {/* Headline — second line gets serif italic last word */}
+          <h1 id="hero-heading" className="nd-h1 nd-mb6">
             <span className="block">
               <WordLine text={headline1} />
             </span>
             <span className="block">
-              <WordLine text={headline2} />
+              <WordLine text={headline2} serif />
             </span>
           </h1>
 
+          {/* Lead */}
           <motion.p
             className="nd-lead nd-mb8"
-            // maxWidth: "600px" is a hero-specific layout constraint. No design token
-            // or existing utility class maps to exactly 600px (--max-width-narrow is 680px).
             style={{ maxWidth: "600px" }}
             variants={blockVariant}
           >
             {lead}
           </motion.p>
 
+          {/* CTAs */}
           <motion.div className="nd-cta-row" variants={blockVariant}>
             <a href={`/${locale}/start`} className="btn">
               {ctaButton}
@@ -218,6 +305,11 @@ export function HeroAnimated({
             <a href={`/${locale}/capabilities`} className="btn--ghost">
               {ctaSecondary}
             </a>
+          </motion.div>
+
+          {/* Metrics strip */}
+          <motion.div variants={blockVariant}>
+            <MetricsStrip locale={locale} />
           </motion.div>
         </motion.div>
       </div>

@@ -1,5 +1,5 @@
 import localFont from "next/font/local";
-import { Syne } from "next/font/google";
+import { Syne, Instrument_Serif } from "next/font/google";
 
 export const syne = Syne({
   subsets: ["latin"],
@@ -25,6 +25,15 @@ export const inter = localFont({
   variable: "--nd-font-sans",
   display: "swap",
   preload: true,
+});
+
+export const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--nd-font-serif",
+  display: "swap",
+  preload: false,
 });
 
 export const jetbrainsMono = localFont({
