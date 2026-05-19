@@ -76,7 +76,7 @@ const COPY = {
     },
     os: {
       heading: "Business Operating Systems",
-      lead: "NoDrftSystems builds and licenses AI-integrated operating systems for regulated and operationally complex industries. Every OS runs on a governance-grade infrastructure — identity and access control, inventory, audit trail, dashboards, alerts, and document management — with industry-specific logic layered on top.",
+      lead: "NoDrftSystems builds and licenses Management Operating Systems — the operational software layer that runs how businesses work. Every OS runs on governance-grade infrastructure: identity and access control, inventory, audit trail, dashboards, alerts, and document management — with business-specific logic layered on top. Prebuilt products target regulated and operationally complex industries. Custom builds can be commissioned for any operational need.",
       lead2: "Prebuilt OS products are available for licensed deployment. If your industry has no existing product, a custom build can be commissioned — you become the first licensed operator.",
       lead3: "All OS engagements begin with a Product Fit & Feasibility Sprint.",
       ctaButton: "Submit an OS Inquiry",
@@ -148,7 +148,7 @@ const COPY = {
     },
     os: {
       heading: "Sistemas Operativos Empresariales",
-      lead: "NoDrftSystems construye y licencia sistemas operativos con IA integrada para industrias reguladas y operacionalmente complejas. Cada OS corre sobre una infraestructura de nivel gobernanza — control de identidad y acceso, inventario, registro de auditoría, paneles, alertas y gestión de documentos — con lógica específica de la industria encima.",
+      lead: "NoDrftSystems construye y licencia Sistemas Operativos de Gestión — la capa de software operativo que define cómo funcionan los negocios. Cada OS corre sobre infraestructura de nivel gobernanza: control de identidad y acceso, inventario, registro de auditoría, paneles, alertas y gestión de documentos — con lógica específica del negocio encima. Los productos preintegrados están orientados a industrias reguladas y operacionalmente complejas. Las construcciones personalizadas pueden encargarse para cualquier necesidad operativa.",
       lead2: "Los productos OS preintegrados están disponibles para despliegue licenciado. Si su industria no tiene producto existente, se puede encargar una construcción personalizada — usted se convierte en el primer operador licenciado.",
       lead3: "Todos los proyectos OS comienzan con un Sprint de Ajuste y Viabilidad del Producto.",
       ctaButton: "Enviar una Consulta de OS",
